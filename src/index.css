@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: #FAF8F5;
+    color: #11100F;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #11100F;
+  }
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3EEE5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8D1C3;
+  border-radius: 3px;
+  border: 1px solid rgba(182, 138, 72, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B68A48;
+}
+
+/* Luxury Warm Ivory & White Glassmorphism */
+.glass-ivory {
+  background: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(182, 138, 72, 0.2);
+}
+
+.glass-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 221, 212, 0.9);
+}
+
+/* Golden Border & Accents */
+.border-gold-subtle {
+  border-color: rgba(182, 138, 72, 0.3);
+}
+
+.border-gold-glow:hover {
+  border-color: rgba(182, 138, 72, 0.8);
+  box-shadow: 0 0 15px -3px rgba(182, 138, 72, 0.25);
+}
+
+/* Editorial M Watermark */
+.watermark-m {
+  position: absolute;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-weight: 700;
+  color: rgba(182, 138, 72, 0.05);
+  user-select: none;
+  pointer-events: none;
+  line-height: 0.8;
+}
+
+/* Texture subtle linen / stone */
+.texture-linen {
+  background-color: #FAF8F5;
+  background-image: radial-gradient(rgba(182, 138, 72, 0.06) 1px, transparent 0);
+  background-size: 24px 24px;
+}
