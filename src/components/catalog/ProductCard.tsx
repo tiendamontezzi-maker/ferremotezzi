@@ -36,8 +36,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showStars = t
     if (finish.includes('oro') || finish.includes('dorad')) {
       return ['#B68A48', '#1C1B1A'];
     }
-    if (finish.includes('cuero') || finish.includes('madera')) {
-      return ['#3D3A37', '#E5DFD4', '#1C1B1A'];
+    if (finish.includes('cuero') || finish.includes('madera') || finish.includes('nogal')) {
+      return ['#5A3927', '#8B5A2B', '#1C1B1A'];
     }
     return ['#1C1B1A', '#B68A48'];
   };

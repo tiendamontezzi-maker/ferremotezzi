@@ -81,6 +81,14 @@ export const Home: React.FC = () => {
           
           {/* Left Column: Headline and Link */}
           <div className="lg:col-span-5 space-y-6 z-10">
+            {/* Architectural Wood Synergy Pill */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full wood-pill shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8B5A2B]" />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#5A3927] font-mono font-medium">
+                Ebanistería Fina · Nogal & Roble
+              </span>
+            </div>
+
             <div className="space-y-1">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-sans font-bold text-obsidian tracking-wider leading-[1.12] uppercase">
                 {currentSlide.titleLine1} <br />
@@ -192,8 +200,56 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* 2.5. ARCHITECTURAL CRAFTSMANSHIP & NOBLE WOOD SYNERGY STRIP */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="wood-card rounded-2xl p-8 sm:p-12 relative overflow-hidden border border-[#5A3927]/20 shadow-lg">
+          {/* Subtle warm wood grain accent line at top */}
+          <div className="absolute top-0 left-0 right-0 h-1 wood-ribbon" />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 space-y-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#5A3927] font-medium">
+                Ebanistería de Vanguardia
+              </span>
+              <h3 className="font-sans text-xl sm:text-2xl font-bold uppercase tracking-wider text-obsidian leading-snug">
+                Maderas Nobles & Mecanismos Invisibles
+              </h3>
+              <p className="font-serif italic text-xs sm:text-sm text-obsidian/70 leading-relaxed">
+                Nuestros herrajes han sido concebidos para convivir en equilibrio milimétrico con nogal americano, roble europeo, cedro y tableros enchapados de alta gama.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-sans">
+              <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-[#5A3927]/15 space-y-1.5 shadow-2xs">
+                <span className="text-[#5A3927] font-mono font-medium text-xs block">01 · VETA PURA</span>
+                <h4 className="font-sans font-bold uppercase tracking-wider text-obsidian text-[11px]">Respeto al Material</h4>
+                <p className="text-[11px] text-obsidian/65 font-sans leading-normal">
+                  Sistemas embutidos que preservan la continuidad y belleza orgánica del mueble.
+                </p>
+              </div>
+
+              <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-[#5A3927]/15 space-y-1.5 shadow-2xs">
+                <span className="text-[#5A3927] font-mono font-medium text-xs block">02 · TOLERANCIA</span>
+                <h4 className="font-sans font-bold uppercase tracking-wider text-obsidian text-[11px]">Ajuste Tridimensional</h4>
+                <p className="text-[11px] text-obsidian/65 font-sans leading-normal">
+                  Regulación precisa en 3 ejes para calibrar holguras perfectas entre frentes de madera.
+                </p>
+              </div>
+
+              <div className="p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-[#5A3927]/15 space-y-1.5 shadow-2xs">
+                <span className="text-[#5A3927] font-mono font-medium text-xs block">03 · SILENCIO</span>
+                <h4 className="font-sans font-bold uppercase tracking-wider text-obsidian text-[11px]">Amortiguación Suave</h4>
+                <p className="text-[11px] text-obsidian/65 font-sans leading-normal">
+                  Pistones hidráulicos de alta durabilidad certificados para más de 50.000 ciclos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. TESTIMONIAL (Fiel a la foto: título "Testimonial", 4 tarjetas numeradas con badge circular, cita y autor) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-4">
         <div className="text-center space-y-2">
           <h2 className="text-2xl sm:text-3xl font-sans font-bold text-obsidian tracking-widest uppercase">
             Testimonial
@@ -236,22 +292,29 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. SHOWCASE DE MOBILIARIO ARQUITECTÓNICO (Fiel a la foto: credenza en madera nogal/ranurada de alta gama donde vive el herraje) */}
+      {/* 4. SHOWCASE DE MOBILIARIO ARQUITECTÓNICO (Credenza ranurada en nogal con herrajes ocultos) */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
-        <div className="flex flex-col items-center justify-center text-center space-y-6">
-          <div className="w-full aspect-[21/9] max-h-[360px] overflow-hidden rounded-xl flex items-center justify-center glass-surface border border-white/80 p-4 sm:p-8 shadow-xl">
+        <div className="wood-card rounded-2xl p-6 sm:p-10 border border-[#5A3927]/20 shadow-xl flex flex-col items-center justify-center text-center space-y-6">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#5A3927] px-3 py-1 rounded-full wood-pill">
+              Nogal Ranurado & Correderas Ocultas
+            </span>
+          </div>
+
+          <div className="w-full aspect-[21/9] max-h-[360px] overflow-hidden rounded-xl flex items-center justify-center bg-white/70 border border-[#5A3927]/10 p-4 sm:p-8 shadow-inner">
             <img
               src="/images/showcase/showcase_credenza.jpg"
-              alt="Mobiliario Arquitectónico con Herrajes Montezzi"
+              alt="Mobiliario Arquitectónico en Nogal con Herrajes Montezzi"
               className="w-full h-full object-contain filter drop-shadow-lg mix-blend-multiply"
             />
           </div>
-          <div className="max-w-md space-y-1.5 text-center">
-            <h3 className="font-sans text-base text-obsidian font-bold uppercase tracking-wider">
-              Arquitectura en madera y herrajes ocultos
+
+          <div className="max-w-lg space-y-2 text-center">
+            <h3 className="font-sans text-base sm:text-lg text-obsidian font-bold uppercase tracking-wider">
+              Arquitectura en madera maciza y herrajes ocultos
             </h3>
-            <p className="text-xs text-obsidian/60 font-sans">
-              Diseñado para integrarse con precisión técnica en ebanistería contemporánea.
+            <p className="text-xs text-obsidian/65 font-serif italic leading-relaxed">
+              "La ingeniería de alta gama no compite con el diseño del mueble: se oculta para dejar que la calidez del nogal y la maestría del ebanista sean los verdaderos protagonistas."
             </p>
           </div>
         </div>

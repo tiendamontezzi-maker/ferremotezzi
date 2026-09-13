@@ -114,12 +114,19 @@ export const ProductDetail: React.FC = () => {
             </div>
           )}
 
-          {/* Architecture Visual Note */}
-          <div className="p-4 glass-card rounded-lg border border-white/80 text-xs text-obsidian/75 flex items-center gap-3 shadow-xs">
-            <Compass className="w-4 h-4 text-black shrink-0" />
-            <span>
-              Fotografía técnica oficial de producto: acabados arquitectónicos de alta gama y tolerancias de precisión milimétrica.
-            </span>
+          {/* Architecture & Woodcraft Visual Note */}
+          <div className="p-4 wood-card rounded-xl border border-[#5A3927]/18 text-xs text-obsidian/80 flex items-center gap-3.5 shadow-2xs">
+            <div className="w-8 h-8 rounded-full wood-pill flex items-center justify-center shrink-0">
+              <Compass className="w-4 h-4 text-[#5A3927]" />
+            </div>
+            <div className="space-y-0.5">
+              <span className="font-sans text-[10px] uppercase tracking-[0.16em] text-[#5A3927] font-bold block">
+                Sinergia en Ebanistería & Maderas Nobles
+              </span>
+              <span className="text-[11px] text-obsidian/70 font-serif italic">
+                Calibrado con tolerancias milimétricas para ensamble en madera maciza, enchapados de nogal o roble y tableros contemporáneos.
+              </span>
+            </div>
           </div>
         </div>
 

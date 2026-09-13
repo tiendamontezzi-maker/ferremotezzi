@@ -184,3 +184,44 @@
   background-image: radial-gradient(rgba(182, 138, 72, 0.06) 1px, transparent 0);
   background-size: 24px 24px;
 }
+
+/* ==========================================================================
+   Architectural Wood & Craftsmanship Accents (Nogal Canaletto & Roble Europeo)
+   ========================================================================== */
+
+.wood-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(250, 246, 240, 0.78) 100%);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  border: 1px solid rgba(114, 73, 51, 0.18);
+  box-shadow: 
+    0 12px 36px 0 rgba(64, 39, 26, 0.04),
+    0 2px 8px 0 rgba(0, 0, 0, 0.02),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wood-card:hover {
+  border-color: rgba(114, 73, 51, 0.35);
+  box-shadow: 
+    0 20px 44px -4px rgba(64, 39, 26, 0.08),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+.wood-pill {
+  background: linear-gradient(135deg, rgba(90, 57, 39, 0.07) 0%, rgba(255, 255, 255, 0.85) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(114, 73, 51, 0.22);
+  color: #40271A;
+}
+
+.wood-ribbon {
+  background: linear-gradient(90deg, #321F15 0%, #5A3927 35%, #724933 65%, #321F15 100%);
+}
+
+.wood-surface-warm {
+  background: linear-gradient(180deg, rgba(253, 251, 247, 0.95) 0%, rgba(246, 242, 235, 0.85) 100%);
+  border: 1px solid rgba(114, 73, 51, 0.14);
+}
+

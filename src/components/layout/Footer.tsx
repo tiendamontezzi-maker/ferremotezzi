@@ -6,9 +6,10 @@ import { ShieldCheck, Truck, Clock, Sparkles, ArrowRight } from 'lucide-react';
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-black/[0.08] text-obsidian pt-16 pb-12">
-      {/* Brand Value Pillars (Westwing / Luxury Standard) */}
+      {/* Brand Value Pillars (Westwing / Luxury Standard with Warm Wood Accent) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-8 glass-card px-6 rounded-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-8 wood-card px-8 rounded-2xl relative overflow-hidden border border-[#5A3927]/18 shadow-lg">
+          <div className="absolute top-0 left-0 right-0 h-0.5 wood-ribbon opacity-80" />
           <div className="flex items-center gap-3">
             <Sparkles className="w-6 h-6 text-black shrink-0 stroke-[1.5]" />
             <div>
@@ -207,6 +208,17 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
+          </div>
+
+          {/* Subtle Craftsman Trademark Bar */}
+          <div className="mt-12 pt-6 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between text-[11px] text-obsidian/50 gap-4">
+            <p>© {new Date().getFullYear()} Montezzi Luxury Hardware S.A.S. Todos los derechos reservados.</p>
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8B5A2B]" />
+              <span className="font-serif italic text-obsidian/60">
+                Ingeniería silenciosa concebida para ebanistería y arquitectura de alta gama
+              </span>
+            </div>
           </div>
         </div>
       </div>
