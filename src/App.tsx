@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { ProductProvider } from './context/ProductContext';
+import { SearchProvider } from './context/SearchContext';
 import { Layout } from './components/layout/Layout';
 
 // Pages
@@ -24,22 +25,24 @@ export const App: React.FC = () => {
       <AuthProvider>
         <ProductProvider>
           <CartProvider>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="catalogo" element={<Catalog />} />
-                <Route path="producto/:code" element={<ProductDetail />} />
-                <Route path="carrito" element={<Cart />} />
-                <Route path="nosotros" element={<About />} />
-                <Route path="garantias" element={<WarrantyPolicy />} />
-                <Route path="envios" element={<ShippingPolicy />} />
-                <Route path="faq" element={<FAQ />} />
-                <Route path="distribucion" element={<Wholesale />} />
-                <Route path="login" element={<Login />} />
-                <Route path="admin" element={<AdminDashboard />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Route>
-            </Routes>
+            <SearchProvider>
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="catalogo" element={<Catalog />} />
+                  <Route path="producto/:code" element={<ProductDetail />} />
+                  <Route path="carrito" element={<Cart />} />
+                  <Route path="nosotros" element={<About />} />
+                  <Route path="garantias" element={<WarrantyPolicy />} />
+                  <Route path="envios" element={<ShippingPolicy />} />
+                  <Route path="faq" element={<FAQ />} />
+                  <Route path="distribucion" element={<Wholesale />} />
+                  <Route path="login" element={<Login />} />
+                  <Route path="admin" element={<AdminDashboard />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Route>
+              </Routes>
+            </SearchProvider>
           </CartProvider>
         </ProductProvider>
       </AuthProvider>

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CartDrawer } from '../ui/CartDrawer';
+import { SmartSearchModal } from '../search/SmartSearchModal';
 
 export const Layout: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ export const Layout: React.FC = () => {
       </main>
       <Footer />
       <CartDrawer />
+      <SmartSearchModal />
     </div>
   );
 };

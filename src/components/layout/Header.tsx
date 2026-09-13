@@ -5,28 +5,19 @@ import { BrandLogo } from '../ui/BrandLogo';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { useProducts } from '../../context/ProductContext';
+import { useSearch } from '../../context/SearchContext';
 import { UserRole } from '../../types/database';
 
 export const Header: React.FC = () => {
   const { itemCount, openDrawer } = useCart();
   const { user, role, switchRole, isAuthenticated } = useAuth();
   const { setFilters } = useProducts();
+  const { openSearch } = useSearch();
   const location = useLocation();
   const navigate = useNavigate();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchInput.trim()) {
-      setFilters(prev => ({ ...prev, searchQuery: searchInput.trim() }));
-      navigate('/catalogo');
-      setSearchOpen(false);
-    }
-  };
 
   const navLinks = [
     { label: 'Inicio', path: '/' },
@@ -112,16 +103,19 @@ export const Header: React.FC = () => {
           <BrandLogo variant="minim" size="md" theme="light" />
         </div>
 
-        {/* Right Side: Action Controls (Search, Account, Cart, Menu) */}
-        <div className="flex items-center gap-4 sm:gap-5">
-          {/* Search Trigger */}
+        {/* Right Side: Action Controls (Smart Search, Account, Cart, Menu) */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Smart Search Trigger (Pop-up Modal with Intelligent Filters) */}
           <button
-            onClick={() => setSearchOpen(prev => !prev)}
-            className="p-1.5 text-obsidian/75 hover:text-black transition-colors"
-            title="Buscar referencias KDJ"
-            aria-label="Buscar"
+            onClick={openSearch}
+            className="flex items-center gap-2 px-2.5 py-1.5 text-obsidian/80 hover:text-black hover:bg-black/5 rounded-full transition-all text-xs font-sans group border border-transparent hover:border-black/10"
+            title="Abrir Buscador Inteligente Montezzi (⌘K)"
+            aria-label="Abrir Buscador Inteligente"
           >
-            <Search className="w-4 h-4 stroke-[1.75]" />
+            <Search className="w-4 h-4 stroke-[1.8] group-hover:scale-110 transition-transform" />
+            <span className="hidden sm:inline-flex items-center font-mono text-[10px] text-obsidian/50 bg-black/[0.04] px-1.5 py-0.5 rounded border border-black/10">
+              ⌘K
+            </span>
           </button>
 
           {/* Account / Admin */}
@@ -169,31 +163,6 @@ export const Header: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Expandable Search Input with Reinforced Glassmorphism */}
-      {searchOpen && (
-        <div className="border-t border-black/10 glass-panel px-4 py-5 shadow-2xl">
-          <div className="max-w-3xl mx-auto">
-            <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-              <Search className="w-4 h-4 text-obsidian/60 absolute left-3.5" />
-              <input
-                type="text"
-                value={searchInput}
-                onChange={e => setSearchInput(e.target.value)}
-                placeholder="Buscar por código KDJ (ej: KDJ-90), nombre o material..."
-                className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian pl-10 pr-24 py-2.5 text-xs font-sans placeholder:text-obsidian/40 focus:outline-none focus:border-black rounded-xs shadow-inner"
-                autoFocus
-              />
-              <button
-                type="submit"
-                className="absolute right-1.5 px-4 py-1.5 bg-black text-white text-xs font-semibold uppercase tracking-wider hover:bg-black/80 rounded-xs transition-colors shadow-xs"
-              >
-                Buscar
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* Slide-down / Dropdown Menu for Mobile & Full Navigation with Reinforced Glassmorphism */}
       {mobileMenuOpen && (
