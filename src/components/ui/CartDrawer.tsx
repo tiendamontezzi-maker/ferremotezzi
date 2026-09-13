@@ -36,9 +36,9 @@ export const CartDrawer: React.FC = () => {
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white/95 backdrop-blur-2xl border-l border-black/10 text-obsidian shadow-2xl flex flex-col">
+        <div className="w-screen max-w-md glass-drawer text-obsidian flex flex-col">
           {/* Header */}
-          <div className="px-6 py-5 border-b border-black/[0.08] flex items-center justify-between bg-white/80 backdrop-blur-md">
+          <div className="px-6 py-5 border-b border-black/[0.08] flex items-center justify-between bg-white/60 backdrop-blur-md">
             <div className="flex items-center gap-3">
               <ShoppingBag className="w-5 h-5 text-black stroke-[1.5]" />
               <h2 className="font-sans text-sm tracking-wider uppercase text-obsidian font-bold">Tu Selección Montezzi</h2>
@@ -78,10 +78,10 @@ export const CartDrawer: React.FC = () => {
           </div>
 
           {/* Items List */}
-          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 bg-white/40 backdrop-blur-sm">
+          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
             {items.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-16 text-obsidian/60 space-y-4">
-                <div className="w-16 h-16 rounded-full border border-black/10 bg-white flex items-center justify-center text-black shadow-xs">
+                <div className="w-16 h-16 rounded-full glass-card flex items-center justify-center text-black shadow-xs">
                   <ShoppingBag className="w-8 h-8 stroke-[1]" />
                 </div>
                 <div>
@@ -104,12 +104,12 @@ export const CartDrawer: React.FC = () => {
               items.map(item => (
                 <div
                   key={item.product_id}
-                  className="flex gap-4 p-3 rounded-sm border border-black/[0.08] bg-white/90 backdrop-blur-sm hover:border-black/30 transition-colors shadow-xs"
+                  className="flex gap-4 p-3.5 rounded-lg glass-card transition-all"
                 >
                   <img
                     src={item.image_url}
                     alt={item.name}
-                    className="w-20 h-20 object-cover rounded-sm border border-black/[0.06] bg-[#FAFAFA] shrink-0"
+                    className="w-20 h-20 object-contain rounded-md border border-black/[0.06] bg-white p-1.5 shrink-0"
                   />
                   <div className="flex-1 min-w-0 flex flex-col justify-between">
                     <div>
@@ -125,16 +125,16 @@ export const CartDrawer: React.FC = () => {
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
-                      <h4 className="text-xs font-serif text-obsidian font-semibold truncate mt-0.5">
+                      <h4 className="text-xs font-sans text-obsidian font-semibold truncate mt-0.5">
                         {item.name}
                       </h4>
-                      <p className="text-xs text-black font-mono font-semibold mt-1">
+                      <p className="text-xs text-black font-mono font-bold mt-1">
                         ${item.price.toLocaleString('es-CO')} COP
                       </p>
                     </div>
 
                     <div className="flex items-center justify-between mt-2 pt-2 border-t border-black/[0.06]">
-                      <div className="flex items-center border border-black/15 rounded-sm overflow-hidden bg-white">
+                      <div className="flex items-center border border-black/15 rounded-sm overflow-hidden bg-white/90">
                         <button
                           onClick={() => updateQuantity(item.product_id, item.quantity - 1)}
                           className="p-1 hover:bg-black/5 text-obsidian/70 hover:text-obsidian"
@@ -165,7 +165,7 @@ export const CartDrawer: React.FC = () => {
 
           {/* Footer & Checkout */}
           {items.length > 0 && (
-            <div className="p-6 border-t border-black/[0.08] bg-white/95 backdrop-blur-md space-y-4">
+            <div className="p-6 border-t border-black/[0.08] bg-white/75 backdrop-blur-xl space-y-4 shadow-2xl">
               <div className="space-y-2 text-xs font-sans">
                 <div className="flex justify-between text-obsidian/70">
                   <span>Subtotal</span>

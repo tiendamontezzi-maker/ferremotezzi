@@ -66,8 +66,8 @@ export const Login: React.FC = () => {
         </div>
       )}
 
-      {/* Quick Demo Access Bar */}
-      <div className="p-4 glass-card rounded-sm space-y-3">
+      {/* Quick Demo Access Bar with Reinforced Glassmorphism */}
+      <div className="p-5 glass-card rounded-xl space-y-3 border border-white/80 shadow-lg">
         <div className="flex items-center gap-2 text-black text-xs font-mono uppercase tracking-widest font-bold">
           <Shield className="w-3.5 h-3.5" />
           <span>Acceso Rápido de Prueba (Demo 2026)</span>
@@ -78,21 +78,21 @@ export const Login: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <button
             onClick={() => handleQuickDemoLogin('admin')}
-            className="p-2.5 bg-white border border-black/15 hover:border-black text-left text-xs transition-all rounded-xs"
+            className="p-3 bg-white/90 backdrop-blur-sm border border-black/15 hover:border-black text-left text-xs transition-all rounded-lg shadow-2xs hover:shadow-xs"
           >
             <strong className="text-black block font-sans font-bold">Admin</strong>
             <span className="text-[10px] text-obsidian/60">Control total</span>
           </button>
           <button
             onClick={() => handleQuickDemoLogin('colaborador')}
-            className="p-2.5 bg-white border border-black/15 hover:border-black text-left text-xs transition-all rounded-xs"
+            className="p-3 bg-white/90 backdrop-blur-sm border border-black/15 hover:border-black text-left text-xs transition-all rounded-lg shadow-2xs hover:shadow-xs"
           >
             <strong className="text-obsidian block font-sans font-semibold">Colaborador</strong>
             <span className="text-[10px] text-obsidian/60">Stock & Pedidos</span>
           </button>
           <button
             onClick={() => handleQuickDemoLogin('cliente')}
-            className="p-2.5 bg-white border border-black/15 hover:border-black text-left text-xs transition-all rounded-xs"
+            className="p-3 bg-white/90 backdrop-blur-sm border border-black/15 hover:border-black text-left text-xs transition-all rounded-lg shadow-2xs hover:shadow-xs"
           >
             <strong className="text-obsidian block font-sans font-semibold">Cliente Arq.</strong>
             <span className="text-[10px] text-obsidian/60">Compras</span>
@@ -100,18 +100,18 @@ export const Login: React.FC = () => {
         </div>
       </div>
 
-      {/* Standard Form */}
-      <form onSubmit={handleSubmit} className="glass-card p-6 rounded-sm space-y-4">
+      {/* Standard Form with Reinforced Glassmorphism */}
+      <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8 rounded-xl space-y-4 border border-white/80 shadow-lg">
         <div className="space-y-1 text-xs">
           <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Correo Electrónico</label>
           <div className="relative">
-            <Mail className="w-4 h-4 text-black absolute left-3 top-1/2 -translate-y-1/2" />
+            <Mail className="w-4 h-4 text-black absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="admin@montezzi.com"
-              className="w-full bg-white border border-black/15 text-obsidian pl-9 pr-3 py-2.5 text-xs focus:border-black focus:outline-none rounded-xs"
+              className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian pl-10 pr-3 py-2.5 text-xs focus:border-black focus:outline-none rounded-lg shadow-inner"
             />
           </div>
         </div>
@@ -121,7 +121,7 @@ export const Login: React.FC = () => {
           <select
             value={selectedRole}
             onChange={e => setSelectedRole(e.target.value as UserRole)}
-            className="w-full bg-white border border-black/15 text-obsidian px-3 py-2.5 text-xs focus:border-black focus:outline-none uppercase font-mono rounded-xs"
+            className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian px-3.5 py-2.5 text-xs focus:border-black focus:outline-none uppercase font-mono rounded-lg shadow-xs"
           >
             <option value="admin">Administrador (Control Total)</option>
             <option value="colaborador">Colaborador (Inventario y Pedidos)</option>
@@ -132,7 +132,7 @@ export const Login: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 bg-black text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-black/85 transition-all flex items-center justify-center gap-2 shadow-md mt-4 rounded-xs"
+          className="w-full py-3.5 bg-black text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-black/85 transition-all flex items-center justify-center gap-2 shadow-md mt-4 rounded-lg"
         >
           <span>{loading ? 'Verificando credenciales...' : 'Ingresar al Portal'}</span>
           <ArrowRight className="w-4 h-4" />

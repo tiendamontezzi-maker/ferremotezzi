@@ -40,9 +40,9 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-40 w-full glass-header transition-all duration-300">
       {/* Top micro-bar with subtle shipping notification and currency */}
-      <div className="bg-white/70 backdrop-blur-md border-b border-black/[0.05] py-1.5 px-4 sm:px-8 text-[11px] font-sans text-obsidian/75 flex items-center justify-between">
+      <div className="bg-white/60 backdrop-blur-md border-b border-black/[0.04] py-1.5 px-4 sm:px-8 text-[11px] font-sans text-obsidian/75 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-obsidian bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded border border-black/10">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-obsidian glass-pill px-2.5 py-0.5 rounded-full">
             ES · COP ($)
           </span>
           <span className="hidden sm:inline text-obsidian/60 font-medium">
@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
         <div className="relative flex items-center gap-2">
           <button
             onClick={() => setRoleDropdownOpen(prev => !prev)}
-            className="flex items-center gap-1.5 text-obsidian hover:text-white hover:bg-black transition-all text-[10px] uppercase font-mono bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded border border-black/10 shadow-2xs"
+            className="flex items-center gap-1.5 text-obsidian hover:text-white hover:bg-black transition-all text-[10px] uppercase font-mono glass-pill px-3 py-1 rounded-full shadow-2xs"
           >
             <Shield className="w-3 h-3 text-current" />
             <span>Rol: {role}</span>
@@ -62,8 +62,8 @@ export const Header: React.FC = () => {
           </button>
 
           {roleDropdownOpen && (
-            <div className="absolute right-0 mt-8 w-44 bg-white/95 backdrop-blur-xl border border-black/10 rounded shadow-2xl py-1 z-50 text-left">
-              <div className="px-3 py-1 text-[10px] text-obsidian/50 uppercase tracking-wider border-b border-black/5 font-semibold">
+            <div className="absolute right-0 mt-8 w-48 glass-panel rounded-lg shadow-2xl py-1.5 z-50 text-left border border-white/80">
+              <div className="px-3.5 py-1.5 text-[10px] text-obsidian/50 uppercase tracking-wider border-b border-black/5 font-semibold">
                 Simular Rol
               </div>
               {(['admin', 'colaborador', 'cliente'] as UserRole[]).map(r => (
@@ -73,9 +73,9 @@ export const Header: React.FC = () => {
                     switchRole(r);
                     setRoleDropdownOpen(false);
                   }}
-                  className="w-full px-3 py-1.5 text-xs text-obsidian hover:bg-black hover:text-white flex items-center justify-between font-sans transition-colors"
+                  className="w-full px-3.5 py-2 text-xs text-obsidian hover:bg-black hover:text-white flex items-center justify-between font-sans transition-colors"
                 >
-                  <span className="capitalize">{r}</span>
+                  <span className="capitalize font-medium">{r}</span>
                   {role === r && <Check className="w-3.5 h-3.5" />}
                 </button>
               ))}
@@ -170,9 +170,9 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Expandable Search Input */}
+      {/* Expandable Search Input with Reinforced Glassmorphism */}
       {searchOpen && (
-        <div className="border-t border-black/10 bg-white/95 backdrop-blur-xl px-4 py-4 shadow-lg">
+        <div className="border-t border-black/10 glass-panel px-4 py-5 shadow-2xl">
           <div className="max-w-3xl mx-auto">
             <form onSubmit={handleSearchSubmit} className="relative flex items-center">
               <Search className="w-4 h-4 text-obsidian/60 absolute left-3.5" />
@@ -181,12 +181,12 @@ export const Header: React.FC = () => {
                 value={searchInput}
                 onChange={e => setSearchInput(e.target.value)}
                 placeholder="Buscar por código KDJ (ej: KDJ-90), nombre o material..."
-                className="w-full bg-white border border-black/15 text-obsidian pl-10 pr-24 py-2.5 text-xs font-sans placeholder:text-obsidian/40 focus:outline-none focus:border-black rounded-xs"
+                className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian pl-10 pr-24 py-2.5 text-xs font-sans placeholder:text-obsidian/40 focus:outline-none focus:border-black rounded-xs shadow-inner"
                 autoFocus
               />
               <button
                 type="submit"
-                className="absolute right-1.5 px-4 py-1.5 bg-black text-white text-xs font-semibold uppercase tracking-wider hover:bg-black/80 rounded-xs transition-colors"
+                className="absolute right-1.5 px-4 py-1.5 bg-black text-white text-xs font-semibold uppercase tracking-wider hover:bg-black/80 rounded-xs transition-colors shadow-xs"
               >
                 Buscar
               </button>
@@ -195,32 +195,32 @@ export const Header: React.FC = () => {
         </div>
       )}
 
-      {/* Slide-down / Dropdown Menu for Mobile & Full Navigation */}
+      {/* Slide-down / Dropdown Menu for Mobile & Full Navigation with Reinforced Glassmorphism */}
       {mobileMenuOpen && (
-        <div className="border-t border-black/10 bg-white/95 backdrop-blur-xl px-6 py-6 space-y-4 shadow-xl">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-4 border-b border-[#F0ECE1]">
+        <div className="border-t border-black/10 glass-panel px-6 py-6 space-y-4 shadow-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-4 border-b border-black/[0.06]">
             <div>
               <h4 className="text-[11px] font-mono tracking-widest text-obsidian uppercase font-bold mb-2">Colecciones</h4>
               <div className="flex flex-col space-y-2">
-                <Link to="/catalogo?coleccion=cocina" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Cocina Contemporánea</Link>
-                <Link to="/catalogo?coleccion=closet" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Clóset & Vestidores</Link>
-                <Link to="/catalogo?coleccion=herrajes_especiales" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Herrajes Especiales</Link>
-                <Link to="/catalogo" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Catálogo Completo (112 refs)</Link>
+                <Link to="/catalogo?coleccion=cocina" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Cocina Contemporánea</Link>
+                <Link to="/catalogo?coleccion=closet" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Clóset & Vestidores</Link>
+                <Link to="/catalogo?coleccion=herrajes_especiales" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Herrajes Especiales</Link>
+                <Link to="/catalogo" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Catálogo Completo (112 refs)</Link>
               </div>
             </div>
             <div>
               <h4 className="text-[11px] font-mono tracking-widest text-obsidian uppercase font-bold mb-2">Institucional</h4>
               <div className="flex flex-col space-y-2">
-                <Link to="/nosotros" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Nosotros & Manifiesto</Link>
-                <Link to="/garantias" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Garantías & Cambios (30 días)</Link>
-                <Link to="/envios" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Envíos Nacionales</Link>
-                <Link to="/faq" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Preguntas Frecuentes</Link>
+                <Link to="/nosotros" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Nosotros & Manifiesto</Link>
+                <Link to="/garantias" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Garantías & Cambios (30 días)</Link>
+                <Link to="/envios" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Envíos Nacionales</Link>
+                <Link to="/faq" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Preguntas Frecuentes</Link>
               </div>
             </div>
             <div>
               <h4 className="text-[11px] font-mono tracking-widest text-obsidian uppercase font-bold mb-2">Profesionales</h4>
               <div className="flex flex-col space-y-2">
-                <Link to="/distribucion" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold">Ventas al por Mayor / Distribuidores</Link>
+                <Link to="/distribucion" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Ventas al por Mayor / Distribuidores</Link>
                 <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="text-xs text-montezzigold font-semibold hover:underline">Panel de Control ({role})</Link>
               </div>
             </div>

@@ -123,31 +123,34 @@ export const Home: React.FC = () => {
               </span>
             </div>
 
+            {/* Ambient Refraction Glow behind Product */}
+            <div className="absolute w-80 h-80 rounded-full bg-gradient-to-tr from-black/[0.03] to-montezzigold/[0.06] blur-3xl pointer-events-none" />
+
             {/* Hero Isolated Product Photo */}
             <div className="relative z-10 w-full max-w-md sm:max-w-lg aspect-square flex items-center justify-center p-6">
               <img
                 src={currentSlide.image}
                 alt={currentSlide.titleLine1}
-                className="w-full h-full object-contain filter drop-shadow-xl transition-all duration-700 hover:scale-105"
+                className="w-full h-full object-contain filter drop-shadow-2xl transition-all duration-700 hover:scale-105"
               />
             </div>
 
-            {/* Slider Controls with Glassmorphism Pill */}
-            <div className="absolute bottom-2 right-4 sm:right-8 flex items-center gap-3 text-xs font-mono z-20 glass-pill px-3.5 py-1.5 rounded-full shadow-xs">
-              <span className="text-obsidian/60 tracking-wider font-semibold">
+            {/* Slider Controls with Reinforced Glassmorphism Pill */}
+            <div className="absolute bottom-2 right-4 sm:right-8 flex items-center gap-3 text-xs font-mono z-20 glass-pill px-4 py-2 rounded-full shadow-md border border-white/80">
+              <span className="text-obsidian/70 tracking-wider font-semibold">
                 0{currentHeroSlide + 1} <span className="text-obsidian/30">/</span> 0{heroSlides.length}
               </span>
-              <div className="flex items-center gap-0.5">
+              <div className="flex items-center gap-1">
                 <button
                   onClick={() => setCurrentHeroSlide(prev => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                  className="p-1 hover:bg-black hover:text-white text-obsidian/70 rounded-full transition-colors"
+                  className="p-1.5 hover:bg-black hover:text-white text-obsidian rounded-full transition-all"
                   aria-label="Slide anterior"
                 >
                   <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={() => setCurrentHeroSlide(prev => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
-                  className="p-1 hover:bg-black hover:text-white text-obsidian/70 rounded-full transition-colors"
+                  className="p-1.5 hover:bg-black hover:text-white text-obsidian rounded-full transition-all"
                   aria-label="Slide siguiente"
                 >
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -206,15 +209,15 @@ export const Home: React.FC = () => {
             {testimonials.map(item => (
               <div
                 key={item.id}
-                className="flex flex-col items-center text-center p-6 glass-card space-y-4 rounded-sm border border-black/[0.06] hover:border-black/20 hover:shadow-md transition-all"
+                className="flex flex-col items-center text-center p-7 glass-card space-y-4 rounded-xl border border-white/80"
               >
-                {/* Number Badge Circle in Sleek Black */}
-                <div className="w-8 h-8 rounded-full bg-black text-white font-mono text-xs font-bold flex items-center justify-center shadow-xs">
+                {/* Number Badge Circle in Sleek Black with Frosted Border */}
+                <div className="w-8 h-8 rounded-full bg-black text-white font-mono text-xs font-bold flex items-center justify-center shadow-md border border-white/20">
                   {item.id}
                 </div>
 
                 {/* Quote */}
-                <p className="text-xs text-obsidian/70 font-sans leading-relaxed italic">
+                <p className="text-xs text-obsidian/75 font-sans leading-relaxed italic">
                   "{item.text}"
                 </p>
 
@@ -236,11 +239,11 @@ export const Home: React.FC = () => {
       {/* 4. SHOWCASE DE MOBILIARIO ARQUITECTÓNICO (Fiel a la foto: credenza en madera nogal/ranurada de alta gama donde vive el herraje) */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
         <div className="flex flex-col items-center justify-center text-center space-y-6">
-          <div className="w-full aspect-[21/9] max-h-[360px] overflow-hidden rounded-sm flex items-center justify-center bg-[#FAFAFA] border border-black/[0.04] p-4 sm:p-8 shadow-xs">
+          <div className="w-full aspect-[21/9] max-h-[360px] overflow-hidden rounded-xl flex items-center justify-center glass-surface border border-white/80 p-4 sm:p-8 shadow-xl">
             <img
               src="/images/showcase/showcase_credenza.jpg"
               alt="Mobiliario Arquitectónico con Herrajes Montezzi"
-              className="w-full h-full object-contain filter drop-shadow-md mix-blend-multiply"
+              className="w-full h-full object-contain filter drop-shadow-lg mix-blend-multiply"
             />
           </div>
           <div className="max-w-md space-y-1.5 text-center">

@@ -174,8 +174,8 @@ export const Cart: React.FC = () => {
         </h1>
       </div>
 
-      {/* Free Shipping Alert Banner */}
-      <div className="p-4 glass-panel rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* Free Shipping Alert Banner with Reinforced Glassmorphism */}
+      <div className="p-5 glass-panel rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-white/80 shadow-lg">
         <div className="flex items-center gap-3">
           <Truck className="w-5 h-5 text-black shrink-0" />
           <div className="text-xs">
@@ -204,7 +204,7 @@ export const Cart: React.FC = () => {
         {/* Left Column (2 cols): Items table or Checkout Form */}
         <div className="lg:col-span-2 space-y-6">
           {step === 'cart' ? (
-            <div className="glass-card rounded-sm overflow-hidden">
+            <div className="glass-card rounded-xl overflow-hidden border border-white/80 shadow-lg">
               <div className="px-6 py-3.5 bg-black/[0.03] border-b border-black/[0.08] text-xs uppercase tracking-widest text-black font-bold flex justify-between">
                 <span>Producto / Referencia</span>
                 <span className="hidden sm:inline">Subtotal</span>
@@ -279,8 +279,8 @@ export const Cart: React.FC = () => {
               </div>
             </div>
           ) : (
-            /* Checkout Form */
-            <form onSubmit={handleSubmitOrder} id="checkout-form" className="glass-card p-6 sm:p-8 rounded-sm space-y-6">
+            /* Checkout Form with Reinforced Glassmorphism */
+            <form onSubmit={handleSubmitOrder} id="checkout-form" className="glass-card p-6 sm:p-8 rounded-xl space-y-6 border border-white/80 shadow-lg">
               <div className="flex items-center justify-between pb-4 border-b border-black/[0.08]">
                 <h3 className="font-sans text-base uppercase font-bold text-obsidian tracking-wider">Dirección y Destino de Envío</h3>
                 <button
@@ -430,8 +430,8 @@ export const Cart: React.FC = () => {
           )}
         </div>
 
-        {/* Right Column: Order Summary Box */}
-        <div className="glass-card p-6 rounded-sm space-y-6">
+        {/* Right Column: Order Summary Box with Reinforced Glassmorphism */}
+        <div className="glass-card p-7 rounded-xl space-y-6 border border-white/80 shadow-lg">
           <h3 className="font-sans text-base uppercase font-bold text-obsidian pb-4 border-b border-black/[0.08] tracking-wider">
             Resumen del Pedido
           </h3>

@@ -49,7 +49,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showStars = t
       {/* Product Image Square Container (Matching the reference image: clean soft studio square) */}
       <Link
         to={`/producto/${product.code}`}
-        className="relative aspect-square w-full rounded-sm overflow-hidden bg-[#FAFAFA] border border-black/[0.04] flex items-center justify-center p-6 transition-all duration-300 group-hover:bg-[#F2F2F2] group-hover:shadow-sm"
+        className="relative aspect-square w-full rounded-md overflow-hidden glass-surface border border-black/[0.06] flex items-center justify-center p-6 transition-all duration-500 group-hover:shadow-lg group-hover:-translate-y-1"
       >
         <img
           src={product.image_url}
@@ -58,22 +58,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showStars = t
           className="w-full h-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-108 mix-blend-multiply"
         />
 
-        {/* Small subtle badge on top left (glassmorphic black badge) */}
+        {/* Small subtle badge on top left (reinforced glass badge) */}
         {product.is_featured ? (
-          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-black/90 backdrop-blur-sm text-white text-[9px] font-sans font-bold uppercase tracking-wider rounded-xs shadow-xs">
+          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-black/90 backdrop-blur-md text-white text-[9px] font-sans font-bold uppercase tracking-wider rounded-full shadow-xs border border-white/20">
             Destacado
           </span>
         ) : isLowStock ? (
-          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-black/80 backdrop-blur-sm text-white text-[9px] font-sans font-medium uppercase tracking-wider rounded-xs">
+          <span className="absolute top-3 left-3 px-2.5 py-0.5 glass-pill text-black text-[9px] font-sans font-semibold uppercase tracking-wider rounded-full shadow-xs">
             Stock Bajo
           </span>
         ) : null}
 
-        {/* Quick Add Button with Frosted Glassmorphism */}
+        {/* Quick Add Button with Reinforced Glassmorphism */}
         <button
           onClick={handleQuickAdd}
           disabled={isOutOfStock}
-          className="absolute bottom-3 right-3 p-2 bg-white/85 backdrop-blur-md border border-black/10 hover:bg-black text-obsidian hover:text-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0"
+          className="absolute bottom-3 right-3 p-2.5 glass-button text-obsidian rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0 shadow-lg cursor-pointer"
           title="Añadir a la bolsa"
           aria-label="Añadir a la bolsa"
         >

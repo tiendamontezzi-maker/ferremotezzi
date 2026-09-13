@@ -82,17 +82,17 @@ export const Catalog: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Controls Row with Glassmorphism */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 glass-panel p-4 rounded-sm shadow-xs">
+      {/* Main Controls Row with Reinforced Glassmorphism */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 glass-panel p-5 rounded-xl shadow-lg border border-white/80">
         {/* Real-time search field */}
         <div className="relative w-full sm:max-w-md">
-          <Search className="w-4 h-4 text-obsidian/50 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-obsidian/50 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={filters.searchQuery}
             onChange={e => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
             placeholder="Filtrar por código (ej: KDJ-14), nombre o material..."
-            className="w-full bg-white border border-black/15 text-obsidian text-xs pl-9 pr-8 py-2.5 rounded-sm focus:outline-none focus:border-black placeholder:text-obsidian/45"
+            className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian text-xs pl-10 pr-8 py-2.5 rounded-lg focus:outline-none focus:border-black placeholder:text-obsidian/45 shadow-inner"
           />
           {filters.searchQuery && (
             <button
@@ -112,7 +112,7 @@ export const Catalog: React.FC = () => {
           <select
             value={sortBy}
             onChange={e => setSortBy(e.target.value as any)}
-            className="bg-white border border-black/15 text-obsidian text-xs px-3 py-2 rounded-sm focus:outline-none focus:border-black uppercase tracking-wider font-sans font-medium"
+            className="bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian text-xs px-3.5 py-2.5 rounded-lg focus:outline-none focus:border-black uppercase tracking-wider font-sans font-semibold shadow-xs"
           >
             <option value="code_asc">Código KDJ (1 a 112)</option>
             <option value="price_asc">Precio: Menor a Mayor</option>
@@ -132,14 +132,14 @@ export const Catalog: React.FC = () => {
         {/* Products Grid */}
         <div className="lg:col-span-3 space-y-6">
           {sortedProducts.length === 0 ? (
-            <div className="text-center py-24 bg-white border border-[#E2DDD4] rounded-sm space-y-4 shadow-sm">
-              <p className="font-serif text-2xl text-obsidian">No se encontraron referencias</p>
+            <div className="text-center py-24 glass-card rounded-xl space-y-4 shadow-md border border-white/80 p-8">
+              <p className="font-sans font-bold uppercase tracking-wider text-xl text-obsidian">No se encontraron referencias</p>
               <p className="text-xs text-obsidian/60 max-w-sm mx-auto">
                 No hay productos que coincidan con los filtros seleccionados. Intenta restablecer los filtros para ver el catálogo completo.
               </p>
               <button
                 onClick={resetFilters}
-                className="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-widest font-bold hover:bg-black/85 transition-all shadow-md"
+                className="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-widest font-bold hover:bg-black/85 transition-all shadow-md rounded-xs"
               >
                 Restablecer Filtros
               </button>
@@ -168,7 +168,7 @@ export const Catalog: React.FC = () => {
             onClick={() => setMobileFilterOpen(false)}
           />
           <div className="fixed inset-y-0 left-0 max-w-full flex">
-            <div className="w-screen max-w-xs bg-white/95 backdrop-blur-2xl border-r border-black/10 p-6 overflow-y-auto">
+            <div className="w-screen max-w-xs glass-drawer p-6 overflow-y-auto border-r border-black/10">
               <div className="flex items-center justify-between pb-4 mb-4 border-b border-black/[0.08]">
                 <span className="font-sans text-sm uppercase font-bold tracking-wider text-obsidian">Filtros</span>
                 <button
@@ -181,7 +181,7 @@ export const Catalog: React.FC = () => {
               <FilterSidebar />
               <button
                 onClick={() => setMobileFilterOpen(false)}
-                className="w-full mt-6 py-3 bg-black text-white font-bold text-xs uppercase tracking-widest hover:bg-black/85 transition-all shadow-md"
+                className="w-full mt-6 py-3 bg-black text-white font-bold text-xs uppercase tracking-widest hover:bg-black/85 transition-all shadow-md rounded-xs"
               >
                 Aplicar Filtros
               </button>

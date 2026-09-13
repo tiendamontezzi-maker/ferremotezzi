@@ -78,18 +78,18 @@ export const ProductDetail: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         {/* Left Column: Image Gallery & Previews */}
         <div className="space-y-4">
-          <div className="relative aspect-square w-full rounded-sm overflow-hidden bg-[#FAFAFA] border border-black/[0.08] shadow-sm flex items-center justify-center p-8">
+          <div className="relative aspect-square w-full rounded-xl overflow-hidden glass-surface border border-white/80 shadow-lg flex items-center justify-center p-8">
             <img
               src={selectedImage || product.image_url}
               alt={product.name}
               className="w-full h-full object-contain object-center transition-all duration-500 hover:scale-105"
             />
-            <span className="absolute top-4 left-4 px-2.5 py-1 bg-white/95 backdrop-blur-md border border-black/10 text-xs font-mono font-bold tracking-widest text-black uppercase shadow-xs">
+            <span className="absolute top-4 left-4 px-3 py-1 glass-pill text-xs font-mono font-bold tracking-widest text-black uppercase shadow-xs rounded-full">
               {product.code}
             </span>
 
             {product.is_featured && (
-              <span className="absolute top-4 right-4 px-3 py-1 bg-black text-white text-[10px] font-sans font-bold uppercase tracking-widest shadow-xs">
+              <span className="absolute top-4 right-4 px-3 py-1 bg-black/90 backdrop-blur-md text-white text-[10px] font-sans font-bold uppercase tracking-widest shadow-xs rounded-full border border-white/20">
                 Destacado Oficial
               </span>
             )}
@@ -102,9 +102,9 @@ export const ProductDetail: React.FC = () => {
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(imgUrl)}
-                  className={`w-20 h-20 rounded-sm overflow-hidden border bg-[#FAFAFA] p-2 transition-all ${
+                  className={`w-20 h-20 rounded-lg overflow-hidden border glass-surface p-2 transition-all ${
                     selectedImage === imgUrl
-                      ? 'border-black ring-2 ring-black/20'
+                      ? 'border-black ring-2 ring-black/20 shadow-md'
                       : 'border-black/10 opacity-70 hover:opacity-100'
                   }`}
                 >
@@ -115,7 +115,7 @@ export const ProductDetail: React.FC = () => {
           )}
 
           {/* Architecture Visual Note */}
-          <div className="p-4 bg-black/[0.02] border border-black/[0.08] rounded-sm text-xs text-obsidian/75 flex items-center gap-3">
+          <div className="p-4 glass-card rounded-lg border border-white/80 text-xs text-obsidian/75 flex items-center gap-3 shadow-xs">
             <Compass className="w-4 h-4 text-black shrink-0" />
             <span>
               Fotografía técnica oficial de producto: acabados arquitectónicos de alta gama y tolerancias de precisión milimétrica.
@@ -137,8 +137,8 @@ export const ProductDetail: React.FC = () => {
             </p>
           </div>
 
-          {/* Price Block with Glassmorphism */}
-          <div className="glass-card p-6 rounded-sm space-y-2.5 shadow-xs">
+          {/* Price Block with Reinforced Glassmorphism */}
+          <div className="glass-card p-6 rounded-xl space-y-2.5 shadow-lg border border-white/80">
             <span className="text-[11px] text-obsidian/50 uppercase tracking-widest font-sans font-semibold">
               Precio al Detal con IVA
             </span>
