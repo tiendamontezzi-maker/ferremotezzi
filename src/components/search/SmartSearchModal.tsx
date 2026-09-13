@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
-  Search, X, Sparkles, Filter, ArrowRight, ShoppingBag, 
-  Check, Truck, ChevronRight, SlidersHorizontal, Tag, Zap
+  Search, X, Sparkles, SlidersHorizontal, Tag, Zap, 
+  ShoppingBag, Check, Truck, ChevronRight, ArrowRight
 } from 'lucide-react';
 import { useSearch } from '../../context/SearchContext';
 import { useProducts } from '../../context/ProductContext';
@@ -31,7 +31,6 @@ export const SmartSearchModal: React.FC = () => {
     }
   }, [isSearchOpen]);
 
-  // Reset internal filters when closing
   const handleClose = () => {
     closeSearch();
   };
@@ -129,10 +128,10 @@ export const SmartSearchModal: React.FC = () => {
   if (!isSearchOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto flex items-start justify-center p-3 sm:p-6 pt-12 sm:pt-20">
+    <div className="fixed inset-0 z-50 overflow-y-auto flex items-start justify-center p-3 sm:p-6 pt-12 sm:pt-20 font-sans">
       {/* Frosted Luxury Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/45 backdrop-blur-md transition-opacity duration-300"
+        className="fixed inset-0 bg-black/40 backdrop-blur-md transition-opacity duration-300"
         onClick={handleClose}
       />
 
@@ -140,9 +139,9 @@ export const SmartSearchModal: React.FC = () => {
       <div className="relative w-full max-w-3xl glass-panel rounded-2xl shadow-2xl border border-white/80 overflow-hidden flex flex-col max-h-[85vh] transition-all transform duration-200">
         
         {/* Top Input Bar */}
-        <div className="p-4 sm:p-5 border-b border-black/[0.08] bg-white/70 backdrop-blur-xl flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white shrink-0 shadow-xs">
-            <Search className="w-4 h-4 stroke-[2]" />
+        <div className="p-4 sm:p-5 border-b border-black/[0.06] bg-white/75 backdrop-blur-xl flex items-center gap-3.5">
+          <div className="w-9 h-9 rounded-full bg-black flex items-center justify-center text-white shrink-0 shadow-2xs">
+            <Search className="w-4 h-4 stroke-[1.5]" />
           </div>
 
           <div className="flex-1 relative">
@@ -151,8 +150,8 @@ export const SmartSearchModal: React.FC = () => {
               type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Buscar por código KDJ (ej: KDJ-104), nombre, material, bisagra..."
-              className="w-full bg-transparent text-sm sm:text-base text-obsidian placeholder:text-obsidian/40 focus:outline-none font-sans font-medium"
+              placeholder="Buscar por código KDJ, nombre, acabado, tecnología..."
+              className="w-full bg-transparent text-sm sm:text-base text-obsidian placeholder:text-obsidian/35 focus:outline-none font-sans font-normal tracking-wide"
             />
           </div>
 
@@ -162,13 +161,13 @@ export const SmartSearchModal: React.FC = () => {
               className="p-1.5 text-obsidian/40 hover:text-black transition-colors rounded-full"
               title="Limpiar texto"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4 stroke-[1.5]" />
             </button>
           )}
 
           <button
             onClick={handleClose}
-            className="p-1.5 text-obsidian/60 hover:text-black hover:bg-black/5 rounded-full transition-colors flex items-center gap-1 font-mono text-[11px] px-2.5 py-1 border border-black/10"
+            className="p-1.5 text-obsidian/50 hover:text-black hover:bg-black/5 rounded-full transition-colors flex items-center gap-1 font-mono text-[10px] px-2.5 py-1 border border-black/10"
             title="Cerrar buscador"
           >
             <span>ESC</span>
@@ -179,8 +178,8 @@ export const SmartSearchModal: React.FC = () => {
         <div className="px-4 sm:px-6 py-3 bg-white/50 backdrop-blur-md border-b border-black/[0.05] space-y-2.5">
           {/* Row 1: Collections */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-            <span className="text-[10px] uppercase tracking-widest text-obsidian/50 font-bold mr-1 shrink-0 flex items-center gap-1">
-              <SlidersHorizontal className="w-3 h-3 text-black" /> Colección:
+            <span className="text-[10px] uppercase tracking-[0.16em] text-obsidian/45 font-medium mr-1.5 shrink-0 flex items-center gap-1">
+              <SlidersHorizontal className="w-3 h-3 text-black/70 stroke-[1.5]" /> Colección:
             </span>
 
             {[
@@ -192,10 +191,10 @@ export const SmartSearchModal: React.FC = () => {
               <button
                 key={col.id}
                 onClick={() => setSelectedCollection(col.id as any)}
-                className={`px-3 py-1 rounded-full text-[11px] font-sans transition-all shrink-0 ${
+                className={`px-3 py-1 rounded-full text-[11px] font-sans transition-all shrink-0 tracking-wide ${
                   selectedCollection === col.id
-                    ? 'bg-black text-white font-bold shadow-xs'
-                    : 'glass-pill text-obsidian/75 hover:text-black'
+                    ? 'bg-black text-white font-medium shadow-2xs'
+                    : 'glass-pill text-obsidian/70 hover:text-black font-normal'
                 }`}
               >
                 {col.label}
@@ -205,8 +204,8 @@ export const SmartSearchModal: React.FC = () => {
 
           {/* Row 2: Price Presets & High-End Finishes */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-            <span className="text-[10px] uppercase tracking-widest text-obsidian/50 font-bold mr-1 shrink-0 flex items-center gap-1">
-              <Tag className="w-3 h-3 text-black" /> Filtro Inteligente:
+            <span className="text-[10px] uppercase tracking-[0.16em] text-obsidian/45 font-medium mr-1.5 shrink-0 flex items-center gap-1">
+              <Tag className="w-3 h-3 text-black/70 stroke-[1.5]" /> Filtro:
             </span>
 
             {/* Presupuesto Chips */}
@@ -219,10 +218,10 @@ export const SmartSearchModal: React.FC = () => {
               <button
                 key={p.id}
                 onClick={() => setSelectedPricePreset(p.id as any)}
-                className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono transition-all shrink-0 ${
+                className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono transition-all shrink-0 tracking-wider ${
                   selectedPricePreset === p.id
-                    ? 'bg-black text-white font-bold'
-                    : 'glass-pill text-obsidian/70 hover:text-black'
+                    ? 'bg-black text-white font-medium'
+                    : 'glass-pill text-obsidian/65 hover:text-black font-normal'
                 }`}
               >
                 {p.label}
@@ -239,10 +238,10 @@ export const SmartSearchModal: React.FC = () => {
               <button
                 key={fin.id}
                 onClick={() => setSelectedFinish(prev => prev === fin.id ? 'all' : fin.id)}
-                className={`px-2.5 py-0.5 rounded-full text-[10px] font-sans transition-all shrink-0 ${
+                className={`px-2.5 py-0.5 rounded-full text-[10px] font-sans transition-all shrink-0 tracking-wide ${
                   selectedFinish === fin.id
-                    ? 'bg-black text-white font-bold'
-                    : 'glass-pill text-obsidian/70 hover:text-black'
+                    ? 'bg-black text-white font-medium'
+                    : 'glass-pill text-obsidian/65 hover:text-black font-normal'
                 }`}
               >
                 {fin.label}
@@ -252,24 +251,24 @@ export const SmartSearchModal: React.FC = () => {
             {hasActiveFilters && (
               <button
                 onClick={clearAllFilters}
-                className="px-2.5 py-0.5 text-[10px] text-obsidian/50 hover:text-red-500 font-sans underline shrink-0 transition-colors ml-auto"
+                className="px-2.5 py-0.5 text-[10px] text-obsidian/45 hover:text-black font-sans underline shrink-0 transition-colors ml-auto font-normal tracking-wide"
               >
-                Limpiar todo
+                Limpiar filtros
               </button>
             )}
           </div>
         </div>
 
         {/* Results Area */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 bg-white/40 backdrop-blur-sm">
-          {/* When no query and no special filter is set: Show Trending / Quick Suggestions */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3.5 bg-white/40 backdrop-blur-sm">
+          {/* When no query and no special filter is set: Show Curated Suggestions */}
           {!hasActiveFilters && (
             <div className="space-y-4 py-2">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-sans uppercase font-bold tracking-wider text-obsidian/60 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-black" /> Sugerencias de Colección
+                <span className="text-[10px] font-sans uppercase font-medium tracking-[0.18em] text-obsidian/50 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-black stroke-[1.5]" /> Referencias Recomendadas
                 </span>
-                <span className="text-[10px] font-mono text-obsidian/40">112 Referencias Oficiales</span>
+                <span className="text-[10px] font-mono text-obsidian/40 font-normal">112 Referencias Montezzi</span>
               </div>
 
               <div className="flex flex-wrap gap-2">
@@ -280,9 +279,9 @@ export const SmartSearchModal: React.FC = () => {
                       setSearchQuery(sug.query);
                       if (sug.collection !== 'all') setSelectedCollection(sug.collection);
                     }}
-                    className="px-3 py-1.5 glass-card rounded-lg text-xs text-obsidian/85 hover:text-black hover:border-black/30 transition-all flex items-center gap-1.5 font-sans"
+                    className="px-3 py-1.5 glass-card rounded-lg text-xs text-obsidian/80 hover:text-black hover:border-black/20 transition-all flex items-center gap-1.5 font-sans font-normal tracking-wide"
                   >
-                    <Zap className="w-3 h-3 text-black" />
+                    <Zap className="w-3 h-3 text-black stroke-[1.5]" />
                     <span>{sug.label}</span>
                   </button>
                 ))}
@@ -291,28 +290,28 @@ export const SmartSearchModal: React.FC = () => {
           )}
 
           {/* Results Summary */}
-          <div className="flex items-center justify-between text-xs text-obsidian/60 pb-1 font-sans">
-            <span>
-              Mostrando <strong className="text-black font-mono font-bold">{filteredResults.length}</strong> {filteredResults.length === 1 ? 'referencia' : 'referencias'}
+          <div className="flex items-center justify-between text-xs text-obsidian/50 pb-1 font-sans">
+            <span className="font-normal tracking-wide">
+              Mostrando <span className="text-black font-mono font-medium">{filteredResults.length}</span> {filteredResults.length === 1 ? 'referencia' : 'referencias'}
             </span>
             {hasActiveFilters && (
-              <span className="text-[11px] text-obsidian/50">Filtro inteligente activo</span>
+              <span className="text-[10px] uppercase font-mono tracking-wider text-obsidian/40">Filtro activo</span>
             )}
           </div>
 
           {/* Product Rows */}
           {filteredResults.length === 0 ? (
             <div className="text-center py-12 space-y-3 glass-card rounded-xl p-8 border border-white/80">
-              <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center mx-auto text-obsidian/50">
-                <Search className="w-6 h-6" />
+              <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center mx-auto text-obsidian/40">
+                <Search className="w-5 h-5 stroke-[1.5]" />
               </div>
-              <p className="font-sans text-sm font-bold uppercase tracking-wider text-obsidian">No se encontraron referencias</p>
-              <p className="text-xs text-obsidian/60 max-w-sm mx-auto">
-                No hay productos que coincidan con los criterios seleccionados. Prueba a cambiar el término de búsqueda o limpiar los filtros.
+              <p className="font-sans text-xs font-medium uppercase tracking-[0.16em] text-obsidian">No se encontraron referencias</p>
+              <p className="font-serif italic text-xs text-obsidian/60 max-w-sm mx-auto">
+                Ninguna referencia coincide con los filtros seleccionados. Modifica el término de búsqueda o restablece los filtros.
               </p>
               <button
                 onClick={clearAllFilters}
-                className="px-5 py-2 bg-black text-white text-xs uppercase tracking-widest font-bold rounded-xs hover:bg-black/85 transition-all shadow-xs"
+                className="px-5 py-2 bg-black text-white text-xs uppercase tracking-[0.18em] font-medium rounded-xs hover:bg-black/85 transition-all shadow-2xs"
               >
                 Restablecer Búsqueda
               </button>
@@ -327,11 +326,11 @@ export const SmartSearchModal: React.FC = () => {
                   <div
                     key={product.id}
                     onClick={() => handleSelectProduct(product.code)}
-                    className="group p-3 rounded-xl glass-card flex items-center justify-between gap-3 cursor-pointer hover:border-black/30 transition-all border border-white/80"
+                    className="group p-3 rounded-xl glass-card flex items-center justify-between gap-3 cursor-pointer hover:border-black/25 transition-all border border-white/80"
                   >
                     {/* Left: Thumbnail and Details */}
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="w-14 h-14 rounded-lg bg-white p-1 border border-black/[0.06] flex items-center justify-center shrink-0 shadow-2xs">
+                      <div className="w-14 h-14 rounded-lg bg-white p-1 border border-black/[0.05] flex items-center justify-center shrink-0 shadow-2xs">
                         <img
                           src={product.image_url}
                           alt={product.name}
@@ -341,30 +340,30 @@ export const SmartSearchModal: React.FC = () => {
 
                       <div className="min-w-0 space-y-0.5">
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono font-bold tracking-wider text-black bg-black/5 px-2 py-0.5 rounded">
+                          <span className="text-[10px] font-mono font-medium tracking-wider text-black bg-black/[0.04] px-2 py-0.5 rounded border border-black/[0.06]">
                             {product.code}
                           </span>
-                          <span className="text-[10px] uppercase tracking-wider text-obsidian/50 font-sans truncate">
+                          <span className="text-[10px] uppercase tracking-[0.14em] text-obsidian/45 font-sans font-normal truncate">
                             {product.category_name}
                           </span>
                           {isOver500k && (
-                            <span className="hidden sm:inline-flex items-center gap-1 text-[9px] font-sans font-bold uppercase tracking-wider bg-black text-white px-2 py-0.5 rounded-full">
+                            <span className="hidden sm:inline-flex items-center gap-1 text-[9px] font-sans font-medium uppercase tracking-wider bg-black text-white px-2 py-0.5 rounded-full">
                               <Truck className="w-2.5 h-2.5" /> Envío Gratis
                             </span>
                           )}
                         </div>
 
-                        <h4 className="text-xs font-sans font-bold text-obsidian uppercase tracking-wider truncate group-hover:text-black transition-colors">
+                        <h4 className="text-xs font-sans font-medium text-obsidian uppercase tracking-[0.12em] truncate group-hover:text-black transition-colors">
                           {product.name}
                         </h4>
 
                         <div className="flex items-center gap-2 text-[11px]">
-                          <span className="font-mono font-bold text-black">
-                            ${product.price.toLocaleString('es-CO')} <span className="text-[9px] font-normal text-obsidian/50">COP</span>
+                          <span className="font-mono font-medium text-black">
+                            ${product.price.toLocaleString('es-CO')} <span className="text-[9px] font-normal text-obsidian/45">COP</span>
                           </span>
-                          {product.technical_specs.acabado && (
-                            <span className="text-obsidian/50 text-[10px] hidden md:inline">
-                              · {product.technical_specs.acabado}
+                          {product.short_description && (
+                            <span className="font-serif italic text-obsidian/55 text-[11px] hidden md:inline truncate max-w-xs">
+                              · {product.short_description}
                             </span>
                           )}
                         </div>
@@ -380,13 +379,13 @@ export const SmartSearchModal: React.FC = () => {
                             ? 'bg-emerald-600 text-white'
                             : 'glass-button text-obsidian hover:text-white'
                         }`}
-                        title="Añadir al carrito"
+                        title="Añadir a la bolsa"
                       >
-                        {isAdded ? <Check className="w-3.5 h-3.5" /> : <ShoppingBag className="w-3.5 h-3.5" />}
+                        {isAdded ? <Check className="w-3.5 h-3.5 stroke-[1.5]" /> : <ShoppingBag className="w-3.5 h-3.5 stroke-[1.5]" />}
                       </button>
 
-                      <div className="p-1.5 text-obsidian/40 group-hover:text-black group-hover:translate-x-0.5 transition-all">
-                        <ChevronRight className="w-4 h-4" />
+                      <div className="p-1.5 text-obsidian/30 group-hover:text-black group-hover:translate-x-0.5 transition-all">
+                        <ChevronRight className="w-4 h-4 stroke-[1.5]" />
                       </div>
                     </div>
                   </div>
@@ -397,17 +396,17 @@ export const SmartSearchModal: React.FC = () => {
         </div>
 
         {/* Footer with Catalog Action and Shortcuts */}
-        <div className="p-4 border-t border-black/[0.08] bg-white/80 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <span className="text-obsidian/60 text-[11px] font-sans">
-            ¿Buscas una especificación técnica particular? Consulta el catálogo o pide asesoría B2B.
+        <div className="p-4 border-t border-black/[0.06] bg-white/80 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <span className="font-serif italic text-obsidian/55 text-[11px]">
+            Ingeniería de precisión y herrajes arquitectónicos de alta gama.
           </span>
 
           <button
             onClick={handleViewAllInCatalog}
-            className="w-full sm:w-auto px-5 py-2.5 bg-black text-white font-sans font-bold text-xs uppercase tracking-[0.16em] hover:bg-black/85 transition-all flex items-center justify-center gap-2 rounded-xs shadow-md shrink-0"
+            className="w-full sm:w-auto px-5 py-2.5 bg-black text-white font-sans font-medium text-xs uppercase tracking-[0.18em] hover:bg-black/85 transition-all flex items-center justify-center gap-2 rounded-xs shadow-md shrink-0"
           >
             <span>Ver en Catálogo ({filteredResults.length})</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 stroke-[1.5]" />
           </button>
         </div>
 
