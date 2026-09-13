@@ -113,7 +113,7 @@ export const InventoryManagement: React.FC = () => {
             setEditingProduct(null);
             setIsModalOpen(true);
           }}
-          className="px-5 py-2 bg-montezzigold text-white text-xs font-bold uppercase tracking-widest hover:bg-montezzigold-dark transition-all flex items-center justify-center gap-2 rounded-xs shadow-xs"
+          className="px-5 py-2 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-black/85 transition-all flex items-center justify-center gap-2 rounded-xs shadow-md"
         >
           <Plus className="w-4 h-4" />
           <span>Nueva Referencia</span>
@@ -121,10 +121,10 @@ export const InventoryManagement: React.FC = () => {
       </div>
 
       {/* Inventory Table */}
-      <div className="border border-[#E2DDD4] rounded-sm overflow-hidden bg-white shadow-xs">
+      <div className="glass-card rounded-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-sans">
-            <thead className="bg-[#FAF8F5] border-b border-[#E2DDD4] text-montezzigold uppercase tracking-wider text-[11px] font-bold">
+            <thead className="bg-black/[0.03] border-b border-black/[0.08] text-black uppercase tracking-wider text-[11px] font-bold">
               <tr>
                 <th className="p-3.5">Código</th>
                 <th className="p-3.5">Producto & Categoría</th>
@@ -135,7 +135,7 @@ export const InventoryManagement: React.FC = () => {
                 <th className="p-3.5 text-right">Acciones</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#EAE4D9] text-obsidian">
+            <tbody className="divide-y divide-black/[0.06] text-obsidian">
               {filtered.map(product => {
                 const isLow = product.stock <= (product.min_stock_alert ?? 8) && product.stock > 0;
                 const isOut = product.stock === 0;

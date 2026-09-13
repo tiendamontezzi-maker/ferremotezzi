@@ -55,13 +55,13 @@ export const FAQ: React.FC = () => {
   );
 
   return (
-    <div className="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 bg-[#FAF8F5]">
+    <div className="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
       {/* Header */}
       <div className="text-center space-y-3 max-w-2xl mx-auto">
-        <span className="text-xs font-sans tracking-[0.25em] text-montezzigold uppercase font-bold">
+        <span className="text-xs font-sans tracking-[0.25em] text-black/70 uppercase font-bold">
           Atención & Soporte
         </span>
-        <h1 className="font-serif text-3xl sm:text-5xl text-obsidian">
+        <h1 className="font-sans text-3xl sm:text-5xl text-obsidian uppercase font-bold tracking-wider">
           Preguntas Frecuentes
         </h1>
         <p className="text-sm text-obsidian/70 font-sans">
@@ -71,13 +71,13 @@ export const FAQ: React.FC = () => {
 
       {/* Search Bar */}
       <div className="relative max-w-xl mx-auto">
-        <Search className="w-5 h-5 text-montezzigold absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <Search className="w-5 h-5 text-black absolute left-3.5 top-1/2 -translate-y-1/2" />
         <input
           type="text"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           placeholder="Escribe tu consulta (ej: envíos, showroom, instalación, garantía)..."
-          className="w-full bg-white border border-[#DDD6C8] text-obsidian pl-11 pr-4 py-3 text-xs font-sans focus:outline-none focus:border-montezzigold placeholder:text-obsidian/40 rounded-sm shadow-xs"
+          className="w-full bg-white border border-black/15 text-obsidian pl-11 pr-4 py-3 text-xs font-sans focus:outline-none focus:border-black placeholder:text-obsidian/40 rounded-sm shadow-xs"
         />
       </div>
 
@@ -88,25 +88,25 @@ export const FAQ: React.FC = () => {
           return (
             <div
               key={idx}
-              className="border border-[#E2DDD4] rounded-sm overflow-hidden bg-white shadow-xs transition-colors"
+              className="glass-card rounded-sm overflow-hidden"
             >
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
-                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#FAF8F5] transition-colors"
+                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-black/[0.02] transition-colors"
               >
-                <span className="font-serif text-base sm:text-lg text-obsidian font-medium pr-4">
+                <span className="font-sans text-sm sm:text-base text-obsidian font-semibold pr-4">
                   {faq.q}
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 text-montezzigold shrink-0 transition-transform duration-300 ${
+                  className={`w-4 h-4 text-black shrink-0 transition-transform duration-300 ${
                     isOpen ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-obsidian/80 font-sans leading-relaxed border-t border-[#EAE4D9] bg-[#FAF8F5]">
+                <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-obsidian/80 font-sans leading-relaxed border-t border-black/[0.06] bg-black/[0.02]">
                   <p>{faq.a}</p>
                 </div>
               )}
@@ -118,16 +118,16 @@ export const FAQ: React.FC = () => {
       <GoldenDivider variant="centered" />
 
       {/* Still have questions */}
-      <div className="p-8 bg-white border border-[#E2DDD4] rounded-sm text-center space-y-3 shadow-xs">
-        <HelpCircle className="w-8 h-8 text-montezzigold mx-auto stroke-[1.5]" />
-        <h3 className="font-serif text-2xl text-obsidian font-medium">¿Necesitas asesoría técnica personalizada?</h3>
+      <div className="p-8 glass-card rounded-sm text-center space-y-3">
+        <HelpCircle className="w-8 h-8 text-black mx-auto stroke-[1.5]" />
+        <h3 className="font-sans text-xl sm:text-2xl text-obsidian uppercase font-bold tracking-wider">¿Necesitas asesoría técnica personalizada?</h3>
         <p className="text-xs text-obsidian/70 font-sans max-w-md mx-auto">
           Nuestro equipo de ejecutivos comerciales y soporte técnico acompaña cada proyecto arquitectónico.
         </p>
         <div className="pt-2">
           <a
             href="/distribucion"
-            className="inline-block px-6 py-2.5 bg-montezzigold text-white text-xs font-bold uppercase tracking-widest hover:bg-montezzigold-dark transition-all shadow-sm"
+            className="inline-block px-6 py-2.5 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-black/85 transition-all shadow-md"
           >
             Contactar Asesor
           </a>

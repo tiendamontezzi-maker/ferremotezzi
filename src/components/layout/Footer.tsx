@@ -5,35 +5,35 @@ import { ShieldCheck, Truck, Clock, Sparkles, ArrowRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#FAF8F5] border-t border-[#EAE4D9] text-obsidian pt-16 pb-12">
-      {/* Brand Value Pillars (Westwing / Luxury Standard in warm ivory & white) */}
+    <footer className="bg-white border-t border-black/[0.08] text-obsidian pt-16 pb-12">
+      {/* Brand Value Pillars (Westwing / Luxury Standard) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-8 border border-[#E2DDD4] bg-white px-6 rounded-sm shadow-xs">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-8 glass-card px-6 rounded-sm">
           <div className="flex items-center gap-3">
-            <Sparkles className="w-6 h-6 text-montezzigold shrink-0 stroke-[1.5]" />
+            <Sparkles className="w-6 h-6 text-black shrink-0 stroke-[1.5]" />
             <div>
-              <h4 className="font-serif text-sm font-semibold text-obsidian">Estética Arquitectónica</h4>
+              <h4 className="font-sans text-xs uppercase tracking-wider font-bold text-obsidian">Estética Arquitectónica</h4>
               <p className="text-[11px] text-obsidian/60 font-sans mt-0.5">Diseño minimalista y acabados contemporáneos.</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <ShieldCheck className="w-6 h-6 text-montezzigold shrink-0 stroke-[1.5]" />
+            <ShieldCheck className="w-6 h-6 text-black shrink-0 stroke-[1.5]" />
             <div>
-              <h4 className="font-serif text-sm font-semibold text-obsidian">Garantía Montezzi</h4>
+              <h4 className="font-sans text-xs uppercase tracking-wider font-bold text-obsidian">Garantía Montezzi</h4>
               <p className="text-[11px] text-obsidian/60 font-sans mt-0.5">30 días de respaldo por defectos de fábrica.</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Truck className="w-6 h-6 text-montezzigold shrink-0 stroke-[1.5]" />
+            <Truck className="w-6 h-6 text-black shrink-0 stroke-[1.5]" />
             <div>
-              <h4 className="font-serif text-sm font-semibold text-obsidian">Cobertura Nacional</h4>
+              <h4 className="font-sans text-xs uppercase tracking-wider font-bold text-obsidian">Cobertura Nacional</h4>
               <p className="text-[11px] text-obsidian/60 font-sans mt-0.5">Medellín 1 día · Colombia 2-3 días hábiles.</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Clock className="w-6 h-6 text-montezzigold shrink-0 stroke-[1.5]" />
+            <Clock className="w-6 h-6 text-black shrink-0 stroke-[1.5]" />
             <div>
-              <h4 className="font-serif text-sm font-semibold text-obsidian">Atención a Profesionales</h4>
+              <h4 className="font-sans text-xs uppercase tracking-wider font-bold text-obsidian">Atención a Profesionales</h4>
               <p className="text-[11px] text-obsidian/60 font-sans mt-0.5">Canal especializado para diseñadores y carpinteros.</p>
             </div>
           </div>
@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
               En Montezzi creemos que los detalles tienen el poder de transformar cada espacio. Seleccionamos herrajes y soluciones de organización que combinan diseño, funcionalidad y calidad para cocinas, clósets y proyectos de alta arquitectura.
             </p>
             <div className="pt-2">
-              <span className="text-[11px] font-sans tracking-[0.2em] text-montezzigold uppercase font-semibold">
+              <span className="text-[11px] font-sans tracking-[0.2em] text-black uppercase font-bold">
                 Principio rector:
               </span>
               <p className="text-xs text-obsidian font-serif italic mt-0.5">
@@ -61,27 +61,27 @@ export const Footer: React.FC = () => {
 
           {/* Colecciones */}
           <div className="space-y-3">
-            <h4 className="text-xs font-sans tracking-[0.2em] uppercase text-montezzigold font-bold">
+            <h4 className="text-xs font-sans tracking-[0.2em] uppercase text-black font-bold">
               Colecciones 2026
             </h4>
             <ul className="space-y-2 text-xs text-obsidian/75">
               <li>
-                <Link to="/catalogo?coleccion=cocina" className="hover:text-montezzigold transition-colors">
+                <Link to="/catalogo?coleccion=cocina" className="hover:text-black transition-colors">
                   Colección Cocina (Canastas & Despensas)
                 </Link>
               </li>
               <li>
-                <Link to="/catalogo?coleccion=closet" className="hover:text-montezzigold transition-colors">
+                <Link to="/catalogo?coleccion=closet" className="hover:text-black transition-colors">
                   Colección Clóset (Joyeros & Pantaloneros)
                 </Link>
               </li>
               <li>
-                <Link to="/catalogo?coleccion=herrajes_especiales" className="hover:text-montezzigold transition-colors">
+                <Link to="/catalogo?coleccion=herrajes_especiales" className="hover:text-black transition-colors">
                   Herrajes Especiales (Bisagras & Guías)
                 </Link>
               </li>
               <li>
-                <Link to="/catalogo" className="hover:text-montezzigold transition-colors">
+                <Link to="/catalogo" className="hover:text-black transition-colors">
                   Portafolio Completo (KDJ-1 a KDJ-112)
                 </Link>
               </li>
@@ -90,27 +90,27 @@ export const Footer: React.FC = () => {
 
           {/* Políticas y Atención */}
           <div className="space-y-3">
-            <h4 className="text-xs font-sans tracking-[0.2em] uppercase text-montezzigold font-bold">
+            <h4 className="text-xs font-sans tracking-[0.2em] uppercase text-black font-bold">
               Políticas y Servicio
             </h4>
             <ul className="space-y-2 text-xs text-obsidian/75">
               <li>
-                <Link to="/garantias" className="hover:text-montezzigold transition-colors">
+                <Link to="/garantias" className="hover:text-black transition-colors">
                   Política de Garantías y Cambios
                 </Link>
               </li>
               <li>
-                <Link to="/envios" className="hover:text-montezzigold transition-colors">
+                <Link to="/envios" className="hover:text-black transition-colors">
                   Política de Envíos y Tiempos
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="hover:text-montezzigold transition-colors">
+                <Link to="/faq" className="hover:text-black transition-colors">
                   Preguntas Frecuentes (FAQ)
                 </Link>
               </li>
               <li>
-                <Link to="/distribucion" className="hover:text-montezzigold transition-colors">
+                <Link to="/distribucion" className="hover:text-black transition-colors">
                   Ventas al por Mayor y Distribuidores
                 </Link>
               </li>
@@ -119,28 +119,28 @@ export const Footer: React.FC = () => {
 
           {/* Institucional y Showroom */}
           <div className="space-y-3">
-            <h4 className="text-xs font-sans tracking-[0.2em] uppercase text-montezzigold font-bold">
+            <h4 className="text-xs font-sans tracking-[0.2em] uppercase text-black font-bold">
               Institucional
             </h4>
             <ul className="space-y-2 text-xs text-obsidian/75">
               <li>
-                <Link to="/nosotros" className="hover:text-montezzigold transition-colors">
+                <Link to="/nosotros" className="hover:text-black transition-colors">
                   Nosotros, Misión y Visión 2031
                 </Link>
               </li>
               <li>
-                <Link to="/login" className="hover:text-montezzigold transition-colors">
+                <Link to="/login" className="hover:text-black transition-colors">
                   Acceso a Clientes / Staff
                 </Link>
               </li>
               <li>
-                <Link to="/admin" className="hover:text-montezzigold transition-colors">
+                <Link to="/admin" className="hover:text-black transition-colors">
                   Panel de Control Montezzi
                 </Link>
               </li>
             </ul>
-            <div className="mt-4 pt-4 border-t border-[#DDD6C8]">
-              <span className="text-[10px] uppercase font-sans tracking-widest text-montezzigold font-bold block mb-1">
+            <div className="mt-4 pt-4 border-t border-black/[0.08]">
+              <span className="text-[10px] uppercase font-sans tracking-widest text-black font-bold block mb-1">
                 Showroom Físico
               </span>
               <p className="text-[11px] text-obsidian/70">
@@ -151,7 +151,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* 3-Column Minimalist Bottom Bar (Exact replica of user reference image) */}
-        <div className="mt-14 pt-10 border-t border-[#E6E0D4]">
+        <div className="mt-14 pt-10 border-t border-black/[0.08]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-xs font-sans">
             
             {/* Column 1: Brand Logo & Copyright */}
@@ -174,11 +174,11 @@ export const Footer: React.FC = () => {
                   type="email"
                   required
                   placeholder="Ingresa tu correo electrónico..."
-                  className="w-full bg-white border-b border-[#DDD6C8] py-1.5 pr-8 text-xs text-obsidian placeholder:text-obsidian/40 focus:outline-none focus:border-montezzigold"
+                  className="w-full bg-transparent border-b border-black/20 py-1.5 pr-8 text-xs text-obsidian placeholder:text-obsidian/40 focus:outline-none focus:border-black"
                 />
                 <button
                   type="submit"
-                  className="absolute right-0 text-obsidian/60 hover:text-montezzigold transition-colors"
+                  className="absolute right-0 text-obsidian/60 hover:text-black transition-colors"
                   aria-label="Suscribirme"
                 >
                   <ArrowRight className="w-3.5 h-3.5" />

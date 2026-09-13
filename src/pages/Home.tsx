@@ -82,7 +82,7 @@ export const Home: React.FC = () => {
           {/* Left Column: Headline and Link */}
           <div className="lg:col-span-5 space-y-6 z-10">
             <div className="space-y-1">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-sans font-bold text-obsidian tracking-tight leading-[1.12]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-sans font-bold text-obsidian tracking-wider leading-[1.12] uppercase">
                 {currentSlide.titleLine1} <br />
                 <span className="text-obsidian font-bold font-sans">
                   {currentSlide.titleLine2}
@@ -97,10 +97,10 @@ export const Home: React.FC = () => {
             <div>
               <Link
                 to={currentSlide.link}
-                className="inline-flex items-center gap-2 text-xs font-sans font-semibold uppercase tracking-[0.16em] text-obsidian hover:text-montezzigold transition-colors group"
+                className="inline-flex items-center gap-2.5 text-xs font-sans font-bold uppercase tracking-[0.2em] text-white bg-black hover:bg-black/85 px-6 py-3.5 rounded-xs transition-all shadow-md group"
               >
-                <ChevronRight className="w-3.5 h-3.5 text-montezzigold transition-transform group-hover:translate-x-1" />
                 <span>Ver esta referencia</span>
+                <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
@@ -132,25 +132,25 @@ export const Home: React.FC = () => {
               />
             </div>
 
-            {/* Slider Controls (bottom right: 01 / 03 and arrows, exactly like reference) */}
-            <div className="absolute bottom-2 right-4 sm:right-8 flex items-center gap-4 text-xs font-mono z-20">
-              <span className="text-obsidian/40 tracking-wider">
-                0{currentHeroSlide + 1} <span className="text-obsidian/20">/</span> 0{heroSlides.length}
+            {/* Slider Controls with Glassmorphism Pill */}
+            <div className="absolute bottom-2 right-4 sm:right-8 flex items-center gap-3 text-xs font-mono z-20 glass-pill px-3.5 py-1.5 rounded-full shadow-xs">
+              <span className="text-obsidian/60 tracking-wider font-semibold">
+                0{currentHeroSlide + 1} <span className="text-obsidian/30">/</span> 0{heroSlides.length}
               </span>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-0.5">
                 <button
                   onClick={() => setCurrentHeroSlide(prev => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-                  className="p-1.5 hover:bg-[#F3EEE5] text-obsidian/60 hover:text-obsidian rounded transition-colors"
+                  className="p-1 hover:bg-black hover:text-white text-obsidian/70 rounded-full transition-colors"
                   aria-label="Slide anterior"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={() => setCurrentHeroSlide(prev => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
-                  className="p-1.5 hover:bg-[#F3EEE5] text-obsidian/60 hover:text-obsidian rounded transition-colors"
+                  className="p-1 hover:bg-black hover:text-white text-obsidian/70 rounded-full transition-colors"
                   aria-label="Slide siguiente"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
@@ -161,7 +161,7 @@ export const Home: React.FC = () => {
       {/* 2. RECENT PRODUCTS (Fiel a la foto: título centrado "Recent Products", retícula 4 columnas con fondos cuadrados suaves y estrellas doradas) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-2">
-          <h2 className="text-2xl sm:text-3xl font-sans font-bold text-obsidian tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-sans font-bold text-obsidian tracking-widest uppercase">
             Recent Products
           </h2>
           <p className="text-xs text-obsidian/50 font-sans tracking-widest uppercase">
@@ -176,11 +176,11 @@ export const Home: React.FC = () => {
           ))}
         </div>
 
-        {/* Minimalist Centered Load More button with arrows (exact like reference: `‹ LOAD MORE ›`) */}
+        {/* Minimalist Centered Load More button in pure black */}
         <div className="pt-8 text-center">
           <Link
             to="/catalogo"
-            className="inline-flex items-center gap-3 text-xs font-sans tracking-[0.2em] uppercase font-bold text-obsidian/70 hover:text-montezzigold transition-colors"
+            className="inline-flex items-center gap-3 text-xs font-sans tracking-[0.22em] uppercase font-bold text-white bg-black hover:bg-black/85 px-8 py-3.5 rounded-xs transition-all shadow-md"
           >
             <span>‹</span>
             <span>Explorar Catálogo Completo</span>
@@ -192,7 +192,7 @@ export const Home: React.FC = () => {
       {/* 3. TESTIMONIAL (Fiel a la foto: título "Testimonial", 4 tarjetas numeradas con badge circular, cita y autor) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-8">
         <div className="text-center space-y-2">
-          <h2 className="text-2xl sm:text-3xl font-sans font-bold text-obsidian tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-sans font-bold text-obsidian tracking-widest uppercase">
             Testimonial
           </h2>
           <p className="text-xs text-obsidian/50 font-sans tracking-widest uppercase">
@@ -201,15 +201,15 @@ export const Home: React.FC = () => {
         </div>
 
         <div className="relative">
-          {/* Testimonial Cards Row */}
+          {/* Testimonial Cards Row with Glassmorphism */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonials.map(item => (
               <div
                 key={item.id}
-                className="flex flex-col items-center text-center p-6 bg-white space-y-4 rounded-sm border border-transparent hover:border-[#E8E2D8] transition-all"
+                className="flex flex-col items-center text-center p-6 glass-card space-y-4 rounded-sm border border-black/[0.06] hover:border-black/20 hover:shadow-md transition-all"
               >
-                {/* Number Badge Circle (like in screenshot) */}
-                <div className="w-8 h-8 rounded-full border border-montezzigold/40 bg-[#FAF8F5] text-montezzigold font-mono text-xs font-bold flex items-center justify-center">
+                {/* Number Badge Circle in Sleek Black */}
+                <div className="w-8 h-8 rounded-full bg-black text-white font-mono text-xs font-bold flex items-center justify-center shadow-xs">
                   {item.id}
                 </div>
 
@@ -220,7 +220,7 @@ export const Home: React.FC = () => {
 
                 {/* Author & City */}
                 <div className="pt-2">
-                  <h4 className="text-xs font-sans font-bold text-obsidian">
+                  <h4 className="text-xs font-sans font-bold text-obsidian uppercase tracking-wide">
                     {item.author}
                   </h4>
                   <span className="text-[10px] font-sans text-obsidian/50 uppercase tracking-wider">
@@ -236,15 +236,15 @@ export const Home: React.FC = () => {
       {/* 4. SHOWCASE DE MOBILIARIO ARQUITECTÓNICO (Fiel a la foto: credenza en madera nogal/ranurada de alta gama donde vive el herraje) */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
         <div className="flex flex-col items-center justify-center text-center space-y-6">
-          <div className="w-full aspect-[21/9] max-h-[360px] overflow-hidden rounded-sm flex items-center justify-center bg-[#F6F4F0] p-4 sm:p-8">
+          <div className="w-full aspect-[21/9] max-h-[360px] overflow-hidden rounded-sm flex items-center justify-center bg-[#FAFAFA] border border-black/[0.04] p-4 sm:p-8 shadow-xs">
             <img
               src="/images/showcase/showcase_credenza.jpg"
               alt="Mobiliario Arquitectónico con Herrajes Montezzi"
               className="w-full h-full object-contain filter drop-shadow-md mix-blend-multiply"
             />
           </div>
-          <div className="max-w-md space-y-1 text-center">
-            <h3 className="font-sans text-base text-obsidian font-semibold tracking-tight">
+          <div className="max-w-md space-y-1.5 text-center">
+            <h3 className="font-sans text-base text-obsidian font-bold uppercase tracking-wider">
               Arquitectura en madera y herrajes ocultos
             </h3>
             <p className="text-xs text-obsidian/60 font-sans">

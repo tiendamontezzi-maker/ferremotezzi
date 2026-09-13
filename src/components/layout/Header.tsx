@@ -38,14 +38,14 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-[#F0ECE1] transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full glass-header transition-all duration-300">
       {/* Top micro-bar with subtle shipping notification and currency */}
-      <div className="bg-[#FAF8F5] border-b border-[#EFEAE2] py-1 px-4 sm:px-8 text-[11px] font-sans text-obsidian/70 flex items-center justify-between">
+      <div className="bg-white/70 backdrop-blur-md border-b border-black/[0.05] py-1.5 px-4 sm:px-8 text-[11px] font-sans text-obsidian/75 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-obsidian bg-white px-2 py-0.5 rounded border border-[#E5DFD4]">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-obsidian bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded border border-black/10">
             ES · COP ($)
           </span>
-          <span className="hidden sm:inline text-obsidian/60">
+          <span className="hidden sm:inline text-obsidian/60 font-medium">
             Envío Gratuito Nacional en compras ≥ $500.000 COP
           </span>
         </div>
@@ -54,16 +54,16 @@ export const Header: React.FC = () => {
         <div className="relative flex items-center gap-2">
           <button
             onClick={() => setRoleDropdownOpen(prev => !prev)}
-            className="flex items-center gap-1.5 text-obsidian/70 hover:text-montezzigold transition-colors text-[10px] uppercase font-mono bg-white px-2 py-0.5 rounded border border-[#DDD6C8]"
+            className="flex items-center gap-1.5 text-obsidian hover:text-white hover:bg-black transition-all text-[10px] uppercase font-mono bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded border border-black/10 shadow-2xs"
           >
-            <Shield className="w-3 h-3 text-montezzigold" />
+            <Shield className="w-3 h-3 text-current" />
             <span>Rol: {role}</span>
             <ChevronDown className="w-2.5 h-2.5" />
           </button>
 
           {roleDropdownOpen && (
-            <div className="absolute right-0 mt-8 w-44 bg-white border border-[#DDD6C8] rounded shadow-xl py-1 z-50 text-left">
-              <div className="px-3 py-1 text-[10px] text-obsidian/40 uppercase tracking-wider border-b border-[#EFE9DF]">
+            <div className="absolute right-0 mt-8 w-44 bg-white/95 backdrop-blur-xl border border-black/10 rounded shadow-2xl py-1 z-50 text-left">
+              <div className="px-3 py-1 text-[10px] text-obsidian/50 uppercase tracking-wider border-b border-black/5 font-semibold">
                 Simular Rol
               </div>
               {(['admin', 'colaborador', 'cliente'] as UserRole[]).map(r => (
@@ -73,10 +73,10 @@ export const Header: React.FC = () => {
                     switchRole(r);
                     setRoleDropdownOpen(false);
                   }}
-                  className="w-full px-3 py-1.5 text-xs text-obsidian hover:bg-[#FAF8F5] hover:text-montezzigold flex items-center justify-between font-sans"
+                  className="w-full px-3 py-1.5 text-xs text-obsidian hover:bg-black hover:text-white flex items-center justify-between font-sans transition-colors"
                 >
                   <span className="capitalize">{r}</span>
-                  {role === r && <Check className="w-3.5 h-3.5 text-montezzigold" />}
+                  {role === r && <Check className="w-3.5 h-3.5" />}
                 </button>
               ))}
             </div>
@@ -95,12 +95,12 @@ export const Header: React.FC = () => {
                 key={idx}
                 to={link.path}
                 className={`text-xs uppercase tracking-[0.14em] transition-colors py-1 relative font-sans ${
-                  isActive ? 'text-montezzigold font-bold' : 'text-obsidian/80 hover:text-montezzigold font-medium'
+                  isActive ? 'text-black font-bold' : 'text-obsidian/70 hover:text-black font-medium'
                 }`}
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-montezzigold" />
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black" />
                 )}
               </Link>
             );
@@ -117,7 +117,7 @@ export const Header: React.FC = () => {
           {/* Search Trigger */}
           <button
             onClick={() => setSearchOpen(prev => !prev)}
-            className="p-1.5 text-obsidian/75 hover:text-montezzigold transition-colors"
+            className="p-1.5 text-obsidian/75 hover:text-black transition-colors"
             title="Buscar referencias KDJ"
             aria-label="Buscar"
           >
@@ -128,7 +128,7 @@ export const Header: React.FC = () => {
           {role === 'admin' || role === 'colaborador' ? (
             <Link
               to="/admin"
-              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-montezzigold hover:text-montezzigold-dark text-xs uppercase tracking-wider font-semibold border border-montezzigold/40 rounded-sm"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-black hover:bg-black hover:text-white text-xs uppercase tracking-wider font-semibold border border-black rounded-sm transition-colors"
               title="Panel Administrativo"
             >
               <Shield className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export const Header: React.FC = () => {
           ) : (
             <Link
               to="/login"
-              className="p-1.5 text-obsidian/75 hover:text-montezzigold transition-colors"
+              className="p-1.5 text-obsidian/75 hover:text-black transition-colors"
               title="Acceso Clientes y Profesionales"
               aria-label="Cuenta"
             >
@@ -148,12 +148,12 @@ export const Header: React.FC = () => {
           {/* Cart Bag Icon with count badge */}
           <button
             onClick={openDrawer}
-            className="relative p-1.5 text-obsidian/80 hover:text-montezzigold transition-colors flex items-center"
+            className="relative p-1.5 text-obsidian/80 hover:text-black transition-colors flex items-center"
             aria-label="Abrir Carrito"
           >
             <ShoppingBag className="w-4 h-4 stroke-[1.75]" />
             {itemCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-montezzigold text-white text-[9px] font-mono font-bold flex items-center justify-center shadow-xs">
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-black text-white text-[9px] font-mono font-bold flex items-center justify-center shadow-xs">
                 {itemCount}
               </span>
             )}
@@ -162,7 +162,7 @@ export const Header: React.FC = () => {
           {/* Hamburger Menu Icon */}
           <button
             onClick={() => setMobileMenuOpen(prev => !prev)}
-            className="p-1.5 text-obsidian/80 hover:text-montezzigold transition-colors"
+            className="p-1.5 text-obsidian/80 hover:text-black transition-colors"
             aria-label="Menú principal"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5 stroke-[1.75]" />}
@@ -172,21 +172,21 @@ export const Header: React.FC = () => {
 
       {/* Expandable Search Input */}
       {searchOpen && (
-        <div className="border-t border-[#F0ECE1] bg-[#FAF8F5] px-4 py-4 shadow-sm">
+        <div className="border-t border-black/10 bg-white/95 backdrop-blur-xl px-4 py-4 shadow-lg">
           <div className="max-w-3xl mx-auto">
             <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-              <Search className="w-4 h-4 text-montezzigold absolute left-3.5" />
+              <Search className="w-4 h-4 text-obsidian/60 absolute left-3.5" />
               <input
                 type="text"
                 value={searchInput}
                 onChange={e => setSearchInput(e.target.value)}
                 placeholder="Buscar por código KDJ (ej: KDJ-90), nombre o material..."
-                className="w-full bg-white border border-[#DDD6C8] text-obsidian pl-10 pr-24 py-2.5 text-xs font-sans placeholder:text-obsidian/40 focus:outline-none focus:border-montezzigold"
+                className="w-full bg-white border border-black/15 text-obsidian pl-10 pr-24 py-2.5 text-xs font-sans placeholder:text-obsidian/40 focus:outline-none focus:border-black rounded-xs"
                 autoFocus
               />
               <button
                 type="submit"
-                className="absolute right-1.5 px-4 py-1.5 bg-montezzigold text-white text-xs font-semibold uppercase tracking-wider hover:bg-montezzigold-dark"
+                className="absolute right-1.5 px-4 py-1.5 bg-black text-white text-xs font-semibold uppercase tracking-wider hover:bg-black/80 rounded-xs transition-colors"
               >
                 Buscar
               </button>
@@ -197,7 +197,7 @@ export const Header: React.FC = () => {
 
       {/* Slide-down / Dropdown Menu for Mobile & Full Navigation */}
       {mobileMenuOpen && (
-        <div className="border-t border-[#F0ECE1] bg-white px-6 py-6 space-y-4 shadow-xl">
+        <div className="border-t border-black/10 bg-white/95 backdrop-blur-xl px-6 py-6 space-y-4 shadow-xl">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-4 border-b border-[#F0ECE1]">
             <div>
               <h4 className="text-[11px] font-mono tracking-widest text-obsidian uppercase font-bold mb-2">Colecciones</h4>

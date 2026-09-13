@@ -4,13 +4,13 @@ import { Truck, Clock, ShieldCheck, CreditCard, Box, AlertCircle } from 'lucide-
 
 export const ShippingPolicy: React.FC = () => {
   return (
-    <div className="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 bg-[#FAF8F5]">
+    <div className="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 bg-white">
       {/* Header */}
-      <div className="space-y-3 pb-6 border-b border-[#E2DDD4]">
-        <span className="text-xs font-sans tracking-[0.25em] text-montezzigold uppercase font-bold">
+      <div className="space-y-3 pb-6 border-b border-black/[0.08]">
+        <span className="text-xs font-sans tracking-[0.25em] text-black/70 uppercase font-bold">
           Políticas Oficiales
         </span>
-        <h1 className="font-serif text-3xl sm:text-5xl text-obsidian">
+        <h1 className="font-sans text-3xl sm:text-5xl text-obsidian uppercase font-bold tracking-wider">
           Política de Envíos y Métodos de Pago
         </h1>
         <p className="text-sm text-obsidian/70 font-sans">
@@ -20,8 +20,8 @@ export const ShippingPolicy: React.FC = () => {
 
       {/* Tiempos de Entrega */}
       <section className="space-y-6">
-        <div className="flex items-center gap-2 text-montezzigold font-serif text-2xl">
-          <Truck className="w-6 h-6 stroke-[1.5]" />
+        <div className="flex items-center gap-2 text-black font-sans text-lg uppercase font-bold tracking-wider">
+          <Truck className="w-5 h-5 stroke-[1.5]" />
           <h2 className="text-obsidian">Cobertura Nacional y Tiempos de Entrega</h2>
         </div>
         <p className="text-sm text-obsidian/80 font-sans leading-relaxed">
@@ -29,22 +29,22 @@ export const ShippingPolicy: React.FC = () => {
         </p>
 
         {/* Table of delivery times */}
-        <div className="border border-[#E2DDD4] rounded-sm overflow-hidden bg-white shadow-xs">
+        <div className="glass-card rounded-sm overflow-hidden">
           <table className="w-full text-left text-xs font-sans">
-            <thead className="bg-[#FAF8F5] border-b border-[#E2DDD4] text-montezzigold tracking-widest uppercase">
+            <thead className="bg-black/[0.03] border-b border-black/[0.08] text-black tracking-widest uppercase">
               <tr>
-                <th className="p-4 font-semibold">Destino</th>
-                <th className="p-4 font-semibold">Tiempo Estimado</th>
+                <th className="p-4 font-bold">Destino</th>
+                <th className="p-4 font-bold">Tiempo Estimado</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#EAE4D9] text-obsidian">
-              <tr className="hover:bg-[#FAF8F5]">
+            <tbody className="divide-y divide-black/[0.06] text-obsidian">
+              <tr className="hover:bg-black/[0.02]">
                 <td className="p-4 font-semibold">Medellín y Área Metropolitana</td>
-                <td className="p-4 font-mono text-montezzigold font-bold">Un (1) día hábil</td>
+                <td className="p-4 font-mono text-black font-bold">Un (1) día hábil</td>
               </tr>
-              <tr className="hover:bg-[#FAF8F5]">
+              <tr className="hover:bg-black/[0.02]">
                 <td className="p-4 font-semibold">Otras ciudades principales de Colombia</td>
-                <td className="p-4 font-mono text-montezzigold font-bold">Entre dos (2) y tres (3) días hábiles</td>
+                <td className="p-4 font-mono text-black font-bold">Entre dos (2) y tres (3) días hábiles</td>
               </tr>
             </tbody>
           </table>
@@ -56,8 +56,8 @@ export const ShippingPolicy: React.FC = () => {
       </section>
 
       {/* Envío Gratuito Banner */}
-      <div className="p-6 bg-white border border-montezzigold/40 rounded-sm space-y-2 shadow-xs">
-        <h3 className="font-serif text-xl text-montezzigold flex items-center gap-2 font-semibold">
+      <div className="p-6 glass-card rounded-sm space-y-2">
+        <h3 className="font-sans text-base uppercase font-bold tracking-wider text-black flex items-center gap-2">
           <ShieldCheck className="w-5 h-5" /> Envío Gratuito a Nivel Nacional
         </h3>
         <p className="text-sm text-obsidian/85 font-sans leading-relaxed">
@@ -67,7 +67,7 @@ export const ShippingPolicy: React.FC = () => {
 
       {/* Recepción y Novedades */}
       <section className="space-y-4 text-sm text-obsidian/80 font-sans leading-relaxed">
-        <h3 className="font-serif text-2xl text-obsidian font-medium">Recepción y Novedades (Plazo 24 Horas)</h3>
+        <h3 className="font-sans text-xl uppercase font-bold tracking-wider text-obsidian">Recepción y Novedades (Plazo 24 Horas)</h3>
         <p>
           El cliente deberá revisar empaque, cantidades, referencias y condiciones visibles durante las 24 horas posteriores a la entrega. Si llega incompleto, averiado o incorrecto, deberá enviar fotografías o videos del empaque, la guía y los productos. La revisión inicial no elimina la garantía por defectos que aparezcan después.
         </p>
@@ -80,33 +80,33 @@ export const ShippingPolicy: React.FC = () => {
 
       {/* Métodos de Pago y Disponibilidad */}
       <section className="space-y-6">
-        <div className="flex items-center gap-2 text-montezzigold font-serif text-2xl">
-          <CreditCard className="w-6 h-6 stroke-[1.5]" />
+        <div className="flex items-center gap-2 text-black font-sans text-lg uppercase font-bold tracking-wider">
+          <CreditCard className="w-5 h-5 stroke-[1.5]" />
           <h2 className="text-obsidian">Métodos de Pago y Disponibilidad de Inventario</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-sans">
-          <div className="p-4 bg-white border border-[#E2DDD4] rounded-sm space-y-2 shadow-xs">
-            <h4 className="font-serif text-base text-obsidian font-medium">Transferencia Bancaria</h4>
+          <div className="p-4 glass-card rounded-sm space-y-2">
+            <h4 className="font-sans text-xs uppercase font-bold tracking-wider text-obsidian">Transferencia Bancaria</h4>
             <p className="text-obsidian/70">
               Pagos directos a cuentas autorizadas de Montezzi (Bancolombia, convenios empresariales).
             </p>
           </div>
-          <div className="p-4 bg-white border border-[#E2DDD4] rounded-sm space-y-2 shadow-xs">
-            <h4 className="font-serif text-base text-obsidian font-medium">Tarjetas Débito y Crédito</h4>
+          <div className="p-4 glass-card rounded-sm space-y-2">
+            <h4 className="font-sans text-xs uppercase font-bold tracking-wider text-obsidian">Tarjetas Débito y Crédito</h4>
             <p className="text-obsidian/70">
               Procesamiento seguro mediante pasarela de pagos con verificación antifraude.
             </p>
           </div>
-          <div className="p-4 bg-white border border-[#E2DDD4] rounded-sm space-y-2 shadow-xs">
-            <h4 className="font-serif text-base text-obsidian font-medium">Pago en Showroom</h4>
+          <div className="p-4 glass-card rounded-sm space-y-2">
+            <h4 className="font-sans text-xs uppercase font-bold tracking-wider text-obsidian">Pago en Showroom</h4>
             <p className="text-obsidian/70">
               Disponible para clientes que retiren producto físicamente en sede Medellín.
             </p>
           </div>
         </div>
 
-        <div className="p-5 bg-white border border-[#E2DDD4] rounded-sm text-xs text-obsidian/80 space-y-2 font-sans shadow-xs">
+        <div className="p-5 glass-card rounded-sm text-xs text-obsidian/80 space-y-2 font-sans">
           <p>
             <strong>Confirmación del pago:</strong> El comprobante de transferencia o pago no constituye por sí solo confirmación definitiva. El pedido será aprobado cuando Montezzi verifique que los fondos estén acreditados.
           </p>

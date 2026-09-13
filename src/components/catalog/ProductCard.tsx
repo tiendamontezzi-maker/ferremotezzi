@@ -46,10 +46,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showStars = t
 
   return (
     <div className="group relative flex flex-col space-y-3">
-      {/* Product Image Square Container (Matching the reference image: soft off-white square) */}
+      {/* Product Image Square Container (Matching the reference image: clean soft studio square) */}
       <Link
         to={`/producto/${product.code}`}
-        className="relative aspect-square w-full rounded-sm overflow-hidden bg-[#F6F4F0] flex items-center justify-center p-6 transition-all duration-300 group-hover:bg-[#F0ECE5]"
+        className="relative aspect-square w-full rounded-sm overflow-hidden bg-[#FAFAFA] border border-black/[0.04] flex items-center justify-center p-6 transition-all duration-300 group-hover:bg-[#F2F2F2] group-hover:shadow-sm"
       >
         <img
           src={product.image_url}
@@ -58,22 +58,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showStars = t
           className="w-full h-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-108 mix-blend-multiply"
         />
 
-        {/* Small subtle badge on top left (like -15% or Destacado in the reference) */}
+        {/* Small subtle badge on top left (glassmorphic black badge) */}
         {product.is_featured ? (
-          <span className="absolute top-3 left-3 px-2 py-0.5 bg-[#E8A375] text-white text-[9px] font-sans font-bold uppercase tracking-wider rounded-xs shadow-xs">
+          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-black/90 backdrop-blur-sm text-white text-[9px] font-sans font-bold uppercase tracking-wider rounded-xs shadow-xs">
             Destacado
           </span>
         ) : isLowStock ? (
-          <span className="absolute top-3 left-3 px-2 py-0.5 bg-[#1C1B1A] text-white text-[9px] font-sans font-medium uppercase tracking-wider rounded-xs">
+          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-black/80 backdrop-blur-sm text-white text-[9px] font-sans font-medium uppercase tracking-wider rounded-xs">
             Stock Bajo
           </span>
         ) : null}
 
-        {/* Quick Add Button on hover */}
+        {/* Quick Add Button with Frosted Glassmorphism */}
         <button
           onClick={handleQuickAdd}
           disabled={isOutOfStock}
-          className="absolute bottom-3 right-3 p-2 bg-white/90 hover:bg-montezzigold text-obsidian hover:text-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0"
+          className="absolute bottom-3 right-3 p-2 bg-white/85 backdrop-blur-md border border-black/10 hover:bg-black text-obsidian hover:text-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0"
           title="Añadir a la bolsa"
           aria-label="Añadir a la bolsa"
         >

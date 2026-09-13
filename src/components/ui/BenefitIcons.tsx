@@ -25,12 +25,12 @@ export const BenefitIcons: React.FC<BenefitIconsProps> = ({ benefits, className 
       {benefits.slice(0, 5).map((b, idx) => (
         <div
           key={idx}
-          className="flex flex-col items-center text-center p-3.5 rounded-sm border border-[#E2DDD4] bg-white hover:border-montezzigold transition-all duration-200 shadow-sm"
+          className="flex flex-col items-center text-center p-3.5 rounded-sm glass-card hover:border-black/40 transition-all duration-200"
         >
-          <div className="text-montezzigold mb-2 p-2 rounded-full bg-[#FAF8F5] border border-montezzigold/30">
+          <div className="text-black mb-2 p-2 rounded-full bg-black/5 border border-black/10">
             {getIcon(b.label)}
           </div>
-          <span className="text-[10px] font-sans font-bold tracking-[0.18em] text-montezzigold uppercase mb-1">
+          <span className="text-[10px] font-sans font-bold tracking-[0.18em] text-black uppercase mb-1">
             {b.label}
           </span>
           <span className="text-xs text-obsidian font-sans leading-tight">

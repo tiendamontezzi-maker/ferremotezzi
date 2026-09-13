@@ -126,14 +126,14 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
       <div className="bg-white border border-[#E2DDD4] rounded-sm w-full max-w-3xl overflow-hidden shadow-2xl my-8">
-        {/* Header */}
-        <div className="px-6 py-4 bg-[#FAF8F5] border-b border-[#E2DDD4] flex items-center justify-between">
+        {/* Modal Header */}
+        <div className="px-6 py-4 bg-white border-b border-black/[0.08] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono tracking-widest text-montezzigold uppercase font-bold">
+            <span className="text-xs font-mono tracking-widest text-black uppercase font-bold">
               {productToEdit ? `Editar ${productToEdit.code}` : 'Nueva Referencia Oficial'}
             </span>
           </div>
-          <button onClick={onClose} className="p-1 text-obsidian/60 hover:text-montezzigold">
+          <button onClick={onClose} className="p-1 text-obsidian/60 hover:text-black">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -325,18 +325,18 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
           </div>
 
           {/* Footer Action Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E2DDD4]">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-black/[0.08]">
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian/70 hover:text-obsidian uppercase tracking-widest text-xs rounded-xs"
+              className="px-5 py-2.5 bg-white border border-black/15 text-obsidian/70 hover:text-obsidian uppercase tracking-widest text-xs rounded-xs"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="px-6 py-2.5 bg-montezzigold text-white font-bold uppercase tracking-widest text-xs hover:bg-montezzigold-dark flex items-center gap-2 rounded-xs shadow-xs"
+              className="px-6 py-2.5 bg-black text-white font-bold uppercase tracking-widest text-xs hover:bg-black/85 flex items-center gap-2 rounded-xs shadow-md"
             >
               <Save className="w-4 h-4" />
               <span>{isSaving ? 'Guardando...' : 'Guardar Referencia'}</span>

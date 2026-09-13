@@ -39,13 +39,13 @@ export const Wholesale: React.FC = () => {
   };
 
   return (
-    <div className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 bg-[#FAF8F5]">
+    <div className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 bg-white">
       {/* Header */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
-        <span className="text-xs font-sans tracking-[0.25em] text-montezzigold uppercase font-bold">
+        <span className="text-xs font-sans tracking-[0.25em] text-black/70 uppercase font-bold">
           Canal Profesional & B2B
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl text-obsidian">
+        <h1 className="font-sans text-3xl sm:text-4xl lg:text-5xl text-obsidian uppercase font-bold tracking-wider">
           Ventas al por Mayor y Distribución
         </h1>
         <p className="text-sm sm:text-base text-obsidian/80 font-sans leading-relaxed">
@@ -57,23 +57,23 @@ export const Wholesale: React.FC = () => {
 
       {/* Value props for partners */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 bg-white border border-[#E2DDD4] rounded-sm space-y-3 shadow-xs">
-          <Building2 className="w-6 h-6 text-montezzigold stroke-[1.5]" />
-          <h3 className="font-serif text-lg text-obsidian font-medium">Precios de Fábrica</h3>
+        <div className="p-6 glass-card rounded-sm space-y-3">
+          <Building2 className="w-6 h-6 text-black stroke-[1.5]" />
+          <h3 className="font-sans text-sm uppercase font-bold tracking-wider text-obsidian">Precios de Fábrica</h3>
           <p className="text-xs text-obsidian/70 font-sans leading-relaxed">
             Márgenes y escalonamiento de precios diseñados para rentabilizar la fabricación y proyectos a gran escala.
           </p>
         </div>
-        <div className="p-6 bg-white border border-[#E2DDD4] rounded-sm space-y-3 shadow-xs">
-          <FileCheck className="w-6 h-6 text-montezzigold stroke-[1.5]" />
-          <h3 className="font-serif text-lg text-obsidian font-medium">Fichas Técnicas & CAD</h3>
+        <div className="p-6 glass-card rounded-sm space-y-3">
+          <FileCheck className="w-6 h-6 text-black stroke-[1.5]" />
+          <h3 className="font-sans text-sm uppercase font-bold tracking-wider text-obsidian">Fichas Técnicas & CAD</h3>
           <p className="text-xs text-obsidian/70 font-sans leading-relaxed">
             Planos dimensionales exactos y soporte de ingeniería para integración en planos de carpintería y arquitectura.
           </p>
         </div>
-        <div className="p-6 bg-white border border-[#E2DDD4] rounded-sm space-y-3 shadow-xs">
-          <Clock className="w-6 h-6 text-montezzigold stroke-[1.5]" />
-          <h3 className="font-serif text-lg text-obsidian font-medium">Ejecutivo Dedicado</h3>
+        <div className="p-6 glass-card rounded-sm space-y-3">
+          <Clock className="w-6 h-6 text-black stroke-[1.5]" />
+          <h3 className="font-sans text-sm uppercase font-bold tracking-wider text-obsidian">Ejecutivo Dedicado</h3>
           <p className="text-xs text-obsidian/70 font-sans leading-relaxed">
             Acompañamiento especializado para analizar referencias, frecuencia y entregas programadas en tu ciudad.
           </p>
@@ -81,30 +81,30 @@ export const Wholesale: React.FC = () => {
       </div>
 
       {/* Main Form Box */}
-      <div className="bg-white border border-[#E2DDD4] p-8 sm:p-12 rounded-sm shadow-sm">
+      <div className="glass-card p-8 sm:p-12 rounded-sm">
         {submitted ? (
           <div className="text-center py-12 space-y-6">
-            <div className="w-16 h-16 rounded-full bg-[#FAF8F5] border border-montezzigold flex items-center justify-center mx-auto text-montezzigold shadow-xs">
+            <div className="w-16 h-16 rounded-full bg-white border border-black/20 flex items-center justify-center mx-auto text-black shadow-xs">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="font-serif text-3xl text-obsidian font-medium">Solicitud Registrada Exitosamente</h3>
+            <h3 className="font-sans text-2xl uppercase font-bold tracking-wider text-obsidian">Solicitud Registrada Exitosamente</h3>
             <p className="text-sm text-obsidian/70 font-sans max-w-md mx-auto">
               Un ejecutivo de distribución de Montezzi se pondrá en contacto en las próximas 24 horas hábiles para presentar la propuesta comercial.
             </p>
             <button
               onClick={() => setSubmitted(false)}
-              className="px-6 py-2.5 bg-white border border-montezzigold text-montezzigold text-xs uppercase tracking-widest hover:bg-montezzigold hover:text-white transition-all shadow-xs"
+              className="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-widest hover:bg-black/85 transition-all shadow-xs"
             >
               Enviar otra solicitud
             </button>
           </div>
         ) : (
           <div className="space-y-8">
-            <div className="space-y-2 pb-6 border-b border-[#EAE4D9]">
-              <span className="text-[11px] font-mono tracking-widest text-montezzigold uppercase font-bold">
+            <div className="space-y-2 pb-6 border-b border-black/[0.08]">
+              <span className="text-[11px] font-mono tracking-widest text-black/60 uppercase font-bold">
                 Llamado a la acción oficial
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl text-obsidian font-medium">
+              <h2 className="font-sans text-xl sm:text-2xl text-obsidian uppercase font-bold tracking-wider">
                 Solicitar atención de un ejecutivo de distribución
               </h2>
               <p className="text-xs text-obsidian/60 font-sans">
@@ -124,7 +124,7 @@ export const Wholesale: React.FC = () => {
                     value={form.full_name}
                     onChange={handleChange}
                     placeholder="Ej: Daniel Restrepo"
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
@@ -138,7 +138,7 @@ export const Wholesale: React.FC = () => {
                     value={form.company}
                     onChange={handleChange}
                     placeholder="Ej: Restrepo Arquitectura & Mobiliario"
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
@@ -152,7 +152,7 @@ export const Wholesale: React.FC = () => {
                     value={form.city}
                     onChange={handleChange}
                     placeholder="Medellín, Bogotá, Cali, etc."
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
@@ -166,7 +166,7 @@ export const Wholesale: React.FC = () => {
                     value={form.phone}
                     onChange={handleChange}
                     placeholder="+57 300 000 0000"
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
@@ -180,7 +180,7 @@ export const Wholesale: React.FC = () => {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="contacto@tuempresa.com"
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
@@ -191,7 +191,7 @@ export const Wholesale: React.FC = () => {
                     name="business_type"
                     value={form.business_type}
                     onChange={handleChange}
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   >
                     <option value="Carpintero / Fabricante de muebles">Carpintero / Fabricante de muebles</option>
                     <option value="Arquitecto / Diseñador de Interiores">Arquitecto / Diseñador de Interiores</option>
@@ -210,7 +210,7 @@ export const Wholesale: React.FC = () => {
                     value={form.interested_products}
                     onChange={handleChange}
                     placeholder="Ej: Canastas cocina, joyeros cuero, bisagras invisibles..."
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
@@ -221,7 +221,7 @@ export const Wholesale: React.FC = () => {
                     name="estimated_volume"
                     value={form.estimated_volume}
                     onChange={handleChange}
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2.5 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   >
                     <option value="1 a 10 unidades (Proyecto puntual)">1 a 10 unidades (Proyecto puntual)</option>
                     <option value="10 a 50 unidades (Lote mediano)">10 a 50 unidades (Lote mediano)</option>
@@ -240,7 +240,7 @@ export const Wholesale: React.FC = () => {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Describe el alcance de tu proyecto, referencias que necesitas o requerimientos específicos de entrega..."
-                    className="w-full bg-[#FAF8F5] border border-[#DDD6C8] p-3 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 p-3 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
               </div>
@@ -249,7 +249,7 @@ export const Wholesale: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto px-8 py-4 bg-montezzigold text-white font-sans font-bold text-xs uppercase tracking-[0.2em] hover:bg-montezzigold-dark transition-all flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full sm:w-auto px-8 py-4 bg-black text-white font-sans font-bold text-xs uppercase tracking-[0.2em] hover:bg-black/85 transition-all flex items-center justify-center gap-2 shadow-md"
                 >
                   {isSubmitting ? (
                     <span>Enviando Solicitud...</span>

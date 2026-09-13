@@ -44,24 +44,24 @@ export const Catalog: React.FC = () => {
   });
 
   return (
-    <div className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 bg-[#FAF8F5]">
+    <div className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 bg-white">
       {/* Header & Breadcrumb */}
-      <div className="space-y-3 pb-6 border-b border-[#E8E2D8]">
+      <div className="space-y-3 pb-6 border-b border-black/10">
         <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-obsidian/50 font-sans">
           <span>Inicio</span>
           <span>/</span>
-          <span className="text-montezzigold font-semibold">Catálogo Oficial</span>
+          <span className="text-obsidian font-bold">Catálogo Oficial</span>
           {filters.collection !== 'all' && (
             <>
               <span>/</span>
-              <span className="text-obsidian capitalize">{filters.collection.replace('_', ' ')}</span>
+              <span className="text-obsidian capitalize font-medium">{filters.collection.replace('_', ' ')}</span>
             </>
           )}
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <h1 className="font-serif text-3xl sm:text-5xl text-obsidian tracking-tight">
+            <h1 className="font-sans text-3xl sm:text-5xl text-obsidian tracking-wider font-bold uppercase">
               Portafolio Arquitectónico
             </h1>
             <p className="text-xs sm:text-sm text-obsidian/70 font-sans mt-1.5 max-w-2xl">
@@ -73,7 +73,7 @@ export const Catalog: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setMobileFilterOpen(true)}
-              className="lg:hidden px-4 py-2.5 bg-white border border-montezzigold text-montezzigold text-xs uppercase tracking-widest font-semibold flex items-center gap-2 shadow-sm"
+              className="lg:hidden px-4 py-2.5 bg-black border border-black text-white text-xs uppercase tracking-widest font-semibold flex items-center gap-2 shadow-sm rounded-xs"
             >
               <SlidersHorizontal className="w-4 h-4" />
               <span>Filtros ({filteredProducts.length})</span>
@@ -82,17 +82,17 @@ export const Catalog: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Controls Row (Search in page + Sort Selector) */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 border border-[#E2DDD4] rounded-sm shadow-sm">
+      {/* Main Controls Row with Glassmorphism */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 glass-panel p-4 rounded-sm shadow-xs">
         {/* Real-time search field */}
         <div className="relative w-full sm:max-w-md">
-          <Search className="w-4 h-4 text-montezzigold absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-obsidian/50 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={filters.searchQuery}
             onChange={e => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
             placeholder="Filtrar por código (ej: KDJ-14), nombre o material..."
-            className="w-full bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs pl-9 pr-8 py-2.5 rounded-sm focus:outline-none focus:border-montezzigold placeholder:text-obsidian/45"
+            className="w-full bg-white border border-black/15 text-obsidian text-xs pl-9 pr-8 py-2.5 rounded-sm focus:outline-none focus:border-black placeholder:text-obsidian/45"
           />
           {filters.searchQuery && (
             <button
@@ -106,13 +106,13 @@ export const Catalog: React.FC = () => {
 
         {/* Sort Selector */}
         <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
-          <span className="text-xs text-obsidian/60 font-sans flex items-center gap-1.5">
-            <ArrowUpDown className="w-3.5 h-3.5 text-montezzigold" /> Ordenar por:
+          <span className="text-xs text-obsidian/70 font-sans flex items-center gap-1.5 font-medium">
+            <ArrowUpDown className="w-3.5 h-3.5 text-obsidian" /> Ordenar por:
           </span>
           <select
             value={sortBy}
             onChange={e => setSortBy(e.target.value as any)}
-            className="bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs px-3 py-2 rounded-sm focus:outline-none focus:border-montezzigold uppercase tracking-wider font-sans font-medium"
+            className="bg-white border border-black/15 text-obsidian text-xs px-3 py-2 rounded-sm focus:outline-none focus:border-black uppercase tracking-wider font-sans font-medium"
           >
             <option value="code_asc">Código KDJ (1 a 112)</option>
             <option value="price_asc">Precio: Menor a Mayor</option>
@@ -139,7 +139,7 @@ export const Catalog: React.FC = () => {
               </p>
               <button
                 onClick={resetFilters}
-                className="px-6 py-2.5 bg-montezzigold text-white text-xs uppercase tracking-widest font-bold hover:bg-montezzigold-dark transition-all shadow-sm"
+                className="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-widest font-bold hover:bg-black/85 transition-all shadow-md"
               >
                 Restablecer Filtros
               </button>
@@ -152,7 +152,7 @@ export const Catalog: React.FC = () => {
                 ))}
               </div>
 
-              <div className="pt-8 border-t border-[#E8E2D8] text-center text-xs text-obsidian/50 font-sans">
+              <div className="pt-8 border-t border-black/[0.08] text-center text-xs text-obsidian/50 font-sans">
                 Mostrando los {sortedProducts.length} productos disponibles en el catálogo oficial Montezzi 2026.
               </div>
             </>
@@ -168,9 +168,9 @@ export const Catalog: React.FC = () => {
             onClick={() => setMobileFilterOpen(false)}
           />
           <div className="fixed inset-y-0 left-0 max-w-full flex">
-            <div className="w-screen max-w-xs bg-[#FAF8F5] border-r border-[#E2DDD4] p-6 overflow-y-auto">
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#E8E2D8]">
-                <span className="font-serif text-lg text-obsidian font-semibold">Filtros</span>
+            <div className="w-screen max-w-xs bg-white/95 backdrop-blur-2xl border-r border-black/10 p-6 overflow-y-auto">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-black/[0.08]">
+                <span className="font-sans text-sm uppercase font-bold tracking-wider text-obsidian">Filtros</span>
                 <button
                   onClick={() => setMobileFilterOpen(false)}
                   className="p-1 text-obsidian/60 hover:text-obsidian"
@@ -181,7 +181,7 @@ export const Catalog: React.FC = () => {
               <FilterSidebar />
               <button
                 onClick={() => setMobileFilterOpen(false)}
-                className="w-full mt-6 py-3 bg-montezzigold text-white font-bold text-xs uppercase tracking-widest shadow-sm"
+                className="w-full mt-6 py-3 bg-black text-white font-bold text-xs uppercase tracking-widest hover:bg-black/85 transition-all shadow-md"
               >
                 Aplicar Filtros
               </button>
