@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useProducts } from '../../context/ProductContext';
 import { Product } from '../../types/database';
 import { ProductFormModal } from './ProductFormModal';
+import { ImportModal } from './ImportModal';
+import { exportToCSV, exportToJSON } from '../../utils/csvExportImport';
 import {
   Search, AlertTriangle, Edit2, Plus, Check, Filter, Layers,
-  ExternalLink, Trash2, ArrowUpDown
+  ExternalLink, Trash2, ArrowUpDown, Download, UploadCloud
 } from 'lucide-react';
 
 export const InventoryManagement: React.FC = () => {
@@ -13,7 +15,8 @@ export const InventoryManagement: React.FC = () => {
     categories,
     updateProductStock,
     updateProductPrice,
-    deleteProduct
+    deleteProduct,
+    bulkUpdateProducts
   } = useProducts();
 
   const [search, setSearch] = useState('');
@@ -21,6 +24,7 @@ export const InventoryManagement: React.FC = () => {
   const [onlyLowStock, setOnlyLowStock] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
 
   // Local inline editing states for instant feedback
   const [savingId, setSavingId] = useState<string | null>(null);
@@ -62,6 +66,50 @@ export const InventoryManagement: React.FC = () => {
 
     return true;
   });
+
+  const handleExportCSV = () => {
+    exportToCSV('montezzi_inventario_kdj', products, [
+      { header: 'Código KDJ', key: 'code' },
+      { header: 'Nombre del Producto', key: 'name' },
+      { header: 'Categoría', key: 'category_name' },
+      { header: 'Colección Principal', key: 'main_collection' },
+      { header: 'Precio (COP)', key: 'price' },
+      { header: 'Stock Actual', key: 'stock' },
+      { header: 'Alerta Mínima', key: (p: Product) => p.min_stock_alert ?? 8 },
+      { header: 'ID Sistema', key: 'id' }
+    ]);
+  };
+
+  const handleExportJSON = () => {
+    exportToJSON('montezzi_inventario_kdj', products);
+  };
+
+  const handleImportConfirm = async (rows: Record<string, string>[]) => {
+    const updates: Array<{ code?: string; id?: string; stock?: number; price?: number }> = [];
+
+    rows.forEach(row => {
+      const code = row['Código KDJ'] || row['codigo'] || row['code'] || row['referencia'] || row['Referencia'];
+      const id = row['ID Sistema'] || row['id'];
+      const rawStock = row['Stock Actual'] || row['stock'] || row['cantidad'];
+      const rawPrice = row['Precio (COP)'] || row['precio'] || row['price'] || row['valor'];
+
+      if (code || id) {
+        updates.push({
+          code,
+          id,
+          stock: rawStock !== undefined && rawStock !== '' ? parseInt(rawStock.replace(/[^0-9]/g, ''), 10) : undefined,
+          price: rawPrice !== undefined && rawPrice !== '' ? parseInt(rawPrice.replace(/[^0-9]/g, ''), 10) : undefined
+        });
+      }
+    });
+
+    if (updates.length === 0) {
+      return { success: false, message: 'No se encontraron referencias válidas con código KDJ o ID en el archivo.' };
+    }
+
+    const { updatedCount } = await bulkUpdateProducts(updates);
+    return { success: true, message: `Se actualizaron exitosamente ${updatedCount} productos en el inventario central.` };
+  };
 
   return (
     <div className="space-y-6">
@@ -107,17 +155,39 @@ export const InventoryManagement: React.FC = () => {
           </button>
         </div>
 
-        {/* Add Product CTA */}
-        <button
-          onClick={() => {
-            setEditingProduct(null);
-            setIsModalOpen(true);
-          }}
-          className="px-5 py-2 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-black/85 transition-all flex items-center justify-center gap-2 rounded-xs shadow-md"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Nueva Referencia</span>
-        </button>
+        {/* Export, Import and Add CTAs */}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={handleExportCSV}
+            className="px-3 py-2 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
+            title="Descargar catálogo completo en formato Excel / CSV"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Exportar CSV</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setIsImportModalOpen(true)}
+            className="px-3 py-2 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
+            title="Actualizar masivamente stock o precios mediante CSV o JSON"
+          >
+            <UploadCloud className="w-3.5 h-3.5" />
+            <span>Importar Masivo</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setEditingProduct(null);
+              setIsModalOpen(true);
+            }}
+            className="px-4 py-2 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-black/85 transition-all flex items-center justify-center gap-2 rounded-xs shadow-md"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Nueva Referencia</span>
+          </button>
+        </div>
       </div>
 
       {/* Inventory Table */}
@@ -264,6 +334,22 @@ export const InventoryManagement: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         productToEdit={editingProduct}
+      />
+
+      {/* Bulk Inventory Import Modal */}
+      <ImportModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        title="Actualización Masiva de Inventario KDJ"
+        subtitle="Importa un archivo CSV o JSON para actualizar existencias y precios en bodega"
+        sampleTemplateName="inventario_kdj"
+        sampleTemplateHeaders={['codigo', 'precio', 'stock', 'alerta_minima']}
+        sampleTemplateRows={[
+          ['KDJ-1', '25000', '45', '8'],
+          ['KDJ-2', '18000', '60', '10'],
+          ['KDJ-108', '420000', '12', '4']
+        ]}
+        onImportConfirm={handleImportConfirm}
       />
     </div>
   );

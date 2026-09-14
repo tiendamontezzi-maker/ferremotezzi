@@ -2,11 +2,17 @@ import React, { useState, useMemo } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { UserRole } from '../../types/database';
 import { CreateUserModal } from './CreateUserModal';
-import { Users, UserPlus, Building, Phone, Mail, MapPin, Shield, Check, X, MessageSquare, ArrowUpRight } from 'lucide-react';
+import { ImportModal } from './ImportModal';
+import { exportToCSV, exportToJSON } from '../../utils/csvExportImport';
+import {
+  Users, UserPlus, Building, Phone, Mail, MapPin, Shield, Check, X,
+  MessageSquare, ArrowUpRight, Download, UploadCloud
+} from 'lucide-react';
 
 export const UserManagementTab: React.FC = () => {
-  const { systemUsers, updateSystemUserStatus } = useAuth();
+  const { systemUsers, updateSystemUserStatus, createSystemUser } = useAuth();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState<'todos' | UserRole>('todos');
   const [statusFilter, setStatusFilter] = useState<'todos' | 'activo' | 'inactivo'>('todos');
@@ -41,6 +47,55 @@ export const UserManagementTab: React.FC = () => {
       `Estimado/a ${user.full_name}, le saludamos desde la Dirección Comercial de Montezzi Herrajes. ¿En qué proyecto arquitectónico podemos apoyarle esta semana?`
     );
     return `https://wa.me/${cleanPhone.startsWith('57') ? cleanPhone : '57' + cleanPhone}?text=${message}`;
+  };
+
+  const handleExportCSV = () => {
+    exportToCSV('montezzi_directorio_clientes_usuarios', systemUsers, [
+      { header: 'Nombre / Razón Social', key: 'full_name' },
+      { header: 'Correo Electrónico', key: 'email' },
+      { header: 'Rol en Sistema', key: 'role' },
+      { header: 'Empresa / Estudio', key: (u) => u.company || '' },
+      { header: 'Teléfono / WhatsApp', key: (u) => u.phone || '' },
+      { header: 'Ciudad', key: (u) => u.city || 'Bogotá D.C.' },
+      { header: 'Total Pedidos', key: 'total_orders' },
+      { header: 'Compras Acumuladas (COP)', key: 'total_spent' },
+      { header: 'Estado', key: 'status' }
+    ]);
+  };
+
+  const handleExportJSON = () => {
+    exportToJSON('montezzi_directorio_clientes_usuarios', systemUsers);
+  };
+
+  const handleImportConfirm = async (rows: Record<string, string>[]) => {
+    let createdCount = 0;
+    rows.forEach(row => {
+      const name = row['Nombre / Razón Social'] || row['nombre'] || row['name'] || row['Cliente'];
+      const email = row['Correo Electrónico'] || row['email'] || row['correo'];
+      const company = row['Empresa / Estudio'] || row['empresa'] || row['company'] || '';
+      const phone = row['Teléfono / WhatsApp'] || row['telefono'] || row['phone'] || '';
+      const city = row['Ciudad'] || row['ciudad'] || row['city'] || 'Medellín';
+      const role = (row['Rol en Sistema'] || row['rol'] || 'cliente') as any;
+
+      if (name && email) {
+        createSystemUser({
+          full_name: name,
+          email,
+          role: role === 'admin' || role === 'colaborador' ? role : 'cliente',
+          company,
+          phone,
+          city,
+          status: 'activo'
+        });
+        createdCount++;
+      }
+    });
+
+    if (createdCount === 0) {
+      return { success: false, message: 'No se encontraron registros con nombre y correo electrónico válidos.' };
+    }
+
+    return { success: true, message: `Se registraron exitosamente ${createdCount} nuevos usuarios/clientes.` };
   };
 
   return (
@@ -136,14 +191,32 @@ export const UserManagementTab: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <input
             type="text"
             placeholder="Buscar por nombre, estudio, email..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full md:w-56 px-3 py-1.5 border border-black/15 bg-white rounded-xs focus:outline-hidden focus:border-black text-xs font-sans"
+            className="w-full md:w-52 px-3 py-1.5 border border-black/15 bg-white rounded-xs focus:outline-hidden focus:border-black text-xs font-sans"
           />
+
+          <button
+            onClick={handleExportCSV}
+            className="px-3 py-1.5 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
+            title="Exportar base de datos de usuarios a CSV"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Exportar CSV</span>
+          </button>
+
+          <button
+            onClick={() => setIsImportModalOpen(true)}
+            className="px-3 py-1.5 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
+            title="Importar lista de clientes o arquitectos desde archivo CSV o JSON"
+          >
+            <UploadCloud className="w-3.5 h-3.5" />
+            <span>Importar</span>
+          </button>
 
           <button
             onClick={() => setIsCreateModalOpen(true)}
@@ -278,6 +351,21 @@ export const UserManagementTab: React.FC = () => {
       <CreateUserModal
         isOpen={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
+      />
+
+      {/* Bulk Client Import Modal */}
+      <ImportModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        title="Importar Directorio de Clientes & Arquitectos"
+        subtitle="Carga masiva de contactos, empresas y números telefónicos desde CSV o JSON"
+        sampleTemplateName="clientes_arquitectos"
+        sampleTemplateHeaders={['nombre', 'email', 'empresa', 'telefono', 'ciudad', 'rol']}
+        sampleTemplateRows={[
+          ['Arq. Juan Camilo Restrepo', 'juan@restrepoarq.co', 'Restrepo & Gómez Arquitectos', '+57 312 456 7890', 'Medellín', 'cliente'],
+          ['Taller Ebanistería Roble', 'contacto@robletaller.com', 'Mobiliario Roble S.A.S.', '+57 320 987 6543', 'Bogotá D.C.', 'cliente']
+        ]}
+        onImportConfirm={handleImportConfirm}
       />
     </div>
   );

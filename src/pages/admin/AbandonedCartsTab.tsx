@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useProducts } from '../../context/ProductContext';
-import { ShoppingCart, MessageSquare, Mail, CheckCircle2, Clock, AlertOctagon, Filter, ArrowUpRight } from 'lucide-react';
+import { exportToCSV } from '../../utils/csvExportImport';
+import { ShoppingCart, MessageSquare, Mail, CheckCircle2, Clock, AlertOctagon, Filter, ArrowUpRight, Download } from 'lucide-react';
 
 export const AbandonedCartsTab: React.FC = () => {
   const { abandonedCarts, updateAbandonedCartStatus } = useProducts();
@@ -48,6 +49,21 @@ export const AbandonedCartsTab: React.FC = () => {
       `Estimado/a ${cart.customer_name},\n\nLe saludamos desde Montezzi.\nGuardamos la selección de herrajes para su proyecto por valor de $${cart.total_amount.toLocaleString('es-CO')} COP.\n\nQuedamos a su total disposición para coordinar despachos o soporte técnico.\n\nAtentamente,\nEquipo Comercial Montezzi`
     );
     return `mailto:${cart.customer_email}?subject=${subject}&body=${body}`;
+  };
+
+  const handleExportCSV = () => {
+    exportToCSV('montezzi_carritos_abandonados', abandonedCarts, [
+      { header: 'ID Carrito', key: 'id' },
+      { header: 'Cliente', key: 'customer_name' },
+      { header: 'Empresa / Estudio', key: (c) => c.company || '' },
+      { header: 'Email', key: 'customer_email' },
+      { header: 'Teléfono', key: (c) => c.customer_phone || '' },
+      { header: 'Ciudad', key: (c) => c.city || '' },
+      { header: 'Valor Cotizado (COP)', key: 'total_amount' },
+      { header: 'Estado', key: 'status' },
+      { header: 'Total Ítems', key: (c) => c.items.reduce((s, i) => s + i.quantity, 0) },
+      { header: 'Fecha Registro', key: (c) => c.last_activity || c.created_at }
+    ]);
   };
 
   return (
@@ -126,14 +142,23 @@ export const AbandonedCartsTab: React.FC = () => {
           ))}
         </div>
 
-        <div className="w-full sm:w-64">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
           <input
             type="text"
             placeholder="Buscar por cliente, estudio o ciudad..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full px-3 py-1.5 border border-black/15 bg-white rounded-xs focus:outline-hidden focus:border-black text-xs"
+            className="w-full sm:w-56 px-3 py-1.5 border border-black/15 bg-white rounded-xs focus:outline-hidden focus:border-black text-xs font-sans"
           />
+          <button
+            type="button"
+            onClick={handleExportCSV}
+            className="px-3 py-1.5 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs whitespace-nowrap"
+            title="Exportar listado de carritos abandonados a CSV"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Exportar CSV</span>
+          </button>
         </div>
       </div>
 

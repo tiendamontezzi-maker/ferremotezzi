@@ -42,6 +42,7 @@ interface ProductContextType {
   submitWholesaleLead: (lead: Omit<WholesaleLead, 'id' | 'created_at' | 'status'>) => Promise<void>;
   updateAbandonedCartStatus: (id: string, status: 'abandonado' | 'contactado' | 'recuperado', notes?: string) => void;
   recordProductClick: (productId: string) => void;
+  bulkUpdateProducts: (updates: Array<{ code?: string; id?: string; stock?: number; price?: number }>) => Promise<{ updatedCount: number }>;
   resetFilters: () => void;
 }
 
@@ -268,6 +269,31 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   };
 
+  const bulkUpdateProducts = async (
+    updates: Array<{ code?: string; id?: string; stock?: number; price?: number }>
+  ): Promise<{ updatedCount: number }> => {
+    let count = 0;
+    setProducts(prev => {
+      return prev.map(p => {
+        const match = updates.find(
+          u => (u.id && u.id === p.id) || (u.code && u.code.toLowerCase() === p.code.toLowerCase())
+        );
+        if (match) {
+          count++;
+          return {
+            ...p,
+            stock: match.stock !== undefined ? Math.max(0, Number(match.stock)) : p.stock,
+            price: match.price !== undefined ? Math.max(0, Number(match.price)) : p.price,
+            updated_at: new Date().toISOString()
+          };
+        }
+        return p;
+      });
+    });
+
+    return { updatedCount: count };
+  };
+
   const addProduct = async (productData: Omit<Product, 'id' | 'created_at'>): Promise<Product> => {
     const newProduct: Product = {
       ...productData,
@@ -435,6 +461,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         submitWholesaleLead,
         updateAbandonedCartStatus,
         recordProductClick,
+        bulkUpdateProducts,
         resetFilters
       }}
     >
