@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { UserRole, Profile } from '../types/database';
+import { UserRole, Profile, SystemUser } from '../types/database';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { INITIAL_SYSTEM_USERS } from '../lib/mockData';
 
 interface AuthContextType {
   user: Profile | null;
@@ -10,6 +11,17 @@ interface AuthContextType {
   login: (email: string, role?: UserRole) => Promise<boolean>;
   logout: () => Promise<void>;
   switchRole: (role: UserRole) => void;
+  systemUsers: SystemUser[];
+  createSystemUser: (userData: {
+    full_name: string;
+    email: string;
+    role: UserRole;
+    phone?: string;
+    company?: string;
+    city?: string;
+    status?: 'activo' | 'inactivo';
+  }) => SystemUser;
+  updateSystemUserStatus: (id: string, status: 'activo' | 'inactivo') => void;
 }
 
 const DEFAULT_DEMO_USERS: Record<UserRole, Profile> = {
@@ -54,6 +66,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
   
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [systemUsers, setSystemUsers] = useState<SystemUser[]>(() => {
+    const saved = localStorage.getItem('montezzi_system_users');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { return INITIAL_SYSTEM_USERS; }
+    }
+    return INITIAL_SYSTEM_USERS;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('montezzi_system_users', JSON.stringify(systemUsers));
+  }, [systemUsers]);
 
   useEffect(() => {
     if (user) {
@@ -145,11 +169,57 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(DEFAULT_DEMO_USERS[newRole]);
   };
 
+  const createSystemUser = (userData: {
+    full_name: string;
+    email: string;
+    role: UserRole;
+    phone?: string;
+    company?: string;
+    city?: string;
+    status?: 'activo' | 'inactivo';
+  }): SystemUser => {
+    const newId = `usr-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 6)}`;
+    const newUser: SystemUser = {
+      id: newId,
+      user_id: newId,
+      full_name: userData.full_name,
+      email: userData.email,
+      role: userData.role,
+      phone: userData.phone || '',
+      company: userData.company || '',
+      city: userData.city || 'Bogotá D.C.',
+      total_orders: 0,
+      total_spent: 0,
+      status: userData.status || 'activo',
+      created_at: new Date().toISOString()
+    };
+
+    setSystemUsers(prev => [newUser, ...prev]);
+    return newUser;
+  };
+
+  const updateSystemUserStatus = (id: string, status: 'activo' | 'inactivo') => {
+    setSystemUsers(prev => prev.map(u => u.id === id ? { ...u, status } : u));
+  };
+
   const role: UserRole = user?.role || 'cliente';
   const isAuthenticated = Boolean(user);
 
   return (
-    <AuthContext.Provider value={{ user, role, isAuthenticated, isLoading, login, logout, switchRole }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        role,
+        isAuthenticated,
+        isLoading,
+        login,
+        logout,
+        switchRole,
+        systemUsers,
+        createSystemUser,
+        updateSystemUserStatus
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

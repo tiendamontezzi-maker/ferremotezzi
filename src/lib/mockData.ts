@@ -1,4 +1,4 @@
-import { Category, Product, Order } from '../types/database';
+import { Category, Product, Order, AbandonedCart, ProductClickAnalytics, SystemUser } from '../types/database';
 
 export const OFFICIAL_CATEGORIES: Category[] = [
   {
@@ -5780,3 +5780,293 @@ export const INITIAL_ORDERS: Order[] = [
     created_at: "2026-09-11T16:45:00.000Z"
   }
 ];
+
+export const INITIAL_ABANDONED_CARTS: AbandonedCart[] = [
+  {
+    id: "AB-CART-001",
+    customer_name: "Arq. Camilo Restrepo",
+    customer_email: "crestrepo@restrepoarquitectos.com",
+    customer_phone: "+57 310 456 7890",
+    city: "Bogotá D.C.",
+    items: [
+      {
+        product_id: "prod-kdj-104",
+        code: "KDJ-104",
+        name: "Cajón de seguridad doble con watch winder",
+        price: 2450000,
+        quantity: 1,
+        image_url: "/images/products/joyero_closet.jpg",
+        subtotal: 2450000
+      }
+    ],
+    total_amount: 2450000,
+    created_at: "2026-09-13T14:30:00.000Z",
+    last_activity: "Paso de checkout - Selección de método de pago",
+    status: "abandonado",
+    recovery_notes: "Cliente interesado en acabado nogal para penthouse en Rosales."
+  },
+  {
+    id: "AB-CART-002",
+    customer_name: "Diseñadora Laura Zuluaga",
+    customer_email: "laura.zuluaga@estudiomadera.co",
+    customer_phone: "+57 301 987 6543",
+    city: "Medellín",
+    items: [
+      {
+        product_id: "prod-kdj-90",
+        code: "KDJ-90",
+        name: "Organizador de cocina dos niveles acero inoxidable",
+        price: 890000,
+        quantity: 1,
+        image_url: "/images/products/organizador_cocina.jpg",
+        subtotal: 890000
+      },
+      {
+        product_id: "prod-kdj-92",
+        code: "KDJ-92",
+        name: "Bandeja joyero para clóset en terciopelo y cuero",
+        price: 840000,
+        quantity: 1,
+        image_url: "/images/products/joyero_closet.jpg",
+        subtotal: 840000
+      }
+    ],
+    total_amount: 1730000,
+    created_at: "2026-09-13T11:15:00.000Z",
+    last_activity: "Revisión de bolsa de compra",
+    status: "contactado",
+    recovery_notes: "Se envió cotización formal con descuento B2B del 10%."
+  },
+  {
+    id: "AB-CART-003",
+    customer_name: "Mobel Studio S.A.S.",
+    customer_email: "proyectos@mobelstudio.com",
+    customer_phone: "+57 320 112 3344",
+    city: "Barranquilla",
+    items: [
+      {
+        product_id: "prod-kdj-93",
+        code: "KDJ-93",
+        name: "Canasta elevable eléctrica para mueble alto de cocina",
+        price: 1450000,
+        quantity: 1,
+        image_url: "/images/products/organizador_cocina.jpg",
+        subtotal: 1450000
+      }
+    ],
+    total_amount: 1450000,
+    created_at: "2026-09-12T19:40:00.000Z",
+    last_activity: "Ingreso de dirección de despacho",
+    status: "abandonado"
+  },
+  {
+    id: "AB-CART-004",
+    customer_name: "Ebanistería Los Cedros",
+    customer_email: "taller@loscedros.com.co",
+    customer_phone: "+57 318 654 3210",
+    city: "Pereira",
+    items: [
+      {
+        product_id: "prod-kdj-22",
+        code: "KDJ-22",
+        name: "Bisagra oculta 3D para puertas de paso y gabinetes",
+        price: 48000,
+        quantity: 10,
+        image_url: "/images/products/bisagra.jpg",
+        subtotal: 480000
+      }
+    ],
+    total_amount: 505000,
+    created_at: "2026-09-12T08:20:00.000Z",
+    last_activity: "Checkout completado vía asesor WhatsApp",
+    status: "recuperado",
+    recovery_notes: "Orden convertida a ORD-2026-002."
+  }
+];
+
+export const INITIAL_PRODUCT_ANALYTICS: ProductClickAnalytics[] = [
+  {
+    product_id: "prod-kdj-104",
+    code: "KDJ-104",
+    name: "Cajón de seguridad con watch winder",
+    category_name: "Clóset & Vestidores",
+    main_collection: "closet",
+    price: 2450000,
+    clicks: 1420,
+    add_to_cart_count: 184,
+    orders_count: 42,
+    image_url: "/images/products/hero_watch_winder.jpg"
+  },
+  {
+    product_id: "prod-kdj-90",
+    code: "KDJ-90",
+    name: "Organizador de cocina extraíble 2 niveles",
+    category_name: "Cocina Contemporánea",
+    main_collection: "cocina",
+    price: 890000,
+    clicks: 1180,
+    add_to_cart_count: 212,
+    orders_count: 58,
+    image_url: "/images/products/organizador_cocina.jpg"
+  },
+  {
+    product_id: "prod-kdj-92",
+    code: "KDJ-92",
+    name: "Bandeja joyero en terciopelo y cuero",
+    category_name: "Clóset & Vestidores",
+    main_collection: "closet",
+    price: 840000,
+    clicks: 940,
+    add_to_cart_count: 145,
+    orders_count: 39,
+    image_url: "/images/products/joyero_closet.jpg"
+  },
+  {
+    product_id: "prod-kdj-22",
+    code: "KDJ-22",
+    name: "Bisagra invisible 3D regulable",
+    category_name: "Herrajes Especiales",
+    main_collection: "herrajes_especiales",
+    price: 48000,
+    clicks: 890,
+    add_to_cart_count: 260,
+    orders_count: 94,
+    image_url: "/images/products/bisagra.jpg"
+  },
+  {
+    product_id: "prod-kdj-93",
+    code: "KDJ-93",
+    name: "Canasta elevable eléctrica para cocina",
+    category_name: "Cocina Contemporánea",
+    main_collection: "cocina",
+    price: 1450000,
+    clicks: 760,
+    add_to_cart_count: 98,
+    orders_count: 24,
+    image_url: "/images/products/organizador_cocina.jpg"
+  },
+  {
+    product_id: "prod-kdj-14",
+    code: "KDJ-14",
+    name: "Corredera oculta sincronizada cierre suave",
+    category_name: "Herrajes Especiales",
+    main_collection: "herrajes_especiales",
+    price: 52000,
+    clicks: 710,
+    add_to_cart_count: 230,
+    orders_count: 88,
+    image_url: "/images/products/corredera.jpg"
+  },
+  {
+    product_id: "prod-kdj-70",
+    code: "KDJ-70",
+    name: "Tirador arquitectónico grafito mate",
+    category_name: "Herrajes Especiales",
+    main_collection: "herrajes_especiales",
+    price: 42000,
+    clicks: 640,
+    add_to_cart_count: 180,
+    orders_count: 72,
+    image_url: "/images/products/manija.jpg"
+  },
+  {
+    product_id: "prod-kdj-35",
+    code: "KDJ-35",
+    name: "Pistón a gas hidráulico amortiguado",
+    category_name: "Herrajes Especiales",
+    main_collection: "herrajes_especiales",
+    price: 34000,
+    clicks: 590,
+    add_to_cart_count: 155,
+    orders_count: 64,
+    image_url: "/images/products/bisagra.jpg"
+  }
+];
+
+export const INITIAL_SYSTEM_USERS: SystemUser[] = [
+  {
+    id: "usr-admin-01",
+    user_id: "usr-admin-01",
+    full_name: "Carlos Mendoza",
+    email: "admin@montezzi.com",
+    role: "admin",
+    company: "Montezzi Luxury Hardware S.A.S.",
+    phone: "+57 300 123 4567",
+    city: "Medellín",
+    total_orders: 14,
+    total_spent: 12450000,
+    status: "activo",
+    created_at: "2026-01-01T00:00:00.000Z"
+  },
+  {
+    id: "usr-colab-02",
+    user_id: "usr-colab-02",
+    full_name: "Santiago Arango",
+    email: "operaciones@montezzi.com",
+    role: "colaborador",
+    company: "Montezzi Showroom Medellín",
+    phone: "+57 311 234 5678",
+    city: "Medellín",
+    total_orders: 8,
+    total_spent: 4890000,
+    status: "activo",
+    created_at: "2026-02-15T00:00:00.000Z"
+  },
+  {
+    id: "usr-client-03",
+    user_id: "usr-client-03",
+    full_name: "Arq. Mariana Londoño",
+    email: "mariana@arquitecturacontemporanea.com",
+    role: "cliente",
+    company: "Estudio Londoño Arquitectos",
+    phone: "+57 315 987 6543",
+    city: "Medellín",
+    total_orders: 6,
+    total_spent: 5920000,
+    status: "activo",
+    created_at: "2026-03-10T00:00:00.000Z"
+  },
+  {
+    id: "usr-client-04",
+    user_id: "usr-client-04",
+    full_name: "Ing. David Osorio",
+    email: "david@mobeldesign.co",
+    role: "cliente",
+    company: "Mobel Design & Woodwork",
+    phone: "+57 320 876 5432",
+    city: "Bogotá D.C.",
+    total_orders: 4,
+    total_spent: 3410000,
+    status: "activo",
+    created_at: "2026-04-12T00:00:00.000Z"
+  },
+  {
+    id: "usr-client-05",
+    user_id: "usr-client-05",
+    full_name: "Arq. Valentina Vélez",
+    email: "valentina@vertice.com.co",
+    role: "cliente",
+    company: "Taller Vértice Arquitectura",
+    phone: "+57 317 654 9871",
+    city: "Cali",
+    total_orders: 3,
+    total_spent: 2180000,
+    status: "activo",
+    created_at: "2026-05-20T00:00:00.000Z"
+  },
+  {
+    id: "usr-colab-06",
+    user_id: "usr-colab-06",
+    full_name: "Andrés Felipe Echeverri",
+    email: "asesor1@montezzi.com",
+    role: "colaborador",
+    company: "Montezzi Ventas B2B",
+    phone: "+57 304 333 4455",
+    city: "Medellín",
+    total_orders: 12,
+    total_spent: 8900000,
+    status: "activo",
+    created_at: "2026-06-01T00:00:00.000Z"
+  }
+];
+

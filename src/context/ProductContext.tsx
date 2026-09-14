@@ -1,6 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Product, Category, Order, OrderStatus, MainCollection, WholesaleLead } from '../types/database';
-import { OFFICIAL_PRODUCTS, OFFICIAL_CATEGORIES, INITIAL_ORDERS } from '../lib/mockData';
+import { 
+  Product, Category, Order, OrderStatus, MainCollection, WholesaleLead,
+  AbandonedCart, ProductClickAnalytics 
+} from '../types/database';
+import { 
+  OFFICIAL_PRODUCTS, OFFICIAL_CATEGORIES, INITIAL_ORDERS,
+  INITIAL_ABANDONED_CARTS, INITIAL_PRODUCT_ANALYTICS 
+} from '../lib/mockData';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 interface ProductFilterState {
@@ -17,6 +23,8 @@ interface ProductContextType {
   categories: Category[];
   orders: Order[];
   wholesaleLeads: WholesaleLead[];
+  abandonedCarts: AbandonedCart[];
+  productClickAnalytics: ProductClickAnalytics[];
   isLoading: boolean;
   filters: ProductFilterState;
   setFilters: React.Dispatch<React.SetStateAction<ProductFilterState>>;
@@ -32,6 +40,8 @@ interface ProductContextType {
   createOrder: (orderData: Omit<Order, 'id' | 'created_at'>) => Promise<Order>;
   updateOrderStatus: (orderId: string, status: OrderStatus) => Promise<void>;
   submitWholesaleLead: (lead: Omit<WholesaleLead, 'id' | 'created_at' | 'status'>) => Promise<void>;
+  updateAbandonedCartStatus: (id: string, status: 'abandonado' | 'contactado' | 'recuperado', notes?: string) => void;
+  recordProductClick: (productId: string) => void;
   resetFilters: () => void;
 }
 
@@ -69,6 +79,22 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return [];
   });
 
+  const [abandonedCarts, setAbandonedCarts] = useState<AbandonedCart[]>(() => {
+    const saved = localStorage.getItem('montezzi_abandoned_carts');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { return INITIAL_ABANDONED_CARTS; }
+    }
+    return INITIAL_ABANDONED_CARTS;
+  });
+
+  const [productClickAnalytics, setProductClickAnalytics] = useState<ProductClickAnalytics[]>(() => {
+    const saved = localStorage.getItem('montezzi_product_clicks');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { return INITIAL_PRODUCT_ANALYTICS; }
+    }
+    return INITIAL_PRODUCT_ANALYTICS;
+  });
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [filters, setFilters] = useState<ProductFilterState>({
@@ -92,6 +118,14 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   useEffect(() => {
     localStorage.setItem('montezzi_wholesale_leads', JSON.stringify(wholesaleLeads));
   }, [wholesaleLeads]);
+
+  useEffect(() => {
+    localStorage.setItem('montezzi_abandoned_carts', JSON.stringify(abandonedCarts));
+  }, [abandonedCarts]);
+
+  useEffect(() => {
+    localStorage.setItem('montezzi_product_clicks', JSON.stringify(productClickAnalytics));
+  }, [productClickAnalytics]);
 
   // Load from Supabase if configured
   useEffect(() => {
@@ -343,6 +377,38 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   };
 
+  const updateAbandonedCartStatus = (id: string, status: 'abandonado' | 'contactado' | 'recuperado', notes?: string) => {
+    setAbandonedCarts(prev =>
+      prev.map(c => (c.id === id ? { ...c, status, recovery_notes: notes || c.recovery_notes } : c))
+    );
+  };
+
+  const recordProductClick = (productId: string) => {
+    setProductClickAnalytics(prev => {
+      const existing = prev.find(p => p.product_id === productId);
+      if (existing) {
+        return prev.map(p => (p.product_id === productId ? { ...p, clicks: p.clicks + 1 } : p));
+      }
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return prev;
+      return [
+        ...prev,
+        {
+          product_id: prod.id,
+          code: prod.code,
+          name: prod.name,
+          category_name: prod.category_name,
+          main_collection: prod.main_collection,
+          price: prod.price,
+          clicks: 1,
+          add_to_cart_count: 0,
+          orders_count: 0,
+          image_url: prod.image_url
+        }
+      ];
+    });
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -350,6 +416,8 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         categories,
         orders,
         wholesaleLeads,
+        abandonedCarts,
+        productClickAnalytics,
         isLoading,
         filters,
         setFilters,
@@ -365,6 +433,8 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         createOrder,
         updateOrderStatus,
         submitWholesaleLead,
+        updateAbandonedCartStatus,
+        recordProductClick,
         resetFilters
       }}
     >

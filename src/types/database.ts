@@ -107,3 +107,47 @@ export interface WholesaleLead {
   status: 'nuevo' | 'contactado' | 'en_negociacion' | 'cerrado';
   created_at: string;
 }
+
+export interface AbandonedCart {
+  id: string;
+  customer_name: string;
+  customer_email: string;
+  customer_phone?: string;
+  company?: string;
+  city?: string;
+  items: OrderItem[];
+  total_amount: number;
+  created_at: string;
+  last_activity: string;
+  status: 'abandonado' | 'contactado' | 'recuperado';
+  recovery_notes?: string;
+}
+
+export interface ProductClickAnalytics {
+  product_id: string;
+  code: string;
+  name: string;
+  category_name: string;
+  main_collection: MainCollection;
+  price: number;
+  clicks: number;
+  add_to_cart_count: number;
+  orders_count: number;
+  image_url: string;
+}
+
+export interface SystemUser {
+  id: string;
+  user_id: string;
+  full_name: string;
+  email: string;
+  role: UserRole;
+  phone?: string;
+  company?: string;
+  city?: string;
+  total_orders: number;
+  total_spent: number;
+  status: 'activo' | 'inactivo';
+  created_at: string;
+}
+
