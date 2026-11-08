@@ -50,11 +50,11 @@ const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('montezzi_products_cache');
+    const saved = localStorage.getItem('montezzi_products_cache_v2026');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length >= 110) return parsed;
+        if (Array.isArray(parsed) && parsed.length >= 45) return parsed;
       } catch (e) {
         console.error('Error loading products cache:', e);
       }
@@ -103,13 +103,13 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     collection: 'all',
     categorySlug: 'all',
     finish: 'all',
-    priceRange: [0, 3000000],
+    priceRange: [0, 5000000],
     onlyLowStock: false
   });
 
   // Sync products and orders to localStorage
   useEffect(() => {
-    localStorage.setItem('montezzi_products_cache', JSON.stringify(products));
+    localStorage.setItem('montezzi_products_cache_v2026', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {

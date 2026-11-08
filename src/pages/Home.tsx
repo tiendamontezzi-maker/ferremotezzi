@@ -12,13 +12,13 @@ export const Home: React.FC = () => {
   // 3 Flagship Hero Items for the interactive hero slider (like in the reference image)
   const heroSlides = [
     {
-      code: 'KDJ-104',
-      titleLine1: 'Rotor Dual',
-      titleLine2: 'Watch Winder',
+      code: 'KDJ-103',
+      titleLine1: 'Cajón con Clave',
+      titleLine2: '& Watch Winder',
       watermarkText: 'WINDER',
-      subtitle: 'Ingeniería silenciosa con rotor programable y blindaje de alta gama para relojería automática.',
-      image: '/images/products/hero_watch_winder.jpg',
-      link: '/producto/KDJ-104'
+      subtitle: 'Seguridad biométrica de 2 niveles con rotores de cuerda para alta relojería mecánica.',
+      image: '/images/products/kdj-103.jpg',
+      link: '/producto/KDJ-103'
     },
     {
       code: 'KDJ-92',
@@ -26,16 +26,16 @@ export const Home: React.FC = () => {
       titleLine2: 'Terciopelo & Cuero',
       watermarkText: 'JOYERO',
       subtitle: 'Organización milimétrica para vestidores de lujo con correderas de extracción total sincronizada.',
-      image: '/images/products/joyero_closet.jpg',
+      image: '/images/products/kdj-92.jpg',
       link: '/producto/KDJ-92'
     },
     {
       code: 'KDJ-90',
-      titleLine1: 'Organizador Extraíble',
-      titleLine2: 'Acero Inoxidable',
+      titleLine1: 'Canasta Elevable',
+      titleLine2: 'Eléctrica de Vidrio',
       watermarkText: 'COCINA',
-      subtitle: 'Mecanismo de dos niveles con cierre suave y capacidad técnica para módulos contemporáneos.',
-      image: '/images/products/organizador_cocina.jpg',
+      subtitle: 'Mecanismo motorizado inteligente con paneles de vidrio templado y accionamiento suave.',
+      image: '/images/products/kdj-90.jpg',
       link: '/producto/KDJ-90'
     }
   ];

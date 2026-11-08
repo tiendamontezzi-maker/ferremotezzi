@@ -37,13 +37,13 @@ export const SmartSearchModal: React.FC = () => {
 
   // Trending / curated suggestions
   const quickSuggestions = [
-    { label: 'KDJ-104 · Watch Winder', query: 'KDJ-104', collection: 'closet' as MainCollection },
-    { label: 'KDJ-90 · Condimentero', query: 'KDJ-90', collection: 'cocina' as MainCollection },
+    { label: 'KDJ-103 · Watch Winder & Relojes', query: 'KDJ-103', collection: 'closet' as MainCollection },
+    { label: 'KDJ-90 · Canasta Eléctrica', query: 'KDJ-90', collection: 'cocina' as MainCollection },
     { label: 'KDJ-92 · Bandeja Joyero', query: 'KDJ-92', collection: 'closet' as MainCollection },
-    { label: 'KDJ-22 · Bisagra 3D', query: 'KDJ-22', collection: 'herrajes_especiales' as MainCollection },
-    { label: 'KDJ-93 · Canasta Elevable', query: 'KDJ-93', collection: 'cocina' as MainCollection },
+    { label: 'KDJ-69 · Alacena Madera & Acero', query: 'KDJ-69', collection: 'cocina' as MainCollection },
+    { label: 'KDJ-74 · Esquina Mágica Vidrio', query: 'KDJ-74', collection: 'cocina' as MainCollection },
     { label: 'Cierre Suave', query: 'cierre suave', collection: 'all' as const },
-    { label: 'Acabado Negro Mate', query: 'negro', collection: 'all' as const },
+    { label: 'Módulo 600mm', query: '600mm', collection: 'all' as const },
   ];
 
   // Smart Filtering Logic

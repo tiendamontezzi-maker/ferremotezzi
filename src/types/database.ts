@@ -27,6 +27,7 @@ export interface TechnicalSpecs {
   acabado: string;
   dimensiones: string; // W x D x H (mm)
   mecanismo: string;
+  modulo?: string; // e.g. 200mm, 300mm, 600mm
   capacidad_carga?: string; // kg
   tolerancia?: string;
   compatibilidad?: string;
