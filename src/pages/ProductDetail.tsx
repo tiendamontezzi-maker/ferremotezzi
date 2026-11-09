@@ -7,17 +7,26 @@ import { BenefitIcons } from '../components/ui/BenefitIcons';
 import { PreInstallationNotice } from '../components/ui/PreInstallationNotice';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { GoldenDivider } from '../components/ui/GoldenDivider';
-import { ShoppingBag, Plus, Minus, Check, ArrowLeft, Truck, ShieldCheck, Compass } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Check, ArrowLeft, Truck, ShieldCheck, Compass, Star, MessageSquare, Send } from 'lucide-react';
 
 export const ProductDetail: React.FC = () => {
   const { code } = useParams<{ code: string }>();
-  const { getProductByCode, products } = useProducts();
+  const { getProductByCode, products, reviews, addReview } = useProducts();
   const { addItem } = useCart();
 
   const product = code ? getProductByCode(code) : undefined;
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
   const [added, setAdded] = useState(false);
+
+  // Review Form State
+  const [reviewerName, setReviewerName] = useState('');
+  const [reviewerEmail, setReviewerEmail] = useState('');
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewTitle, setReviewTitle] = useState('');
+  const [reviewComment, setReviewComment] = useState('');
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+  const [reviewSuccessMessage, setReviewSuccessMessage] = useState(false);
 
   // Set active image when product is found or changes
   React.useEffect(() => {
@@ -49,6 +58,35 @@ export const ProductDetail: React.FC = () => {
     addItem(product, quantity);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
+  };
+
+  const productReviews = reviews.filter(r => r.product_id === product.id && r.status === 'approved');
+  const avgRating = productReviews.length > 0
+    ? (productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length).toFixed(1)
+    : '5.0';
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!reviewerName.trim() || !reviewComment.trim()) return;
+    setIsSubmittingReview(true);
+    try {
+      await addReview({
+        product_id: product.id,
+        user_name: reviewerName,
+        user_email: reviewerEmail || undefined,
+        rating: reviewRating,
+        title: reviewTitle || undefined,
+        comment: reviewComment
+      });
+      setReviewSuccessMessage(true);
+      setReviewerName('');
+      setReviewerEmail('');
+      setReviewTitle('');
+      setReviewComment('');
+      setTimeout(() => setReviewSuccessMessage(false), 4000);
+    } finally {
+      setIsSubmittingReview(false);
+    }
   };
 
   // Related products from same collection or category
@@ -251,6 +289,163 @@ export const ProductDetail: React.FC = () => {
           <PreInstallationNotice defaultOpen={true} />
         </div>
       </div>
+
+      {/* Customer Reviews & Ratings (product_reviews Supabase entity) */}
+      <section className="space-y-8 pt-8 border-t border-black/[0.08]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-sans tracking-[0.2em] text-black/60 uppercase font-bold">
+                Opiniones y Reseñas Verificadas
+              </span>
+              <div className="flex items-center gap-1 text-amber-500">
+                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                <span className="font-mono text-sm font-bold text-obsidian">{avgRating}</span>
+              </div>
+            </div>
+            <h2 className="font-sans text-xl sm:text-2xl text-obsidian uppercase font-bold tracking-wider mt-1">
+              Experiencia de Arquitectos y Clientes
+            </h2>
+          </div>
+          <span className="text-xs font-mono text-obsidian/60">
+            {productReviews.length} {productReviews.length === 1 ? 'reseña registrada' : 'reseñas registradas'}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Reviews List */}
+          <div className="lg:col-span-2 space-y-4">
+            {productReviews.length === 0 ? (
+              <div className="glass-card p-8 rounded-xl text-center space-y-3 border border-black/10">
+                <MessageSquare className="w-8 h-8 mx-auto text-obsidian/30" />
+                <p className="text-xs text-obsidian/60 font-sans italic">
+                  Aún no hay opiniones registradas para esta referencia. Sé el primer profesional en calificarla.
+                </p>
+              </div>
+            ) : (
+              productReviews.map(rev => (
+                <div key={rev.id} className="glass-card p-5 rounded-xl border border-white/80 shadow-xs space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-amber-500">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3.5 h-3.5 ${i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-black/15'}`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-mono text-obsidian/40">
+                      {new Date(rev.created_at).toLocaleDateString('es-CO', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    </span>
+                  </div>
+                  {rev.title && (
+                    <h4 className="font-sans text-xs uppercase font-bold text-obsidian tracking-wide">
+                      {rev.title}
+                    </h4>
+                  )}
+                  <p className="text-xs text-obsidian/75 font-sans leading-relaxed">
+                    {rev.comment}
+                  </p>
+                  <div className="pt-1 text-[11px] font-medium text-obsidian/50 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span>{rev.user_name}</span>
+                    <span className="text-[9px] uppercase font-mono px-1.5 py-0.2 rounded-xs bg-black/5 text-obsidian/60">
+                      Comprador Verificado
+                    </span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Leave a Review Form */}
+          <div className="glass-card p-6 rounded-xl border border-white/80 shadow-md space-y-4">
+            <h3 className="font-sans text-xs uppercase font-bold text-obsidian tracking-wider border-b border-black/[0.08] pb-3">
+              Calificar este Herraje
+            </h3>
+            {reviewSuccessMessage ? (
+              <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-sm text-xs font-sans space-y-1">
+                <p className="font-bold">¡Gracias por tu opinión!</p>
+                <p className="text-[11px] text-emerald-700">Tu reseña ha sido verificada y publicada con éxito.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleReviewSubmit} className="space-y-3 text-xs font-sans">
+                <div className="space-y-1">
+                  <label className="text-obsidian/70 font-semibold uppercase text-[10px]">Puntuación *</label>
+                  <div className="flex gap-1.5 items-center">
+                    {[1, 2, 3, 4, 5].map(star => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setReviewRating(star)}
+                        className="p-1 hover:scale-110 transition-transform"
+                      >
+                        <Star className={`w-5 h-5 ${star <= reviewRating ? 'fill-amber-400 text-amber-400' : 'text-black/20'}`} />
+                      </button>
+                    ))}
+                    <span className="font-mono text-xs font-bold text-obsidian ml-1">{reviewRating} / 5</span>
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-obsidian/70 font-semibold uppercase text-[10px]">Tu Nombre / Estudio *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Ej: Arq. Andrés Restrepo"
+                    value={reviewerName}
+                    onChange={e => setReviewerName(e.target.value)}
+                    className="w-full bg-white border border-black/15 px-3 py-2 rounded-xs text-xs focus:border-black focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-obsidian/70 font-semibold uppercase text-[10px]">Correo Electrónico (No será visible)</label>
+                  <input
+                    type="email"
+                    placeholder="contacto@estudio.co"
+                    value={reviewerEmail}
+                    onChange={e => setReviewerEmail(e.target.value)}
+                    className="w-full bg-white border border-black/15 px-3 py-2 rounded-xs text-xs focus:border-black focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-obsidian/70 font-semibold uppercase text-[10px]">Título de tu Reseña</label>
+                  <input
+                    type="text"
+                    placeholder="Ej: Acabado y cierre de primera calidad"
+                    value={reviewTitle}
+                    onChange={e => setReviewTitle(e.target.value)}
+                    className="w-full bg-white border border-black/15 px-3 py-2 rounded-xs text-xs focus:border-black focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-obsidian/70 font-semibold uppercase text-[10px]">Comentario / Experiencia *</label>
+                  <textarea
+                    required
+                    rows={3}
+                    placeholder="Describe el funcionamiento del mecanismo, suavidad del cierre y durabilidad en obra..."
+                    value={reviewComment}
+                    onChange={e => setReviewComment(e.target.value)}
+                    className="w-full bg-white border border-black/15 p-3 rounded-xs text-xs focus:border-black focus:outline-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmittingReview}
+                  className="w-full py-2.5 bg-black text-white font-sans font-bold text-xs uppercase tracking-wider rounded-xs hover:bg-black/85 transition-all shadow-xs flex items-center justify-center gap-1.5"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Publicar Reseña</span>
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
 
       <GoldenDivider variant="gradient" className="my-16" />
 

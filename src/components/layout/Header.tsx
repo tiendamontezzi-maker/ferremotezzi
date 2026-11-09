@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingBag, Search, User, Menu, X, Shield, ChevronDown, Check } from 'lucide-react';
+import { ShoppingBag, Search, User, Menu, X, Shield, ChevronDown, Check, Calendar } from 'lucide-react';
 import { BrandLogo } from '../ui/BrandLogo';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { useProducts } from '../../context/ProductContext';
 import { useSearch } from '../../context/SearchContext';
 import { UserRole } from '../../types/database';
+import { ShowroomAppointmentModal } from '../appointments/ShowroomAppointmentModal';
 
 export const Header: React.FC = () => {
   const { itemCount, openDrawer } = useCart();
@@ -18,6 +19,7 @@ export const Header: React.FC = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
   const navLinks = [
     { label: 'Inicio', path: '/' },
@@ -41,8 +43,17 @@ export const Header: React.FC = () => {
           </span>
         </div>
 
-        {/* Quick Role Switcher for Testing */}
+        {/* Quick Role Switcher for Testing & Showroom Appointment CTA */}
         <div className="relative flex items-center gap-2">
+          <button
+            onClick={() => setIsAppointmentModalOpen(true)}
+            className="flex items-center gap-1.5 text-obsidian hover:text-black hover:bg-black/5 transition-all text-[10px] uppercase font-sans font-semibold tracking-wider glass-pill px-3 py-1 rounded-full border border-black/10 shadow-2xs"
+            title="Agendar Cita Privada en Showroom Medellín o Asesoría Virtual"
+          >
+            <Calendar className="w-3 h-3 text-black" />
+            <span className="hidden xs:inline">Cita Showroom</span>
+          </button>
+
           <button
             onClick={() => setRoleDropdownOpen(prev => !prev)}
             className="flex items-center gap-1.5 text-obsidian hover:text-white hover:bg-black transition-all text-[10px] uppercase font-mono glass-pill px-3 py-1 rounded-full shadow-2xs"
@@ -189,6 +200,16 @@ export const Header: React.FC = () => {
             <div>
               <h4 className="text-[11px] font-mono tracking-widest text-obsidian uppercase font-bold mb-2">Profesionales</h4>
               <div className="flex flex-col space-y-2">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setIsAppointmentModalOpen(true);
+                  }}
+                  className="text-left text-xs text-obsidian hover:text-black font-semibold flex items-center gap-1.5"
+                >
+                  <Calendar className="w-3.5 h-3.5 text-black" />
+                  <span>Agendar Cita en Showroom</span>
+                </button>
                 <Link to="/distribucion" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Ventas al por Mayor / Distribuidores</Link>
                 <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="text-xs text-montezzigold font-semibold hover:underline">Panel de Control ({role})</Link>
               </div>
@@ -196,6 +217,12 @@ export const Header: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Showroom Appointment Booking Modal */}
+      <ShowroomAppointmentModal
+        isOpen={isAppointmentModalOpen}
+        onClose={() => setIsAppointmentModalOpen(false)}
+      />
     </header>
   );
 };

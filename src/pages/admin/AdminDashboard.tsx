@@ -9,12 +9,15 @@ import { AbandonedCartsTab } from './AbandonedCartsTab';
 import { UserManagementTab } from './UserManagementTab';
 import { PieChartsDashboard } from './PieChartsDashboard';
 import { ElectronicBillingTab } from './ElectronicBillingTab';
+import { ActivityLogsTab } from './ActivityLogsTab';
+import { AppointmentsTab } from './AppointmentsTab';
 import { CreateOrderModal } from './CreateOrderModal';
 import { CreateUserModal } from './CreateUserModal';
 import {
   PieChart as PieIcon, MousePointerClick, ShoppingBag, ShoppingCart,
   Users, Package, FileText, FileSpreadsheet, Plus, ShieldAlert,
-  LogOut, Menu, X, ChevronRight, Sparkles, Building2, MapPin, UserCheck
+  LogOut, Menu, X, ChevronRight, Sparkles, Building2, MapPin, UserCheck,
+  Calendar, ShieldCheck
 } from 'lucide-react';
 
 type AdminTab =
@@ -25,11 +28,13 @@ type AdminTab =
   | 'users'
   | 'inventory'
   | 'billing'
+  | 'appointments'
+  | 'logs'
   | 'leads';
 
 export const AdminDashboard: React.FC = () => {
   const { user, role, switchRole, logout, systemUsers } = useAuth();
-  const { products, orders, wholesaleLeads, abandonedCarts, productClickAnalytics } = useProducts();
+  const { products, orders, wholesaleLeads, abandonedCarts, productClickAnalytics, appointments, activityLogs } = useProducts();
 
   const [activeTab, setActiveTab] = useState<AdminTab>('overview');
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -129,6 +134,20 @@ export const AdminDashboard: React.FC = () => {
       icon: FileText,
       badge: 'API Ready',
       badgeColor: 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+    },
+    {
+      id: 'appointments',
+      label: 'Citas Showroom',
+      icon: Calendar,
+      badge: appointments.length > 0 ? `${appointments.length} citas` : '0',
+      badgeColor: 'bg-black/[0.05] text-black border border-black/10'
+    },
+    {
+      id: 'logs',
+      label: 'Auditoría & Logs',
+      icon: ShieldCheck,
+      badge: `${activityLogs.length} logs`,
+      badgeColor: 'bg-black text-white'
     },
     {
       id: 'leads',
@@ -432,6 +451,10 @@ export const AdminDashboard: React.FC = () => {
           {activeTab === 'inventory' && <InventoryManagement />}
 
           {activeTab === 'billing' && <ElectronicBillingTab />}
+
+          {activeTab === 'appointments' && <AppointmentsTab />}
+
+          {activeTab === 'logs' && <ActivityLogsTab />}
 
           {activeTab === 'leads' && (
             <div className="bg-white border border-black/10 rounded-sm p-6 space-y-4 shadow-xs">

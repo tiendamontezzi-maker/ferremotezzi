@@ -23,7 +23,7 @@ export const Cart: React.FC = () => {
     freeShippingProgress
   } = useCart();
 
-  const { createOrder } = useProducts();
+  const { createOrder, validateCoupon } = useProducts();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -31,17 +31,56 @@ export const Cart: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createdOrder, setCreatedOrder] = useState<any>(null);
 
-  // Checkout form state
+  // Coupon State
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [couponError, setCouponError] = useState<string | null>(null);
+  const [couponSuccess, setCouponSuccess] = useState<string | null>(null);
+
+  // Checkout form state (conforme a ARQUITECTURA_BASE_DE_DATOS_ECOMMERCE_SUPABASE.md)
   const [formData, setFormData] = useState({
     customer_name: user?.full_name || '',
     customer_email: user?.email || '',
     customer_phone: '',
+    customer_document_type: 'NIT' as 'NIT' | 'CC' | 'CE',
+    customer_document_id: '',
+    customer_tag: 'Arquitecto' as 'Arquitecto' | 'Mayorista' | 'VIP' | 'General',
     shipping_address: '',
     city: 'Medellín',
     department: 'Antioquia',
+    carrier: 'Servientrega',
     notes: '',
     payment_method: 'transferencia' as 'transferencia' | 'tarjeta' | 'efectivo_showroom'
   });
+
+  const handleApplyCoupon = (e: React.FormEvent) => {
+    e.preventDefault();
+    setCouponError(null);
+    setCouponSuccess(null);
+    if (!couponCode.trim()) return;
+
+    const res = validateCoupon(couponCode, subtotal);
+    if (res.valid && res.coupon) {
+      setAppliedCoupon(res.coupon);
+      setCouponDiscount(res.discount);
+      setCouponSuccess(`Cupón ${res.coupon.code} aplicado: -$${res.discount.toLocaleString('es-CO')} COP`);
+    } else {
+      setAppliedCoupon(null);
+      setCouponDiscount(0);
+      setCouponError(res.error || 'Cupón no válido');
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponDiscount(0);
+    setCouponCode('');
+    setCouponSuccess(null);
+    setCouponError(null);
+  };
+
+  const finalTotal = Math.max(0, subtotal - couponDiscount) + shippingCost;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -53,19 +92,29 @@ export const Cart: React.FC = () => {
 
     setIsSubmitting(true);
     try {
+      const orderRef = `DT-${Math.floor(100000 + Math.random() * 900000)}`;
       const order = await createOrder({
+        order_ref: orderRef,
         user_id: user?.user_id,
         customer_name: formData.customer_name,
         customer_email: formData.customer_email,
         customer_phone: formData.customer_phone,
+        customer_tag: formData.customer_tag,
+        customer_document_type: formData.customer_document_type,
+        customer_document_id: formData.customer_document_id || undefined,
         shipping_address: formData.shipping_address,
         city: formData.city,
         department: formData.department,
+        carrier: formData.carrier,
         notes: formData.notes,
         subtotal_amount: subtotal,
+        discount: couponDiscount,
         shipping_cost: shippingCost,
-        total_amount: total,
+        total_amount: finalTotal,
+        deposit_amount: finalTotal,
+        pending_balance: 0,
         status: 'pendiente',
+        items_count: items.reduce((s, i) => s + i.quantity, 0),
         items: [...items],
         payment_method: formData.payment_method,
         payment_status: 'pendiente_verificacion'
@@ -301,26 +350,67 @@ export const Cart: React.FC = () => {
                     name="customer_name"
                     value={formData.customer_name}
                     onChange={handleInputChange}
-                    placeholder="Ej: Arq. María Camila Gómez"
+                    placeholder="Ej: Arq. María Camila Gómez · Estudio Arquitectura"
                     className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
+                {/* Fiscal ID & Client Classification (DIAN compliant) */}
                 <div className="space-y-1.5">
-                  <label className="text-obsidian/70 tracking-wider uppercase font-semibold">Correo Electrónico *</label>
+                  <label className="text-obsidian/70 tracking-wider uppercase font-semibold">Documento Fiscal (Facturación DIAN) *</label>
+                  <div className="flex gap-2">
+                    <select
+                      name="customer_document_type"
+                      value={formData.customer_document_type}
+                      onChange={handleInputChange}
+                      className="w-24 bg-white border border-black/15 px-2 py-2.5 text-obsidian focus:border-black focus:outline-none uppercase rounded-xs font-mono"
+                    >
+                      <option value="NIT">NIT</option>
+                      <option value="CC">C.C.</option>
+                      <option value="CE">C.E.</option>
+                    </select>
+                    <input
+                      type="text"
+                      required
+                      name="customer_document_id"
+                      value={formData.customer_document_id}
+                      onChange={handleInputChange}
+                      placeholder="901.458.921-3"
+                      className="flex-1 bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs font-mono"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-obsidian/70 tracking-wider uppercase font-semibold">Tipo de Comprador / Clasificación</label>
+                  <select
+                    name="customer_tag"
+                    value={formData.customer_tag}
+                    onChange={handleInputChange}
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
+                  >
+                    <option value="Arquitecto">Arquitecto / Diseñador de Interiores</option>
+                    <option value="Mayorista">Taller / Ebanistería / Mayorista</option>
+                    <option value="VIP">Cliente Corporativo / VIP</option>
+                    <option value="General">Cliente Particular</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-obsidian/70 tracking-wider uppercase font-semibold">Correo Electrónico (Para Factura Legal) *</label>
                   <input
                     type="email"
                     required
                     name="customer_email"
                     value={formData.customer_email}
                     onChange={handleInputChange}
-                    placeholder="correo@ejemplo.com"
+                    placeholder="facturacion@estudio.co"
                     className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-obsidian/70 tracking-wider uppercase font-semibold">Teléfono de Contacto *</label>
+                  <label className="text-obsidian/70 tracking-wider uppercase font-semibold">Teléfono / WhatsApp *</label>
                   <input
                     type="tel"
                     required
@@ -328,7 +418,7 @@ export const Cart: React.FC = () => {
                     value={formData.customer_phone}
                     onChange={handleInputChange}
                     placeholder="+57 300 000 0000"
-                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs font-mono"
                   />
                 </div>
 
@@ -348,6 +438,22 @@ export const Cart: React.FC = () => {
                     <option value="Pereira">Pereira (Entrega estimada: 2-3 días hábiles)</option>
                     <option value="Cartagena">Cartagena (Entrega estimada: 2-3 días hábiles)</option>
                     <option value="Otra Ciudad de Colombia">Otra Ciudad de Colombia (2-3 días hábiles)</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-obsidian/70 tracking-wider uppercase font-semibold">Transportadora / Operador Logístico</label>
+                  <select
+                    name="carrier"
+                    value={formData.carrier}
+                    onChange={handleInputChange}
+                    className="w-full bg-white border border-black/15 px-3 py-2.5 text-obsidian focus:border-black focus:outline-none rounded-xs"
+                  >
+                    <option value="Servientrega">Servientrega Logística</option>
+                    <option value="Coordinadora">Coordinadora Mercantil</option>
+                    <option value="Envía">Envía Colvanes</option>
+                    <option value="Propio">Transporte Especial Montezzi</option>
+                    <option value="Retiro en Showroom">Retiro en Showroom Medellín (Sin costo)</option>
                   </select>
                 </div>
 
@@ -442,6 +548,23 @@ export const Cart: React.FC = () => {
               <span className="font-mono text-obsidian font-semibold">${subtotal.toLocaleString('es-CO')} COP</span>
             </div>
 
+            {/* Coupon Discount Item */}
+            {couponDiscount > 0 && appliedCoupon && (
+              <div className="flex justify-between text-emerald-700 bg-emerald-50 px-2.5 py-1.5 rounded-xs border border-emerald-200">
+                <span className="flex items-center gap-1 font-semibold">
+                  Cupón ({appliedCoupon.code})
+                  <button
+                    type="button"
+                    onClick={handleRemoveCoupon}
+                    className="text-red-500 hover:text-red-700 text-[10px] ml-1 underline"
+                  >
+                    quitar
+                  </button>
+                </span>
+                <span className="font-mono font-bold">-${couponDiscount.toLocaleString('es-CO')} COP</span>
+              </div>
+            )}
+
             <div className="flex justify-between text-obsidian/70">
               <span>Envío ({formData.city === 'Medellín' ? 'Medellín 1 día' : 'Nacional'})</span>
               <span className="font-mono">
@@ -456,9 +579,34 @@ export const Cart: React.FC = () => {
             <div className="pt-3 border-t border-black/[0.08] flex justify-between text-base font-semibold text-obsidian">
               <span className="font-sans text-xs uppercase tracking-wider font-bold">Total Liquidado</span>
               <span className="font-mono text-black font-bold text-lg">
-                ${total.toLocaleString('es-CO')} COP
+                ${finalTotal.toLocaleString('es-CO')} COP
               </span>
             </div>
+          </div>
+
+          {/* Coupon Code Input */}
+          <div className="pt-3 border-t border-black/[0.08] space-y-2">
+            <form onSubmit={handleApplyCoupon} className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Código de cupón (Ej: BIENVENIDO10)"
+                value={couponCode}
+                onChange={e => setCouponCode(e.target.value.toUpperCase())}
+                className="flex-1 bg-white border border-black/15 px-3 py-2 text-xs font-mono uppercase rounded-xs focus:border-black focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-xs hover:bg-black/85 transition-all shadow-xs"
+              >
+                Aplicar
+              </button>
+            </form>
+            {couponError && (
+              <p className="text-[11px] text-red-600 font-sans">{couponError}</p>
+            )}
+            {couponSuccess && (
+              <p className="text-[11px] text-emerald-700 font-sans font-medium">{couponSuccess}</p>
+            )}
           </div>
 
           <div className="space-y-3 pt-2">

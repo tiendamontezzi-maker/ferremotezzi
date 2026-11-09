@@ -175,19 +175,29 @@ export interface ProductReview {
   created_at: string;
 }
 
+export type AppointmentServiceType = 
+  | 'visita_showroom' 
+  | 'asesoria_virtual' 
+  | 'especificacion_obra' 
+  | 'instalacion_tecnica'
+  | string;
+
 export interface Appointment {
   id: string;
+  user_id?: string;
   customer_name: string;
   customer_email: string;
   customer_phone: string;
-  service_type: string; // 'Asesoría en Showroom' | 'Diseño Virtual' | 'Visita de Medición'
+  service_type: AppointmentServiceType;
   appointment_date: string;
   appointment_time: string;
+  location?: string;
   city?: string;
   address?: string;
+  consultant_name?: string;
   price?: number;
   status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
-  payment_status: 'pending' | 'paid';
+  payment_status: 'pending' | 'paid' | 'gratuita';
   payment_gateway?: string;
   bold_order_id?: string;
   notes?: string;
