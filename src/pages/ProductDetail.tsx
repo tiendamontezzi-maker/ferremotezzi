@@ -28,7 +28,13 @@ export const ProductDetail: React.FC = () => {
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const [reviewSuccessMessage, setReviewSuccessMessage] = useState(false);
 
-  // Set active image when product is found or changes
+  // Set active image & immediately position viewport at top (photo & title) when entering or changing product
+  React.useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [code]);
+
   React.useEffect(() => {
     if (product) {
       setSelectedImage(product.image_url);
