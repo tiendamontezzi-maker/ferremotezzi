@@ -22,7 +22,10 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   const [mainCollection, setMainCollection] = useState<MainCollection>('cocina');
   const [shortDescription, setShortDescription] = useState('');
   const [price, setPrice] = useState<number>(150000);
-  const [stock, setStock] = useState<number>(25);
+  const [warehouseStock, setWarehouseStock] = useState<number>(15);
+  const [storeStock, setStoreStock] = useState<number>(5);
+  const [webStock, setWebStock] = useState<number>(5);
+  const totalCalculatedStock = Math.max(0, warehouseStock) + Math.max(0, storeStock) + Math.max(0, webStock);
   const [minStockAlert, setMinStockAlert] = useState<number>(8);
   const [imageUrl, setImageUrl] = useState('');
   const [material, setMaterial] = useState('Acero Inoxidable Quirúrgico AISI 304');
@@ -41,7 +44,9 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setMainCollection(productToEdit.main_collection);
       setShortDescription(productToEdit.short_description);
       setPrice(productToEdit.price);
-      setStock(productToEdit.stock);
+      setWarehouseStock(productToEdit.warehouse_stock ?? Math.floor(productToEdit.stock * 0.6));
+      setStoreStock(productToEdit.store_stock ?? Math.floor(productToEdit.stock * 0.2));
+      setWebStock(productToEdit.web_stock ?? (productToEdit.stock - Math.floor(productToEdit.stock * 0.6) - Math.floor(productToEdit.stock * 0.2)));
       setMinStockAlert(productToEdit.min_stock_alert ?? 8);
       setImageUrl(productToEdit.image_url);
       setMaterial(productToEdit.technical_specs.material || '');
@@ -58,9 +63,11 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setMainCollection('cocina');
       setShortDescription('');
       setPrice(180000);
-      setStock(20);
+      setWarehouseStock(15);
+      setStoreStock(5);
+      setWebStock(5);
       setMinStockAlert(8);
-      setImageUrl('/images/products/bisagra.jpg');
+      setImageUrl('/images/products/kdj-60.jpg');
       setMaterial('Acero Inoxidable Quirúrgico AISI 304');
       setAcabado('Negro Mate Texturizado Soft-Touch');
       setDimensiones('564 x 480 x 550 mm');
@@ -77,6 +84,9 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
     setIsSaving(true);
 
     const selectedCategory = categories.find(c => c.id === categoryId);
+    const finalStock = Number(totalCalculatedStock);
+    const status: 'in_stock' | 'low_stock' | 'out_of_stock' = 
+      finalStock <= 0 ? 'out_of_stock' : finalStock < (minStockAlert || 5) ? 'low_stock' : 'in_stock';
 
     const productPayload = {
       code,
@@ -101,7 +111,11 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
         { label: 'ACCESO', value: 'Extracción Total' }
       ],
       price: Number(price),
-      stock: Number(stock),
+      stock: finalStock,
+      warehouse_stock: Number(warehouseStock),
+      store_stock: Number(storeStock),
+      web_stock: Number(webStock),
+      inventory_status: status,
       min_stock_alert: Number(minStockAlert),
       image_url: imageUrl,
       gallery_urls: [imageUrl],
@@ -205,54 +219,105 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
             </div>
           </div>
 
-          {/* Price, Stock & Alerts */}
-          <div className="p-4 bg-[#FAF8F5] border border-[#E2DDD4] rounded-sm grid grid-cols-1 sm:grid-cols-4 gap-4">
-            <div className="space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Precio COP *</label>
-              <input
-                type="number"
-                required
-                min={0}
-                value={price}
-                onChange={e => setPrice(Number(e.target.value))}
-                className="w-full bg-white border border-[#DDD6C8] px-3 py-2 font-mono text-montezzigold font-bold focus:border-montezzigold focus:outline-none rounded-xs"
-              />
+          {/* Price & Multichannel Reactive Inventory */}
+          <div className="p-4 bg-[#FAF8F5] border border-[#E2DDD4] rounded-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-obsidian uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-montezzigold"></span>
+                Inventario Multicanal Reactivo (Supabase / Postgres Trigger)
+              </span>
+              <span className="text-[10px] text-obsidian/50 font-mono">
+                Regla: stock = Bodega + Showroom + Web
+              </span>
             </div>
 
-            <div className="space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Stock Actual *</label>
-              <input
-                type="number"
-                required
-                min={0}
-                value={stock}
-                onChange={e => setStock(Number(e.target.value))}
-                className="w-full bg-white border border-[#DDD6C8] px-3 py-2 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+              <div className="space-y-1">
+                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Precio COP *</label>
+                <input
+                  type="number"
+                  required
+                  min={0}
+                  step={1000}
+                  value={price}
+                  onChange={e => setPrice(Number(e.target.value))}
+                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-montezzigold font-bold focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Bodega Principal *</label>
+                <input
+                  type="number"
+                  required
+                  min={0}
+                  value={warehouseStock}
+                  onChange={e => setWarehouseStock(Number(e.target.value))}
+                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Tienda Showroom *</label>
+                <input
+                  type="number"
+                  required
+                  min={0}
+                  value={storeStock}
+                  onChange={e => setStoreStock(Number(e.target.value))}
+                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Canal Web *</label>
+                <input
+                  type="number"
+                  required
+                  min={0}
+                  value={webStock}
+                  onChange={e => setWebStock(Number(e.target.value))}
+                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Stock Total (Auto)</label>
+                <div className="w-full bg-black/5 border border-black/10 px-3 py-1.5 font-mono text-xs font-bold text-obsidian flex items-center justify-between rounded-xs">
+                  <span>{totalCalculatedStock} unids</span>
+                  <span className={`text-[9px] px-1.5 py-0.2 rounded-xs uppercase ${
+                    totalCalculatedStock <= 0 ? 'bg-red-100 text-red-800' : totalCalculatedStock < minStockAlert ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
+                  }`}>
+                    {totalCalculatedStock <= 0 ? 'Agotado' : totalCalculatedStock < minStockAlert ? 'Bajo' : 'Óptimo'}
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Alerta Stock Bajo</label>
-              <input
-                type="number"
-                min={1}
-                value={minStockAlert}
-                onChange={e => setMinStockAlert(Number(e.target.value))}
-                className="w-full bg-white border border-[#DDD6C8] px-3 py-2 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
-              />
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              <div className="space-y-1">
+                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Umbral Alerta Stock Crítico (&lt; unids)</label>
+                <input
+                  type="number"
+                  min={1}
+                  value={minStockAlert}
+                  onChange={e => setMinStockAlert(Number(e.target.value))}
+                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                />
+              </div>
 
-            <div className="flex items-center gap-2 pt-6">
-              <input
-                type="checkbox"
-                id="isFeatured"
-                checked={isFeatured}
-                onChange={e => setIsFeatured(e.target.checked)}
-                className="accent-montezzigold w-4 h-4"
-              />
-              <label htmlFor="isFeatured" className="text-obsidian font-semibold cursor-pointer">
-                Destacado en Home
-              </label>
+              <div className="flex items-center gap-2 pt-4">
+                <input
+                  type="checkbox"
+                  id="isFeatured"
+                  checked={isFeatured}
+                  onChange={e => setIsFeatured(e.target.checked)}
+                  className="accent-montezzigold w-4 h-4"
+                />
+                <label htmlFor="isFeatured" className="text-obsidian font-semibold cursor-pointer text-xs">
+                  Destacado en Home Slider & Vitrina Oficial
+                </label>
+              </div>
             </div>
           </div>
 

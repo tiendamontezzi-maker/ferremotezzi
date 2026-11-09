@@ -14,6 +14,7 @@ export const InventoryManagement: React.FC = () => {
     products,
     categories,
     updateProductStock,
+    updateMultichannelStock,
     updateProductPrice,
     deleteProduct,
     bulkUpdateProducts
@@ -29,9 +30,13 @@ export const InventoryManagement: React.FC = () => {
   // Local inline editing states for instant feedback
   const [savingId, setSavingId] = useState<string | null>(null);
 
-  const handleStockChange = async (p: Product, newStock: number) => {
-    setSavingId(p.id);
-    await updateProductStock(p.id, newStock);
+  const handleChannelStockChange = async (
+    p: Product, 
+    channel: 'warehouse_stock' | 'store_stock' | 'web_stock', 
+    newVal: number
+  ) => {
+    setSavingId(`${p.id}-${channel}`);
+    await updateMultichannelStock(p.id, { [channel]: Math.max(0, newVal) });
     setTimeout(() => setSavingId(null), 800);
   };
 
@@ -68,37 +73,55 @@ export const InventoryManagement: React.FC = () => {
   });
 
   const handleExportCSV = () => {
-    exportToCSV('montezzi_inventario_kdj', products, [
+    exportToCSV('montezzi_inventario_multicanal_kdj', products, [
       { header: 'Código KDJ', key: 'code' },
       { header: 'Nombre del Producto', key: 'name' },
       { header: 'Categoría', key: 'category_name' },
       { header: 'Colección Principal', key: 'main_collection' },
       { header: 'Precio (COP)', key: 'price' },
-      { header: 'Stock Actual', key: 'stock' },
+      { header: 'Bodega Principal', key: (p: Product) => p.warehouse_stock ?? 0 },
+      { header: 'Showroom Medellín', key: (p: Product) => p.store_stock ?? 0 },
+      { header: 'Canal Web', key: (p: Product) => p.web_stock ?? 0 },
+      { header: 'Stock Total Unificado', key: 'stock' },
+      { header: 'Estado Inventario', key: (p: Product) => p.inventory_status ?? 'in_stock' },
       { header: 'Alerta Mínima', key: (p: Product) => p.min_stock_alert ?? 8 },
       { header: 'ID Sistema', key: 'id' }
     ]);
   };
 
   const handleExportJSON = () => {
-    exportToJSON('montezzi_inventario_kdj', products);
+    exportToJSON('montezzi_inventario_multicanal_kdj', products);
   };
 
   const handleImportConfirm = async (rows: Record<string, string>[]) => {
-    const updates: Array<{ code?: string; id?: string; stock?: number; price?: number }> = [];
+    const updates: Array<{ 
+      code?: string; 
+      id?: string; 
+      stock?: number; 
+      price?: number;
+      warehouse_stock?: number;
+      store_stock?: number;
+      web_stock?: number;
+    }> = [];
 
     rows.forEach(row => {
       const code = row['Código KDJ'] || row['codigo'] || row['code'] || row['referencia'] || row['Referencia'];
       const id = row['ID Sistema'] || row['id'];
-      const rawStock = row['Stock Actual'] || row['stock'] || row['cantidad'];
+      const rawStock = row['Stock Total Unificado'] || row['Stock Actual'] || row['stock'] || row['cantidad'];
+      const rawWarehouse = row['Bodega Principal'] || row['bodega'] || row['warehouse_stock'];
+      const rawStore = row['Showroom Medellín'] || row['showroom'] || row['tienda'] || row['store_stock'];
+      const rawWeb = row['Canal Web'] || row['web'] || row['web_stock'];
       const rawPrice = row['Precio (COP)'] || row['precio'] || row['price'] || row['valor'];
 
       if (code || id) {
         updates.push({
           code,
           id,
-          stock: rawStock !== undefined && rawStock !== '' ? parseInt(rawStock.replace(/[^0-9]/g, ''), 10) : undefined,
-          price: rawPrice !== undefined && rawPrice !== '' ? parseInt(rawPrice.replace(/[^0-9]/g, ''), 10) : undefined
+          stock: rawStock !== undefined && rawStock !== '' ? parseInt(String(rawStock).replace(/[^0-9]/g, ''), 10) : undefined,
+          warehouse_stock: rawWarehouse !== undefined && rawWarehouse !== '' ? parseInt(String(rawWarehouse).replace(/[^0-9]/g, ''), 10) : undefined,
+          store_stock: rawStore !== undefined && rawStore !== '' ? parseInt(String(rawStore).replace(/[^0-9]/g, ''), 10) : undefined,
+          web_stock: rawWeb !== undefined && rawWeb !== '' ? parseInt(String(rawWeb).replace(/[^0-9]/g, ''), 10) : undefined,
+          price: rawPrice !== undefined && rawPrice !== '' ? parseInt(String(rawPrice).replace(/[^0-9]/g, ''), 10) : undefined
         });
       }
     });
@@ -108,7 +131,7 @@ export const InventoryManagement: React.FC = () => {
     }
 
     const { updatedCount } = await bulkUpdateProducts(updates);
-    return { success: true, message: `Se actualizaron exitosamente ${updatedCount} productos en el inventario central.` };
+    return { success: true, message: `Se actualizaron exitosamente ${updatedCount} productos en el inventario multicanal.` };
   };
 
   return (
@@ -198,17 +221,23 @@ export const InventoryManagement: React.FC = () => {
               <tr>
                 <th className="p-3.5">Código</th>
                 <th className="p-3.5">Producto & Categoría</th>
-                <th className="p-3.5">Colección</th>
                 <th className="p-3.5">Precio (COP)</th>
-                <th className="p-3.5">Stock Físico</th>
+                <th className="p-3.5">Bodega</th>
+                <th className="p-3.5">Showroom</th>
+                <th className="p-3.5">Web</th>
+                <th className="p-3.5">Stock Total (Auto)</th>
                 <th className="p-3.5">Estado</th>
                 <th className="p-3.5 text-right">Acciones</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-black/[0.06] text-obsidian">
               {filtered.map(product => {
-                const isLow = product.stock <= (product.min_stock_alert ?? 8) && product.stock > 0;
-                const isOut = product.stock === 0;
+                const warehouse = product.warehouse_stock ?? 0;
+                const store = product.store_stock ?? 0;
+                const web = product.web_stock ?? 0;
+                const total = warehouse + store + web;
+                const isLow = total <= (product.min_stock_alert ?? 8) && total > 0;
+                const isOut = total === 0;
 
                 return (
                   <tr key={product.id} className="hover:bg-[#FAF8F5] transition-colors">
@@ -222,14 +251,11 @@ export const InventoryManagement: React.FC = () => {
                       <div className="font-serif text-sm text-obsidian font-medium truncate" title={product.name}>
                         {product.name}
                       </div>
-                      <div className="text-[10px] text-obsidian/50 truncate">
-                        {product.category_name}
+                      <div className="text-[10px] text-obsidian/50 truncate flex items-center gap-1.5">
+                        <span>{product.category_name}</span>
+                        <span>•</span>
+                        <span className="capitalize">{product.main_collection.replace('_', ' ')}</span>
                       </div>
-                    </td>
-
-                    {/* Collection */}
-                    <td className="p-3.5 capitalize text-obsidian/70 whitespace-nowrap">
-                      {product.main_collection.replace('_', ' ')}
                     </td>
 
                     {/* Price with Inline Edit */}
@@ -244,29 +270,77 @@ export const InventoryManagement: React.FC = () => {
                             const val = Number(e.target.value);
                             if (val !== product.price) handlePriceChange(product, val);
                           }}
-                          className="w-28 bg-[#FAF8F5] border border-[#DDD6C8] px-2 py-1 font-mono text-xs text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                          className="w-24 bg-[#FAF8F5] border border-[#DDD6C8] px-2 py-1 font-mono text-xs text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
                         />
                       </div>
                     </td>
 
-                    {/* Stock with Inline Edit */}
+                    {/* Warehouse Stock (Bodega) */}
                     <td className="p-3.5 whitespace-nowrap">
                       <div className="flex items-center gap-1">
                         <input
                           type="number"
                           min={0}
-                          defaultValue={product.stock}
+                          defaultValue={warehouse}
                           onBlur={e => {
                             const val = Number(e.target.value);
-                            if (val !== product.stock) handleStockChange(product, val);
+                            if (val !== warehouse) handleChannelStockChange(product, 'warehouse_stock', val);
                           }}
-                          className={`w-16 bg-[#FAF8F5] border px-2 py-1 font-mono text-xs focus:border-montezzigold focus:outline-none rounded-xs ${
-                            isLow ? 'border-amber-400 text-amber-700 bg-amber-50' : isOut ? 'border-red-400 text-red-700 bg-red-50' : 'border-[#DDD6C8] text-obsidian'
-                          }`}
+                          className="w-14 bg-white border border-[#DDD6C8] px-2 py-1 font-mono text-xs focus:border-montezzigold focus:outline-none rounded-xs text-center"
+                          title="Stock disponible en Bodega Principal"
                         />
-                        {savingId === product.id && (
+                        {savingId === `${product.id}-warehouse_stock` && (
                           <Check className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
                         )}
+                      </div>
+                    </td>
+
+                    {/* Store Stock (Showroom) */}
+                    <td className="p-3.5 whitespace-nowrap">
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          min={0}
+                          defaultValue={store}
+                          onBlur={e => {
+                            const val = Number(e.target.value);
+                            if (val !== store) handleChannelStockChange(product, 'store_stock', val);
+                          }}
+                          className="w-14 bg-white border border-[#DDD6C8] px-2 py-1 font-mono text-xs focus:border-montezzigold focus:outline-none rounded-xs text-center"
+                          title="Stock en exhibición o tienda física Showroom"
+                        />
+                        {savingId === `${product.id}-store_stock` && (
+                          <Check className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+                        )}
+                      </div>
+                    </td>
+
+                    {/* Web Stock (Online) */}
+                    <td className="p-3.5 whitespace-nowrap">
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          min={0}
+                          defaultValue={web}
+                          onBlur={e => {
+                            const val = Number(e.target.value);
+                            if (val !== web) handleChannelStockChange(product, 'web_stock', val);
+                          }}
+                          className="w-14 bg-white border border-[#DDD6C8] px-2 py-1 font-mono text-xs focus:border-montezzigold focus:outline-none rounded-xs text-center"
+                          title="Stock reservado para ventas por E-commerce web"
+                        />
+                        {savingId === `${product.id}-web_stock` && (
+                          <Check className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+                        )}
+                      </div>
+                    </td>
+
+                    {/* Total Stock (Formula Trigger) */}
+                    <td className="p-3.5 whitespace-nowrap">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-black/[0.04] border border-black/10 rounded-xs font-mono font-bold text-xs">
+                        <span className={isOut ? 'text-red-700' : isLow ? 'text-amber-800' : 'text-emerald-700'}>
+                          {total} unids
+                        </span>
                       </div>
                     </td>
 
@@ -278,11 +352,11 @@ export const InventoryManagement: React.FC = () => {
                         </span>
                       ) : isLow ? (
                         <span className="px-2 py-0.5 rounded-xs bg-amber-50 border border-amber-200 text-amber-800 text-[10px] uppercase font-bold">
-                          Crítico ({product.stock})
+                          Crítico (&lt;{product.min_stock_alert ?? 8})
                         </span>
                       ) : (
                         <span className="px-2 py-0.5 rounded-xs bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] uppercase font-medium">
-                          Disponible
+                          En Stock
                         </span>
                       )}
                     </td>

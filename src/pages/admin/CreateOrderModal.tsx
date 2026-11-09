@@ -20,13 +20,18 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
+  const [customerDocType, setCustomerDocType] = useState<'NIT' | 'CC' | 'CE'>('NIT');
+  const [customerDocId, setCustomerDocId] = useState('');
+  const [customerTag, setCustomerTag] = useState<'Arquitecto' | 'Mayorista' | 'VIP' | 'General'>('Arquitecto');
   const [shippingAddress, setShippingAddress] = useState('');
-  const [city, setCity] = useState('Bogotá D.C.');
-  const [department, setDepartment] = useState('Cundinamarca');
+  const [city, setCity] = useState('Medellín');
+  const [department, setDepartment] = useState('Antioquia');
+  const [carrier, setCarrier] = useState('Servientrega');
   const [notes, setNotes] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'transferencia' | 'tarjeta' | 'efectivo_showroom'>('transferencia');
   const [orderStatus, setOrderStatus] = useState<OrderStatus>('aprobado');
   const [shippingCost, setShippingCost] = useState<number>(0);
+  const [depositAmount, setDepositAmount] = useState<number>(0);
 
   // Items State
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
@@ -99,6 +104,8 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
 
   const subtotalAmount = orderItems.reduce((sum, item) => sum + item.subtotal, 0);
   const totalAmount = subtotalAmount + Number(shippingCost || 0);
+  const effectiveDeposit = Math.min(totalAmount, Number(depositAmount || 0));
+  const pendingBalance = Math.max(0, totalAmount - effectiveDeposit);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -119,24 +126,32 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
 
     setIsSubmitting(true);
     try {
+      const orderRef = `DT-${Math.floor(100000 + Math.random() * 900000)}`;
       const created = await createOrder({
+        order_ref: orderRef,
         customer_name: customerName,
         customer_email: customerEmail || 'atencion@montezzi.com',
         customer_phone: customerPhone,
+        customer_tag: customerTag,
+        customer_document_type: customerDocType,
+        customer_document_id: customerDocId || undefined,
         shipping_address: shippingAddress || 'Retiro en Showroom Medellín',
         city,
         department,
+        carrier,
         notes,
         total_amount: totalAmount,
         subtotal_amount: subtotalAmount,
         shipping_cost: shippingCost,
+        deposit_amount: effectiveDeposit,
+        pending_balance: pendingBalance,
         status: orderStatus,
         items: orderItems,
         payment_method: paymentMethod,
-        payment_status: orderStatus === 'aprobado' ? 'acreditado' : 'pendiente_verificacion'
+        payment_status: effectiveDeposit >= totalAmount ? 'acreditado' : effectiveDeposit > 0 ? 'pendiente_verificacion' : 'pendiente_verificacion'
       });
 
-      setSuccessMessage(`Pedido ${created.id} generado exitosamente.`);
+      setSuccessMessage(`Pedido ${created.id} (${orderRef}) generado exitosamente.`);
       if (onOrderCreated) {
         onOrderCreated(created.id);
       }
@@ -209,6 +224,42 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
               </div>
 
               <div className="space-y-1">
+                <label className="text-obsidian/70 font-medium">Clasificación / Tag</label>
+                <select
+                  value={customerTag}
+                  onChange={e => setCustomerTag(e.target.value as any)}
+                  className="w-full px-3 py-2 border border-black/15 rounded-xs focus:outline-hidden focus:border-black text-obsidian bg-white"
+                >
+                  <option value="Arquitecto">Arquitecto / Diseñador</option>
+                  <option value="Mayorista">Mayorista / Carpintería</option>
+                  <option value="VIP">Cliente VIP</option>
+                  <option value="General">General / Particular</option>
+                </select>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-obsidian/70 font-medium">Documento Fiscal (DIAN)</label>
+                <div className="flex gap-1.5">
+                  <select
+                    value={customerDocType}
+                    onChange={e => setCustomerDocType(e.target.value as any)}
+                    className="w-20 px-2 py-2 border border-black/15 rounded-xs focus:outline-hidden focus:border-black text-obsidian bg-white text-xs font-mono"
+                  >
+                    <option value="NIT">NIT</option>
+                    <option value="CC">C.C.</option>
+                    <option value="CE">C.E.</option>
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="901.458.921-3"
+                    value={customerDocId}
+                    onChange={e => setCustomerDocId(e.target.value)}
+                    className="flex-1 px-3 py-2 border border-black/15 rounded-xs focus:outline-hidden focus:border-black text-obsidian font-mono text-xs"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
                 <label className="text-obsidian/70 font-medium">Teléfono / WhatsApp *</label>
                 <input
                   type="text"
@@ -252,13 +303,28 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                   className="w-full px-3 py-2 border border-black/15 rounded-xs focus:outline-hidden focus:border-black text-obsidian"
                 />
               </div>
+
+              <div className="space-y-1">
+                <label className="text-obsidian/70 font-medium">Transportadora Asignada</label>
+                <select
+                  value={carrier}
+                  onChange={e => setCarrier(e.target.value)}
+                  className="w-full px-3 py-2 border border-black/15 rounded-xs focus:outline-hidden focus:border-black text-obsidian bg-white"
+                >
+                  <option value="Servientrega">Servientrega</option>
+                  <option value="Coordinadora">Coordinadora Mercantil</option>
+                  <option value="Envía">Envía Colvanes</option>
+                  <option value="Propio">Vehículo Propio Montezzi</option>
+                  <option value="Retiro en Showroom">Retiro en Showroom Medellín</option>
+                </select>
+              </div>
             </div>
           </div>
 
           {/* Section: Product Selection */}
           <div className="pt-2 border-t border-black/10">
             <span className="text-[11px] font-mono uppercase tracking-widest text-black/60 font-semibold block mb-3">
-              2. Agregar Productos del Portafolio (KDJ-1 al KDJ-112)
+              2. Agregar Productos del Catálogo Oficial Montezzi 2026
             </span>
 
             {/* Product Lookup Bar */}
@@ -447,6 +513,30 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                   onChange={e => setNotes(e.target.value)}
                   className="w-full px-3 py-2 border border-black/15 rounded-xs bg-white focus:outline-hidden focus:border-black text-obsidian text-xs"
                 />
+              </div>
+
+              {/* Dual Financial Management: Deposit & Balance */}
+              <div className="space-y-1">
+                <label className="text-obsidian/70 font-medium">Abono Inicial / Anticipo ($ COP)</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="50000"
+                  value={depositAmount}
+                  onChange={e => setDepositAmount(Math.max(0, parseInt(e.target.value) || 0))}
+                  placeholder="0 si paga 100% contra entrega"
+                  className="w-full px-3 py-2 border border-black/15 rounded-xs bg-white focus:outline-hidden focus:border-black font-mono text-obsidian"
+                />
+              </div>
+
+              <div className="sm:col-span-2 space-y-1">
+                <label className="text-obsidian/70 font-medium">Saldo Pendiente Contra Entrega (Auto)</label>
+                <div className="w-full px-3 py-2 border border-black/10 rounded-xs bg-[#F5F4F0] font-mono text-obsidian text-xs font-bold flex items-center justify-between">
+                  <span>${pendingBalance.toLocaleString('es-CO')} COP</span>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-xs uppercase ${pendingBalance === 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
+                    {pendingBalance === 0 ? 'Liquidado 100%' : 'Saldo Pendiente'}
+                  </span>
+                </div>
               </div>
             </div>
 

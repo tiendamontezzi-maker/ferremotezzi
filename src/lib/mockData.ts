@@ -1,4 +1,4 @@
-import { Category, Product, Order, AbandonedCart, ProductClickAnalytics, SystemUser } from '../types/database';
+import { Category, Product, Order, AbandonedCart, ProductClickAnalytics, SystemUser, Coupon, ProductReview, Appointment, ActivityLog } from '../types/database';
 
 export const OFFICIAL_CATEGORIES: Category[] = [
   {
@@ -133,7 +133,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-60.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 10,
+    "store_stock": 3,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-60",
+    "slug": "kdj-60-condimentero-lateral-de-2-niveles-con-base-de-madera",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Acero al carbono y madera noble tratada"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 185616,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-61",
@@ -180,7 +197,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-61.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 14,
+    "store_stock": 4,
+    "web_stock": 6,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-61",
+    "slug": "kdj-61-condimentero-lateral-de-2-niveles-en-acero-al-carbono",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Acero al carbono de alto calibre"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 229372,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-62",
@@ -227,7 +261,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-62.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 9,
+    "store_stock": 3,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-62",
+    "slug": "kdj-62-condimentero-lateral-de-vidrio-de-3-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Vidrio templado de seguridad y aluminio arquitectónico"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 240683,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-63",
@@ -274,7 +325,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-63.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 7,
+    "store_stock": 2,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-63",
+    "slug": "kdj-63-condimentero-multifuncion-de-vidrio-de-3-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Vidrio templado y acero inoxidable"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 327954,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-64",
@@ -321,7 +389,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-64.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 18,
+    "store_stock": 6,
+    "web_stock": 6,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-64",
+    "slug": "kdj-64-condimentero-estrecho-tipo-a-de-2-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Acero cromado anticorrosivo"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 140805,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-65",
@@ -368,7 +453,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-65.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 13,
+    "store_stock": 4,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-65",
+    "slug": "kdj-65-condimentero-estrecho-tipo-b-de-2-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Acero al carbono termolacado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 124542,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-66",
@@ -415,7 +517,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-66.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 15,
+    "store_stock": 5,
+    "web_stock": 6,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-66",
+    "slug": "kdj-66-condimentero-estrecho-tipo-c-de-3-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Alambre de acero estructural"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 121832,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-67",
@@ -462,7 +581,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-67.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 11,
+    "store_stock": 3,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-67",
+    "slug": "kdj-67-condimentero-de-alambre-de-3-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Alambre de acero tratado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 285491,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-68",
@@ -509,7 +645,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-68.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 6,
+    "store_stock": 2,
+    "web_stock": 2,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-68",
+    "slug": "kdj-68-alacena-de-alambre-de-6-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Alacenas & Columnas",
+    "materials": [
+      "Marco de acero estructural y canastas de alambre reforzado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 552921,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-69",
@@ -556,7 +709,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-69.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 4,
+    "store_stock": 1,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-69",
+    "slug": "kdj-69-alacena-en-acero-al-carbono-y-madera-de-6-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Alacenas & Columnas",
+    "materials": [
+      "Acero al carbono y madera natural sellada"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 752136,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-70",
@@ -603,7 +773,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-70.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 4,
+    "store_stock": 1,
+    "web_stock": 2,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-70",
+    "slug": "kdj-70-alacena-de-vidrio-de-6-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Alacenas & Columnas",
+    "materials": [
+      "Vidrio templado ahumado y perfil de aluminio anodizado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 910694,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-71",
@@ -650,7 +837,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-71.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 5,
+    "store_stock": 1,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-71",
+    "slug": "kdj-71-alacena-extraible-de-vidrio-de-6-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Alacenas & Columnas",
+    "materials": [
+      "Vidrio de seguridad y guías metálicas de precisión"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 758912,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-72",
@@ -697,7 +901,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-72.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 6,
+    "store_stock": 2,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-72",
+    "slug": "kdj-72-alacena-extraible-de-alambre-de-6-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Alacenas & Columnas",
+    "materials": [
+      "Acero al carbono cromado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 664048,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-73",
@@ -744,7 +965,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-73.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 4,
+    "store_stock": 1,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-73",
+    "slug": "kdj-73-alacena-extraible-en-acero-al-carbono-y-madera-de-6-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Alacenas & Columnas",
+    "materials": [
+      "Acero al carbono electrostático y madera natural"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 798212,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-74",
@@ -791,7 +1029,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-74.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 8,
+    "store_stock": 2,
+    "web_stock": 4,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-74",
+    "slug": "kdj-74-esquina-magica-universal-de-vidrio",
+    "brand_collection": "Colección 2026",
+    "category": "Esquinas Mágicas",
+    "materials": [
+      "Vidrio templado y articulaciones en fundición de acero"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 668113,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-75",
@@ -838,7 +1093,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-75.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 9,
+    "store_stock": 3,
+    "web_stock": 4,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-75",
+    "slug": "kdj-75-esquina-magica-universal-de-alambre",
+    "brand_collection": "Colección 2026",
+    "category": "Esquinas Mágicas",
+    "materials": [
+      "Alambre de acero electropulido"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 558748,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-76",
@@ -885,7 +1157,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-76.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 6,
+    "store_stock": 2,
+    "web_stock": 2,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-76",
+    "slug": "kdj-76-esquina-magica-universal-en-acero-al-carbono-y-madera",
+    "brand_collection": "Colección 2026",
+    "category": "Esquinas Mágicas",
+    "materials": [
+      "Acero al carbono y madera contrachapada tratada"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 669276,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-77",
@@ -932,7 +1221,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-77.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 7,
+    "store_stock": 2,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-77",
+    "slug": "kdj-77-esquina-magica-giratoria-derecha-o-izquierda",
+    "brand_collection": "Colección 2026",
+    "category": "Esquinas Mágicas",
+    "materials": [
+      "Bandejas con base de textura antideslizante y borde de acero"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 772356,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-198",
@@ -979,7 +1285,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-198.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 12,
+    "store_stock": 4,
+    "web_stock": 4,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-198",
+    "slug": "kdj-198-juego-de-condimenteros-extraibles-ss201-plano-y-portaplatos",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Acero Inoxidable SS201 de grado sanitario"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 346660,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-199",
@@ -1026,7 +1349,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-199.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 9,
+    "store_stock": 3,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-199",
+    "slug": "kdj-199-juego-de-condimenteros-extraibles-ss201-plano-y-portaplatos",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Acero Inoxidable SS201"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 377423,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-200",
@@ -1073,7 +1413,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-200.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 3,
+    "store_stock": 1,
+    "web_stock": 2,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-200",
+    "slug": "kdj-200-juego-de-condimenteros-extraibles-ss201-plano-y-portaplatos",
+    "brand_collection": "Colección 2026",
+    "category": "Condimenteros & Portaplatos",
+    "materials": [
+      "Acero Inoxidable SS201 reforzado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 4104900,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-78",
@@ -1120,7 +1477,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-78.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 15,
+    "store_stock": 5,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-78",
+    "slug": "kdj-78-basurero-doble-con-tapa-de-20-20-litros",
+    "brand_collection": "Colección 2026",
+    "category": "Basureros Ecológicos",
+    "materials": [
+      "Polímero técnico lavable y chasis de acero"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 233094,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-79",
@@ -1167,7 +1541,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-79.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 10,
+    "store_stock": 3,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-79",
+    "slug": "kdj-79-basurero-doble-gris-de-10-20-litros",
+    "brand_collection": "Colección 2026",
+    "category": "Basureros Ecológicos",
+    "materials": [
+      "Polímeros reciclables de alta densidad"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 290012,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-80",
@@ -1214,7 +1605,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-80.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 8,
+    "store_stock": 2,
+    "web_stock": 4,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-80",
+    "slug": "kdj-80-basurero-doble-gris-de-20-20-litros",
+    "brand_collection": "Colección 2026",
+    "category": "Basureros Ecológicos",
+    "materials": [
+      "Polipropileno técnico y guías de acero zincado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 358800,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-81",
@@ -1261,7 +1669,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-81.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 16,
+    "store_stock": 5,
+    "web_stock": 7,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-81",
+    "slug": "kdj-81-basurero-de-14-litros-en-inoxidable-304",
+    "brand_collection": "Colección 2026",
+    "category": "Basureros Ecológicos",
+    "materials": [
+      "Acero Inoxidable AISI 304 y balde interior removible"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 132809,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-83",
@@ -1308,7 +1733,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-83.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 7,
+    "store_stock": 2,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-83",
+    "slug": "kdj-83-canasta-elevable-de-vidrio",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Vidrio templado, aluminio y amortiguadores de gas"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 583204,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-84",
@@ -1355,7 +1797,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-84.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 6,
+    "store_stock": 2,
+    "web_stock": 2,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-84",
+    "slug": "kdj-84-canasta-elevable-de-vidrio",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Vidrio templado y aluminio extruido"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 637612,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-85",
@@ -1402,7 +1861,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-85.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 4,
+    "store_stock": 1,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-85",
+    "slug": "kdj-85-canasta-elevable-de-vidrio",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Vidrio templado laminado y marco metálico"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 692088,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-86",
@@ -1449,7 +1925,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-86.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 9,
+    "store_stock": 3,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-86",
+    "slug": "kdj-86-locero-elevable-ss304-con-portacubiertos",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Acero Inoxidable AISI 304 inoxidable de por vida"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 649506,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-87",
@@ -1496,7 +1989,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-87.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 6,
+    "store_stock": 2,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-87",
+    "slug": "kdj-87-locero-elevable-ss304-con-portacubiertos",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Acero Inoxidable AISI 304"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 700556,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-88",
@@ -1543,7 +2053,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-88.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 5,
+    "store_stock": 1,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-88",
+    "slug": "kdj-88-locero-elevable-ss304-con-portacubiertos",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Acero Inoxidable AISI 304"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 753544,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-89",
@@ -1590,7 +2117,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-89.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 3,
+    "store_stock": 1,
+    "web_stock": 2,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-89",
+    "slug": "kdj-89-canasta-elevable-electrica-de-alambre",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Alambre de acero estructural y actuador lineal motorizado"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 1765106,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-90",
@@ -1637,7 +2181,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-90.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 3,
+    "store_stock": 1,
+    "web_stock": 1,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-90",
+    "slug": "kdj-90-canasta-elevable-electrica-de-vidrio",
+    "brand_collection": "Colección 2026",
+    "category": "Sistemas Elevables & Loceros",
+    "materials": [
+      "Vidrio templado templado y actuador electromecánico"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 1827103,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-201",
@@ -1684,7 +2245,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-201.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 24,
+    "store_stock": 8,
+    "web_stock": 8,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-201",
+    "slug": "kdj-201-cubertero-abs-plateado",
+    "brand_collection": "Colección 2026",
+    "category": "Cuberteros & Accesorios",
+    "materials": [
+      "Polímero ABS de alto impacto"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 29136,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-202",
@@ -1731,7 +2309,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-202.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 21,
+    "store_stock": 7,
+    "web_stock": 7,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-202",
+    "slug": "kdj-202-cubertero-abs-plateado",
+    "brand_collection": "Colección 2026",
+    "category": "Cuberteros & Accesorios",
+    "materials": [
+      "Polímero ABS de grado alimentario"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 34286,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-91",
@@ -1778,7 +2373,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-91.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 9,
+    "store_stock": 3,
+    "web_stock": 4,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-91",
+    "slug": "kdj-91-joyero-extraible-con-cierre-suave-variante-1",
+    "brand_collection": "Colección 2026",
+    "category": "Joyeros & Bandejas",
+    "materials": [
+      "Marco perimetral de aluminio y tapizado en terciopelo italiano"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 299350,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-92",
@@ -1825,7 +2437,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-92.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 8,
+    "store_stock": 2,
+    "web_stock": 4,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-92",
+    "slug": "kdj-92-joyero-extraible-con-cierre-suave-variante-2",
+    "brand_collection": "Colección 2026",
+    "category": "Joyeros & Bandejas",
+    "materials": [
+      "Aluminio extruido, cuero sintético de alta costura y gamuza"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 307505,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-93",
@@ -1872,7 +2501,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-93.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 12,
+    "store_stock": 4,
+    "web_stock": 4,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-93",
+    "slug": "kdj-93-pantalonero-extraible-con-marco-de-aluminio",
+    "brand_collection": "Colección 2026",
+    "category": "Pantaloneros & Percheros",
+    "materials": [
+      "Aluminio extruido y tubos con recubrimiento de silicona antideslizante"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 186516,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-94",
@@ -1919,7 +2565,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-94.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 10,
+    "store_stock": 3,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-94",
+    "slug": "kdj-94-pantalonero-lateral-derecho-con-cierre-suave",
+    "brand_collection": "Colección 2026",
+    "category": "Pantaloneros & Percheros",
+    "materials": [
+      "Acero al carbono y aluminio"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 154677,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-95",
@@ -1966,7 +2629,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-95.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 10,
+    "store_stock": 3,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-95",
+    "slug": "kdj-95-pantalonero-lateral-izquierdo-con-cierre-suave",
+    "brand_collection": "Colección 2026",
+    "category": "Pantaloneros & Percheros",
+    "materials": [
+      "Acero al carbono y aluminio"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 154677,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-96",
@@ -2013,7 +2693,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-96.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 7,
+    "store_stock": 2,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-96",
+    "slug": "kdj-96-pantalonero-superior-con-cierre-suave",
+    "brand_collection": "Colección 2026",
+    "category": "Pantaloneros & Percheros",
+    "materials": [
+      "Aluminio y varillas de acero amortiguadas"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 198098,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-97",
@@ -2060,7 +2757,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-97.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 13,
+    "store_stock": 4,
+    "web_stock": 5,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-97",
+    "slug": "kdj-97-elevador-de-ropa-con-doble-cierre-suave-mocha",
+    "brand_collection": "Colección 2026",
+    "category": "Elevadores de Ropa",
+    "materials": [
+      "Brazo en aluminio forjado y cárter con fluido hidráulico de alta densidad"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 160124,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-98",
@@ -2107,7 +2821,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-98.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 9,
+    "store_stock": 3,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-98",
+    "slug": "kdj-98-condimentero-extraible-de-ratan-gris-oscuro",
+    "brand_collection": "Colección 2026",
+    "category": "Organizadores & Canastas Clóset",
+    "materials": [
+      "Fibra técnica tejida transpirable y marco de aluminio"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 304985,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-99",
@@ -2154,7 +2885,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-99.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 4,
+    "store_stock": 1,
+    "web_stock": 3,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-99",
+    "slug": "kdj-99-zapatero-giratorio-de-12-niveles",
+    "brand_collection": "Colección 2026",
+    "category": "Zapateros Giratorios",
+    "materials": [
+      "Eje de acero cromado y bandejas de polímero texturado con reborde de retención"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 1043504,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-100",
@@ -2201,7 +2949,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-100.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 3,
+    "store_stock": 1,
+    "web_stock": 2,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-100",
+    "slug": "kdj-100-cajon-con-clave-revestido-en-cuero-gris",
+    "brand_collection": "Colección 2026",
+    "category": "Cajones con Clave & Relojes",
+    "materials": [
+      "Caja de seguridad en acero reforzado forrada en cuero legítimo cosido"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 1070608,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-101",
@@ -2248,7 +3013,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-101.jpg"
     ],
     "is_featured": false,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 3,
+    "store_stock": 1,
+    "web_stock": 1,
+    "inventory_status": "in_stock",
+    "sku": "KDJ-101",
+    "slug": "kdj-101-cajon-con-clave-revestido-en-cuero-blanco",
+    "brand_collection": "Colección 2026",
+    "category": "Cajones con Clave & Relojes",
+    "materials": [
+      "Estructura en chapa blindada y revestimiento de piel sintética premium"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 1070608,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": false,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-102",
@@ -2295,7 +3077,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-102.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 2,
+    "store_stock": 0,
+    "web_stock": 2,
+    "inventory_status": "low_stock",
+    "sku": "KDJ-102",
+    "slug": "kdj-102-cajon-con-clave-revestido-en-cuero-naranja",
+    "brand_collection": "Colección 2026",
+    "category": "Cajones con Clave & Relojes",
+    "materials": [
+      "Blindaje interno en acero y revestimiento exterior en cuero naranja de talabartería"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 1070608,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   },
   {
     "id": "prod-kdj-103",
@@ -2342,7 +3141,24 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "/images/products/kdj-103.jpg"
     ],
     "is_featured": true,
-    "created_at": "2026-01-10T00:00:00.000Z"
+    "created_at": "2026-01-10T00:00:00.000Z",
+    "warehouse_stock": 1,
+    "store_stock": 0,
+    "web_stock": 2,
+    "inventory_status": "low_stock",
+    "sku": "KDJ-103",
+    "slug": "kdj-103-cajon-con-clave-y-mecanismo-para-relojes-2-niveles-gris",
+    "brand_collection": "Colección 2026",
+    "category": "Cajones con Clave & Relojes",
+    "materials": [
+      "Chasis de seguridad en acero, interior en terciopelo negro y rotores antimagnéticos"
+    ],
+    "boxes_count": 1,
+    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "wholesale_price": 4168595,
+    "wholesale_min_qty": 3,
+    "fast_shipping_badge": true,
+    "returns_policy_badge": true
   }
 ];
 
@@ -2768,5 +3584,164 @@ export const INITIAL_SYSTEM_USERS: SystemUser[] = [
     "total_spent": 8900000,
     "status": "activo",
     "created_at": "2026-06-01T00:00:00.000Z"
+  }
+];
+
+export const INITIAL_COUPONS: Coupon[] = [
+  {
+    "id": "cpn-001",
+    "code": "BIENVENIDO10",
+    "discount_type": "percentage",
+    "discount_value": 10,
+    "min_purchase": 300000,
+    "expiry_date": "2026-12-31T23:59:59.000Z",
+    "usage_count": 14,
+    "is_active": true,
+    "created_at": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "cpn-002",
+    "code": "ARQUITECTURA50K",
+    "discount_type": "fixed",
+    "discount_value": 50000,
+    "min_purchase": 500000,
+    "expiry_date": "2026-12-31T23:59:59.000Z",
+    "usage_count": 8,
+    "is_active": true,
+    "created_at": "2026-02-01T00:00:00.000Z"
+  },
+  {
+    "id": "cpn-003",
+    "code": "VIPMONTEZZI",
+    "discount_type": "percentage",
+    "discount_value": 15,
+    "min_purchase": 1000000,
+    "expiry_date": "2026-12-31T23:59:59.000Z",
+    "usage_count": 5,
+    "is_active": true,
+    "created_at": "2026-03-01T00:00:00.000Z"
+  }
+];
+
+export const INITIAL_REVIEWS: ProductReview[] = [
+  {
+    "id": "rev-001",
+    "product_id": "prod-kdj-103",
+    "user_name": "Arq. Camilo Restrepo",
+    "user_email": "camilo@restrepoarquitectos.com",
+    "rating": 5,
+    "title": "Ingeniería y seguridad impecables",
+    "comment": "Instalamos este cajón con watch winder en el penthouse de Los Rosales. El nivel de acabado del cuero cosido y la suavidad del rotor para los relojes automáticos superó las expectativas del cliente.",
+    "status": "approved",
+    "created_at": "2026-08-15T10:30:00.000Z"
+  },
+  {
+    "id": "rev-002",
+    "product_id": "prod-kdj-90",
+    "user_name": "Diseñadora Laura Zuluaga",
+    "user_email": "laura.zuluaga@estudiomadera.co",
+    "rating": 5,
+    "title": "Mecanismo silencioso de altísima gama",
+    "comment": "La canasta elevable eléctrica de vidrio le dio un toque futurista y muy elegante a la cocina de exhibición. El sensor touch y la parada suave funcionan perfecto.",
+    "status": "approved",
+    "created_at": "2026-08-20T14:15:00.000Z"
+  },
+  {
+    "id": "rev-003",
+    "product_id": "prod-kdj-69",
+    "user_name": "Ing. David Osorio",
+    "user_email": "david@mobeldesign.co",
+    "rating": 5,
+    "title": "Estructura robusta y madera natural exquisita",
+    "comment": "Excelente alacena de 6 niveles. La combinación entre acero grafito y repisas de madera cálida es perfecta para proyectos de cocinas contemporáneas.",
+    "status": "approved",
+    "created_at": "2026-08-28T09:45:00.000Z"
+  },
+  {
+    "id": "rev-004",
+    "product_id": "prod-kdj-92",
+    "user_name": "Arq. Valentina Vélez",
+    "user_email": "valentina@vertice.com.co",
+    "rating": 5,
+    "title": "Tacto de terciopelo y división milimétrica",
+    "comment": "La bandeja joyero para clóset tiene una corredera sincronizada de extracción total sin ruido. Excelente producto.",
+    "status": "approved",
+    "created_at": "2026-09-02T16:20:00.000Z"
+  }
+];
+
+export const INITIAL_APPOINTMENTS: Appointment[] = [
+  {
+    "id": "apt-001",
+    "customer_name": "Arq. Mariana Londoño",
+    "customer_email": "mariana@arquitecturacontemporanea.com",
+    "customer_phone": "+57 315 987 6543",
+    "service_type": "Asesoría en Showroom Medellín",
+    "appointment_date": "2026-11-15",
+    "appointment_time": "10:00 AM",
+    "city": "Medellín",
+    "address": "Showroom Montezzi - Cra 43A El Poblado",
+    "price": 0,
+    "status": "confirmed",
+    "payment_status": "paid",
+    "notes": "Revisión técnica de muestras para proyecto residencial en Llanogrande.",
+    "created_at": "2026-11-05T10:00:00.000Z"
+  },
+  {
+    "id": "apt-002",
+    "customer_name": "Ing. David Osorio",
+    "customer_email": "david@mobeldesign.co",
+    "customer_phone": "+57 320 876 5432",
+    "service_type": "Diseño Virtual & Cotización B2B",
+    "appointment_date": "2026-11-18",
+    "appointment_time": "03:00 PM",
+    "city": "Bogotá D.C.",
+    "price": 0,
+    "status": "confirmed",
+    "payment_status": "paid",
+    "notes": "Planos y despiece para 12 módulos de cocinas con canastas elevables y esquinas mágicas.",
+    "created_at": "2026-11-06T15:30:00.000Z"
+  }
+];
+
+export const INITIAL_ACTIVITY_LOGS: ActivityLog[] = [
+  {
+    "id": "log-001",
+    "user_id": "usr-admin-01",
+    "user_name": "Carlos Mendoza",
+    "user_email": "admin@montezzi.com",
+    "entity_type": "product",
+    "entity_id": "prod-kdj-103",
+    "entity_name": "KDJ-103 · Cajón con clave y watch winder",
+    "action": "stock_adjustment",
+    "description": "Ajuste de inventario multicanal: Bodega Principal (2 unids), Showroom (1 unid). Total: 3 unids.",
+    "details": { "warehouse_stock": 2, "store_stock": 1, "web_stock": 0, "total": 3 },
+    "created_at": "2026-11-08T09:15:00.000Z"
+  },
+  {
+    "id": "log-002",
+    "user_id": "usr-admin-01",
+    "user_name": "Carlos Mendoza",
+    "user_email": "admin@montezzi.com",
+    "entity_type": "order",
+    "entity_id": "ORD-2026-001",
+    "entity_name": "Orden ORD-2026-001",
+    "action": "siigo_sync",
+    "description": "Emisión exitosa de Factura Electrónica FEF-19 ante DIAN. CUFE generado.",
+    "details": { "siigo_invoice_number": "FEF-19", "cufe": "a89f4b3c92e10f8821d3e4b7c89a0123fe56d78b" },
+    "created_at": "2026-11-08T11:40:00.000Z"
+  },
+  {
+    "id": "log-003",
+    "user_id": "usr-colab-02",
+    "user_name": "Santiago Arango",
+    "user_email": "operaciones@montezzi.com",
+    "entity_type": "product",
+    "entity_id": "prod-kdj-90",
+    "entity_name": "KDJ-90 · Canasta elevable eléctrica",
+    "action": "update",
+    "description": "Actualización de ficha técnica y asignación de stock web.",
+    "details": { "web_stock": 2 },
+    "created_at": "2026-11-08T14:20:00.000Z"
   }
 ];

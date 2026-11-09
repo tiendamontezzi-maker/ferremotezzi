@@ -24,34 +24,48 @@ interface AuthContextType {
   updateSystemUserStatus: (id: string, status: 'activo' | 'inactivo') => void;
 }
 
+const adminProfile: Profile = {
+  id: 'usr-admin-01',
+  user_id: 'usr-admin-01',
+  full_name: 'Carlos Mendoza (Director General)',
+  role: 'admin',
+  email: 'admin@montezzi.com',
+  company: 'Montezzi S.A.S.',
+  permissions: ['dashboard_view', 'orders_view', 'orders_edit', 'products_manage', 'billing_issue', 'analytics_view', 'coupons_manage', 'reviews_manage', 'settings_manage'],
+  status: 'active',
+  created_at: '2026-01-01T00:00:00.000Z'
+};
+
+const colabProfile: Profile = {
+  id: 'usr-colab-02',
+  user_id: 'usr-colab-02',
+  full_name: 'Santiago Arango (Gestión de Operaciones)',
+  role: 'colaborador',
+  email: 'operaciones@montezzi.com',
+  company: 'Montezzi Showroom',
+  permissions: ['dashboard_view', 'orders_view', 'products_manage', 'billing_issue'],
+  status: 'active',
+  created_at: '2026-02-15T00:00:00.000Z'
+};
+
+const clientProfile: Profile = {
+  id: 'usr-client-03',
+  user_id: 'usr-client-03',
+  full_name: 'Arq. Mariana Londoño',
+  role: 'cliente',
+  email: 'mariana@arquitecturacontemporanea.com',
+  company: 'Estudio Londoño Arquitectos',
+  permissions: ['orders_view'],
+  status: 'active',
+  created_at: '2026-03-10T00:00:00.000Z'
+};
+
 const DEFAULT_DEMO_USERS: Record<UserRole, Profile> = {
-  admin: {
-    id: 'usr-admin-01',
-    user_id: 'usr-admin-01',
-    full_name: 'Carlos Mendoza (Director General)',
-    role: 'admin',
-    email: 'admin@montezzi.com',
-    company: 'Montezzi S.A.S.',
-    created_at: '2026-01-01T00:00:00.000Z'
-  },
-  colaborador: {
-    id: 'usr-colab-02',
-    user_id: 'usr-colab-02',
-    full_name: 'Santiago Arango (Gestión de Operaciones)',
-    role: 'colaborador',
-    email: 'operaciones@montezzi.com',
-    company: 'Montezzi Showroom',
-    created_at: '2026-02-15T00:00:00.000Z'
-  },
-  cliente: {
-    id: 'usr-client-03',
-    user_id: 'usr-client-03',
-    full_name: 'Arq. Mariana Londoño',
-    role: 'cliente',
-    email: 'mariana@arquitecturacontemporanea.com',
-    company: 'Estudio Londoño Arquitectos',
-    created_at: '2026-03-10T00:00:00.000Z'
-  }
+  admin: adminProfile,
+  colaborador: colabProfile,
+  cliente: clientProfile,
+  collaborator: { ...colabProfile, role: 'collaborator' },
+  customer: { ...clientProfile, role: 'customer' }
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

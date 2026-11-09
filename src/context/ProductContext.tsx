@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { 
   Product, Category, Order, OrderStatus, MainCollection, WholesaleLead,
-  AbandonedCart, ProductClickAnalytics 
+  AbandonedCart, ProductClickAnalytics, Coupon, ProductReview, Appointment, ActivityLog 
 } from '../types/database';
 import { 
   OFFICIAL_PRODUCTS, OFFICIAL_CATEGORIES, INITIAL_ORDERS,
-  INITIAL_ABANDONED_CARTS, INITIAL_PRODUCT_ANALYTICS 
+  INITIAL_ABANDONED_CARTS, INITIAL_PRODUCT_ANALYTICS,
+  INITIAL_COUPONS, INITIAL_REVIEWS, INITIAL_APPOINTMENTS, INITIAL_ACTIVITY_LOGS
 } from '../lib/mockData';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
@@ -25,6 +26,10 @@ interface ProductContextType {
   wholesaleLeads: WholesaleLead[];
   abandonedCarts: AbandonedCart[];
   productClickAnalytics: ProductClickAnalytics[];
+  coupons: Coupon[];
+  reviews: ProductReview[];
+  appointments: Appointment[];
+  activityLogs: ActivityLog[];
   isLoading: boolean;
   filters: ProductFilterState;
   setFilters: React.Dispatch<React.SetStateAction<ProductFilterState>>;
@@ -33,6 +38,10 @@ interface ProductContextType {
   getProductByCode: (code: string) => Product | undefined;
   getProductById: (id: string) => Product | undefined;
   updateProductStock: (productId: string, newStock: number) => Promise<void>;
+  updateMultichannelStock: (
+    productId: string, 
+    channels: { warehouse_stock?: number; store_stock?: number; web_stock?: number }
+  ) => Promise<void>;
   updateProductPrice: (productId: string, newPrice: number) => Promise<void>;
   addProduct: (product: Omit<Product, 'id' | 'created_at'>) => Promise<Product>;
   updateProduct: (product: Product) => Promise<void>;
@@ -42,7 +51,19 @@ interface ProductContextType {
   submitWholesaleLead: (lead: Omit<WholesaleLead, 'id' | 'created_at' | 'status'>) => Promise<void>;
   updateAbandonedCartStatus: (id: string, status: 'abandonado' | 'contactado' | 'recuperado', notes?: string) => void;
   recordProductClick: (productId: string) => void;
-  bulkUpdateProducts: (updates: Array<{ code?: string; id?: string; stock?: number; price?: number }>) => Promise<{ updatedCount: number }>;
+  bulkUpdateProducts: (updates: Array<{ 
+    code?: string; 
+    id?: string; 
+    stock?: number; 
+    price?: number;
+    warehouse_stock?: number;
+    store_stock?: number;
+    web_stock?: number;
+  }>) => Promise<{ updatedCount: number }>;
+  validateCoupon: (code: string, subtotal: number) => { valid: boolean; coupon?: Coupon; discount: number; error?: string };
+  addReview: (review: Omit<ProductReview, 'id' | 'created_at' | 'status'>) => Promise<ProductReview>;
+  createAppointment: (appointment: Omit<Appointment, 'id' | 'created_at' | 'status' | 'payment_status'>) => Promise<Appointment>;
+  logActivity: (entry: Omit<ActivityLog, 'id' | 'created_at'>) => void;
   resetFilters: () => void;
 }
 
@@ -96,6 +117,38 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return INITIAL_PRODUCT_ANALYTICS;
   });
 
+  const [coupons, setCoupons] = useState<Coupon[]>(() => {
+    const saved = localStorage.getItem('montezzi_coupons');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { return INITIAL_COUPONS; }
+    }
+    return INITIAL_COUPONS;
+  });
+
+  const [reviews, setReviews] = useState<ProductReview[]>(() => {
+    const saved = localStorage.getItem('montezzi_reviews');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { return INITIAL_REVIEWS; }
+    }
+    return INITIAL_REVIEWS;
+  });
+
+  const [appointments, setAppointments] = useState<Appointment[]>(() => {
+    const saved = localStorage.getItem('montezzi_appointments');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { return INITIAL_APPOINTMENTS; }
+    }
+    return INITIAL_APPOINTMENTS;
+  });
+
+  const [activityLogs, setActivityLogs] = useState<ActivityLog[]>(() => {
+    const saved = localStorage.getItem('montezzi_activity_logs');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { return INITIAL_ACTIVITY_LOGS; }
+    }
+    return INITIAL_ACTIVITY_LOGS;
+  });
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [filters, setFilters] = useState<ProductFilterState>({
@@ -127,6 +180,22 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   useEffect(() => {
     localStorage.setItem('montezzi_product_clicks', JSON.stringify(productClickAnalytics));
   }, [productClickAnalytics]);
+
+  useEffect(() => {
+    localStorage.setItem('montezzi_coupons', JSON.stringify(coupons));
+  }, [coupons]);
+
+  useEffect(() => {
+    localStorage.setItem('montezzi_reviews', JSON.stringify(reviews));
+  }, [reviews]);
+
+  useEffect(() => {
+    localStorage.setItem('montezzi_appointments', JSON.stringify(appointments));
+  }, [appointments]);
+
+  useEffect(() => {
+    localStorage.setItem('montezzi_activity_logs', JSON.stringify(activityLogs));
+  }, [activityLogs]);
 
   // Load from Supabase if configured
   useEffect(() => {
@@ -236,18 +305,67 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const updateProductStock = async (productId: string, newStock: number) => {
+    const safeStock = Math.max(0, newStock);
     setProducts(prev =>
-      prev.map(p => (p.id === productId ? { ...p, stock: Math.max(0, newStock) } : p))
+      prev.map(p => {
+        if (p.id !== productId) return p;
+        const s = p.store_stock ?? 0;
+        const b = p.web_stock ?? 0;
+        const w = Math.max(0, safeStock - s - b);
+        const total = w + s + b;
+        const status: 'in_stock' | 'low_stock' | 'out_of_stock' = total <= 0 ? 'out_of_stock' : total < 5 ? 'low_stock' : 'in_stock';
+        return {
+          ...p,
+          warehouse_stock: w,
+          stock: total,
+          inventory_status: status
+        };
+      })
     );
 
     if (isSupabaseConfigured && supabase) {
       try {
         await supabase
           .from('products')
-          .update({ stock: Math.max(0, newStock), updated_at: new Date().toISOString() })
+          .update({ stock: safeStock, updated_at: new Date().toISOString() })
           .eq('id', productId);
       } catch (err) {
         console.error('Error updating stock in Supabase:', err);
+      }
+    }
+  };
+
+  const updateMultichannelStock = async (
+    productId: string,
+    channels: { warehouse_stock?: number; store_stock?: number; web_stock?: number }
+  ) => {
+    setProducts(prev =>
+      prev.map(p => {
+        if (p.id !== productId) return p;
+        const w = channels.warehouse_stock !== undefined ? Math.max(0, channels.warehouse_stock) : (p.warehouse_stock ?? 0);
+        const s = channels.store_stock !== undefined ? Math.max(0, channels.store_stock) : (p.store_stock ?? 0);
+        const b = channels.web_stock !== undefined ? Math.max(0, channels.web_stock) : (p.web_stock ?? 0);
+        const total = w + s + b;
+        const status: 'in_stock' | 'low_stock' | 'out_of_stock' = total <= 0 ? 'out_of_stock' : total < 5 ? 'low_stock' : 'in_stock';
+        return {
+          ...p,
+          warehouse_stock: w,
+          store_stock: s,
+          web_stock: b,
+          stock: total,
+          inventory_status: status
+        };
+      })
+    );
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase
+          .from('products')
+          .update({ ...channels, updated_at: new Date().toISOString() })
+          .eq('id', productId);
+      } catch (err) {
+        console.error('Error updating multichannel stock in Supabase:', err);
       }
     }
   };
@@ -270,7 +388,15 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const bulkUpdateProducts = async (
-    updates: Array<{ code?: string; id?: string; stock?: number; price?: number }>
+    updates: Array<{ 
+      code?: string; 
+      id?: string; 
+      stock?: number; 
+      price?: number;
+      warehouse_stock?: number;
+      store_stock?: number;
+      web_stock?: number;
+    }>
   ): Promise<{ updatedCount: number }> => {
     let count = 0;
     setProducts(prev => {
@@ -280,9 +406,29 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         );
         if (match) {
           count++;
+          const w = match.warehouse_stock !== undefined 
+            ? Math.max(0, Number(match.warehouse_stock)) 
+            : (p.warehouse_stock ?? 0);
+          const s = match.store_stock !== undefined 
+            ? Math.max(0, Number(match.store_stock)) 
+            : (p.store_stock ?? 0);
+          const b = match.web_stock !== undefined 
+            ? Math.max(0, Number(match.web_stock)) 
+            : (p.web_stock ?? 0);
+
+          let total = w + s + b;
+          if (match.stock !== undefined && match.warehouse_stock === undefined && match.store_stock === undefined && match.web_stock === undefined) {
+            total = Math.max(0, Number(match.stock));
+          }
+          const status: 'in_stock' | 'low_stock' | 'out_of_stock' = total <= 0 ? 'out_of_stock' : total < 5 ? 'low_stock' : 'in_stock';
+
           return {
             ...p,
-            stock: match.stock !== undefined ? Math.max(0, Number(match.stock)) : p.stock,
+            warehouse_stock: w,
+            store_stock: s,
+            web_stock: b,
+            stock: total,
+            inventory_status: status,
             price: match.price !== undefined ? Math.max(0, Number(match.price)) : p.price,
             updated_at: new Date().toISOString()
           };
@@ -435,6 +581,65 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     });
   };
 
+  const validateCoupon = (code: string, subtotal: number) => {
+    const cleanCode = code.trim().toUpperCase();
+    const cpn = coupons.find(c => c.code.toUpperCase() === cleanCode && c.is_active);
+    if (!cpn) {
+      return { valid: false, discount: 0, error: 'Cupón no válido o inexistente' };
+    }
+    if (cpn.expiry_date && new Date(cpn.expiry_date) < new Date()) {
+      return { valid: false, discount: 0, error: 'Este cupón ha expirado' };
+    }
+    if (cpn.min_purchase && subtotal < cpn.min_purchase) {
+      return {
+        valid: false,
+        discount: 0,
+        error: `Compra mínima de $${cpn.min_purchase.toLocaleString('es-CO')} COP requerida`
+      };
+    }
+    let discount = 0;
+    if (cpn.discount_type === 'percentage') {
+      discount = Math.round((subtotal * cpn.discount_value) / 100);
+    } else {
+      discount = Math.min(subtotal, cpn.discount_value);
+    }
+    return { valid: true, coupon: cpn, discount };
+  };
+
+  const addReview = async (reviewData: Omit<ProductReview, 'id' | 'created_at' | 'status'>): Promise<ProductReview> => {
+    const newReview: ProductReview = {
+      ...reviewData,
+      id: `rev-${Date.now()}`,
+      status: 'approved',
+      created_at: new Date().toISOString()
+    };
+    setReviews(prev => [newReview, ...prev]);
+    return newReview;
+  };
+
+  const createAppointment = async (
+    aptData: Omit<Appointment, 'id' | 'created_at' | 'status' | 'payment_status'>
+  ): Promise<Appointment> => {
+    const newApt: Appointment = {
+      ...aptData,
+      id: `apt-${Date.now()}`,
+      status: 'confirmed',
+      payment_status: 'paid',
+      created_at: new Date().toISOString()
+    };
+    setAppointments(prev => [newApt, ...prev]);
+    return newApt;
+  };
+
+  const logActivity = (entry: Omit<ActivityLog, 'id' | 'created_at'>) => {
+    const newLog: ActivityLog = {
+      ...entry,
+      id: `log-${Date.now()}`,
+      created_at: new Date().toISOString()
+    };
+    setActivityLogs(prev => [newLog, ...prev.slice(0, 99)]);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -444,6 +649,10 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         wholesaleLeads,
         abandonedCarts,
         productClickAnalytics,
+        coupons,
+        reviews,
+        appointments,
+        activityLogs,
         isLoading,
         filters,
         setFilters,
@@ -452,6 +661,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         getProductByCode,
         getProductById,
         updateProductStock,
+        updateMultichannelStock,
         updateProductPrice,
         addProduct,
         updateProduct,
@@ -462,6 +672,10 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         updateAbandonedCartStatus,
         recordProductClick,
         bulkUpdateProducts,
+        validateCoupon,
+        addReview,
+        createAppointment,
+        logActivity,
         resetFilters
       }}
     >
