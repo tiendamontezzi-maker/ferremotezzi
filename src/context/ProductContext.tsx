@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { 
   Product, Category, Order, OrderStatus, MainCollection, WholesaleLead,
   AbandonedCart, ProductClickAnalytics, Coupon, ProductReview, Appointment, ActivityLog 
@@ -152,6 +152,26 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [supabaseNotice, setSupabaseNotice] = useState<{
+    type: 'saving' | 'success' | 'error';
+    text: string;
+  } | null>(null);
+  const noticeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showSupabaseNotice = useCallback(
+    (type: 'saving' | 'success' | 'error', text: string) => {
+      if (noticeTimerRef.current) {
+        clearTimeout(noticeTimerRef.current);
+      }
+      setSupabaseNotice({ type, text });
+      if (type !== 'saving') {
+        noticeTimerRef.current = setTimeout(() => {
+          setSupabaseNotice(null);
+        }, 4200);
+      }
+    },
+    []
+  );
 
   const [filters, setFilters] = useState<ProductFilterState>({
     searchQuery: '',
@@ -371,12 +391,19 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase
+        showSupabaseNotice('saving', 'Guardando stock en Supabase...');
+        const { error } = await supabase
           .from('products')
           .update({ stock: safeStock, updated_at: new Date().toISOString() })
           .eq('id', productId);
+        if (error) {
+          showSupabaseNotice('error', `Error en Supabase: ${error.message}`);
+        } else {
+          showSupabaseNotice('success', 'Los cambios de stock se han guardado en Supabase');
+        }
       } catch (err) {
         console.error('Error updating stock in Supabase:', err);
+        showSupabaseNotice('error', 'No se pudo conectar con Supabase');
       }
     }
   };
@@ -406,12 +433,19 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase
+        showSupabaseNotice('saving', 'Guardando stock multicanal en Supabase...');
+        const { error } = await supabase
           .from('products')
           .update({ ...channels, updated_at: new Date().toISOString() })
           .eq('id', productId);
+        if (error) {
+          showSupabaseNotice('error', `Error en Supabase: ${error.message}`);
+        } else {
+          showSupabaseNotice('success', 'Los cambios de stock se han guardado en Supabase');
+        }
       } catch (err) {
         console.error('Error updating multichannel stock in Supabase:', err);
+        showSupabaseNotice('error', 'No se pudo conectar con Supabase');
       }
     }
   };
@@ -423,12 +457,19 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase
+        showSupabaseNotice('saving', 'Guardando precio en Supabase...');
+        const { error } = await supabase
           .from('products')
           .update({ price: Math.max(0, newPrice), updated_at: new Date().toISOString() })
           .eq('id', productId);
+        if (error) {
+          showSupabaseNotice('error', `Error en Supabase: ${error.message}`);
+        } else {
+          showSupabaseNotice('success', 'El nuevo precio se ha guardado en Supabase');
+        }
       } catch (err) {
         console.error('Error updating price in Supabase:', err);
+        showSupabaseNotice('error', 'No se pudo conectar con Supabase');
       }
     }
   };
@@ -533,7 +574,13 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       created_at: new Date().toISOString()
     };
 
-    setProducts(prev => [newProduct, ...prev]);
+    setProducts(prev => {
+      const next = [newProduct, ...prev];
+      try {
+        localStorage.setItem('montezzi_products_dossier_2026', JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
 
     logActivity({
       entity_type: 'product',
@@ -546,12 +593,22 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured && supabase) {
       try {
+        showSupabaseNotice('saving', `Guardando nueva referencia ${newProduct.code} en Supabase...`);
         const { error } = await supabase
           .from('products')
           .upsert([toSupabaseProductRow(newProduct)], { onConflict: 'id' });
-        if (error) console.error('Supabase upsert error on addProduct:', error.message);
+        if (error) {
+          console.error('Supabase upsert error on addProduct:', error.message);
+          showSupabaseNotice('error', `Error al guardar en Supabase: ${error.message}`);
+        } else {
+          showSupabaseNotice(
+            'success',
+            `¡Los cambios de ${newProduct.code} se han guardado en Supabase!`
+          );
+        }
       } catch (err) {
         console.error('Error inserting product in Supabase:', err);
+        showSupabaseNotice('error', 'Error de red al guardar en Supabase');
       }
     }
 
@@ -559,28 +616,60 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   };
 
   const updateProduct = async (updatedProduct: Product) => {
-    setProducts(prev => prev.map(p => (p.id === updatedProduct.id ? updatedProduct : p)));
+    setProducts(prev => {
+      const next = prev.map(p =>
+        p.id === updatedProduct.id || p.code === updatedProduct.code ? updatedProduct : p
+      );
+      try {
+        localStorage.setItem('montezzi_products_dossier_2026', JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
 
     if (isSupabaseConfigured && supabase) {
       try {
+        showSupabaseNotice('saving', `Guardando cambios de ${updatedProduct.code} en Supabase...`);
+        const row = toSupabaseProductRow(updatedProduct);
         const { error } = await supabase
           .from('products')
-          .upsert([toSupabaseProductRow(updatedProduct)], { onConflict: 'id' });
-        if (error) console.error('Supabase upsert error on updateProduct:', error.message);
+          .upsert([row], { onConflict: 'id' });
+        if (error) {
+          console.error('Supabase upsert error on updateProduct:', error.message);
+          showSupabaseNotice('error', `Error al guardar en Supabase: ${error.message}`);
+        } else {
+          showSupabaseNotice(
+            'success',
+            `¡Los cambios de ${updatedProduct.code} se han guardado en Supabase!`
+          );
+        }
       } catch (err) {
         console.error('Error updating product in Supabase:', err);
+        showSupabaseNotice('error', 'Error de red al guardar en Supabase');
       }
     }
   };
 
   const deleteProduct = async (productId: string) => {
-    setProducts(prev => prev.filter(p => p.id !== productId));
+    setProducts(prev => {
+      const next = prev.filter(p => p.id !== productId);
+      try {
+        localStorage.setItem('montezzi_products_dossier_2026', JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
 
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase.from('products').delete().eq('id', productId);
+        showSupabaseNotice('saving', 'Eliminando producto en Supabase...');
+        const { error } = await supabase.from('products').delete().eq('id', productId);
+        if (error) {
+          showSupabaseNotice('error', `Error al eliminar en Supabase: ${error.message}`);
+        } else {
+          showSupabaseNotice('success', 'Producto eliminado de Supabase correctamente');
+        }
       } catch (err) {
         console.error('Error deleting product from Supabase:', err);
+        showSupabaseNotice('error', 'Error de red al eliminar en Supabase');
       }
     }
   };
@@ -802,6 +891,39 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }}
     >
       {children}
+      {supabaseNotice && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`fixed top-5 right-5 z-[200] flex items-center gap-3 px-4 py-3 rounded-2xl shadow-2xl border text-xs font-sans font-semibold transition-all duration-300 ${
+            supabaseNotice.type === 'saving'
+              ? 'bg-[#18181B] text-white border-white/15'
+              : supabaseNotice.type === 'success'
+              ? 'bg-[#059669] text-white border-[#34D399]'
+              : 'bg-[#DC2626] text-white border-[#F87171]'
+          }`}
+        >
+          {supabaseNotice.type === 'saving' ? (
+            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin shrink-0" />
+          ) : supabaseNotice.type === 'success' ? (
+            <span className="w-5 h-5 rounded-full bg-white text-[#059669] flex items-center justify-center font-bold shrink-0">
+              ✓
+            </span>
+          ) : (
+            <span className="w-5 h-5 rounded-full bg-white text-[#DC2626] flex items-center justify-center font-bold shrink-0">
+              !
+            </span>
+          )}
+          <span>{supabaseNotice.text}</span>
+          <button
+            type="button"
+            onClick={() => setSupabaseNotice(null)}
+            className="ml-1 opacity-75 hover:opacity-100 text-white font-bold px-1 cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </ProductContext.Provider>
   );
 };

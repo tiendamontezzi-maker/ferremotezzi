@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Save } from 'lucide-react';
+import { X, Save, CheckCircle2, Loader2 } from 'lucide-react';
 import { Product, MainCollection } from '../../types/database';
 import { useProducts } from '../../context/ProductContext';
 import { ImageUploadDropzone } from '../../components/ui/ImageUploadDropzone';
@@ -40,8 +40,12 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   const [mecanismo, setMecanismo] = useState('Correderas ocultas con amortiguación');
   const [isFeatured, setIsFeatured] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [localSaveMessage, setLocalSaveMessage] = useState<string | null>(null);
 
+  // Initialize form only when opening modal or switching product ID
   useEffect(() => {
+    if (!isOpen) return;
+    setLocalSaveMessage(null);
     if (productToEdit) {
       setCode(productToEdit.code);
       setRefFabricante(productToEdit.technical_specs?.ref_fabricante || productToEdit.sku || '');
@@ -56,11 +60,12 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setWebStock(productToEdit.web_stock ?? (productToEdit.stock - Math.floor(productToEdit.stock * 0.6) - Math.floor(productToEdit.stock * 0.2)));
       setMinStockAlert(productToEdit.min_stock_alert ?? 3);
       setImageUrl(productToEdit.image_url);
-      const initialGallery = Array.isArray(productToEdit.gallery_urls) && productToEdit.gallery_urls.length > 0
-        ? productToEdit.gallery_urls
-        : productToEdit.image_url
-        ? [productToEdit.image_url]
-        : [];
+      const initialGallery =
+        Array.isArray(productToEdit.gallery_urls) && productToEdit.gallery_urls.length > 0
+          ? productToEdit.gallery_urls
+          : productToEdit.image_url
+          ? [productToEdit.image_url]
+          : [];
       setGalleryUrls(initialGallery);
       setModulo(productToEdit.technical_specs?.modulo || '');
       setDimensiones(productToEdit.technical_specs?.dimensiones || '');
@@ -92,15 +97,12 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setMecanismo('Correderas ocultas con amortiguación');
       setIsFeatured(false);
     }
-  }, [productToEdit, categories]);
+  }, [productToEdit?.id, isOpen]);
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSaving(true);
-
-    const selectedCategory = categories.find(c => c.id === categoryId);
+  const buildPayload = (overridePrimary?: string, overrideGallery?: string[]) => {
+    const selectedCategory = categories.find((c) => c.id === categoryId);
     const finalStock = Number(totalCalculatedStock);
     const status: 'in_stock' | 'low_stock' | 'out_of_stock' =
       finalStock <= 0 ? 'out_of_stock' : finalStock < (minStockAlert || 3) ? 'low_stock' : 'in_stock';
@@ -109,8 +111,11 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       ? `${shortDescription.trim()} Nota: ${notaTecnica.trim()}`
       : shortDescription.trim();
 
-    const cleanGallery = galleryUrls.map((u) => u.trim()).filter(Boolean);
-    const finalImageUrl = imageUrl.trim() || cleanGallery[0] || '/images/products/kdj-60.jpg';
+    const activeGallery = overrideGallery !== undefined ? overrideGallery : galleryUrls;
+    const activePrimary = overridePrimary !== undefined ? overridePrimary : imageUrl;
+
+    const cleanGallery = activeGallery.map((u) => u.trim()).filter(Boolean);
+    const finalImageUrl = activePrimary.trim() || cleanGallery[0] || '/images/products/kdj-60.jpg';
     const finalGalleryUrls =
       cleanGallery.length > 0
         ? cleanGallery.includes(finalImageUrl)
@@ -118,23 +123,23 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
           : [finalImageUrl, ...cleanGallery]
         : [finalImageUrl];
 
-    const generatedSlug = `${code.toLowerCase()}-${name
+    const generatedSlug = `${code.toLowerCase()}-${(name || code)
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '')}`;
 
-    const productPayload = {
+    return {
       code,
       sku: refFabricante || code,
       slug: productToEdit?.slug || generatedSlug,
-      name,
+      name: name || productToEdit?.name || code,
       category_id: categoryId,
       category_name: selectedCategory ? selectedCategory.name : 'General',
       category: selectedCategory ? selectedCategory.name : 'General',
       main_collection: mainCollection,
-      short_description: shortDescription.trim(),
+      short_description: shortDescription.trim() || productToEdit?.short_description || '',
       full_description: fullDesc,
       description: fullDesc,
       technical_specs: {
@@ -165,17 +170,48 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       gallery_urls: finalGalleryUrls,
       is_featured: isFeatured
     };
+  };
+
+  // Instant Auto-Save when uploading, reordering, or changing Portada on an existing product
+  const handleAutoSaveGallery = async (newPrimary: string, newOrderedGallery: string[]) => {
+    if (!productToEdit) return;
+    setIsSaving(true);
+    try {
+      const payload = buildPayload(newPrimary, newOrderedGallery);
+      await updateProduct({
+        ...payload,
+        id: productToEdit.id,
+        created_at: productToEdit.created_at
+      });
+      setLocalSaveMessage(`Cambios de galería y portada guardados en Supabase (${code})`);
+      setTimeout(() => setLocalSaveMessage(null), 5000);
+    } catch (err) {
+      console.error('Error auto-saving gallery to Supabase:', err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSaving(true);
+
+    const productPayload = buildPayload();
 
     try {
       if (productToEdit) {
-        await updateProduct({ ...productPayload, id: productToEdit.id, created_at: productToEdit.created_at });
+        await updateProduct({
+          ...productPayload,
+          id: productToEdit.id,
+          created_at: productToEdit.created_at
+        });
       } else {
         await addProduct(productPayload);
       }
       onClose();
     } catch (err) {
       console.error(err);
-      alert('Error al guardar el producto');
+      alert('Error al guardar el producto en Supabase');
     } finally {
       setIsSaving(false);
     }
@@ -184,16 +220,45 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 font-sans">
       <div className="bg-white border border-[#EAE7E1] rounded-3xl w-full max-w-3xl overflow-hidden shadow-2xl my-8">
-        {/* Modal Header */}
-        <div className="px-6 py-4 bg-[#FAF9F7] border-b border-[#F0EFEA] flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        {/* Sticky Modal Header with Direct Save Button & Live Status */}
+        <div className="sticky top-0 z-20 px-6 py-4 bg-[#FAF9F7] border-b border-[#F0EFEA] flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-col">
             <span className="text-sm font-sans font-bold text-[#18181B]">
-              {productToEdit ? `Ficha Técnica ${productToEdit.code} · ${productToEdit.name}` : 'Nueva Ficha Técnica Oficial Montezzi 2026'}
+              {productToEdit
+                ? `Ficha Técnica ${productToEdit.code} · ${productToEdit.name}`
+                : 'Nueva Ficha Técnica Oficial Montezzi 2026'}
             </span>
+            {localSaveMessage && (
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#059669] mt-0.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                {localSaveMessage}
+              </span>
+            )}
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-[#EAEAEA] text-[#71717A] hover:text-black transition-colors">
-            <X className="w-5 h-5" />
-          </button>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              disabled={isSaving}
+              onClick={handleSubmit}
+              className="px-4 py-2 bg-[#059669] hover:bg-[#047857] text-white font-semibold text-xs flex items-center gap-1.5 rounded-full shadow-xs transition-all cursor-pointer"
+            >
+              {isSaving ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Save className="w-3.5 h-3.5" />
+              )}
+              <span>{isSaving ? 'Guardando...' : 'Guardar Cambios'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-1.5 rounded-full hover:bg-[#EAEAEA] text-[#71717A] hover:text-black transition-colors cursor-pointer"
+              title="Cerrar ventana"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Form Body */}
@@ -206,7 +271,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 type="text"
                 required
                 value={code}
-                onChange={e => setCode(e.target.value.toUpperCase())}
+                onChange={(e) => setCode(e.target.value.toUpperCase())}
                 placeholder="KDJ-60"
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] font-mono font-bold focus:outline-none rounded-xl transition-all"
               />
@@ -217,7 +282,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               <input
                 type="text"
                 value={refFabricante}
-                onChange={e => setRefFabricante(e.target.value)}
+                onChange={(e) => setRefFabricante(e.target.value)}
                 placeholder="04SW-01-200"
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] font-mono focus:outline-none rounded-xl transition-all"
               />
@@ -227,7 +292,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               <label className="text-[#52525B] font-semibold">Aplicación *</label>
               <select
                 value={mainCollection}
-                onChange={e => setMainCollection(e.target.value as MainCollection)}
+                onChange={(e) => setMainCollection(e.target.value as MainCollection)}
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               >
                 <option value="cocina">Cocina</option>
@@ -242,7 +307,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 type="text"
                 required
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Ej: Canasta lateral de 2 niveles con base de madera"
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               />
@@ -252,23 +317,26 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               <label className="text-[#52525B] font-semibold">Categoría *</label>
               <select
                 value={categoryId}
-                onChange={e => setCategoryId(e.target.value)}
+                onChange={(e) => setCategoryId(e.target.value)}
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               >
-                {categories.map(c => (
-                  <option key={c.id} value={c.id}>{c.name}</option>
+                {categories.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
                 ))}
               </select>
             </div>
           </div>
 
-          {/* Unlimited Product Photography Upload & Gallery (Top Priority) */}
+          {/* Unlimited Product Photography Upload & Gallery (Top Priority + Auto-Save) */}
           <div className="p-4 bg-[#FAF9F7] border border-[#EAE7E1] rounded-2xl">
             <ImageUploadDropzone
               value={imageUrl}
               onChange={setImageUrl}
               galleryUrls={galleryUrls}
               onGalleryChange={setGalleryUrls}
+              onAutoSave={handleAutoSaveGallery}
               productCode={code}
             />
           </div>
@@ -294,7 +362,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   min={0}
                   step={1000}
                   value={price}
-                  onChange={e => setPrice(Number(e.target.value))}
+                  onChange={(e) => setPrice(Number(e.target.value))}
                   className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] font-bold focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
@@ -306,7 +374,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   required
                   min={0}
                   value={warehouseStock}
-                  onChange={e => setWarehouseStock(Number(e.target.value))}
+                  onChange={(e) => setWarehouseStock(Number(e.target.value))}
                   className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
@@ -318,7 +386,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   required
                   min={0}
                   value={storeStock}
-                  onChange={e => setStoreStock(Number(e.target.value))}
+                  onChange={(e) => setStoreStock(Number(e.target.value))}
                   className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
@@ -330,7 +398,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   required
                   min={0}
                   value={webStock}
-                  onChange={e => setWebStock(Number(e.target.value))}
+                  onChange={(e) => setWebStock(Number(e.target.value))}
                   className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
@@ -339,10 +407,20 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 <label className="text-[11px] text-[#71717A] font-semibold">Stock Total (Auto)</label>
                 <div className="w-full bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-2 font-sans text-xs font-bold text-[#18181B] flex items-center justify-between rounded-xl">
                   <span>{totalCalculatedStock} unids</span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${
-                    totalCalculatedStock <= 0 ? 'bg-[#FEF2F2] text-[#EF4444]' : totalCalculatedStock < minStockAlert ? 'bg-[#FFFBEB] text-[#D97706]' : 'bg-[#ECFDF5] text-[#10B981]'
-                  }`}>
-                    {totalCalculatedStock <= 0 ? 'Agotado' : totalCalculatedStock < minStockAlert ? 'Bajo' : 'Óptimo'}
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-full ${
+                      totalCalculatedStock <= 0
+                        ? 'bg-[#FEF2F2] text-[#EF4444]'
+                        : totalCalculatedStock < minStockAlert
+                        ? 'bg-[#FFFBEB] text-[#D97706]'
+                        : 'bg-[#ECFDF5] text-[#10B981]'
+                    }`}
+                  >
+                    {totalCalculatedStock <= 0
+                      ? 'Agotado'
+                      : totalCalculatedStock < minStockAlert
+                      ? 'Bajo'
+                      : 'Óptimo'}
                   </span>
                 </div>
               </div>
@@ -350,12 +428,14 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
               <div className="space-y-1">
-                <label className="text-[11px] text-[#71717A] font-semibold">Umbral Alerta Stock Crítico (&le; unids)</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">
+                  Umbral Alerta Stock Crítico (&le; unids)
+                </label>
                 <input
                   type="number"
                   min={1}
                   value={minStockAlert}
-                  onChange={e => setMinStockAlert(Number(e.target.value))}
+                  onChange={(e) => setMinStockAlert(Number(e.target.value))}
                   className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
@@ -365,7 +445,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   type="checkbox"
                   id="isFeatured"
                   checked={isFeatured}
-                  onChange={e => setIsFeatured(e.target.checked)}
+                  onChange={(e) => setIsFeatured(e.target.checked)}
                   className="accent-black w-4 h-4 rounded"
                 />
                 <label htmlFor="isFeatured" className="text-[#18181B] font-semibold cursor-pointer text-xs">
@@ -386,7 +466,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 <input
                   type="text"
                   value={modulo}
-                  onChange={e => setModulo(e.target.value)}
+                  onChange={(e) => setModulo(e.target.value)}
                   placeholder="Ej: 200mm, 600mm, 800-900mm"
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
@@ -397,7 +477,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 <input
                   type="text"
                   value={dimensiones}
-                  onChange={e => setDimensiones(e.target.value)}
+                  onChange={(e) => setDimensiones(e.target.value)}
                   placeholder="Ej: 145 × 480 × 590 mm"
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
@@ -408,7 +488,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 <input
                   type="text"
                   value={configuracion}
-                  onChange={e => setConfiguracion(e.target.value)}
+                  onChange={(e) => setConfiguracion(e.target.value)}
                   placeholder="Ej: 2 niveles, Esquinero universal"
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
@@ -419,7 +499,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 <input
                   type="text"
                   value={material}
-                  onChange={e => setMaterial(e.target.value)}
+                  onChange={(e) => setMaterial(e.target.value)}
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
@@ -429,7 +509,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 <input
                   type="text"
                   value={acabado}
-                  onChange={e => setAcabado(e.target.value)}
+                  onChange={(e) => setAcabado(e.target.value)}
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
@@ -439,7 +519,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 <input
                   type="text"
                   value={mecanismo}
-                  onChange={e => setMecanismo(e.target.value)}
+                  onChange={(e) => setMecanismo(e.target.value)}
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
@@ -450,18 +530,20 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   required
                   rows={2}
                   value={shortDescription}
-                  onChange={e => setShortDescription(e.target.value)}
+                  onChange={(e) => setShortDescription(e.target.value)}
                   placeholder="Descripción técnica oficial basada en documentación comercial de importación..."
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white p-3.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
 
               <div className="sm:col-span-3 space-y-1.5">
-                <label className="text-[#52525B] font-semibold">Nota de Importación / Verificación (Opcional)</label>
+                <label className="text-[#52525B] font-semibold">
+                  Nota de Importación / Verificación (Opcional)
+                </label>
                 <input
                   type="text"
                   value={notaTecnica}
-                  onChange={e => setNotaTecnica(e.target.value)}
+                  onChange={(e) => setNotaTecnica(e.target.value)}
                   placeholder="Ej: Confirmar acabado exacto por variante antes de especificar instalación."
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
@@ -474,17 +556,17 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] font-semibold text-xs rounded-full transition-colors"
+              className="px-5 py-2.5 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] font-semibold text-xs rounded-full transition-colors cursor-pointer"
             >
-              Cancelar
+              Cerrar
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="px-6 py-2.5 bg-[#18181B] text-white font-semibold text-xs hover:bg-black flex items-center gap-2 rounded-full shadow-md transition-all"
+              className="px-6 py-2.5 bg-[#18181B] text-white font-semibold text-xs hover:bg-black flex items-center gap-2 rounded-full shadow-md transition-all cursor-pointer"
             >
               <Save className="w-4 h-4" />
-              <span>{isSaving ? 'Guardando...' : 'Guardar Ficha Técnica'}</span>
+              <span>{isSaving ? 'Guardando en Supabase...' : 'Guardar Ficha Técnica en Supabase'}</span>
             </button>
           </div>
         </form>

@@ -9,7 +9,8 @@ export interface UploadResult {
 }
 
 /**
- * Resizes an image file if it exceeds maxDimension (default 1280px) and compresses to WebP,
+ * Resizes an image file if it exceeds maxDimension (default 1280px) and compresses to WebP
+ * (or JPEG if the browser's canvas does not natively encode WebP, e.g. older Safari),
  * shrinking 5-10 MB photos down to ~35-65 KB so Supabase Free Plan (1 GB) can store 15,000+ photos.
  */
 export async function optimizeImageFile(
@@ -44,15 +45,18 @@ export async function optimizeImageFile(
           return;
         }
 
+        // Fill white background for JPEG fallback or transparent images
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, width, height);
         ctx.drawImage(img, 0, 0, width, height);
 
-        // Try WebP first for maximum compression (~45 KB per photo) and transparency support
+        // Try WebP first; verify blob.type === 'image/webp' because Safari may silently return a 2MB 'image/png'
         canvas.toBlob(
           (webpBlob) => {
-            if (webpBlob && webpBlob.size > 0) {
+            if (webpBlob && webpBlob.type === 'image/webp' && webpBlob.size > 0) {
               resolve({ blob: webpBlob, mimeType: 'image/webp', ext: 'webp' });
             } else {
-              // Fallback to JPEG if browser does not encode WebP
+              // Fallback to compressed JPEG (~45-65 KB) when WebP encoding isn't supported by browser
               canvas.toBlob(
                 (jpegBlob) => {
                   if (jpegBlob && jpegBlob.size > 0) {
@@ -96,7 +100,7 @@ export function fileToDataUrl(blob: Blob): Promise<string> {
 
 /**
  * Upload an image file to Supabase Storage bucket 'product-images'.
- * Always compresses on the client first (~35-65 KB WebP) to preserve Supabase Free Tier storage.
+ * Always compresses on the client first (~35-65 KB WebP/JPEG) to preserve Supabase Free Tier storage.
  */
 export async function uploadProductImage(file: File, customName?: string): Promise<UploadResult> {
   const isImage =
@@ -113,7 +117,7 @@ export async function uploadProductImage(file: File, customName?: string): Promi
 
   const originalSize = file.size;
 
-  // 1. Compress & convert to lightweight WebP before uploading to Supabase Storage
+  // 1. Compress & convert to lightweight WebP/JPEG before uploading to Supabase Storage
   const { blob: optimizedBlob, mimeType, ext } = await optimizeImageFile(file, 1280, 0.82);
 
   // 2. Upload to Supabase Storage bucket 'product-images'
@@ -156,7 +160,7 @@ export async function uploadProductImage(file: File, customName?: string): Promi
     }
   }
 
-  // Fallback: Convert optimized WebP blob to Data URL
+  // Fallback: Convert optimized blob to Data URL
   const dataUrl = await fileToDataUrl(optimizedBlob);
 
   return {
@@ -181,7 +185,6 @@ export async function uploadMultipleProductImages(
   let completed = 0;
 
   const results: UploadResult[] = [];
-  // Upload in batches of 4 for fast parallel throughput without saturating connection
   const batchSize = 4;
   for (let i = 0; i < fileArray.length; i += batchSize) {
     const batch = fileArray.slice(i, i + batchSize);

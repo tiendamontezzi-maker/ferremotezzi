@@ -25,6 +25,7 @@ interface ImageUploadDropzoneProps {
   onChange: (url: string) => void;
   galleryUrls?: string[];
   onGalleryChange?: (urls: string[]) => void;
+  onAutoSave?: (primaryUrl: string, orderedGallery: string[]) => void | Promise<void>;
   productCode?: string;
   label?: string;
 }
@@ -34,6 +35,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
   onChange,
   galleryUrls = [],
   onGalleryChange,
+  onAutoSave,
   productCode,
   label = 'Fotografías Oficiales del Producto (Subida Ilimitada · Supabase Storage)'
 }) => {
@@ -67,7 +69,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
     return list;
   }, [value, galleryUrls]);
 
-  // Apply exact gallery order AND chosen primary cover independently
+  // Apply exact gallery order AND chosen primary cover, and trigger immediate auto-save if provided
   const applyGalleryState = (orderedList: string[], chosenPrimary?: string) => {
     const clean = orderedList.filter(Boolean);
     const primary =
@@ -78,6 +80,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
         : clean[0] || '';
     onChange(primary);
     onGalleryChange?.(clean);
+    onAutoSave?.(primary, clean);
   };
 
   const handleProcessMultipleFiles = async (files: FileList | File[]) => {
@@ -96,16 +99,18 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
       setLastUploads(results);
       const uploadedUrls = results.map((r) => r.url);
 
-      const isCurrentPlaceholder =
-        !value || value === '/images/products/kdj-60.jpg';
+      // If the current cover is empty or is still a default local catalog placeholder (/images/products/kdj-*.jpg),
+      // place the newly uploaded photos first and make the first uploaded photo the new Portada automatically!
+      const isOnlyLocalDefault =
+        !value ||
+        (value.startsWith('/images/products/') &&
+          normalizedGallery.every((u) => u.startsWith('/images/products/')));
 
-      const baseGallery = isCurrentPlaceholder
-        ? normalizedGallery.filter((u) => u !== '/images/products/kdj-60.jpg')
-        : normalizedGallery;
+      const combined = isOnlyLocalDefault
+        ? [...uploadedUrls, ...normalizedGallery]
+        : [...normalizedGallery, ...uploadedUrls];
 
-      const combined = [...baseGallery, ...uploadedUrls];
-      const newPrimary =
-        isCurrentPlaceholder || !value ? uploadedUrls[0] : value;
+      const newPrimary = isOnlyLocalDefault ? uploadedUrls[0] : value || uploadedUrls[0];
 
       applyGalleryState(combined, newPrimary);
     } catch (err: any) {
@@ -130,7 +135,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
       const oldUrl = next[targetIdx];
       next[targetIdx] = res.url;
 
-      const newPrimary = oldUrl === value ? res.url : value;
+      const newPrimary = oldUrl === value || targetIdx === 0 ? res.url : value;
       applyGalleryState(next, newPrimary);
     } catch (err: any) {
       console.error(err);
@@ -197,16 +202,8 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
   };
 
   // Set any photo as the Cover Photo (Portada)
-  const handleSetPrimary = (urlToPromote: string, moveFirst = false) => {
-    if (moveFirst) {
-      const reordered = [
-        urlToPromote,
-        ...normalizedGallery.filter((u) => u !== urlToPromote)
-      ];
-      applyGalleryState(reordered, urlToPromote);
-    } else {
-      applyGalleryState(normalizedGallery, urlToPromote);
-    }
+  const handleSetPrimary = (urlToPromote: string) => {
+    applyGalleryState(normalizedGallery, urlToPromote);
   };
 
   // Move photo from `fromIndex` to `toIndex`
@@ -274,7 +271,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
           <button
             type="button"
             onClick={() => multiFileInputRef.current?.click()}
-            className="px-3 py-1 rounded-full bg-[#18181B] text-white font-semibold hover:bg-black transition-all flex items-center gap-1 shadow-2xs"
+            className="px-3 py-1 rounded-full bg-[#18181B] text-white font-semibold hover:bg-black transition-all flex items-center gap-1 shadow-2xs cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Subir Fotografías</span>
@@ -282,7 +279,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
           <button
             type="button"
             onClick={() => setShowUrlInput((prev) => !prev)}
-            className="px-3 py-1 rounded-full bg-[#F4F4F5] text-[#52525B] hover:text-[#18181B] hover:bg-[#EAEAEA] font-medium transition-all flex items-center gap-1"
+            className="px-3 py-1 rounded-full bg-[#F4F4F5] text-[#52525B] hover:text-[#18181B] hover:bg-[#EAEAEA] font-medium transition-all flex items-center gap-1 cursor-pointer"
           >
             <LinkIcon className="w-3 h-3" />
             <span>{showUrlInput ? 'Ocultar URL' : 'Añadir por URL'}</span>
@@ -306,7 +303,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
           <div className="space-y-2 py-2">
             <div className="w-7 h-7 border-2 border-[#18181B] border-t-transparent rounded-full animate-spin mx-auto" />
             <p className="text-xs text-[#18181B] font-bold">
-              Comprimiendo a WebP ligero y subiendo a Supabase Storage...
+              Comprimiendo y guardando en Supabase Storage...
               {uploadProgress ? ` (${uploadProgress.done}/${uploadProgress.total})` : ''}
             </p>
             <p className="text-[11px] text-[#71717A]">
@@ -323,7 +320,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
                 Haz clic aquí o arrastra todas las fotografías que quieras (Sin límite de cantidad)
               </span>
               <span className="text-[11px] text-[#71717A] block mt-0.5">
-                Súbelas en cualquier orden: abajo puedes arrastrarlas, usar las flechas (◀ ▶) o elegir el número de posición y cuál será la Portada.
+                Al subir, reordenar o elegir Portada, los cambios se guardan automáticamente en Supabase.
               </span>
             </div>
           </div>
@@ -385,16 +382,16 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
             <CheckCircle2 className="w-4 h-4 text-[#059669] shrink-0" />
             <span>
               {lastUploads.length === 1
-                ? '1 fotografía subida a Supabase Storage CDN'
-                : `${lastUploads.length} fotografías subidas a Supabase Storage CDN`}
+                ? '¡1 fotografía subida y sincronizada en Supabase!'
+                : `¡${lastUploads.length} fotografías subidas y sincronizadas en Supabase!`}
             </span>
           </div>
           <div className="flex items-center gap-1.5 font-mono text-[10px] bg-white/80 px-2.5 py-0.5 rounded-full border border-[#A7F3D0]">
             <Sparkles className="w-3 h-3 text-[#059669]" />
             <span>
               {totalOriginalKB > 0
-                ? `${totalOriginalKB.toFixed(0)} KB → ${totalCompressedKB.toFixed(1)} KB WebP`
-                : `${totalCompressedKB.toFixed(1)} KB WebP`}
+                ? `${totalOriginalKB.toFixed(0)} KB → ${totalCompressedKB.toFixed(1)} KB`
+                : `${totalCompressedKB.toFixed(1)} KB`}
             </span>
           </div>
         </div>
