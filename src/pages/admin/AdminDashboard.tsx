@@ -1,51 +1,56 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useProducts } from '../../context/ProductContext';
-import { BrandLogo } from '../../components/ui/BrandLogo';
-import { InventoryManagement } from './InventoryManagement';
+import { OverviewDashboard } from './OverviewDashboard';
 import { OrdersKanban } from './OrdersKanban';
-import { ProductAnalyticsTab } from './ProductAnalyticsTab';
-import { AbandonedCartsTab } from './AbandonedCartsTab';
+import { InventoryManagement } from './InventoryManagement';
+import { CategoriesTab } from './CategoriesTab';
 import { UserManagementTab } from './UserManagementTab';
-import { PieChartsDashboard } from './PieChartsDashboard';
+import { ReviewsTab } from './ReviewsTab';
+import { DiscountsTab } from './DiscountsTab';
+import { ProductAnalyticsTab } from './ProductAnalyticsTab';
+import { MarketingTab } from './MarketingTab';
 import { ElectronicBillingTab } from './ElectronicBillingTab';
-import { ActivityLogsTab } from './ActivityLogsTab';
 import { AppointmentsTab } from './AppointmentsTab';
+import { ActivityLogsTab } from './ActivityLogsTab';
 import { CreateOrderModal } from './CreateOrderModal';
 import { CreateUserModal } from './CreateUserModal';
+import { ProductFormModal } from './ProductFormModal';
 import {
-  PieChart as PieIcon, MousePointerClick, ShoppingBag, ShoppingCart,
-  Users, Package, FileText, FileSpreadsheet, Plus, ShieldAlert,
-  LogOut, Menu, X, ChevronRight, Sparkles, Building2, MapPin, UserCheck,
-  Calendar, ShieldCheck
+  LayoutDashboard, ShoppingBag, Package, Layers, Users, Star,
+  Percent, BarChart3, Megaphone, Settings, Plus, Search, Bell,
+  ChevronDown, ShieldAlert, Menu, X, LogOut, Calendar, ShieldCheck,
+  Check
 } from 'lucide-react';
 
-type AdminTab =
+export type AdminTab =
   | 'overview'
-  | 'analytics'
   | 'orders'
-  | 'abandoned_carts'
-  | 'users'
   | 'inventory'
+  | 'categories'
+  | 'users'
+  | 'reviews'
+  | 'discounts'
+  | 'analytics'
+  | 'marketing'
+  | 'settings'
   | 'billing'
   | 'appointments'
-  | 'logs'
-  | 'leads';
+  | 'logs';
 
 export const AdminDashboard: React.FC = () => {
-  const { user, role, switchRole, logout, systemUsers } = useAuth();
-  const { products, orders, wholesaleLeads, abandonedCarts, productClickAnalytics, appointments, activityLogs } = useProducts();
+  const { user, role, switchRole, logout } = useAuth();
+  const { products, orders, coupons, reviews, appointments, activityLogs } = useProducts();
 
   const [activeTab, setActiveTab] = useState<AdminTab>('overview');
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   // Modals state
   const [isCreateOrderModalOpen, setIsCreateOrderModalOpen] = useState(false);
+  const [isCreateProductModalOpen, setIsCreateProductModalOpen] = useState(false);
   const [isCreateUserModalOpen, setIsCreateUserModalOpen] = useState(false);
-
-  // Calculations for sidebar badges
-  const lowStockCount = products.filter(p => p.stock <= (p.min_stock_alert ?? 8)).length;
-  const abandonedCartsCount = abandonedCarts.filter(c => c.status === 'abandonado').length;
 
   // Access Control: Client role check
   if (role === 'cliente') {
@@ -58,7 +63,7 @@ export const AdminDashboard: React.FC = () => {
           Acceso Restringido
         </h1>
         <p className="text-xs text-obsidian/70 font-sans leading-relaxed">
-          Tu usuario actual tiene rol de <strong>Cliente / Profesional</strong>. Las funciones de analítica inteligente, creación de pedidos, carritos abandonados e inventario requieren permisos de <strong>Administrador</strong> o <strong>Colaborador</strong>.
+          Tu usuario actual tiene rol de <strong>Cliente / Profesional</strong>. Las funciones administrativas requieren permisos de <strong>Administrador</strong> o <strong>Colaborador</strong>.
         </p>
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
@@ -78,438 +83,313 @@ export const AdminDashboard: React.FC = () => {
     );
   }
 
-  // Navigation Items Definition
-  const NAV_ITEMS: {
+  // Sidebar navigation items (exact items & order from the reference design)
+  const SIDEBAR_ITEMS: {
     id: AdminTab;
     label: string;
     icon: any;
-    badge?: string | number;
-    badgeColor?: string;
+    badge?: number | string;
   }[] = [
-    {
-      id: 'overview',
-      label: 'Resumen & Tortas',
-      icon: PieIcon,
-      badge: '5 Gráficos',
-      badgeColor: 'bg-black text-white'
-    },
-    {
-      id: 'analytics',
-      label: 'Más Clickeados',
-      icon: MousePointerClick,
-      badge: `${productClickAnalytics.length} refs`,
-      badgeColor: 'bg-black/[0.05] text-black border border-black/10'
-    },
-    {
-      id: 'orders',
-      label: 'Gestión de Pedidos',
-      icon: ShoppingBag,
-      badge: orders.length,
-      badgeColor: 'bg-black/[0.05] text-black border border-black/10'
-    },
-    {
-      id: 'abandoned_carts',
-      label: 'Carritos Abandonados',
-      icon: ShoppingCart,
-      badge: abandonedCartsCount > 0 ? `${abandonedCartsCount} en riesgo` : '0',
-      badgeColor: abandonedCartsCount > 0 ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-black/5 text-obsidian/60'
-    },
-    {
-      id: 'users',
-      label: 'Directorio Clientes',
-      icon: Users,
-      badge: systemUsers.length,
-      badgeColor: 'bg-black/[0.05] text-black border border-black/10'
-    },
-    {
-      id: 'inventory',
-      label: 'Control Inventario',
-      icon: Package,
-      badge: lowStockCount > 0 ? `${lowStockCount} alertas` : `${products.length} KDJ`,
-      badgeColor: lowStockCount > 0 ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-black/5 text-obsidian/60'
-    },
-    {
-      id: 'billing',
-      label: 'Facturación DIAN',
-      icon: FileText,
-      badge: 'API Ready',
-      badgeColor: 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-    },
-    {
-      id: 'appointments',
-      label: 'Citas Showroom',
-      icon: Calendar,
-      badge: appointments.length > 0 ? `${appointments.length} citas` : '0',
-      badgeColor: 'bg-black/[0.05] text-black border border-black/10'
-    },
-    {
-      id: 'logs',
-      label: 'Auditoría & Logs',
-      icon: ShieldCheck,
-      badge: `${activityLogs.length} logs`,
-      badgeColor: 'bg-black text-white'
-    },
-    {
-      id: 'leads',
-      label: 'Prospectos B2B',
-      icon: FileSpreadsheet,
-      badge: wholesaleLeads.length,
-      badgeColor: 'bg-black/[0.05] text-black border border-black/10'
-    }
+    { id: 'overview', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'orders', label: 'Orders', icon: ShoppingBag, badge: 24 },
+    { id: 'inventory', label: 'Products', icon: Package, badge: products.length || 48 },
+    { id: 'categories', label: 'Categories', icon: Layers },
+    { id: 'users', label: 'Customers', icon: Users, badge: 32 },
+    { id: 'reviews', label: 'Reviews', icon: Star, badge: 14 },
+    { id: 'discounts', label: 'Discounts', icon: Percent },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'marketing', label: 'Marketing', icon: Megaphone },
+    { id: 'settings', label: 'Settings', icon: Settings }
   ];
 
-  const currentTabInfo = NAV_ITEMS.find(i => i.id === activeTab);
-
-  // Initials for Asesor Avatar
-  const asesorName = user?.full_name || 'Carlos Mendoza';
-  const asesorInitials = asesorName
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map(p => p[0].toUpperCase())
-    .join('');
-
-  const asesorRoleLabel =
-    role === 'admin'
-      ? 'Director General / Administrador'
-      : role === 'colaborador'
-      ? 'Asesor Comercial / Showroom'
-      : 'Cliente / Arquitecto';
+  const currentTabLabel =
+    activeTab === 'overview'
+      ? 'Dashboard'
+      : SIDEBAR_ITEMS.find(i => i.id === activeTab)?.label || 'Panel Montezzi';
 
   return (
-    <div className="min-h-screen bg-[#FAF9F7] flex flex-col md:flex-row">
-      {/* Mobile Top Bar */}
-      <div className="md:hidden bg-white border-b border-black/10 p-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setIsMobileSidebarOpen(true)}
-            className="p-2 border border-black/15 rounded-xs hover:border-black text-obsidian"
-            title="Abrir menú lateral"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-          <span className="font-sans font-bold text-xs uppercase tracking-wider text-obsidian">
-            {currentTabInfo?.label}
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono uppercase bg-black text-white px-2 py-0.5 rounded-xs">
-            {role}
-          </span>
-          <button
-            onClick={() => setIsCreateOrderModalOpen(true)}
-            className="p-2 bg-black text-white rounded-xs"
-            title="Crear Pedido"
-          >
-            <Plus className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Drawer Backdrop */}
-      {isMobileSidebarOpen && (
-        <div
-          onClick={() => setIsMobileSidebarOpen(false)}
-          className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-xs transition-opacity"
-        />
-      )}
-
-      {/* SIDEBAR COMPONENT (Desktop Sticky + Mobile Drawer) */}
-      <aside
-        className={`fixed md:sticky top-0 z-40 h-screen w-72 sm:w-80 bg-white border-r border-black/10 flex flex-col justify-between transition-transform duration-300 ease-in-out shrink-0 overflow-y-auto ${
-          isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-        }`}
-      >
-        <div className="p-5 space-y-6">
-          {/* Brand Header */}
-          <div className="flex items-center justify-between border-b border-black/10 pb-4">
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-sans font-bold tracking-[0.2em] text-sm text-obsidian uppercase">
-                  MONTEZZI
-                </span>
-                <span className="text-[9px] font-mono text-[#5A3927] bg-[#F2ECE4] border border-[#DDD6C8] px-1.5 py-0.2 rounded-xs font-semibold">
-                  2026
-                </span>
-              </div>
-              <span className="text-[10px] font-mono text-obsidian/50 tracking-wider block mt-0.5">
-                Panel de Control & Inteligencia
-              </span>
-            </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-[#FCEAE2]/60 via-[#F7F4F0] to-[#E5EDF4]/60 p-2 sm:p-5 lg:p-7 flex items-center justify-center font-sans antialiased">
+      {/* Main Elevated Card Canvas with soft rounded corners */}
+      <div className="w-full max-w-[1540px] bg-white rounded-[28px] sm:rounded-[36px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.07)] border border-black/[0.04] flex flex-col md:flex-row overflow-hidden min-h-[920px]">
+        
+        {/* Mobile Header Bar */}
+        <div className="md:hidden bg-white border-b border-[#F0EFEA] p-4 flex items-center justify-between sticky top-0 z-30">
+          <div className="flex items-center gap-2.5">
             <button
-              onClick={() => setIsMobileSidebarOpen(false)}
-              className="md:hidden p-1.5 text-obsidian/50 hover:text-black rounded-xs"
+              onClick={() => setIsMobileSidebarOpen(true)}
+              className="p-2 border border-black/10 rounded-xl hover:border-black text-black"
             >
-              <X className="w-5 h-5" />
+              <Menu className="w-5 h-5" />
             </button>
-          </div>
-
-          {/* ASESOR PROFILE CARD (Prominently loads name and role) */}
-          <div className="p-4 bg-gradient-to-br from-[#FAF9F7] to-white border border-black/10 rounded-sm space-y-3 relative overflow-hidden shadow-xs">
-            {/* Subtle Wood Accent Bar */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5A3927] via-[#8B5A3E] to-[#C5A880]" />
-
-            <div className="flex items-start gap-3">
-              {/* Asesor Avatar with Initials */}
-              <div className="w-11 h-11 rounded-xs bg-[#11100F] text-[#FAF8F5] flex items-center justify-center font-mono font-bold text-sm tracking-wider shadow-sm shrink-0 border border-black/20">
-                {asesorInitials}
-              </div>
-
-              {/* Asesor Details */}
-              <div className="min-w-0 flex-1">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#5A3927] font-semibold block">
-                  Asesor Conectado
-                </span>
-                <h4 className="font-sans font-bold text-xs text-obsidian truncate uppercase tracking-wide">
-                  {asesorName}
-                </h4>
-                <span className="inline-block mt-1 text-[9px] font-mono uppercase px-2 py-0.5 rounded-xs font-bold bg-black text-white tracking-wider">
-                  {role}
-                </span>
-              </div>
-            </div>
-
-            {/* Asesor Sub-details */}
-            <div className="pt-2 border-t border-black/5 text-[11px] font-sans space-y-1 text-obsidian/65">
-              <div className="flex items-center gap-1.5 truncate">
-                <MapPin className="w-3 h-3 text-[#5A3927] shrink-0" />
-                <span className="truncate">Showroom El Poblado · Medellín</span>
-              </div>
-              <div className="flex items-center justify-between text-[10px] font-mono pt-1 text-obsidian/50">
-                <span className="truncate">{user?.email || 'operaciones@montezzi.com'}</span>
-                <span className="text-emerald-700 font-bold flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                  Activo
-                </span>
-              </div>
-            </div>
-
-            {/* Quick Role Switcher for Testing */}
-            <div className="pt-2 border-t border-black/5 flex items-center justify-between text-[10px] font-mono">
-              <span className="text-obsidian/40 uppercase tracking-wider">Cambiar a:</span>
-              <div className="flex items-center gap-1">
-                <button
-                  type="button"
-                  onClick={() => switchRole('admin')}
-                  className={`px-1.5 py-0.5 rounded-xs uppercase tracking-wider transition-colors ${
-                    role === 'admin'
-                      ? 'bg-black text-white font-bold'
-                      : 'bg-black/5 text-obsidian/60 hover:bg-black/10'
-                  }`}
-                >
-                  Admin
-                </button>
-                <button
-                  type="button"
-                  onClick={() => switchRole('colaborador')}
-                  className={`px-1.5 py-0.5 rounded-xs uppercase tracking-wider transition-colors ${
-                    role === 'colaborador'
-                      ? 'bg-black text-white font-bold'
-                      : 'bg-black/5 text-obsidian/60 hover:bg-black/10'
-                  }`}
-                >
-                  Asesor
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation Menu */}
-          <nav className="space-y-1">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-obsidian/40 font-semibold block px-2 mb-2">
-              Navegación del Sistema
+            <span className="font-sans font-bold text-base text-[#18181B] tracking-tight">
+              Montezzi
             </span>
-            {NAV_ITEMS.map(item => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
+          </div>
 
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveTab(item.id);
-                    setIsMobileSidebarOpen(false);
-                  }}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xs text-xs font-sans transition-all text-left ${
-                    isActive
-                      ? 'bg-black text-white font-bold shadow-xs'
-                      : 'text-obsidian/75 hover:bg-black/[0.04] hover:text-black font-medium'
-                  }`}
-                >
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-obsidian/60'}`} />
-                    <span className="truncate uppercase tracking-wider text-[11px]">{item.label}</span>
-                  </div>
-
-                  {item.badge !== undefined && (
-                    <span
-                      className={`text-[9px] font-mono uppercase px-1.5 py-0.2 rounded-xs shrink-0 ${
-                        isActive ? 'bg-white/20 text-white font-medium' : item.badgeColor
-                      }`}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-        </div>
-
-        {/* Sidebar Footer with Quick Actions & Logout */}
-        <div className="p-4 border-t border-black/10 space-y-2 bg-[#FAFAFA]">
           <button
             onClick={() => setIsCreateOrderModalOpen(true)}
-            className="w-full py-2 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-xs hover:bg-black/85 transition-all shadow-md flex items-center justify-center gap-1.5"
+            className="px-3.5 py-1.5 bg-[#18181B] text-white text-xs font-semibold rounded-full flex items-center gap-1 shadow-xs"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>+ Crear Pedido</span>
-          </button>
-
-          <button
-            onClick={() => setIsCreateUserModalOpen(true)}
-            className="w-full py-2 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors shadow-xs flex items-center justify-center gap-1.5"
-          >
-            <Users className="w-3.5 h-3.5" />
-            <span>+ Crear Usuario</span>
-          </button>
-
-          <button
-            onClick={logout}
-            className="w-full pt-2 flex items-center justify-center gap-1.5 text-[11px] font-sans text-obsidian/50 hover:text-red-700 transition-colors"
-          >
-            <LogOut className="w-3 h-3" />
-            <span>Cerrar Sesión</span>
+            <span>Order</span>
           </button>
         </div>
-      </aside>
 
-      {/* MAIN CONTENT AREA */}
-      <main className="flex-1 min-w-0 bg-white flex flex-col min-h-screen">
-        {/* Top Header Bar for Desktop */}
-        <header className="hidden md:flex items-center justify-between px-8 py-5 border-b border-black/10 bg-white sticky top-0 z-20 shadow-xs">
-          <div>
-            <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-obsidian/50">
-              <span>Panel Montezzi</span>
-              <ChevronRight className="w-3 h-3" />
-              <span className="text-black font-bold">{currentTabInfo?.label}</span>
+        {/* Mobile Drawer Backdrop */}
+        {isMobileSidebarOpen && (
+          <div
+            onClick={() => setIsMobileSidebarOpen(false)}
+            className="md:hidden fixed inset-0 z-40 bg-black/40 backdrop-blur-xs transition-opacity"
+          />
+        )}
+
+        {/* ============================================================ */}
+        {/* LEFT SIDEBAR (Identical to UI design in user reference photo) */}
+        {/* ============================================================ */}
+        <aside
+          className={`fixed md:static inset-y-0 left-0 z-50 w-64 sm:w-72 bg-white border-r border-[#F0EFEA] p-6 flex flex-col justify-between shrink-0 transition-transform duration-300 ease-in-out overflow-y-auto ${
+            isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+          }`}
+        >
+          <div className="space-y-8">
+            {/* Logo */}
+            <div className="flex items-center justify-between">
+              <span className="font-sans font-extrabold text-2xl tracking-tight text-[#18181B]">
+                Montezzi
+              </span>
+              <button
+                onClick={() => setIsMobileSidebarOpen(false)}
+                className="md:hidden p-1 text-[#71717A] hover:text-black"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-            <h1 className="font-sans text-xl font-bold text-obsidian uppercase tracking-wider mt-0.5">
-              {currentTabInfo?.label}
-            </h1>
-          </div>
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-sans text-obsidian/60">
-              Asesor: <strong className="text-black font-medium">{asesorName}</strong>
-            </span>
-            <span className="text-obsidian/20">|</span>
-            <button
-              onClick={() => setIsCreateOrderModalOpen(true)}
-              className="px-4 py-2 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-xs hover:bg-black/85 transition-all shadow-md flex items-center gap-1.5"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              <span>Crear Pedido</span>
-            </button>
-          </div>
-        </header>
+            {/* Navigation Menu List */}
+            <nav className="space-y-1.5">
+              {SIDEBAR_ITEMS.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
 
-        {/* Dynamic Content Views */}
-        <div className="p-4 sm:p-8 flex-1">
-          {activeTab === 'overview' && <PieChartsDashboard />}
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveTab(item.id);
+                      setIsMobileSidebarOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-xs transition-all text-left group ${
+                      isActive
+                        ? 'bg-[#18181B] text-white font-semibold shadow-xs'
+                        : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] font-medium'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon className={`w-4 h-4 shrink-0 transition-colors ${
+                        isActive ? 'text-white' : 'text-[#71717A] group-hover:text-[#18181B]'
+                      }`} />
+                      <span className="text-[13px]">{item.label}</span>
+                    </div>
 
-          {activeTab === 'analytics' && <ProductAnalyticsTab />}
+                    {item.badge !== undefined && (
+                      <span className={`text-[11px] font-sans font-medium px-2 py-0.5 rounded-full ${
+                        isActive ? 'text-white/80' : 'text-[#A1A1AA]'
+                      }`}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
 
-          {activeTab === 'orders' && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-sans text-base font-bold text-obsidian uppercase tracking-wider">
-                    Tablero de Despachos & Logística
-                  </h3>
-                  <p className="text-xs text-obsidian/60 font-sans">
-                    Gestión integral de pedidos recibidos por web, showroom y cotizaciones telefónicas
-                  </p>
-                </div>
+              {/* Extra Operational Links (Appointments & Billing) */}
+              <div className="pt-4 mt-4 border-t border-[#F0EFEA] space-y-1">
                 <button
-                  onClick={() => setIsCreateOrderModalOpen(true)}
-                  className="px-4 py-2 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-xs hover:bg-black/85 transition-all shadow-md flex items-center gap-2"
+                  onClick={() => setActiveTab('appointments')}
+                  className={`w-full flex items-center justify-between px-4 py-2.5 rounded-2xl text-xs transition-colors ${
+                    activeTab === 'appointments' ? 'bg-[#18181B] text-white font-semibold' : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5]'
+                  }`}
                 >
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>+ Crear Nuevo Pedido</span>
+                  <div className="flex items-center gap-3">
+                    <Calendar className="w-4 h-4" />
+                    <span className="text-[12px]">Showroom Citas</span>
+                  </div>
+                  <span className="text-[10px] text-[#A1A1AA]">{appointments.length}</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('billing')}
+                  className={`w-full flex items-center justify-between px-4 py-2.5 rounded-2xl text-xs transition-colors ${
+                    activeTab === 'billing' ? 'bg-[#18181B] text-white font-semibold' : 'text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5]'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <ShieldCheck className="w-4 h-4" />
+                    <span className="text-[12px]">Facturación DIAN</span>
+                  </div>
+                  <span className="text-[9px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">API</span>
                 </button>
               </div>
-              <OrdersKanban />
+            </nav>
+          </div>
+
+          {/* Bottom Sidebar Action (+ Add Product Pill Button) */}
+          <div className="pt-6 space-y-3">
+            <button
+              onClick={() => setIsCreateProductModalOpen(true)}
+              className="w-full py-3 bg-[#18181B] hover:bg-black text-white font-sans font-semibold text-xs rounded-full flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.98]"
+            >
+              <Plus className="w-4 h-4" />
+              <span>+ Add Product</span>
+            </button>
+
+            <button
+              onClick={logout}
+              className="w-full text-center text-[11px] text-[#A1A1AA] hover:text-red-600 transition-colors flex items-center justify-center gap-1.5 pt-1"
+            >
+              <LogOut className="w-3 h-3" />
+              <span>Cerrar Sesión</span>
+            </button>
+          </div>
+        </aside>
+
+        {/* ============================================================ */}
+        {/* RIGHT / MAIN CONTENT AREA                                   */}
+        {/* ============================================================ */}
+        <main className="flex-1 min-w-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-8 overflow-y-auto">
+          {/* Top Bar matching reference: H1 + Subtitle on Left | Search, Bell, Profile, + New Order on Right */}
+          <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pb-2">
+            <div>
+              <h1 className="font-sans text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight">
+                {currentTabLabel}
+              </h1>
+              <p className="text-xs text-[#71717A] font-sans mt-0.5">
+                Welcome back! Here's what's happening with your store today.
+              </p>
             </div>
-          )}
 
-          {activeTab === 'abandoned_carts' && <AbandonedCartsTab />}
+            {/* Right Controls */}
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Search Pill */}
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search products, orders, customers..."
+                  className="w-60 sm:w-72 bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white text-xs text-[#18181B] rounded-full pl-4 pr-9 py-2.5 transition-all outline-none placeholder:text-[#A1A1AA]"
+                />
+                <Search className="w-3.5 h-3.5 absolute right-3.5 top-3 text-[#A1A1AA]" />
+              </div>
 
-          {activeTab === 'users' && <UserManagementTab />}
+              {/* Notification Bell */}
+              <button
+                className="w-9 h-9 rounded-full bg-[#F4F4F5] hover:bg-[#EAEAEA] flex items-center justify-center text-[#71717A] hover:text-[#18181B] transition-colors relative"
+                title="Notificaciones"
+              >
+                <Bell className="w-4 h-4" />
+                <span className="w-4 h-4 rounded-full bg-[#F59E0B] text-white text-[9px] font-bold flex items-center justify-center absolute -top-1 -right-1 border-2 border-white shadow-2xs">
+                  3
+                </span>
+              </button>
 
-          {activeTab === 'inventory' && <InventoryManagement />}
-
-          {activeTab === 'billing' && <ElectronicBillingTab />}
-
-          {activeTab === 'appointments' && <AppointmentsTab />}
-
-          {activeTab === 'logs' && <ActivityLogsTab />}
-
-          {activeTab === 'leads' && (
-            <div className="bg-white border border-black/10 rounded-sm p-6 space-y-4 shadow-xs">
-              <h3 className="font-sans text-base text-obsidian font-bold uppercase tracking-wider">
-                Solicitudes de Distribución y Atención Especializada B2B
-              </h3>
-              {wholesaleLeads.length === 0 ? (
-                <p className="text-xs text-obsidian/50 py-8 text-center font-sans italic">
-                  No hay solicitudes registradas aún. Las solicitudes enviadas desde la página oficial de distribución aparecerán aquí.
-                </p>
-              ) : (
-                <div className="divide-y divide-black/5">
-                  {wholesaleLeads.map(lead => (
-                    <div key={lead.id} className="py-4 space-y-2 text-xs font-sans">
-                      <div className="flex items-center justify-between">
-                        <span className="font-semibold text-obsidian text-sm">{lead.full_name} · {lead.company}</span>
-                        <span className="text-[10px] font-mono text-black uppercase bg-black/5 border border-black/10 px-2 py-0.5 rounded">
-                          {lead.status}
-                        </span>
-                      </div>
-                      <div className="text-obsidian/70 grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        <div><strong>Ciudad:</strong> {lead.city}</div>
-                        <div><strong>Teléfono:</strong> {lead.phone}</div>
-                        <div><strong>Email:</strong> {lead.email}</div>
-                        <div><strong>Tipo de negocio:</strong> {lead.business_type}</div>
-                        <div><strong>Volumen estimado:</strong> {lead.estimated_volume}</div>
-                        <div><strong>Interés:</strong> {lead.interested_products}</div>
-                      </div>
-                      <p className="p-3 bg-black/[0.02] border border-black/10 text-obsidian/90 rounded text-xs mt-1">
-                        "{lead.message}"
-                      </p>
+              {/* User Profile Pill Widget */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsProfileDropdownOpen(prev => !prev)}
+                  className="flex items-center gap-2.5 p-1 pl-1.5 pr-3 bg-white hover:bg-[#F4F4F5] rounded-full border border-black/5 transition-all"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+                    alt="Sarah Johnson"
+                    className="w-8 h-8 rounded-full object-cover border border-black/10"
+                  />
+                  <div className="text-left hidden sm:block">
+                    <div className="text-xs font-bold text-[#18181B] leading-tight">
+                      {user?.full_name || 'Sarah Johnson'}
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </main>
+                    <div className="text-[10px] text-[#A1A1AA]">
+                      {role === 'admin' ? 'Store Manager' : 'Colaborador Showroom'}
+                    </div>
+                  </div>
+                  <ChevronDown className="w-3.5 h-3.5 text-[#A1A1AA]" />
+                </button>
 
-      {/* Global Modals */}
+                {isProfileDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-black/10 rounded-2xl shadow-xl p-2 z-50 text-xs">
+                    <div className="px-3 py-1.5 text-[10px] text-[#A1A1AA] font-mono uppercase tracking-wider">
+                      Simular Rol
+                    </div>
+                    {(['admin', 'colaborador'] as const).map(r => (
+                      <button
+                        key={r}
+                        onClick={() => {
+                          switchRole(r);
+                          setIsProfileDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-3 py-2 rounded-xl hover:bg-[#F4F4F5] flex items-center justify-between font-medium capitalize"
+                      >
+                        <span>{r}</span>
+                        {role === r && <Check className="w-3.5 h-3.5 text-black" />}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* + New Order Button */}
+              <button
+                onClick={() => setIsCreateOrderModalOpen(true)}
+                className="px-5 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full flex items-center gap-1.5 shadow-md transition-all active:scale-[0.98]"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>+ New Order</span>
+              </button>
+            </div>
+          </header>
+
+          {/* Dynamic Content Views */}
+          <div className="flex-1">
+            {activeTab === 'overview' && (
+              <OverviewDashboard
+                onNavigateTab={(tab) => setActiveTab(tab)}
+                onOpenCreateOrder={() => setIsCreateOrderModalOpen(true)}
+                onOpenCreateProduct={() => setIsCreateProductModalOpen(true)}
+              />
+            )}
+
+            {activeTab === 'orders' && <OrdersKanban />}
+            {activeTab === 'inventory' && <InventoryManagement />}
+            {activeTab === 'categories' && <CategoriesTab />}
+            {activeTab === 'users' && <UserManagementTab />}
+            {activeTab === 'reviews' && <ReviewsTab />}
+            {activeTab === 'discounts' && <DiscountsTab />}
+            {activeTab === 'analytics' && <ProductAnalyticsTab />}
+            {activeTab === 'marketing' && <MarketingTab />}
+            {activeTab === 'settings' && <ElectronicBillingTab />}
+            {activeTab === 'billing' && <ElectronicBillingTab />}
+            {activeTab === 'appointments' && <AppointmentsTab />}
+            {activeTab === 'logs' && <ActivityLogsTab />}
+          </div>
+        </main>
+      </div>
+
+      {/* Global Application Modals */}
       <CreateOrderModal
         isOpen={isCreateOrderModalOpen}
         onClose={() => setIsCreateOrderModalOpen(false)}
-        onOrderCreated={() => {
-          setActiveTab('orders');
-        }}
+        onOrderCreated={() => setActiveTab('orders')}
+      />
+
+      <ProductFormModal
+        isOpen={isCreateProductModalOpen}
+        onClose={() => setIsCreateProductModalOpen(false)}
       />
 
       <CreateUserModal
         isOpen={isCreateUserModalOpen}
         onClose={() => setIsCreateUserModalOpen(false)}
-        onUserCreated={() => {
-          setActiveTab('users');
-        }}
+        onUserCreated={() => setActiveTab('users')}
       />
     </div>
   );
