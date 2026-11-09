@@ -93,12 +93,12 @@ export const UserManagementTab: React.FC = () => {
   return (
     <div className="space-y-6 font-sans">
       {/* ============================================================ */}
-      {/* 1. TOP SUMMARY KPI CARDS                                      */}
+      {/* 1. TOP SUMMARY KPI CARDS (En Español y Pesos Colombianos)     */}
       {/* ============================================================ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Total Customers & Users</span>
+            <span className="text-xs font-semibold text-[#18181B]">Total Clientes & Usuarios</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
               <Users className="w-4 h-4" />
             </div>
@@ -107,13 +107,13 @@ export const UserManagementTab: React.FC = () => {
             {totalUsers}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            Registered accounts in CRM
+            Cuentas registradas en el directorio
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Active B2B / B2C Clients</span>
+            <span className="text-xs font-semibold text-[#18181B]">Clientes Activos B2B / B2C</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
               <UserCheck className="w-4 h-4" />
             </div>
@@ -122,13 +122,13 @@ export const UserManagementTab: React.FC = () => {
             {activeClients}
           </div>
           <div className="text-[11px] font-medium text-[#10B981]">
-            Architects, studios & designers
+            Arquitectos, estudios y diseñadores
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Internal Team</span>
+            <span className="text-xs font-semibold text-[#18181B]">Equipo Interno</span>
             <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
               <Shield className="w-4 h-4" />
             </div>
@@ -137,23 +137,24 @@ export const UserManagementTab: React.FC = () => {
             {staffCount}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            Admins & showroom advisors
+            Administradores y asesores showroom
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Lifetime Customer Value</span>
+            <span className="text-xs font-semibold text-[#18181B]">Compras Históricas Clientes</span>
             <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
               <Award className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight my-1">
-            ${(totalB2BValue / 1000000).toFixed(1)}M
+          <div className="text-xl sm:text-2xl font-bold text-[#18181B] tracking-tight my-1">
+            ${totalB2BValue.toLocaleString('es-CO')}{' '}
+            <span className="text-xs font-normal text-[#71717A]">COP</span>
           </div>
           <div className="flex items-center gap-1 text-[11px] font-medium text-[#10B981]">
             <TrendingUp className="w-3 h-3" />
-            <span>COP historical billing</span>
+            <span>Facturación acumulada en COP</span>
           </div>
         </div>
       </div>
@@ -175,7 +176,7 @@ export const UserManagementTab: React.FC = () => {
                     : 'text-[#71717A] hover:text-[#18181B]'
                 }`}
               >
-                {r === 'todos' ? 'All Users' : r === 'cliente' ? 'Customers' : r === 'colaborador' ? 'Advisors' : 'Admins'}
+                {r === 'todos' ? 'Todos' : r === 'cliente' ? 'Clientes' : r === 'colaborador' ? 'Asesores' : 'Admins'}
               </button>
             ))}
           </div>
@@ -207,7 +208,7 @@ export const UserManagementTab: React.FC = () => {
             className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5 text-[#71717A]" />
-            <span>Export CSV</span>
+            <span>Exportar CSV</span>
           </button>
 
           <button
@@ -223,7 +224,7 @@ export const UserManagementTab: React.FC = () => {
             className="px-5 py-2 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5 shadow-sm"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>+ New Customer</span>
+            <span>Nuevo Cliente</span>
           </button>
         </div>
       </div>
@@ -236,14 +237,14 @@ export const UserManagementTab: React.FC = () => {
           <table className="w-full text-left border-collapse text-xs font-sans">
             <thead>
               <tr className="bg-[#FAF9F7] border-b border-[#F0EFEA] text-[11px] font-semibold text-[#71717A]">
-                <th className="py-3.5 px-4">Customer / Company</th>
-                <th className="py-3.5 px-4">Role</th>
-                <th className="py-3.5 px-4">Contact</th>
-                <th className="py-3.5 px-4">City</th>
-                <th className="py-3.5 px-4 text-right">Orders</th>
-                <th className="py-3.5 px-4 text-right">Total Spent</th>
-                <th className="py-3.5 px-4 text-center">Status</th>
-                <th className="py-3.5 px-4 text-center">Quick Contact</th>
+                <th className="py-3.5 px-4">Cliente / Estudio</th>
+                <th className="py-3.5 px-4">Rol</th>
+                <th className="py-3.5 px-4">Contacto</th>
+                <th className="py-3.5 px-4">Ciudad</th>
+                <th className="py-3.5 px-4 text-right">Pedidos</th>
+                <th className="py-3.5 px-4 text-right">Total Compras (COP)</th>
+                <th className="py-3.5 px-4 text-center">Estado</th>
+                <th className="py-3.5 px-4 text-center">Contacto Rápido</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#F4F4F5]">

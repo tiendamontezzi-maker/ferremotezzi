@@ -16,7 +16,7 @@ export const ReviewsTab: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Average Customer Rating</span>
+            <span className="text-xs font-semibold text-[#18181B]">Calificación Promedio</span>
             <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
               <Star className="w-4 h-4 fill-current" />
             </div>
@@ -25,13 +25,13 @@ export const ReviewsTab: React.FC = () => {
             {avgRating} <span className="text-sm font-normal text-[#71717A]">/ 5.0</span>
           </div>
           <div className="text-[11px] font-medium text-[#10B981]">
-            100% verified architectural clients
+            100% clientes y arquitectos verificados
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Total Reviews</span>
+            <span className="text-xs font-semibold text-[#18181B]">Total de Reseñas</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
               <MessageSquare className="w-4 h-4" />
             </div>
@@ -40,13 +40,13 @@ export const ReviewsTab: React.FC = () => {
             {reviews.length}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            Published product evaluations
+            Evaluaciones de producto publicadas
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Satisfaction Score</span>
+            <span className="text-xs font-semibold text-[#18181B]">Índice de Satisfacción</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
               <ThumbsUp className="w-4 h-4" />
             </div>
@@ -55,7 +55,7 @@ export const ReviewsTab: React.FC = () => {
             98.4%
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            Would recommend Montezzi hardware
+            Recomendarían herrajes Montezzi
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@ export const ReviewsTab: React.FC = () => {
 
                     <span className="text-[10px] font-bold capitalize px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#10B981] shrink-0 flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3" />
-                      {rev.status}
+                      {rev.status === 'approved' ? 'Aprobada' : rev.status}
                     </span>
                   </div>
                 )}

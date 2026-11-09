@@ -83,28 +83,34 @@ export const AdminDashboard: React.FC = () => {
     );
   }
 
-  // Sidebar navigation items (exact items & order from the reference design)
+  // Sidebar navigation items (en Español, manteniendo la estética del diseño de referencia)
   const SIDEBAR_ITEMS: {
     id: AdminTab;
     label: string;
     icon: any;
     badge?: number | string;
   }[] = [
-    { id: 'overview', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'orders', label: 'Orders', icon: ShoppingBag, badge: 24 },
-    { id: 'inventory', label: 'Products', icon: Package, badge: products.length || 48 },
-    { id: 'categories', label: 'Categories', icon: Layers },
-    { id: 'users', label: 'Customers', icon: Users, badge: 32 },
-    { id: 'reviews', label: 'Reviews', icon: Star, badge: 14 },
-    { id: 'discounts', label: 'Discounts', icon: Percent },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'overview', label: 'Panel Principal', icon: LayoutDashboard },
+    { id: 'orders', label: 'Pedidos', icon: ShoppingBag, badge: orders.length || 24 },
+    { id: 'inventory', label: 'Productos & Stock', icon: Package, badge: products.length || 48 },
+    { id: 'categories', label: 'Categorías', icon: Layers },
+    { id: 'users', label: 'Clientes', icon: Users, badge: 32 },
+    { id: 'reviews', label: 'Reseñas', icon: Star, badge: reviews.length || 14 },
+    { id: 'discounts', label: 'Descuentos', icon: Percent },
+    { id: 'analytics', label: 'Analítica', icon: BarChart3 },
     { id: 'marketing', label: 'Marketing', icon: Megaphone },
-    { id: 'settings', label: 'Settings', icon: Settings }
+    { id: 'settings', label: 'Configuración', icon: Settings }
   ];
 
   const currentTabLabel =
     activeTab === 'overview'
-      ? 'Dashboard'
+      ? 'Panel Principal'
+      : activeTab === 'appointments'
+      ? 'Citas Showroom'
+      : activeTab === 'billing'
+      ? 'Facturación Electrónica DIAN'
+      : activeTab === 'logs'
+      ? 'Auditoría del Sistema'
       : SIDEBAR_ITEMS.find(i => i.id === activeTab)?.label || 'Panel Montezzi';
 
   return (
@@ -131,7 +137,7 @@ export const AdminDashboard: React.FC = () => {
             className="px-3.5 py-1.5 bg-[#18181B] text-white text-xs font-semibold rounded-full flex items-center gap-1 shadow-xs"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>Order</span>
+            <span>Pedido</span>
           </button>
         </div>
 
@@ -233,14 +239,14 @@ export const AdminDashboard: React.FC = () => {
             </nav>
           </div>
 
-          {/* Bottom Sidebar Action (+ Add Product Pill Button) */}
+          {/* Bottom Sidebar Action (+ Agregar Producto Pill Button) */}
           <div className="pt-6 space-y-3">
             <button
               onClick={() => setIsCreateProductModalOpen(true)}
               className="w-full py-3 bg-[#18181B] hover:bg-black text-white font-sans font-semibold text-xs rounded-full flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.98]"
             >
               <Plus className="w-4 h-4" />
-              <span>+ Add Product</span>
+              <span>Nuevo Producto</span>
             </button>
 
             <button
@@ -257,14 +263,14 @@ export const AdminDashboard: React.FC = () => {
         {/* RIGHT / MAIN CONTENT AREA                                   */}
         {/* ============================================================ */}
         <main className="flex-1 min-w-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-8 overflow-y-auto">
-          {/* Top Bar matching reference: H1 + Subtitle on Left | Search, Bell, Profile, + New Order on Right */}
+          {/* Top Bar */}
           <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pb-2">
             <div>
               <h1 className="font-sans text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight normal-case">
                 {currentTabLabel}
               </h1>
               <p className="text-xs text-[#71717A] font-sans mt-0.5">
-                Welcome back! Here's what's happening with your store today.
+                ¡Bienvenido de nuevo! Esto es lo que está ocurriendo en tu tienda hoy.
               </p>
             </div>
 
@@ -276,7 +282,7 @@ export const AdminDashboard: React.FC = () => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search products, orders, customers..."
+                  placeholder="Buscar productos, pedidos, clientes..."
                   className="w-60 sm:w-72 bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white text-xs text-[#18181B] rounded-full pl-4 pr-9 py-2.5 transition-all outline-none placeholder:text-[#A1A1AA]"
                 />
                 <Search className="w-3.5 h-3.5 absolute right-3.5 top-3 text-[#A1A1AA]" />
@@ -301,15 +307,15 @@ export const AdminDashboard: React.FC = () => {
                 >
                   <img
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-                    alt="Sarah Johnson"
+                    alt="Administrador Montezzi"
                     className="w-8 h-8 rounded-full object-cover border border-black/10"
                   />
                   <div className="text-left hidden sm:block">
                     <div className="text-xs font-bold text-[#18181B] leading-tight">
-                      {user?.full_name || 'Sarah Johnson'}
+                      {user?.full_name || 'Carlos Mendoza'}
                     </div>
                     <div className="text-[10px] text-[#A1A1AA]">
-                      {role === 'admin' ? 'Store Manager' : 'Colaborador Showroom'}
+                      {role === 'admin' ? 'Gerente de Tienda' : 'Asesor Showroom'}
                     </div>
                   </div>
                   <ChevronDown className="w-3.5 h-3.5 text-[#A1A1AA]" />
@@ -337,13 +343,13 @@ export const AdminDashboard: React.FC = () => {
                 )}
               </div>
 
-              {/* + New Order Button */}
+              {/* + Nuevo Pedido Button */}
               <button
                 onClick={() => setIsCreateOrderModalOpen(true)}
                 className="px-5 py-2.5 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full flex items-center gap-1.5 shadow-md transition-all active:scale-[0.98]"
               >
                 <Plus className="w-3.5 h-3.5" />
-                <span>+ New Order</span>
+                <span>Nuevo Pedido</span>
               </button>
             </div>
           </header>

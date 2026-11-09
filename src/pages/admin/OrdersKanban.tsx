@@ -63,12 +63,12 @@ export const OrdersKanban: React.FC = () => {
   return (
     <div className="space-y-6 font-sans">
       {/* ============================================================ */}
-      {/* 1. TOP SUMMARY KPI CARDS                                      */}
+      {/* 1. TOP SUMMARY KPI CARDS (En Español y Pesos Colombianos)     */}
       {/* ============================================================ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Total Orders</span>
+            <span className="text-xs font-semibold text-[#18181B]">Total de Pedidos</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
               <ShoppingBag className="w-4 h-4" />
             </div>
@@ -78,13 +78,13 @@ export const OrdersKanban: React.FC = () => {
           </div>
           <div className="flex items-center gap-1 text-[11px] font-medium text-[#10B981]">
             <TrendingUp className="w-3 h-3" />
-            <span>+8.2% This month</span>
+            <span>+8.2% Este mes</span>
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Pending & Alistando</span>
+            <span className="text-xs font-semibold text-[#18181B]">Pendientes & Alistando</span>
             <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
               <Clock className="w-4 h-4" />
             </div>
@@ -93,13 +93,13 @@ export const OrdersKanban: React.FC = () => {
             {pendingDispatchCount}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            Requires fulfillment & dispatch
+            Requieren alistamiento y despacho
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Delivered Orders</span>
+            <span className="text-xs font-semibold text-[#18181B]">Pedidos Entregados</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
               <PackageCheck className="w-4 h-4" />
             </div>
@@ -108,22 +108,23 @@ export const OrdersKanban: React.FC = () => {
             {deliveredCount}
           </div>
           <div className="text-[11px] font-medium text-[#10B981]">
-            Completed customer deliveries
+            Entregas completadas con éxito
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Active Order Volume</span>
+            <span className="text-xs font-semibold text-[#18181B]">Volumen de Ventas Activo</span>
             <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
               <DollarSign className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight my-1">
-            ${(totalRevenue / 1000000).toFixed(2)}M
+          <div className="text-xl sm:text-2xl font-bold text-[#18181B] tracking-tight my-1">
+            ${totalRevenue.toLocaleString('es-CO')}{' '}
+            <span className="text-xs font-normal text-[#71717A]">COP</span>
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            COP across active orders
+            Pesos colombianos en pedidos activos
           </div>
         </div>
       </div>
@@ -146,7 +147,7 @@ export const OrdersKanban: React.FC = () => {
             className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5 text-[#71717A]" />
-            <span>Export CSV</span>
+            <span>Exportar CSV</span>
           </button>
           <button
             onClick={handleExportOrdersJSON}
@@ -259,7 +260,7 @@ export const OrdersKanban: React.FC = () => {
                           {order.items.reduce((sum, i) => sum + i.quantity, 0)} unids
                         </span>
                         <span className="font-sans text-xs font-bold text-[#18181B]">
-                          ${order.total_amount.toLocaleString('es-CO')}
+                          ${order.total_amount.toLocaleString('es-CO')} COP
                         </span>
                       </div>
 

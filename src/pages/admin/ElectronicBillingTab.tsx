@@ -364,7 +364,7 @@ export const ElectronicBillingTab: React.FC = () => {
             className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5 text-[#71717A]" />
-            <span>Export CSV</span>
+            <span>Exportar CSV</span>
           </button>
           <button
             onClick={() => setViewMode('new_invoice')}

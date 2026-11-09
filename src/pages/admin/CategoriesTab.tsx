@@ -14,7 +14,7 @@ export const CategoriesTab: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Total Categories</span>
+            <span className="text-xs font-semibold text-[#18181B]">Total Categorías</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
               <Layers className="w-4 h-4" />
             </div>
@@ -24,19 +24,19 @@ export const CategoriesTab: React.FC = () => {
           </div>
           <div className="text-[11px] font-medium text-[#10B981] flex items-center gap-1">
             <CheckCircle2 className="w-3 h-3" />
-            <span>Active in storefront navigation</span>
+            <span>Activas en la navegación principal</span>
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Kitchen Architecture Line</span>
+            <span className="text-xs font-semibold text-[#18181B]">Línea Arquitectura de Cocina</span>
             <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
               <Package className="w-4 h-4" />
             </div>
           </div>
           <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
-            {totalKitchen} <span className="text-xs font-normal text-[#71717A]">products</span>
+            {totalKitchen} <span className="text-xs font-normal text-[#71717A]">productos</span>
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
             Condimenteros, Alacenas, Plateros & Herrajes
@@ -45,13 +45,13 @@ export const CategoriesTab: React.FC = () => {
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Closet & Vestidor Line</span>
+            <span className="text-xs font-semibold text-[#18181B]">Línea Clóset & Vestidor</span>
             <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
               <Sparkles className="w-4 h-4" />
             </div>
           </div>
           <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
-            {totalCloset} <span className="text-xs font-normal text-[#71717A]">products</span>
+            {totalCloset} <span className="text-xs font-normal text-[#71717A]">productos</span>
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
             Cajones con Clave, Pantaloneros & Zapateros
@@ -102,7 +102,7 @@ export const CategoriesTab: React.FC = () => {
                 {catProducts.length > 0 && (
                   <div className="pt-1">
                     <div className="text-[10px] font-semibold text-[#A1A1AA] mb-2">
-                      Featured References in Category:
+                      Referencias Destacadas:
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
                       {catProducts.slice(0, 4).map(prod => (
@@ -120,9 +120,14 @@ export const CategoriesTab: React.FC = () => {
                                 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=200&q=80';
                             }}
                           />
-                          <span className="font-mono text-[10px] font-semibold text-[#18181B]">
-                            {prod.code}
-                          </span>
+                          <div className="leading-tight">
+                            <span className="font-mono text-[10px] font-semibold text-[#18181B] block">
+                              {prod.code}
+                            </span>
+                            <span className="text-[9px] text-[#71717A] font-medium block">
+                              ${prod.price.toLocaleString('es-CO')}
+                            </span>
+                          </div>
                         </div>
                       ))}
                       {catProducts.length > 4 && (
@@ -139,7 +144,7 @@ export const CategoriesTab: React.FC = () => {
                 <span className="font-mono text-[11px] text-[#A1A1AA]">/{cat.slug}</span>
                 <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#10B981] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                  Active
+                  Activa
                 </span>
               </div>
             </div>

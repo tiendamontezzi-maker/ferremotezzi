@@ -12,7 +12,7 @@ export const MarketingTab: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Active Campaigns</span>
+            <span className="text-xs font-semibold text-[#18181B]">Campañas Activas</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
               <Megaphone className="w-4 h-4" />
             </div>
@@ -21,13 +21,13 @@ export const MarketingTab: React.FC = () => {
             3
           </div>
           <div className="text-[11px] font-medium text-[#10B981]">
-            Email + Site Banner + Bundle Offers
+            Email + Banner Web + Kits B2B
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Email Open Rate</span>
+            <span className="text-xs font-semibold text-[#18181B]">Tasa de Apertura Email</span>
             <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
               <Mail className="w-4 h-4" />
             </div>
@@ -37,13 +37,13 @@ export const MarketingTab: React.FC = () => {
           </div>
           <div className="text-[11px] font-medium text-[#10B981] flex items-center gap-1">
             <TrendingUp className="w-3 h-3" />
-            <span>+6.4% above industry benchmark</span>
+            <span>+6.4% sobre el promedio del sector</span>
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Featured Showcase Items</span>
+            <span className="text-xs font-semibold text-[#18181B]">Referencias en Vitrina</span>
             <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
               <Sparkles className="w-4 h-4" />
             </div>
@@ -52,7 +52,7 @@ export const MarketingTab: React.FC = () => {
             {products.filter(p => p.is_featured).length}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            Promoted on homepage hero & sliders
+            Promocionadas en inicio y carruseles
           </div>
         </div>
       </div>
@@ -67,30 +67,30 @@ export const MarketingTab: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-sans font-bold text-sm text-[#18181B] normal-case">
-                  New Customer Welcome Series
+                  Serie de Bienvenida Arquitectos & Estudios
                 </h3>
                 <span className="text-[11px] text-[#71717A]">
-                  Email Automation · Target: Nuevos estudios y arquitectos
+                  Automatización de Correo · Nuevos registros B2B
                 </span>
               </div>
             </div>
             <span className="text-[11px] font-semibold text-[#0284C7] bg-[#F0F9FF] px-3 py-1 rounded-full">
-              Running
+              En Curso
             </span>
           </div>
 
           <div className="grid grid-cols-3 gap-2 py-3.5 bg-[#FAF9F7] rounded-2xl border border-[#EAE7E1] text-center">
             <div>
               <span className="text-lg font-bold text-[#18181B]">89.2%</span>
-              <span className="text-[11px] text-[#71717A] block">Open Rate</span>
+              <span className="text-[11px] text-[#71717A] block">Apertura</span>
             </div>
             <div>
               <span className="text-lg font-bold text-[#18181B]">34.5%</span>
-              <span className="text-[11px] text-[#71717A] block">Click Rate</span>
+              <span className="text-[11px] text-[#71717A] block">Clics</span>
             </div>
             <div>
               <span className="text-lg font-bold text-[#10B981]">14.8%</span>
-              <span className="text-[11px] text-[#71717A] block">Conversion</span>
+              <span className="text-[11px] text-[#71717A] block">Conversión</span>
             </div>
           </div>
         </div>
@@ -103,15 +103,15 @@ export const MarketingTab: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-sans font-bold text-sm text-[#18181B] normal-case">
-                  Colección 2026 Announcement Banner
+                  Banner Anuncio Colección 2026
                 </h3>
                 <span className="text-[11px] text-[#71717A]">
-                  Site-wide Banner · Top of storefront
+                  Banner Superior · Visible en toda la tienda
                 </span>
               </div>
             </div>
             <span className="text-[11px] font-semibold text-[#10B981] bg-[#ECFDF5] px-3 py-1 rounded-full">
-              Active
+              Activa
             </span>
           </div>
 

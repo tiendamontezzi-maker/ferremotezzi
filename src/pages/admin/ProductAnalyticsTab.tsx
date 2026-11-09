@@ -86,12 +86,12 @@ export const ProductAnalyticsTab: React.FC = () => {
   return (
     <div className="space-y-6 font-sans">
       {/* ============================================================ */}
-      {/* 1. TOP SUMMARY KPI CARDS                                      */}
+      {/* 1. TOP SUMMARY KPI CARDS (En Español y Pesos Colombianos)     */}
       {/* ============================================================ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Catalog Views</span>
+            <span className="text-xs font-semibold text-[#18181B]">Vistas del Catálogo</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
               <Eye className="w-4 h-4" />
             </div>
@@ -100,13 +100,13 @@ export const ProductAnalyticsTab: React.FC = () => {
             {totalViews.toLocaleString('es-CO')}
           </div>
           <div className="text-[11px] font-medium text-[#10B981]">
-            +15.3% vs previous month
+            +15.3% respecto al mes anterior
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Product Detail Clicks</span>
+            <span className="text-xs font-semibold text-[#18181B]">Clics en Fichas Técnicas</span>
             <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
               <MousePointerClick className="w-4 h-4" />
             </div>
@@ -115,13 +115,13 @@ export const ProductAnalyticsTab: React.FC = () => {
             {totalClicks.toLocaleString('es-CO')}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            3D viewer & technical spec clicks
+            Consultas de medidas y acabados
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Add-to-Cart Rate</span>
+            <span className="text-xs font-semibold text-[#18181B]">Tasa de Adición al Carrito</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
               <TrendingUp className="w-4 h-4" />
             </div>
@@ -130,13 +130,13 @@ export const ProductAnalyticsTab: React.FC = () => {
             {avgConversion}%
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            {totalAddToCart.toLocaleString('es-CO')} items added to cart
+            {totalAddToCart.toLocaleString('es-CO')} unidades agregadas al carrito
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Top Viewed Reference</span>
+            <span className="text-xs font-semibold text-[#18181B]">Referencia Más Vista</span>
             <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
               <Award className="w-4 h-4" />
             </div>
@@ -145,7 +145,7 @@ export const ProductAnalyticsTab: React.FC = () => {
             {filteredAndSorted[0]?.code} · {filteredAndSorted[0]?.name}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            {filteredAndSorted[0]?.metric.views.toLocaleString('es-CO')} total views
+            {filteredAndSorted[0]?.metric.views.toLocaleString('es-CO')} vistas totales
           </div>
         </div>
       </div>
@@ -156,14 +156,14 @@ export const ProductAnalyticsTab: React.FC = () => {
       <div className="bg-white border border-[#EAE7E1] p-4 rounded-2xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-semibold text-[#71717A] mr-1">
-            Sort Ranking By:
+            Ordenar Ranking Por:
           </span>
           {(
             [
-              { id: 'views', label: 'Most Viewed' },
-              { id: 'clicks', label: 'Most Clicked' },
-              { id: 'conversion', label: 'Best Conversion' },
-              { id: 'sales', label: 'Top Selling' }
+              { id: 'views', label: 'Más Vistos' },
+              { id: 'clicks', label: 'Más Clics' },
+              { id: 'conversion', label: 'Mejor Conversión' },
+              { id: 'sales', label: 'Más Vendidos' }
             ] as const
           ).map(tab => (
             <button
@@ -197,7 +197,7 @@ export const ProductAnalyticsTab: React.FC = () => {
             className="px-4 py-2 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5 shrink-0 shadow-xs"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>Export CSV</span>
+            <span>Exportar CSV</span>
           </button>
         </div>
       </div>
@@ -209,12 +209,12 @@ export const ProductAnalyticsTab: React.FC = () => {
         <div className="p-4 bg-[#FAF9F7] border-b border-[#F0EFEA] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-[#18181B]" />
-            <h3 className="font-sans text-sm font-bold text-[#18181B]">
-              Product Performance & Conversion Funnel
+            <h3 className="font-sans text-sm font-bold text-[#18181B] normal-case">
+              Rendimiento de Productos & Embudo de Conversión
             </h3>
           </div>
           <span className="text-xs font-medium text-[#71717A]">
-            {filteredAndSorted.length} references analyzed
+            {filteredAndSorted.length} referencias analizadas
           </span>
         </div>
 
@@ -222,14 +222,15 @@ export const ProductAnalyticsTab: React.FC = () => {
           <table className="w-full text-left border-collapse text-xs font-sans">
             <thead>
               <tr className="bg-[#FAF9F7] text-[11px] font-semibold text-[#71717A] border-b border-[#F0EFEA]">
-                <th className="py-3.5 px-4 w-14">Rank</th>
-                <th className="py-3.5 px-4">Product & Reference</th>
-                <th className="py-3.5 px-4">Category</th>
-                <th className="py-3.5 px-4 w-56">Traffic Traction</th>
-                <th className="py-3.5 px-4 text-right">Views</th>
-                <th className="py-3.5 px-4 text-right">Clicks</th>
-                <th className="py-3.5 px-4 text-right">Add to Cart</th>
-                <th className="py-3.5 px-4 text-right">Conversion</th>
+                <th className="py-3.5 px-4 w-14">Pos.</th>
+                <th className="py-3.5 px-4">Producto & Referencia</th>
+                <th className="py-3.5 px-4">Precio (COP)</th>
+                <th className="py-3.5 px-4">Categoría</th>
+                <th className="py-3.5 px-4 w-56">Tracción de Tráfico</th>
+                <th className="py-3.5 px-4 text-right">Vistas</th>
+                <th className="py-3.5 px-4 text-right">Clics</th>
+                <th className="py-3.5 px-4 text-right">Carrito</th>
+                <th className="py-3.5 px-4 text-right">Conversión</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#F4F4F5] bg-white">
@@ -274,6 +275,11 @@ export const ProductAnalyticsTab: React.FC = () => {
                       </div>
                     </td>
 
+                    <td className="py-3.5 px-4 font-sans font-bold text-[#18181B] whitespace-nowrap">
+                      ${item.price.toLocaleString('es-CO')}{' '}
+                      <span className="text-[10px] font-normal text-[#71717A]">COP</span>
+                    </td>
+
                     <td className="py-3.5 px-4 text-[#71717A] text-xs whitespace-nowrap">
                       {item.category}
                     </td>
@@ -286,7 +292,7 @@ export const ProductAnalyticsTab: React.FC = () => {
                         />
                       </div>
                       <span className="text-[10px] font-medium text-[#71717A] mt-1 block">
-                        {viewPercentage}% of catalog leader
+                        {viewPercentage}% respecto al líder
                       </span>
                     </td>
 

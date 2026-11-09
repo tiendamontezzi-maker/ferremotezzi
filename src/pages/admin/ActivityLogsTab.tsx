@@ -137,11 +137,11 @@ export const ActivityLogsTab: React.FC = () => {
           <table className="w-full text-left border-collapse text-xs font-sans">
             <thead>
               <tr className="bg-[#FAF9F7] border-b border-[#F0EFEA] text-[11px] font-semibold text-[#71717A]">
-                <th className="py-3.5 px-4">Date & Time</th>
-                <th className="py-3.5 px-4">User / Advisor</th>
-                <th className="py-3.5 px-4">Action</th>
-                <th className="py-3.5 px-4">Entity</th>
-                <th className="py-3.5 px-4">Event Details</th>
+                <th className="py-3.5 px-4">Fecha & Hora</th>
+                <th className="py-3.5 px-4">Usuario / Asesor</th>
+                <th className="py-3.5 px-4">Acción</th>
+                <th className="py-3.5 px-4">Entidad / Registro</th>
+                <th className="py-3.5 px-4">Detalles del Evento</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#F4F4F5] text-[#18181B]">

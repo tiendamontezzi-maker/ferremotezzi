@@ -21,23 +21,23 @@ export const DiscountsTab: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Active Discount Codes</span>
+            <span className="text-xs font-semibold text-[#18181B]">Códigos de Descuento Activos</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
               <Tag className="w-4 h-4" />
             </div>
           </div>
           <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
-            {activeCoupons} <span className="text-xs font-normal text-[#71717A]">of {coupons.length}</span>
+            {activeCoupons} <span className="text-xs font-normal text-[#71717A]">de {coupons.length}</span>
           </div>
           <div className="text-[11px] font-medium text-[#10B981] flex items-center gap-1">
             <CheckCircle2 className="w-3 h-3" />
-            <span>Synced with checkout validation</span>
+            <span>Sincronizados con el checkout en COP</span>
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Total Redemptions</span>
+            <span className="text-xs font-semibold text-[#18181B]">Total de Redenciones</span>
             <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
               <Percent className="w-4 h-4" />
             </div>
@@ -47,13 +47,13 @@ export const DiscountsTab: React.FC = () => {
           </div>
           <div className="text-[11px] font-medium text-[#10B981] flex items-center gap-1">
             <TrendingUp className="w-3 h-3" />
-            <span>+14.2% conversion uplift</span>
+            <span>+14.2% incremento en conversión</span>
           </div>
         </div>
 
         <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-[#18181B]">Top Performing Code</span>
+            <span className="text-xs font-semibold text-[#18181B]">Código Más Utilizado</span>
             <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
               <Tag className="w-4 h-4" />
             </div>
@@ -62,7 +62,7 @@ export const DiscountsTab: React.FC = () => {
             {coupons[0]?.code || 'MONTEZZI10'}
           </div>
           <div className="text-[11px] font-medium text-[#71717A]">
-            B2B Architect & Studio privilege
+            Beneficio exclusivo Arquitectos & Estudios
           </div>
         </div>
       </div>
@@ -85,24 +85,24 @@ export const DiscountsTab: React.FC = () => {
                     : 'bg-[#FEF2F2] text-[#EF4444]'
                 }`}
               >
-                {cpn.is_active ? 'Active' : 'Inactive'}
+                {cpn.is_active ? 'Activo' : 'Inactivo'}
               </span>
             </div>
 
             <div className="space-y-1">
               <div className="text-2xl font-bold font-sans text-[#18181B]">
                 {cpn.discount_type === 'percentage'
-                  ? `${cpn.discount_value}% OFF`
+                  ? `${cpn.discount_value}% Dto.`
                   : `$${cpn.discount_value.toLocaleString('es-CO')} COP`}
               </div>
               <p className="text-xs text-[#71717A]">
-                Min. purchase: ${cpn.min_purchase ? cpn.min_purchase.toLocaleString('es-CO') : '0'} COP
+                Compra mínima: ${cpn.min_purchase ? cpn.min_purchase.toLocaleString('es-CO') : '0'} COP
               </p>
             </div>
 
             <div className="pt-3 border-t border-[#F4F4F5] flex items-center justify-between text-xs text-[#71717A]">
               <span>
-                Redeemed: <strong className="text-[#18181B]">{cpn.usage_count || 0} times</strong>
+                Redimido: <strong className="text-[#18181B]">{cpn.usage_count || 0} veces</strong>
               </span>
               <button
                 onClick={() => handleCopy(cpn.code)}
@@ -113,7 +113,7 @@ export const DiscountsTab: React.FC = () => {
                 ) : (
                   <Copy className="w-3.5 h-3.5" />
                 )}
-                <span>{copiedCode === cpn.code ? 'Copied' : 'Copy Code'}</span>
+                <span>{copiedCode === cpn.code ? 'Copiado' : 'Copiar'}</span>
               </button>
             </div>
           </div>
