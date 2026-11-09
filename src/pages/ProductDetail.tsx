@@ -118,8 +118,11 @@ export const ProductDetail: React.FC = () => {
         <div className="space-y-4">
           <div className="relative aspect-square w-full rounded-xl overflow-hidden glass-surface border border-white/80 shadow-lg flex items-center justify-center p-8">
             <img
-              src={selectedImage || product.image_url}
+              src={selectedImage || product.image_url || '/images/products/kdj-60.jpg'}
               alt={product.name}
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
+              }}
               className="w-full h-full object-contain object-center transition-all duration-500 hover:scale-105"
             />
             <span className="absolute top-4 left-4 px-3 py-1 glass-pill text-xs font-mono font-bold tracking-widest text-black uppercase shadow-xs rounded-full">

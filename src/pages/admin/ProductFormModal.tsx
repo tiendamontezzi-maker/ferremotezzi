@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Plus, Save, AlertCircle } from 'lucide-react';
 import { Product, MainCollection } from '../../types/database';
 import { useProducts } from '../../context/ProductContext';
+import { ImageUploadDropzone } from '../../components/ui/ImageUploadDropzone';
 
 interface ProductFormModalProps {
   isOpen: boolean;
@@ -377,13 +378,11 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 />
               </div>
 
-              <div className="sm:col-span-2 space-y-1">
-                <label className="text-obsidian/70 uppercase tracking-wider font-semibold">URL de Fotografía de Producto</label>
-                <input
-                  type="url"
+              <div className="sm:col-span-2">
+                <ImageUploadDropzone
                   value={imageUrl}
-                  onChange={e => setImageUrl(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                  onChange={setImageUrl}
+                  productCode={code}
                 />
               </div>
             </div>

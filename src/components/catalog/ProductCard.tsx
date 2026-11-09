@@ -52,9 +52,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showStars = t
         className="relative aspect-square w-full rounded-md overflow-hidden glass-surface border border-black/[0.06] flex items-center justify-center p-6 transition-all duration-500 group-hover:shadow-lg group-hover:-translate-y-1"
       >
         <img
-          src={product.image_url}
+          src={product.image_url || '/images/products/kdj-60.jpg'}
           alt={product.name}
           loading="lazy"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
+          }}
           className="w-full h-full object-contain object-center transition-transform duration-500 ease-out group-hover:scale-108 mix-blend-multiply"
         />
 

@@ -449,6 +449,15 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     setProducts(prev => [newProduct, ...prev]);
 
+    logActivity({
+      entity_type: 'product',
+      entity_id: newProduct.id,
+      entity_name: `${newProduct.code} - ${newProduct.name}`,
+      action: 'create',
+      description: `Creación de referencia ${newProduct.code} con stock multicanal (${newProduct.stock} unids: Bodega ${newProduct.warehouse_stock ?? 0}, Showroom ${newProduct.store_stock ?? 0}, Web ${newProduct.web_stock ?? 0})`,
+      details: { price: newProduct.price, image_url: newProduct.image_url, collection: newProduct.main_collection }
+    });
+
     if (isSupabaseConfigured && supabase) {
       try {
         await supabase.from('products').insert([newProduct]);
