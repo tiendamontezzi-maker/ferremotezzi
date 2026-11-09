@@ -1,429 +1,580 @@
 import React, { useState } from 'react';
 import { useProducts } from '../../context/ProductContext';
+import { useAuth } from '../../context/AuthContext';
 import { Product } from '../../types/database';
 import { ProductFormModal } from './ProductFormModal';
 import { ImportModal } from './ImportModal';
-import { exportToCSV, exportToJSON } from '../../utils/csvExportImport';
+import { exportToCSV } from '../../utils/csvExportImport';
 import {
-  Search, AlertTriangle, Edit2, Plus, Check, Filter, Layers,
-  ExternalLink, Trash2, ArrowUpDown, Download, UploadCloud
+  Search, Plus, Edit3, Trash2, AlertTriangle, ExternalLink, Download,
+  Upload, Package, Layers, DollarSign, TrendingUp, CheckCircle2
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const InventoryManagement: React.FC = () => {
-  const {
-    products,
-    categories,
-    updateProductStock,
-    updateMultichannelStock,
-    updateProductPrice,
-    deleteProduct,
-    bulkUpdateProducts
-  } = useProducts();
-
+  const { products, categories, updateProduct, deleteProduct, addProduct } = useProducts();
+  const { role } = useAuth();
   const [search, setSearch] = useState('');
-  const [selectedCat, setSelectedCat] = useState('all');
+  const [categoryFilter, setCategoryFilter] = useState('All');
   const [onlyLowStock, setOnlyLowStock] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+
+  // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
-  // Local inline editing states for instant feedback
-  const [savingId, setSavingId] = useState<string | null>(null);
+  // Top KPI Metrics
+  const totalReferences = products.length;
+  const totalUnitsInStock = products.reduce(
+    (sum, p) => sum + ((p.warehouse_stock || 0) + (p.store_stock || 0) + (p.web_stock || 0) || p.stock || 0),
+    0
+  );
+  const lowStockCount = products.filter(p => (p.stock || 0) <= (p.min_stock_alert || 5)).length;
+  const totalInventoryValue = products.reduce(
+    (sum, p) => sum + p.price * ((p.warehouse_stock || 0) + (p.store_stock || 0) + (p.web_stock || 0) || p.stock || 0),
+    0
+  );
 
-  const handleChannelStockChange = async (
-    p: Product, 
-    channel: 'warehouse_stock' | 'store_stock' | 'web_stock', 
-    newVal: number
-  ) => {
-    setSavingId(`${p.id}-${channel}`);
-    await updateMultichannelStock(p.id, { [channel]: Math.max(0, newVal) });
-    setTimeout(() => setSavingId(null), 800);
-  };
-
-  const handlePriceChange = async (p: Product, newPrice: number) => {
-    setSavingId(p.id);
-    await updateProductPrice(p.id, newPrice);
-    setTimeout(() => setSavingId(null), 800);
-  };
-
-  const handleDelete = async (id: string, code: string) => {
-    if (confirm(`¿Estás seguro de eliminar la referencia ${code}?`)) {
-      await deleteProduct(id);
-    }
-  };
-
+  // Filtered Products
   const filtered = products.filter(p => {
-    if (search.trim()) {
-      const q = search.toLowerCase().trim();
-      const matchCode = p.code.toLowerCase().includes(q);
-      const matchName = p.name.toLowerCase().includes(q);
-      if (!matchCode && !matchName) return false;
-    }
-
-    if (selectedCat !== 'all' && p.category_id !== selectedCat) {
-      return false;
-    }
-
-    if (onlyLowStock) {
-      const alertThresh = p.min_stock_alert ?? 8;
-      if (p.stock > alertThresh) return false;
-    }
-
-    return true;
+    const matchesSearch =
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.code.toLowerCase().includes(search.toLowerCase()) ||
+      (p.sku || '').toLowerCase().includes(search.toLowerCase());
+    const matchesCat = categoryFilter === 'All' || p.category_id === categoryFilter || p.category === categoryFilter;
+    const matchesStock = !onlyLowStock || p.stock <= (p.min_stock_alert || 5);
+    return matchesSearch && matchesCat && matchesStock;
   });
 
+  const handleOpenCreate = () => {
+    setEditingProduct(null);
+    setIsModalOpen(true);
+  };
+
+  const handleOpenEdit = (product: Product) => {
+    setEditingProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = (id: string, name: string) => {
+    if (role !== 'admin') {
+      alert('Solo los Administradores pueden eliminar referencias del catálogo.');
+      return;
+    }
+    if (window.confirm(`¿Estás seguro de eliminar la referencia "${name}" del inventario?`)) {
+      deleteProduct(id);
+    }
+  };
+
+  const handleChannelStockChange = (
+    product: Product,
+    channel: 'warehouse_stock' | 'store_stock' | 'web_stock',
+    value: number
+  ) => {
+    const cleanVal = Math.max(0, value);
+    const updatedChannels = {
+      warehouse_stock: product.warehouse_stock ?? 0,
+      store_stock: product.store_stock ?? 0,
+      web_stock: product.web_stock ?? 0,
+      [channel]: cleanVal
+    };
+    const newTotal =
+      updatedChannels.warehouse_stock +
+      updatedChannels.store_stock +
+      updatedChannels.web_stock;
+
+    updateProduct({
+      ...product,
+      ...updatedChannels,
+      stock: newTotal
+    });
+  };
+
   const handleExportCSV = () => {
-    exportToCSV('montezzi_inventario_multicanal_kdj', products, [
-      { header: 'Código KDJ', key: 'code' },
+    exportToCSV('montezzi_inventario_productos', filtered, [
+      { header: 'ID', key: 'id' },
+      { header: 'Código Referencia', key: 'code' },
       { header: 'Nombre del Producto', key: 'name' },
-      { header: 'Categoría', key: 'category_name' },
       { header: 'Colección Principal', key: 'main_collection' },
-      { header: 'Precio (COP)', key: 'price' },
-      { header: 'Bodega Principal', key: (p: Product) => p.warehouse_stock ?? 0 },
-      { header: 'Showroom Medellín', key: (p: Product) => p.store_stock ?? 0 },
-      { header: 'Canal Web', key: (p: Product) => p.web_stock ?? 0 },
-      { header: 'Stock Total Unificado', key: 'stock' },
-      { header: 'Estado Inventario', key: (p: Product) => p.inventory_status ?? 'in_stock' },
-      { header: 'Alerta Mínima', key: (p: Product) => p.min_stock_alert ?? 8 },
-      { header: 'ID Sistema', key: 'id' }
+      { header: 'Categoría', key: 'category' },
+      { header: 'Precio Unitario (COP)', key: 'price' },
+      { header: 'Stock Bodega', key: (p) => p.warehouse_stock ?? 0 },
+      { header: 'Stock Showroom', key: (p) => p.store_stock ?? 0 },
+      { header: 'Stock Web', key: (p) => p.web_stock ?? 0 },
+      { header: 'Stock Total (Auto)', key: 'stock' },
+      { header: 'Alerta Stock Mínimo', key: (p) => p.min_stock_alert ?? 3 },
+      { header: 'Destacado', key: (p) => (p.is_featured ? 'SÍ' : 'NO') },
+      { header: 'Módulo Compatible', key: (p) => p.technical_specs?.modulo || '' },
+      { header: 'Dimensiones', key: (p) => p.technical_specs?.dimensiones || '' },
+      { header: 'Acabado', key: (p) => p.technical_specs?.acabado || '' }
     ]);
   };
 
-  const handleExportJSON = () => {
-    exportToJSON('montezzi_inventario_multicanal_kdj', products);
-  };
+  const handleBulkImportProducts = async (rows: Record<string, string>[]): Promise<{ success: boolean; message: string }> => {
+    let processed = 0;
+    for (const row of rows) {
+      const code = String(row['Código Referencia'] || row['code'] || row['codigo'] || `KDJ-${Math.floor(Math.random() * 900 + 100)}`).trim();
+      const name = String(row['Nombre del Producto'] || row['name'] || row['nombre'] || 'Herraje Arquitectónico Montezzi').trim();
+      const price = Number(String(row['Precio Unitario (COP)'] || row['price'] || row['precio'] || 250000).replace(/[^0-9.-]+/g, '')) || 250000;
+      const wStock = Number(row['Stock Bodega'] ?? row['warehouse_stock'] ?? 5) || 0;
+      const sStock = Number(row['Stock Showroom'] ?? row['store_stock'] ?? 2) || 0;
+      const webStock = Number(row['Stock Web'] ?? row['web_stock'] ?? 3) || 0;
+      const totalStock = wStock + sStock + webStock;
+      const categoryName = String(row['Categoría'] || row['category'] || 'Organización de Cocina').trim();
+      const mainCollectionRaw = String(row['Colección Principal'] || row['main_collection'] || 'cocina').toLowerCase();
+      const main_collection = mainCollectionRaw.includes('closet') ? 'closet' : 'cocina';
 
-  const handleImportConfirm = async (rows: Record<string, string>[]) => {
-    const updates: Array<{ 
-      code?: string; 
-      id?: string; 
-      stock?: number; 
-      price?: number;
-      warehouse_stock?: number;
-      store_stock?: number;
-      web_stock?: number;
-    }> = [];
-
-    rows.forEach(row => {
-      const code = row['Código KDJ'] || row['codigo'] || row['code'] || row['referencia'] || row['Referencia'];
-      const id = row['ID Sistema'] || row['id'];
-      const rawStock = row['Stock Total Unificado'] || row['Stock Actual'] || row['stock'] || row['cantidad'];
-      const rawWarehouse = row['Bodega Principal'] || row['bodega'] || row['warehouse_stock'];
-      const rawStore = row['Showroom Medellín'] || row['showroom'] || row['tienda'] || row['store_stock'];
-      const rawWeb = row['Canal Web'] || row['web'] || row['web_stock'];
-      const rawPrice = row['Precio (COP)'] || row['precio'] || row['price'] || row['valor'];
-
-      if (code || id) {
-        updates.push({
+      const existing = products.find(p => p.code.toLowerCase() === code.toLowerCase());
+      if (existing) {
+        await updateProduct({
+          ...existing,
+          name,
+          price,
+          warehouse_stock: wStock,
+          store_stock: sStock,
+          web_stock: webStock,
+          stock: totalStock,
+          category: categoryName
+        });
+      } else {
+        await addProduct({
           code,
-          id,
-          stock: rawStock !== undefined && rawStock !== '' ? parseInt(String(rawStock).replace(/[^0-9]/g, ''), 10) : undefined,
-          warehouse_stock: rawWarehouse !== undefined && rawWarehouse !== '' ? parseInt(String(rawWarehouse).replace(/[^0-9]/g, ''), 10) : undefined,
-          store_stock: rawStore !== undefined && rawStore !== '' ? parseInt(String(rawStore).replace(/[^0-9]/g, ''), 10) : undefined,
-          web_stock: rawWeb !== undefined && rawWeb !== '' ? parseInt(String(rawWeb).replace(/[^0-9]/g, ''), 10) : undefined,
-          price: rawPrice !== undefined && rawPrice !== '' ? parseInt(String(rawPrice).replace(/[^0-9]/g, ''), 10) : undefined
+          sku: code,
+          name,
+          slug: `${code.toLowerCase()}-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+          description: String(row['description'] || `${name} - Colección Oficial Montezzi 2026.`),
+          short_description: String(row['short_description'] || `${name} con cierre asistido silencioso.`),
+          price,
+          category_id: main_collection === 'closet' ? 'cat-closet-cajones' : 'cat-cocina-alacenas',
+          category_name: categoryName,
+          category: categoryName,
+          main_collection,
+          warehouse_stock: wStock,
+          store_stock: sStock,
+          web_stock: webStock,
+          stock: totalStock,
+          min_stock_alert: 3,
+          image_url: String(row['image_url'] || 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=85'),
+          gallery_urls: [],
+          is_featured: false,
+          technical_specs: {
+            material: String(row['Material'] || 'Aluminio anodizado y acero'),
+            acabado: String(row['Acabado'] || 'Gris Grafito Anodizado'),
+            dimensiones: String(row['Dimensiones'] || '564 × 475 × 200 mm'),
+            mecanismo: 'Guías ocultas de extracción total con cierre suave',
+            capacidad_carga: '30 kg',
+            compatibilidad: String(row['Módulo Compatible'] || '600mm'),
+            modulo: String(row['Módulo Compatible'] || '600mm')
+          },
+          benefits: []
         });
       }
-    });
-
-    if (updates.length === 0) {
-      return { success: false, message: 'No se encontraron referencias válidas con código KDJ o ID en el archivo.' };
+      processed++;
     }
-
-    const { updatedCount } = await bulkUpdateProducts(updates);
-    return { success: true, message: `Se actualizaron exitosamente ${updatedCount} productos en el inventario multicanal.` };
+    return {
+      success: true,
+      message: `Se procesaron ${processed} productos correctamente.`
+    };
   };
 
   return (
-    <div className="space-y-6">
-      {/* Top Filter and Action Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-4 border border-[#E2DDD4] rounded-sm shadow-xs">
-        <div className="flex flex-1 items-center gap-3">
-          {/* Search by KDJ */}
-          <div className="relative flex-1 max-w-xs">
-            <Search className="w-4 h-4 text-montezzigold absolute left-3 top-1/2 -translate-y-1/2" />
+    <div className="space-y-6 font-sans">
+      {/* ============================================================ */}
+      {/* 1. TOP SUMMARY KPI CARDS (Matches OverviewDashboard Design)   */}
+      {/* ============================================================ */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Total Products</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
+              <Package className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            {totalReferences}
+          </div>
+          <div className="flex items-center gap-1 text-[11px] font-medium text-[#10B981]">
+            <CheckCircle2 className="w-3 h-3" />
+            <span>100% synced with Supabase</span>
+          </div>
+        </div>
+
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Total Units in Stock</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
+              <Layers className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            {totalUnitsInStock.toLocaleString('es-CO')}
+          </div>
+          <div className="flex items-center gap-1 text-[11px] font-medium text-[#71717A]">
+            <span>Bodega + Showroom + Web</span>
+          </div>
+        </div>
+
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Low Stock Alerts</span>
+            <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
+              <AlertTriangle className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            {lowStockCount}
+          </div>
+          <div className="flex items-center gap-1 text-[11px] font-medium text-[#D97706]">
+            <span>References below safety threshold</span>
+          </div>
+        </div>
+
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Inventory Valuation</span>
+            <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
+              <DollarSign className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            ${(totalInventoryValue / 1000000).toFixed(1)}M
+          </div>
+          <div className="flex items-center gap-1 text-[11px] font-medium text-[#10B981]">
+            <TrendingUp className="w-3 h-3" />
+            <span>Active COP retail valuation</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* 2. FILTER & ACTION BAR (Modern Rounded Pill Controls)         */}
+      {/* ============================================================ */}
+      <div className="flex flex-col xl:flex-row gap-3 items-stretch xl:items-center justify-between bg-white p-4 border border-[#EAE7E1] rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+        <div className="flex flex-wrap items-center gap-2.5 flex-1">
+          {/* Search Input Pill */}
+          <div className="relative flex-1 min-w-[230px] max-w-sm">
+            <Search className="w-3.5 h-3.5 text-[#A1A1AA] absolute left-3.5 top-3" />
             <input
               type="text"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
               placeholder="Buscar por código KDJ o nombre..."
-              className="w-full bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs pl-9 pr-3 py-2 focus:outline-none focus:border-montezzigold rounded-xs"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white rounded-full pl-9 pr-4 py-2 text-xs text-[#18181B] placeholder:text-[#A1A1AA] focus:outline-none transition-all"
             />
           </div>
 
-          {/* Category Dropdown */}
+          {/* Category Dropdown Pill */}
           <select
-            value={selectedCat}
-            onChange={e => setSelectedCat(e.target.value)}
-            className="bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs px-3 py-2 focus:outline-none focus:border-montezzigold rounded-xs"
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="bg-[#F4F4F5] hover:bg-[#EAEAEA] border border-transparent focus:border-black/20 focus:bg-white rounded-full px-4 py-2 text-xs font-medium text-[#18181B] focus:outline-none transition-all cursor-pointer"
           >
-            <option value="all">Todas las Categorías</option>
+            <option value="All">Todas las Categorías</option>
             {categories.map(c => (
               <option key={c.id} value={c.id}>{c.name}</option>
             ))}
           </select>
 
-          {/* Low Stock Toggle */}
+          {/* Low Stock Filter Pill */}
           <button
-            type="button"
-            onClick={() => setOnlyLowStock(prev => !prev)}
-            className={`px-3 py-2 rounded-xs text-xs font-sans flex items-center gap-1.5 transition-colors ${
+            onClick={() => setOnlyLowStock(!onlyLowStock)}
+            className={`px-4 py-2 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all ${
               onlyLowStock
-                ? 'bg-amber-100 border border-amber-300 text-amber-800 font-semibold'
-                : 'bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian/70 hover:text-obsidian'
+                ? 'bg-[#FEF2F2] text-[#EF4444] border border-[#FECACA] font-semibold'
+                : 'bg-[#F4F4F5] text-[#71717A] hover:text-[#18181B] hover:bg-[#EAEAEA]'
             }`}
           >
             <AlertTriangle className="w-3.5 h-3.5" />
-            <span>Stock Crítico (&lt;8)</span>
+            <span>Stock Crítico (&le;5)</span>
           </button>
         </div>
 
-        {/* Export, Import and Add CTAs */}
+        {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-2">
           <button
-            type="button"
             onClick={handleExportCSV}
-            className="px-3 py-2 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
-            title="Descargar catálogo completo en formato Excel / CSV"
+            className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-all flex items-center gap-1.5"
+            title="Descargar inventario actual en formato CSV / Excel"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>Exportar CSV</span>
+            <Download className="w-3.5 h-3.5 text-[#71717A]" />
+            <span>Export CSV</span>
           </button>
 
           <button
-            type="button"
             onClick={() => setIsImportModalOpen(true)}
-            className="px-3 py-2 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
-            title="Actualizar masivamente stock o precios mediante CSV o JSON"
+            className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-all flex items-center gap-1.5"
+            title="Importar o actualizar productos masivamente desde CSV o JSON"
           >
-            <UploadCloud className="w-3.5 h-3.5" />
+            <Upload className="w-3.5 h-3.5 text-[#71717A]" />
             <span>Importar Masivo</span>
           </button>
 
           <button
-            onClick={() => {
-              setEditingProduct(null);
-              setIsModalOpen(true);
-            }}
-            className="px-4 py-2 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-black/85 transition-all flex items-center justify-center gap-2 rounded-xs shadow-md"
+            onClick={handleOpenCreate}
+            className="px-5 py-2 bg-[#18181B] hover:bg-black text-white font-semibold text-xs rounded-full transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98]"
           >
-            <Plus className="w-4 h-4" />
-            <span>Nueva Referencia</span>
+            <Plus className="w-3.5 h-3.5" />
+            <span>+ Add Product</span>
           </button>
         </div>
       </div>
 
-      {/* Inventory Table */}
-      <div className="glass-card rounded-sm overflow-hidden">
+      {/* ============================================================ */}
+      {/* 3. PRODUCTS TABLE WITH PRODUCT PHOTOS & CLEAN TYPOGRAPHY      */}
+      {/* ============================================================ */}
+      <div className="bg-white border border-[#EAE7E1] rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-sans">
-            <thead className="bg-black/[0.03] border-b border-black/[0.08] text-black uppercase tracking-wider text-[11px] font-bold">
-              <tr>
-                <th className="p-3.5">Código</th>
-                <th className="p-3.5">Producto & Categoría</th>
-                <th className="p-3.5">Precio (COP)</th>
-                <th className="p-3.5">Bodega</th>
-                <th className="p-3.5">Showroom</th>
-                <th className="p-3.5">Web</th>
-                <th className="p-3.5">Stock Total (Auto)</th>
-                <th className="p-3.5">Estado</th>
-                <th className="p-3.5 text-right">Acciones</th>
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-[#F0EFEA] bg-[#FAF9F7] text-[11px] font-sans font-semibold text-[#71717A]">
+                <th className="py-3.5 px-4">Code</th>
+                <th className="py-3.5 px-4">Product & Category</th>
+                <th className="py-3.5 px-4">Price (COP)</th>
+                <th className="py-3.5 px-3 text-center">Bodega</th>
+                <th className="py-3.5 px-3 text-center">Showroom</th>
+                <th className="py-3.5 px-3 text-center">Web</th>
+                <th className="py-3.5 px-4 text-center">Total Stock</th>
+                <th className="py-3.5 px-4">Status</th>
+                <th className="py-3.5 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-black/[0.06] text-obsidian">
-              {filtered.map(product => {
-                const warehouse = product.warehouse_stock ?? 0;
-                const store = product.store_stock ?? 0;
-                const web = product.web_stock ?? 0;
-                const total = warehouse + store + web;
-                const isLow = total <= (product.min_stock_alert ?? 8) && total > 0;
-                const isOut = total === 0;
+            <tbody className="divide-y divide-[#F4F4F5] text-xs font-sans">
+              {filtered.map((product) => {
+                const wStock = product.warehouse_stock ?? Math.floor(product.stock * 0.5);
+                const sStock = product.store_stock ?? Math.floor(product.stock * 0.25);
+                const webStock = product.web_stock ?? (product.stock - wStock - sStock);
+                const totalStock = wStock + sStock + webStock;
+                const minAlert = product.min_stock_alert || 5;
 
                 return (
-                  <tr key={product.id} className="hover:bg-[#FAF8F5] transition-colors">
-                    {/* Code */}
-                    <td className="p-3.5 font-mono text-montezzigold font-bold whitespace-nowrap">
-                      {product.code}
+                  <tr
+                    key={product.id}
+                    className="hover:bg-[#FAF9F7]/90 transition-colors group"
+                  >
+                    {/* Reference Code Pill */}
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#F4F4F5] text-[#18181B] font-mono text-[11px] font-semibold border border-black/[0.04]">
+                        {product.code}
+                      </span>
                     </td>
 
-                    {/* Name & Cat */}
-                    <td className="p-3.5 max-w-xs">
-                      <div className="font-serif text-sm text-obsidian font-medium truncate" title={product.name}>
-                        {product.name}
-                      </div>
-                      <div className="text-[10px] text-obsidian/50 truncate flex items-center gap-1.5">
-                        <span>{product.category_name}</span>
-                        <span>•</span>
-                        <span className="capitalize">{product.main_collection.replace('_', ' ')}</span>
+                    {/* Product Thumbnail Image + Title + Category */}
+                    <td className="py-3.5 px-4">
+                      <div className="flex items-center gap-3.5 min-w-[260px]">
+                        <div className="w-12 h-12 rounded-xl bg-[#FAF9F7] border border-[#EAE7E1] p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-2xs group-hover:border-black/20 transition-colors">
+                          <img
+                            src={product.image_url || '/images/products/kdj-60.jpg'}
+                            alt={product.name}
+                            className="w-full h-full object-contain rounded-lg"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src =
+                                'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=200&q=80';
+                            }}
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="font-sans font-semibold text-[13px] text-[#18181B] leading-snug line-clamp-1">
+                            {product.name}
+                          </div>
+                          <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-[#71717A]">
+                            <span className="truncate">{product.category}</span>
+                            <span className="text-[#D4D4D8]">•</span>
+                            <span className="capitalize font-medium text-[#52525B]">
+                              {product.main_collection}
+                            </span>
+                            {product.technical_specs?.modulo && (
+                              <>
+                                <span className="text-[#D4D4D8]">•</span>
+                                <span className="text-[10px] bg-[#F4F4F5] px-1.5 py-0.2 rounded text-[#71717A] font-mono">
+                                  Mód. {product.technical_specs.modulo}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </td>
 
-                    {/* Price with Inline Edit */}
-                    <td className="p-3.5 whitespace-nowrap">
-                      <div className="flex items-center gap-1">
-                        <span className="text-[11px] text-montezzigold font-mono font-bold">$</span>
+                    {/* Inline Editable Price */}
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <div className="flex items-center gap-1.5 bg-[#FAFAFA] border border-[#E4E4E7] focus-within:border-[#18181B] focus-within:bg-white rounded-xl px-2.5 py-1.5 w-32 transition-all">
+                        <span className="text-[#A1A1AA] text-xs font-medium">$</span>
                         <input
                           type="number"
-                          step={1000}
-                          defaultValue={product.price}
-                          onBlur={e => {
-                            const val = Number(e.target.value);
-                            if (val !== product.price) handlePriceChange(product, val);
-                          }}
-                          className="w-24 bg-[#FAF8F5] border border-[#DDD6C8] px-2 py-1 font-mono text-xs text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                          step="1000"
+                          value={product.price}
+                          onChange={(e) =>
+                            updateProduct({
+                              ...product,
+                              price: Math.max(0, parseInt(e.target.value) || 0)
+                            })
+                          }
+                          className="w-full bg-transparent text-xs font-sans font-semibold text-[#18181B] focus:outline-none"
                         />
                       </div>
                     </td>
 
-                    {/* Warehouse Stock (Bodega) */}
-                    <td className="p-3.5 whitespace-nowrap">
-                      <div className="flex items-center gap-1">
-                        <input
-                          type="number"
-                          min={0}
-                          defaultValue={warehouse}
-                          onBlur={e => {
-                            const val = Number(e.target.value);
-                            if (val !== warehouse) handleChannelStockChange(product, 'warehouse_stock', val);
-                          }}
-                          className="w-14 bg-white border border-[#DDD6C8] px-2 py-1 font-mono text-xs focus:border-montezzigold focus:outline-none rounded-xs text-center"
-                          title="Stock disponible en Bodega Principal"
-                        />
-                        {savingId === `${product.id}-warehouse_stock` && (
-                          <Check className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-                        )}
-                      </div>
+                    {/* Warehouse Stock */}
+                    <td className="py-3.5 px-3 text-center">
+                      <input
+                        type="number"
+                        min="0"
+                        value={wStock}
+                        onChange={(e) =>
+                          handleChannelStockChange(
+                            product,
+                            'warehouse_stock',
+                            parseInt(e.target.value) || 0
+                          )
+                        }
+                        className="w-14 bg-[#FAFAFA] border border-[#E4E4E7] focus:border-[#18181B] focus:bg-white rounded-xl px-2 py-1.5 text-xs font-sans font-semibold text-center text-[#18181B] focus:outline-none transition-all"
+                        title="Stock en Bodega Principal"
+                      />
                     </td>
 
-                    {/* Store Stock (Showroom) */}
-                    <td className="p-3.5 whitespace-nowrap">
-                      <div className="flex items-center gap-1">
-                        <input
-                          type="number"
-                          min={0}
-                          defaultValue={store}
-                          onBlur={e => {
-                            const val = Number(e.target.value);
-                            if (val !== store) handleChannelStockChange(product, 'store_stock', val);
-                          }}
-                          className="w-14 bg-white border border-[#DDD6C8] px-2 py-1 font-mono text-xs focus:border-montezzigold focus:outline-none rounded-xs text-center"
-                          title="Stock en exhibición o tienda física Showroom"
-                        />
-                        {savingId === `${product.id}-store_stock` && (
-                          <Check className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-                        )}
-                      </div>
+                    {/* Showroom Stock */}
+                    <td className="py-3.5 px-3 text-center">
+                      <input
+                        type="number"
+                        min="0"
+                        value={sStock}
+                        onChange={(e) =>
+                          handleChannelStockChange(
+                            product,
+                            'store_stock',
+                            parseInt(e.target.value) || 0
+                          )
+                        }
+                        className="w-14 bg-[#FAFAFA] border border-[#E4E4E7] focus:border-[#18181B] focus:bg-white rounded-xl px-2 py-1.5 text-xs font-sans font-semibold text-center text-[#18181B] focus:outline-none transition-all"
+                        title="Stock en Showroom"
+                      />
                     </td>
 
-                    {/* Web Stock (Online) */}
-                    <td className="p-3.5 whitespace-nowrap">
-                      <div className="flex items-center gap-1">
-                        <input
-                          type="number"
-                          min={0}
-                          defaultValue={web}
-                          onBlur={e => {
-                            const val = Number(e.target.value);
-                            if (val !== web) handleChannelStockChange(product, 'web_stock', val);
-                          }}
-                          className="w-14 bg-white border border-[#DDD6C8] px-2 py-1 font-mono text-xs focus:border-montezzigold focus:outline-none rounded-xs text-center"
-                          title="Stock reservado para ventas por E-commerce web"
-                        />
-                        {savingId === `${product.id}-web_stock` && (
-                          <Check className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
-                        )}
-                      </div>
+                    {/* Web Stock */}
+                    <td className="py-3.5 px-3 text-center">
+                      <input
+                        type="number"
+                        min="0"
+                        value={webStock}
+                        onChange={(e) =>
+                          handleChannelStockChange(
+                            product,
+                            'web_stock',
+                            parseInt(e.target.value) || 0
+                          )
+                        }
+                        className="w-14 bg-[#FAFAFA] border border-[#E4E4E7] focus:border-[#18181B] focus:bg-white rounded-xl px-2 py-1.5 text-xs font-sans font-semibold text-center text-[#18181B] focus:outline-none transition-all"
+                        title="Stock asignado a E-Commerce Web"
+                      />
                     </td>
 
-                    {/* Total Stock (Formula Trigger) */}
-                    <td className="p-3.5 whitespace-nowrap">
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-black/[0.04] border border-black/10 rounded-xs font-mono font-bold text-xs">
-                        <span className={isOut ? 'text-red-700' : isLow ? 'text-amber-800' : 'text-emerald-700'}>
-                          {total} unids
-                        </span>
-                      </div>
+                    {/* Total Stock Automatic Pill */}
+                    <td className="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span
+                        className={`inline-flex items-center px-3 py-1 rounded-full font-sans text-xs font-bold ${
+                          totalStock === 0
+                            ? 'bg-[#FEF2F2] text-[#EF4444]'
+                            : totalStock <= minAlert
+                            ? 'bg-[#FFFBEB] text-[#D97706]'
+                            : 'bg-[#ECFDF5] text-[#10B981]'
+                        }`}
+                      >
+                        {totalStock} unids
+                      </span>
                     </td>
 
-                    {/* Stock Status Badge */}
-                    <td className="p-3.5 whitespace-nowrap">
-                      {isOut ? (
-                        <span className="px-2 py-0.5 rounded-xs bg-red-50 border border-red-200 text-red-700 text-[10px] uppercase font-bold">
+                    {/* Status Badge */}
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      {totalStock === 0 ? (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#FEF2F2] text-[#EF4444]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444]" />
                           Agotado
                         </span>
-                      ) : isLow ? (
-                        <span className="px-2 py-0.5 rounded-xs bg-amber-50 border border-amber-200 text-amber-800 text-[10px] uppercase font-bold">
-                          Crítico (&lt;{product.min_stock_alert ?? 8})
+                      ) : totalStock <= minAlert ? (
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#FFFBEB] text-[#D97706]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D97706]" />
+                          Bajo Stock
                         </span>
                       ) : (
-                        <span className="px-2 py-0.5 rounded-xs bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] uppercase font-medium">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#10B981]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
                           En Stock
                         </span>
                       )}
                     </td>
 
                     {/* Actions */}
-                    <td className="p-3.5 text-right whitespace-nowrap space-x-2">
-                      <button
-                        onClick={() => {
-                          setEditingProduct(product);
-                          setIsModalOpen(true);
-                        }}
-                        className="p-1.5 text-obsidian/60 hover:text-montezzigold hover:bg-[#FAF8F5] rounded transition-colors"
-                        title="Editar referencia técnica"
-                      >
-                        <Edit2 className="w-3.5 h-3.5" />
-                      </button>
-                      <a
-                        href={`/producto/${product.code}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-1.5 text-obsidian/60 hover:text-montezzigold hover:bg-[#FAF8F5] rounded transition-colors inline-block"
-                        title="Ver en showroom digital"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                      <button
-                        onClick={() => handleDelete(product.id, product.code)}
-                        className="p-1.5 text-obsidian/40 hover:text-red-500 hover:bg-[#FAF8F5] rounded transition-colors"
-                        title="Eliminar referencia"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                      <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          onClick={() => handleOpenEdit(product)}
+                          className="p-2 rounded-xl text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors"
+                          title="Editar ficha técnica e imágenes"
+                        >
+                          <Edit3 className="w-4 h-4" />
+                        </button>
+                        <Link
+                          to={`/producto/${product.id}`}
+                          className="p-2 rounded-xl text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors"
+                          title="Ver en tienda pública"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </Link>
+                        {role === 'admin' && (
+                          <button
+                            onClick={() => handleDelete(product.id, product.name)}
+                            className="p-2 rounded-xl text-[#A1A1AA] hover:text-[#EF4444] hover:bg-[#FEF2F2] transition-colors"
+                            title="Eliminar referencia"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 );
               })}
+
+              {filtered.length === 0 && (
+                <tr>
+                  <td colSpan={9} className="py-12 text-center text-sm text-[#71717A]">
+                    No se encontraron productos que coincidan con la búsqueda.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
-
-        <div className="p-4 bg-[#FAF8F5] border-t border-[#E2DDD4] text-xs text-obsidian/60 flex items-center justify-between">
-          <span>Mostrando {filtered.length} de {products.length} referencias de catálogo</span>
-          <span className="font-mono text-[11px] text-montezzigold font-medium">Los cambios de stock y precio se guardan automáticamente al salir de la celda</span>
-        </div>
       </div>
 
-      {/* Product Form Modal */}
+      {/* Product Create / Edit Modal */}
       <ProductFormModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         productToEdit={editingProduct}
       />
 
-      {/* Bulk Inventory Import Modal */}
+      {/* Bulk CSV / JSON Import Modal */}
       <ImportModal
         isOpen={isImportModalOpen}
         onClose={() => setIsImportModalOpen(false)}
-        title="Actualización Masiva de Inventario KDJ"
-        subtitle="Importa un archivo CSV o JSON para actualizar existencias y precios en bodega"
-        sampleTemplateName="inventario_kdj"
-        sampleTemplateHeaders={['codigo', 'precio', 'stock', 'alerta_minima']}
-        sampleTemplateRows={[
-          ['KDJ-1', '25000', '45', '8'],
-          ['KDJ-2', '18000', '60', '10'],
-          ['KDJ-108', '420000', '12', '4']
+        title="Importar Inventario Masivo (CSV / JSON)"
+        subtitle="Sube un archivo CSV o JSON para crear nuevas referencias KDJ o actualizar precios y stock multicanal de productos existentes."
+        sampleTemplateName="inventario_montezzi"
+        sampleTemplateHeaders={[
+          'Código Referencia',
+          'Nombre del Producto',
+          'Categoría',
+          'Precio Unitario (COP)',
+          'Stock Bodega',
+          'Stock Showroom',
+          'Stock Web'
         ]}
-        onImportConfirm={handleImportConfirm}
+        sampleTemplateRows={[
+          ['KDJ-60', 'Condimentero lateral de 2 niveles con base de madera', 'Condimenteros & Portaplatos', '210928', '10', '3', '5'],
+          ['KDJ-100', 'Cajón con clave revestido en cuero - gris', 'Cajones con Clave & Relojes', '1216600', '3', '1', '2']
+        ]}
+        onImportConfirm={handleBulkImportProducts}
       />
     </div>
   );

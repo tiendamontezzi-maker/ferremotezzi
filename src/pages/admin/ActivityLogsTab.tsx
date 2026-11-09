@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useProducts } from '../../context/ProductContext';
-import { exportToCSV, exportToJSON } from '../../utils/csvExportImport';
+import { exportToCSV } from '../../utils/csvExportImport';
 import {
-  ShieldCheck, Clock, User, Filter, Search, Download, CheckCircle2,
-  AlertCircle, FileText, Package, ShoppingBag, ArrowUpRight
+  ShieldCheck, Search, Download
 } from 'lucide-react';
 
 export const ActivityLogsTab: React.FC = () => {
@@ -41,44 +40,45 @@ export const ActivityLogsTab: React.FC = () => {
   const getActionBadge = (action: string) => {
     switch (action) {
       case 'siigo_sync':
-        return <span className="px-2 py-0.5 rounded-xs bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold uppercase">Facturación DIAN</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-[#ECFDF5] text-[#10B981] text-[11px] font-semibold">Facturación DIAN</span>;
       case 'stock_adjustment':
-        return <span className="px-2 py-0.5 rounded-xs bg-purple-50 text-purple-800 border border-purple-200 text-[10px] font-mono font-bold uppercase">Ajuste Multicanal</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-[#F3EFFE] text-[#6D28D9] text-[11px] font-semibold">Ajuste Multicanal</span>;
       case 'create':
-        return <span className="px-2 py-0.5 rounded-xs bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-mono font-bold uppercase">Creación</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-[#F0F9FF] text-[#0284C7] text-[11px] font-semibold">Creación</span>;
       case 'update':
-        return <span className="px-2 py-0.5 rounded-xs bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-mono font-bold uppercase">Actualización</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-[#FFFBEB] text-[#D97706] text-[11px] font-semibold">Actualización</span>;
       case 'delete':
-        return <span className="px-2 py-0.5 rounded-xs bg-red-50 text-red-800 border border-red-200 text-[10px] font-mono font-bold uppercase">Eliminación</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-[#FEF2F2] text-[#EF4444] text-[11px] font-semibold">Eliminación</span>;
       default:
-        return <span className="px-2 py-0.5 rounded-xs bg-black/5 text-obsidian border border-black/10 text-[10px] font-mono font-bold uppercase">{action}</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-[#F4F4F5] text-[#52525B] text-[11px] font-semibold">{action}</span>;
     }
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       {/* Top Banner */}
-      <div className="glass-card p-6 rounded-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-l-4 border-l-black">
+      <div className="bg-white border border-[#EAE7E1] p-6 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono tracking-widest text-black uppercase bg-black/5 border border-black/10 px-2 py-0.5 rounded-xs font-semibold">
+            <span className="text-[11px] font-semibold text-[#18181B] bg-[#F4F4F5] px-3 py-0.5 rounded-full">
               Trazabilidad Inmutable · Supabase RLS
             </span>
-            <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-xs font-bold">
+            <span className="text-[11px] font-semibold text-[#10B981] bg-[#ECFDF5] px-3 py-0.5 rounded-full flex items-center gap-1">
+              <ShieldCheck className="w-3 h-3" />
               Auditoría Activa
             </span>
           </div>
-          <h2 className="font-sans text-xl font-bold text-obsidian uppercase tracking-wider">
+          <h2 className="font-sans text-xl font-bold text-[#18181B] normal-case pt-1">
             Auditoría de Actividad & Logs del Sistema
           </h2>
-          <p className="text-xs text-obsidian/60 font-sans">
-            Registro cronológico inmutable de ajustes de inventario multicanal, emisiones fiscales DIAN y cambios administrativos
+          <p className="text-xs text-[#71717A] font-sans">
+            Registro cronológico de ajustes de inventario multicanal, emisiones fiscales DIAN y cambios administrativos
           </p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="px-3 py-2 bg-black text-white hover:bg-black/85 text-xs font-bold uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-md"
+          className="px-4 py-2 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5 shadow-xs"
         >
           <Download className="w-3.5 h-3.5" />
           <span>Exportar Historial (CSV)</span>
@@ -86,23 +86,23 @@ export const ActivityLogsTab: React.FC = () => {
       </div>
 
       {/* Filter Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 border border-[#E2DDD4] rounded-sm shadow-xs">
-        <div className="flex flex-1 items-center gap-3">
-          <div className="relative flex-1 max-w-xs">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-obsidian/40" />
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 border border-[#EAE7E1] rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+        <div className="flex flex-wrap flex-1 items-center gap-2.5">
+          <div className="relative flex-1 min-w-[220px] max-w-xs">
+            <Search className="w-3.5 h-3.5 absolute left-3.5 top-3 text-[#A1A1AA]" />
             <input
               type="text"
               placeholder="Buscar por descripción, usuario o ítem..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs pl-8 pr-3 py-2 rounded-xs focus:outline-none focus:border-black"
+              className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white text-[#18181B] text-xs pl-9 pr-4 py-2 rounded-full focus:outline-none transition-all"
             />
           </div>
 
           <select
             value={filterAction}
             onChange={e => setFilterAction(e.target.value)}
-            className="bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs px-3 py-2 rounded-xs focus:outline-none focus:border-black"
+            className="bg-[#F4F4F5] hover:bg-[#EAEAEA] border border-transparent focus:border-black/20 focus:bg-white text-[#18181B] text-xs font-medium px-4 py-2 rounded-full focus:outline-none cursor-pointer transition-all"
           >
             <option value="all">Todas las Acciones</option>
             <option value="stock_adjustment">Ajuste Multicanal</option>
@@ -115,7 +115,7 @@ export const ActivityLogsTab: React.FC = () => {
           <select
             value={filterEntity}
             onChange={e => setFilterEntity(e.target.value)}
-            className="bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs px-3 py-2 rounded-xs focus:outline-none focus:border-black"
+            className="bg-[#F4F4F5] hover:bg-[#EAEAEA] border border-transparent focus:border-black/20 focus:bg-white text-[#18181B] text-xs font-medium px-4 py-2 rounded-full focus:outline-none cursor-pointer transition-all"
           >
             <option value="all">Todas las Entidades</option>
             <option value="product">Productos / Inventario</option>
@@ -126,35 +126,35 @@ export const ActivityLogsTab: React.FC = () => {
           </select>
         </div>
 
-        <span className="text-xs font-mono text-obsidian/60 self-center">
+        <span className="text-xs font-medium text-[#71717A] self-center">
           {filteredLogs.length} eventos registrados
         </span>
       </div>
 
       {/* Logs Table */}
-      <div className="glass-card rounded-sm overflow-hidden">
+      <div className="bg-white border border-[#EAE7E1] rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-sans">
-            <thead className="bg-black/[0.03] border-b border-black/[0.08] text-black uppercase tracking-wider text-[11px] font-bold">
-              <tr>
-                <th className="p-3.5">Fecha & Hora</th>
-                <th className="p-3.5">Usuario / Asesor</th>
-                <th className="p-3.5">Acción</th>
-                <th className="p-3.5">Entidad / Registro</th>
-                <th className="p-3.5">Detalles del Evento</th>
+          <table className="w-full text-left border-collapse text-xs font-sans">
+            <thead>
+              <tr className="bg-[#FAF9F7] border-b border-[#F0EFEA] text-[11px] font-semibold text-[#71717A]">
+                <th className="py-3.5 px-4">Date & Time</th>
+                <th className="py-3.5 px-4">User / Advisor</th>
+                <th className="py-3.5 px-4">Action</th>
+                <th className="py-3.5 px-4">Entity</th>
+                <th className="py-3.5 px-4">Event Details</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-black/[0.06] text-obsidian">
+            <tbody className="divide-y divide-[#F4F4F5] text-[#18181B]">
               {filteredLogs.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-obsidian/40 italic">
+                  <td colSpan={5} className="p-8 text-center text-[#71717A]">
                     No se encontraron registros de auditoría coincidentes con los filtros.
                   </td>
                 </tr>
               ) : (
                 filteredLogs.map(log => (
-                  <tr key={log.id} className="hover:bg-[#FAF8F5] transition-colors">
-                    <td className="p-3.5 whitespace-nowrap font-mono text-obsidian/70">
+                  <tr key={log.id} className="hover:bg-[#FAF9F7]/90 transition-colors">
+                    <td className="py-3.5 px-4 whitespace-nowrap font-mono text-[11px] text-[#71717A]">
                       {new Date(log.created_at).toLocaleString('es-CO', {
                         year: 'numeric',
                         month: 'short',
@@ -163,21 +163,21 @@ export const ActivityLogsTab: React.FC = () => {
                         minute: '2-digit'
                       })}
                     </td>
-                    <td className="p-3.5 whitespace-nowrap">
-                      <div className="font-semibold text-obsidian">{log.user_name || 'Administrador'}</div>
-                      <div className="text-[10px] text-obsidian/50 font-mono">{log.user_email || 'admin@montezzi.com'}</div>
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <div className="font-semibold text-[#18181B]">{log.user_name || 'Administrador'}</div>
+                      <div className="text-[11px] text-[#71717A]">{log.user_email || 'admin@montezzi.com'}</div>
                     </td>
-                    <td className="p-3.5 whitespace-nowrap">
+                    <td className="py-3.5 px-4 whitespace-nowrap">
                       {getActionBadge(log.action)}
                     </td>
-                    <td className="p-3.5 whitespace-nowrap">
-                      <div className="font-mono text-black font-semibold">{log.entity_name || log.entity_type}</div>
-                      <div className="text-[10px] text-obsidian/50 uppercase font-mono">{log.entity_type}</div>
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <div className="font-semibold text-[#18181B]">{log.entity_name || log.entity_type}</div>
+                      <div className="text-[10px] text-[#71717A] uppercase font-mono">{log.entity_type}</div>
                     </td>
-                    <td className="p-3.5 text-obsidian/80">
+                    <td className="py-3.5 px-4 text-[#52525B]">
                       <p className="line-clamp-2">{log.description}</p>
                       {log.details && (
-                        <span className="text-[10px] font-mono text-obsidian/50 block mt-0.5">
+                        <span className="text-[10px] font-mono text-[#A1A1AA] block mt-0.5">
                           {JSON.stringify(log.details)}
                         </span>
                       )}

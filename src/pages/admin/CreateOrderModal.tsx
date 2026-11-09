@@ -166,26 +166,26 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div className="bg-white border border-black/15 shadow-2xl rounded-sm w-full max-w-4xl my-auto overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto font-sans">
+      <div className="bg-white border border-[#EAE7E1] shadow-2xl rounded-3xl w-full max-w-4xl my-auto overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Modal Header */}
-        <div className="p-5 border-b border-black/10 flex items-center justify-between bg-[#FAFAFA]">
+        <div className="p-5 border-b border-[#F0EFEA] flex items-center justify-between bg-[#FAF9F7]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xs bg-black text-white flex items-center justify-center">
+            <div className="w-9 h-9 rounded-full bg-[#18181B] text-white flex items-center justify-center">
               <ShoppingBag className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-sans text-base text-obsidian uppercase font-bold tracking-wider">
+              <h3 className="font-sans text-base text-[#18181B] normal-case font-bold">
                 Crear Nuevo Pedido
               </h3>
-              <p className="text-[11px] text-obsidian/60 font-sans">
+              <p className="text-[11px] text-[#71717A] font-sans">
                 Emisión de pedido interno o telefónico con descuento profesional
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-obsidian/50 hover:text-black hover:bg-black/5 rounded-xs transition-colors"
+            className="p-1.5 text-[#71717A] hover:text-black hover:bg-[#EAEAEA] rounded-full transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -557,18 +557,18 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
           </div>
 
           {/* Modal Actions */}
-          <div className="pt-2 flex items-center justify-end gap-3 border-t border-black/10">
+          <div className="pt-3 flex items-center justify-end gap-3 border-t border-[#F0EFEA]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-medium uppercase tracking-wider text-obsidian/70 hover:text-black border border-black/15 rounded-xs transition-colors"
+              className="px-5 py-2.5 text-xs font-semibold text-[#18181B] bg-[#F4F4F5] hover:bg-[#EAEAEA] rounded-full transition-colors"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSubmitting || orderItems.length === 0}
-              className="px-6 py-2 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-xs hover:bg-black/85 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-md flex items-center gap-2"
+              className="px-6 py-2.5 bg-[#18181B] text-white text-xs font-semibold rounded-full hover:bg-black transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-md flex items-center gap-2"
             >
               {isSubmitting ? (
                 <span>Guardando...</span>

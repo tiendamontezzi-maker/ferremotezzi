@@ -139,16 +139,16 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white border border-[#E2DDD4] rounded-sm w-full max-w-3xl overflow-hidden shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 font-sans">
+      <div className="bg-white border border-[#EAE7E1] rounded-3xl w-full max-w-3xl overflow-hidden shadow-2xl my-8">
         {/* Modal Header */}
-        <div className="px-6 py-4 bg-white border-b border-black/[0.08] flex items-center justify-between">
+        <div className="px-6 py-4 bg-[#FAF9F7] border-b border-[#F0EFEA] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono tracking-widest text-black uppercase font-bold">
-              {productToEdit ? `Editar ${productToEdit.code}` : 'Nueva Referencia Oficial'}
+            <span className="text-sm font-sans font-bold text-[#18181B]">
+              {productToEdit ? `Editar ${productToEdit.code} · ${productToEdit.name}` : 'Nueva Referencia Oficial Montezzi'}
             </span>
           </div>
-          <button onClick={onClose} className="p-1 text-obsidian/60 hover:text-black">
+          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-[#EAEAEA] text-[#71717A] hover:text-black transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -157,36 +157,36 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
         <form onSubmit={handleSubmit} className="p-6 space-y-6 text-xs font-sans">
           {/* Main Info */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Código KDJ *</label>
+            <div className="space-y-1.5">
+              <label className="text-[#52525B] font-semibold">Código KDJ *</label>
               <input
                 type="text"
                 required
                 value={code}
                 onChange={e => setCode(e.target.value.toUpperCase())}
                 placeholder="KDJ-113"
-                className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-montezzigold font-mono font-bold focus:border-montezzigold focus:outline-none rounded-xs"
+                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] font-mono font-bold focus:outline-none rounded-xl transition-all"
               />
             </div>
 
-            <div className="sm:col-span-2 space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Nombre Comercial *</label>
+            <div className="sm:col-span-2 space-y-1.5">
+              <label className="text-[#52525B] font-semibold">Nombre Comercial *</label>
               <input
                 type="text"
                 required
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Ej: Despensa extraíble de 6 niveles en vidrio ahumado"
-                className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Colección Principal *</label>
+            <div className="space-y-1.5">
+              <label className="text-[#52525B] font-semibold">Colección Principal *</label>
               <select
                 value={mainCollection}
                 onChange={e => setMainCollection(e.target.value as MainCollection)}
-                className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none uppercase rounded-xs"
+                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               >
                 <option value="cocina">Cocina</option>
                 <option value="closet">Clóset</option>
@@ -194,12 +194,12 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               </select>
             </div>
 
-            <div className="sm:col-span-2 space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Categoría *</label>
+            <div className="sm:col-span-2 space-y-1.5">
+              <label className="text-[#52525B] font-semibold">Categoría *</label>
               <select
                 value={categoryId}
                 onChange={e => setCategoryId(e.target.value)}
-                className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               >
                 {categories.map(c => (
                   <option key={c.id} value={c.id}>{c.name}</option>
@@ -207,34 +207,34 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               </select>
             </div>
 
-            <div className="sm:col-span-3 space-y-1">
-              <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Descripción Corta *</label>
+            <div className="sm:col-span-3 space-y-1.5">
+              <label className="text-[#52525B] font-semibold">Descripción Corta *</label>
               <textarea
                 required
                 rows={2}
                 value={shortDescription}
                 onChange={e => setShortDescription(e.target.value)}
                 placeholder="Descripción concisa y técnica conforme al manual de redacción Montezzi..."
-                className="w-full bg-[#FAF8F5] border border-[#DDD6C8] p-3 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white p-3.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               />
             </div>
           </div>
 
           {/* Price & Multichannel Reactive Inventory */}
-          <div className="p-4 bg-[#FAF8F5] border border-[#E2DDD4] rounded-sm space-y-3">
+          <div className="p-4 bg-[#FAF9F7] border border-[#EAE7E1] rounded-2xl space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-obsidian uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-montezzigold"></span>
+              <span className="text-xs font-bold text-[#18181B] flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
                 Inventario Multicanal Reactivo (Supabase / Postgres Trigger)
               </span>
-              <span className="text-[10px] text-obsidian/50 font-mono">
+              <span className="text-[11px] text-[#71717A] font-mono">
                 Regla: stock = Bodega + Showroom + Web
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
               <div className="space-y-1">
-                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Precio COP *</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Precio COP *</label>
                 <input
                   type="number"
                   required
@@ -242,52 +242,52 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   step={1000}
                   value={price}
                   onChange={e => setPrice(Number(e.target.value))}
-                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-montezzigold font-bold focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                  className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] font-bold focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Bodega Principal *</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Bodega Principal *</label>
                 <input
                   type="number"
                   required
                   min={0}
                   value={warehouseStock}
                   onChange={e => setWarehouseStock(Number(e.target.value))}
-                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                  className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Tienda Showroom *</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Tienda Showroom *</label>
                 <input
                   type="number"
                   required
                   min={0}
                   value={storeStock}
                   onChange={e => setStoreStock(Number(e.target.value))}
-                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                  className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Canal Web *</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Canal Web *</label>
                 <input
                   type="number"
                   required
                   min={0}
                   value={webStock}
                   onChange={e => setWebStock(Number(e.target.value))}
-                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                  className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Stock Total (Auto)</label>
-                <div className="w-full bg-black/5 border border-black/10 px-3 py-1.5 font-mono text-xs font-bold text-obsidian flex items-center justify-between rounded-xs">
+                <label className="text-[11px] text-[#71717A] font-semibold">Stock Total (Auto)</label>
+                <div className="w-full bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-2 font-sans text-xs font-bold text-[#18181B] flex items-center justify-between rounded-xl">
                   <span>{totalCalculatedStock} unids</span>
-                  <span className={`text-[9px] px-1.5 py-0.2 rounded-xs uppercase ${
-                    totalCalculatedStock <= 0 ? 'bg-red-100 text-red-800' : totalCalculatedStock < minStockAlert ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                    totalCalculatedStock <= 0 ? 'bg-[#FEF2F2] text-[#EF4444]' : totalCalculatedStock < minStockAlert ? 'bg-[#FFFBEB] text-[#D97706]' : 'bg-[#ECFDF5] text-[#10B981]'
                   }`}>
                     {totalCalculatedStock <= 0 ? 'Agotado' : totalCalculatedStock < minStockAlert ? 'Bajo' : 'Óptimo'}
                   </span>
@@ -297,13 +297,13 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
               <div className="space-y-1">
-                <label className="text-[10px] text-obsidian/70 uppercase tracking-wider font-semibold">Umbral Alerta Stock Crítico (&lt; unids)</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Umbral Alerta Stock Crítico (&lt; unids)</label>
                 <input
                   type="number"
                   min={1}
                   value={minStockAlert}
                   onChange={e => setMinStockAlert(Number(e.target.value))}
-                  className="w-full bg-white border border-[#DDD6C8] px-3 py-1.5 font-mono text-obsidian focus:border-montezzigold focus:outline-none rounded-xs text-xs"
+                  className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] focus:border-black focus:outline-none rounded-xl text-xs"
                 />
               </div>
 
@@ -313,9 +313,9 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   id="isFeatured"
                   checked={isFeatured}
                   onChange={e => setIsFeatured(e.target.checked)}
-                  className="accent-montezzigold w-4 h-4"
+                  className="accent-black w-4 h-4 rounded"
                 />
-                <label htmlFor="isFeatured" className="text-obsidian font-semibold cursor-pointer text-xs">
+                <label htmlFor="isFeatured" className="text-[#18181B] font-semibold cursor-pointer text-xs">
                   Destacado en Home Slider & Vitrina Oficial
                 </label>
               </div>
@@ -324,57 +324,57 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
 
           {/* Technical Specs (Official Montezzi Standard) */}
           <div className="space-y-3">
-            <h4 className="font-serif text-sm text-montezzigold tracking-widest uppercase font-bold">
+            <h4 className="font-sans text-sm text-[#18181B] font-bold normal-case">
               Especificaciones Técnicas Oficiales
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Material</label>
+              <div className="space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Material</label>
                 <input
                   type="text"
                   value={material}
                   onChange={e => setMaterial(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Acabado</label>
+              <div className="space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Acabado</label>
                 <input
                   type="text"
                   value={acabado}
                   onChange={e => setAcabado(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Dimensiones (W*D*H mm)</label>
+              <div className="space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Dimensiones (W*D*H mm)</label>
                 <input
                   type="text"
                   value={dimensiones}
                   onChange={e => setDimensiones(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Capacidad de Carga</label>
+              <div className="space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Capacidad de Carga</label>
                 <input
                   type="text"
                   value={capacidadCarga}
                   onChange={e => setCapacidadCarga(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
 
-              <div className="sm:col-span-2 space-y-1">
-                <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Mecanismo / Articulación</label>
+              <div className="sm:col-span-2 space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Mecanismo / Articulación</label>
                 <input
                   type="text"
                   value={mecanismo}
                   onChange={e => setMecanismo(e.target.value)}
-                  className="w-full bg-[#FAF8F5] border border-[#DDD6C8] px-3 py-2 text-obsidian focus:border-montezzigold focus:outline-none rounded-xs"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
 
@@ -389,18 +389,18 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
           </div>
 
           {/* Footer Action Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-black/[0.08]">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#F0EFEA]">
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 bg-white border border-black/15 text-obsidian/70 hover:text-obsidian uppercase tracking-widest text-xs rounded-xs"
+              className="px-5 py-2.5 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] font-semibold text-xs rounded-full transition-colors"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="px-6 py-2.5 bg-black text-white font-bold uppercase tracking-widest text-xs hover:bg-black/85 flex items-center gap-2 rounded-xs shadow-md"
+              className="px-6 py-2.5 bg-[#18181B] text-white font-semibold text-xs hover:bg-black flex items-center gap-2 rounded-full shadow-md transition-all"
             >
               <Save className="w-4 h-4" />
               <span>{isSaving ? 'Guardando...' : 'Guardar Referencia'}</span>

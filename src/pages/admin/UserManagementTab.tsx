@@ -1,315 +1,342 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { UserRole } from '../../types/database';
+import { SystemUser, UserRole } from '../../types/database';
 import { CreateUserModal } from './CreateUserModal';
 import { ImportModal } from './ImportModal';
 import { exportToCSV, exportToJSON } from '../../utils/csvExportImport';
 import {
-  Users, UserPlus, Building, Phone, Mail, MapPin, Shield, Check, X,
-  MessageSquare, ArrowUpRight, Download, UploadCloud
+  Users, UserCheck, Shield, Award, Search, Plus, Mail, Phone,
+  Building, Download, Upload, FileCode, MessageSquare, TrendingUp
 } from 'lucide-react';
 
 export const UserManagementTab: React.FC = () => {
   const { systemUsers, updateSystemUserStatus, createSystemUser } = useAuth();
+
+  const [roleFilter, setRoleFilter] = useState<'todos' | UserRole>('todos');
+  const [searchTerm, setSearchTerm] = useState('');
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [roleFilter, setRoleFilter] = useState<'todos' | UserRole>('todos');
-  const [statusFilter, setStatusFilter] = useState<'todos' | 'activo' | 'inactivo'>('todos');
 
-  // KPI Metrics
+  // Filter logic
+  const filteredUsers = systemUsers.filter(user => {
+    const matchesRole = roleFilter === 'todos' || user.role === roleFilter;
+    const matchesSearch =
+      user.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (user.company && user.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (user.city && user.city.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    return matchesRole && matchesSearch;
+  });
+
+  // KPIs
   const totalUsers = systemUsers.length;
-  const clientUsers = systemUsers.filter(u => u.role === 'cliente');
-  const colabUsers = systemUsers.filter(u => u.role === 'colaborador');
-  const adminUsers = systemUsers.filter(u => u.role === 'admin');
-  const totalClientSpend = clientUsers.reduce((sum, u) => sum + (u.total_spent || 0), 0);
+  const activeClients = systemUsers.filter(u => u.role === 'cliente' && u.status === 'activo').length;
+  const staffCount = systemUsers.filter(u => u.role === 'admin' || u.role === 'colaborador').length;
+  const totalB2BValue = systemUsers
+    .filter(u => u.role === 'cliente')
+    .reduce((sum, u) => sum + (u.total_spent || 0), 0);
 
-  // Filtered List
-  const filteredUsers = useMemo(() => {
-    return systemUsers.filter(user => {
-      const matchesRole = roleFilter === 'todos' || user.role === roleFilter;
-      const matchesStatus = statusFilter === 'todos' || user.status === statusFilter;
-      const q = searchQuery.toLowerCase();
-      const matchesSearch =
-        user.full_name.toLowerCase().includes(q) ||
-        user.email.toLowerCase().includes(q) ||
-        (user.company && user.company.toLowerCase().includes(q)) ||
-        (user.city && user.city.toLowerCase().includes(q));
-
-      return matchesRole && matchesStatus && matchesSearch;
-    });
-  }, [systemUsers, roleFilter, statusFilter, searchQuery]);
-
-  const generateWhatsAppLink = (user: typeof systemUsers[0]) => {
-    if (!user.phone) return null;
-    const cleanPhone = user.phone.replace(/[^0-9]/g, '');
-    const message = encodeURIComponent(
-      `Estimado/a ${user.full_name}, le saludamos desde la Dirección Comercial de Montezzi Herrajes. ¿En qué proyecto arquitectónico podemos apoyarle esta semana?`
-    );
-    return `https://wa.me/${cleanPhone.startsWith('57') ? cleanPhone : '57' + cleanPhone}?text=${message}`;
-  };
-
+  // Export functions
   const handleExportCSV = () => {
-    exportToCSV('montezzi_directorio_clientes_usuarios', systemUsers, [
-      { header: 'Nombre / Razón Social', key: 'full_name' },
-      { header: 'Correo Electrónico', key: 'email' },
+    exportToCSV('montezzi_directorio_clientes_usuarios', filteredUsers, [
+      { header: 'ID', key: 'id' },
+      { header: 'Nombre Completo', key: 'full_name' },
       { header: 'Rol en Sistema', key: 'role' },
-      { header: 'Empresa / Estudio', key: (u) => u.company || '' },
+      { header: 'Estado', key: 'status' },
+      { header: 'Correo Electrónico', key: 'email' },
       { header: 'Teléfono / WhatsApp', key: (u) => u.phone || '' },
-      { header: 'Ciudad', key: (u) => u.city || 'Bogotá D.C.' },
-      { header: 'Total Pedidos', key: 'total_orders' },
-      { header: 'Compras Acumuladas (COP)', key: 'total_spent' },
-      { header: 'Estado', key: 'status' }
+      { header: 'Empresa / Estudio', key: (u) => u.company || '' },
+      { header: 'Ciudad', key: (u) => u.city || '' },
+      { header: 'Total Pedidos', key: (u) => u.total_orders || 0 },
+      { header: 'Valor Histórico Compras (COP)', key: (u) => u.total_spent || 0 },
+      { header: 'Fecha Registro', key: 'created_at' }
     ]);
   };
 
   const handleExportJSON = () => {
-    exportToJSON('montezzi_directorio_clientes_usuarios', systemUsers);
+    exportToJSON('montezzi_usuarios_crm', filteredUsers);
   };
 
-  const handleImportConfirm = async (rows: Record<string, string>[]) => {
-    let createdCount = 0;
-    rows.forEach(row => {
-      const name = row['Nombre / Razón Social'] || row['nombre'] || row['name'] || row['Cliente'];
-      const email = row['Correo Electrónico'] || row['email'] || row['correo'];
-      const company = row['Empresa / Estudio'] || row['empresa'] || row['company'] || '';
-      const phone = row['Teléfono / WhatsApp'] || row['telefono'] || row['phone'] || '';
-      const city = row['Ciudad'] || row['ciudad'] || row['city'] || 'Medellín';
-      const role = (row['Rol en Sistema'] || row['rol'] || 'cliente') as any;
+  // Bulk import handler
+  const handleImportConfirm = async (rows: Record<string, string>[]): Promise<{ success: boolean; message: string }> => {
+    let importedCount = 0;
 
-      if (name && email) {
-        createSystemUser({
-          full_name: name,
-          email,
-          role: role === 'admin' || role === 'colaborador' ? role : 'cliente',
-          company,
-          phone,
-          city,
-          status: 'activo'
-        });
-        createdCount++;
-      }
+    rows.forEach(row => {
+      const full_name = String(row.full_name || row.nombre || row.Nombre || row['Nombre Completo'] || '').trim();
+      const email = String(row.email || row.correo || row.Correo || row['Correo Electrónico'] || '').trim();
+
+      if (!full_name || !email) return;
+
+      const rawRole = String(row.role || row.rol || 'cliente').toLowerCase().trim();
+      const role: UserRole =
+        rawRole === 'admin' ? 'admin' : rawRole === 'colaborador' ? 'colaborador' : 'cliente';
+
+      createSystemUser({
+        full_name,
+        email,
+        role,
+        phone: String(row.phone || row.telefono || row.Telefono || '+57 300 000 0000'),
+        company: String(row.company || row.empresa || row.Empresa || 'Profesional Independiente'),
+        city: String(row.city || row.ciudad || row.Ciudad || 'Medellín'),
+        status: 'activo'
+      });
+      importedCount++;
     });
 
-    if (createdCount === 0) {
-      return { success: false, message: 'No se encontraron registros con nombre y correo electrónico válidos.' };
-    }
-
-    return { success: true, message: `Se registraron exitosamente ${createdCount} nuevos usuarios/clientes.` };
+    return {
+      success: true,
+      message: `Se importaron ${importedCount} clientes/usuarios exitosamente al directorio.`
+    };
   };
 
   return (
-    <div className="space-y-6">
-      {/* Top Executive Metrics */}
+    <div className="space-y-6 font-sans">
+      {/* ============================================================ */}
+      {/* 1. TOP SUMMARY KPI CARDS                                      */}
+      {/* ============================================================ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">Total Cuentas</span>
-            <Users className="w-4 h-4 text-black" />
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Total Customers & Users</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
+              <Users className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-mono font-bold text-obsidian">
-            {totalUsers} <span className="text-xs font-sans font-normal text-obsidian/50">registros</span>
+          <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            {totalUsers}
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans">
-            Arquitectos, distribuidores y equipo
-          </span>
+          <div className="text-[11px] font-medium text-[#71717A]">
+            Registered accounts in CRM
+          </div>
         </div>
 
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">Estudios / Clientes</span>
-            <Building className="w-4 h-4 text-black" />
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Active B2B / B2C Clients</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
+              <UserCheck className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-mono font-bold text-obsidian">
-            {clientUsers.length} <span className="text-xs font-sans font-normal text-obsidian/50">estudios</span>
+          <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            {activeClients}
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans">
-            Compradores profesionales activos
-          </span>
+          <div className="text-[11px] font-medium text-[#10B981]">
+            Architects, studios & designers
+          </div>
         </div>
 
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">Facturación Clientes</span>
-            <Shield className="w-4 h-4 text-black" />
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Internal Team</span>
+            <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
+              <Shield className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-mono font-bold text-black">
-            ${(totalClientSpend / 1000000).toFixed(2)}M <span className="text-xs font-sans font-normal text-obsidian/50">COP</span>
+          <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            {staffCount}
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans">
-            Volumen acumulado de compras B2B
-          </span>
+          <div className="text-[11px] font-medium text-[#71717A]">
+            Admins & showroom advisors
+          </div>
         </div>
 
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">Equipo Interno</span>
-            <Users className="w-4 h-4 text-black" />
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Lifetime Customer Value</span>
+            <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
+              <Award className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-mono font-bold text-obsidian">
-            {colabUsers.length + adminUsers.length} <span className="text-xs font-sans font-normal text-obsidian/50">usuarios</span>
+          <div className="text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            ${(totalB2BValue / 1000000).toFixed(1)}M
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans">
-            {adminUsers.length} Admin · {colabUsers.length} Colaboradores
-          </span>
+          <div className="flex items-center gap-1 text-[11px] font-medium text-[#10B981]">
+            <TrendingUp className="w-3 h-3" />
+            <span>COP historical billing</span>
+          </div>
         </div>
       </div>
 
-      {/* Control Bar: Filters & Actions */}
-      <div className="glass-card p-4 rounded-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 text-xs font-sans">
+      {/* ============================================================ */}
+      {/* 2. FILTER & ACTION BAR                                        */}
+      {/* ============================================================ */}
+      <div className="bg-white border border-[#EAE7E1] p-4 rounded-2xl flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+        {/* Role Filter Pills + Search */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-obsidian/50 text-[11px] font-mono uppercase tracking-wider">Rol:</span>
-          {(['todos', 'cliente', 'colaborador', 'admin'] as const).map(r => (
-            <button
-              key={r}
-              onClick={() => setRoleFilter(r)}
-              className={`px-3 py-1.5 rounded-xs uppercase tracking-wider text-[10px] font-medium transition-colors ${
-                roleFilter === r
-                  ? 'bg-black text-white'
-                  : 'bg-black/[0.04] text-obsidian/70 hover:bg-black/10'
-              }`}
-            >
-              {r}
-            </button>
-          ))}
+          <div className="flex items-center gap-1 bg-[#F4F4F5] p-1 rounded-full">
+            {(['todos', 'cliente', 'colaborador', 'admin'] as const).map(r => (
+              <button
+                key={r}
+                onClick={() => setRoleFilter(r)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold capitalize transition-all ${
+                  roleFilter === r
+                    ? 'bg-[#18181B] text-white shadow-2xs'
+                    : 'text-[#71717A] hover:text-[#18181B]'
+                }`}
+              >
+                {r === 'todos' ? 'All Users' : r === 'cliente' ? 'Customers' : r === 'colaborador' ? 'Advisors' : 'Admins'}
+              </button>
+            ))}
+          </div>
 
-          <span className="text-obsidian/30 mx-1">|</span>
-
-          <span className="text-obsidian/50 text-[11px] font-mono uppercase tracking-wider">Estado:</span>
-          {(['todos', 'activo', 'inactivo'] as const).map(st => (
-            <button
-              key={st}
-              onClick={() => setStatusFilter(st)}
-              className={`px-2.5 py-1 rounded-xs uppercase tracking-wider text-[10px] font-medium transition-colors ${
-                statusFilter === st
-                  ? 'bg-black text-white'
-                  : 'bg-black/[0.04] text-obsidian/70 hover:bg-black/10'
-              }`}
-            >
-              {st}
-            </button>
-          ))}
+          <div className="relative flex-1 sm:w-64 min-w-[210px]">
+            <Search className="w-3.5 h-3.5 absolute left-3.5 top-3 text-[#A1A1AA]" />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              placeholder="Buscar por nombre, estudio o ciudad..."
+              className="w-full pl-9 pr-4 py-2 bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white rounded-full text-xs text-[#18181B] placeholder:text-[#A1A1AA] focus:outline-none transition-all"
+            />
+          </div>
         </div>
 
+        {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-2">
-          <input
-            type="text"
-            placeholder="Buscar por nombre, estudio, email..."
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            className="w-full md:w-52 px-3 py-1.5 border border-black/15 bg-white rounded-xs focus:outline-hidden focus:border-black text-xs font-sans"
-          />
-
           <button
-            onClick={handleExportCSV}
-            className="px-3 py-1.5 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
-            title="Exportar base de datos de usuarios a CSV"
+            onClick={() => setIsImportModalOpen(true)}
+            className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>Exportar CSV</span>
+            <Upload className="w-3.5 h-3.5 text-[#71717A]" />
+            <span>Importar CSV</span>
           </button>
 
           <button
-            onClick={() => setIsImportModalOpen(true)}
-            className="px-3 py-1.5 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
-            title="Importar lista de clientes o arquitectos desde archivo CSV o JSON"
+            onClick={handleExportCSV}
+            className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
           >
-            <UploadCloud className="w-3.5 h-3.5" />
-            <span>Importar</span>
+            <Download className="w-3.5 h-3.5 text-[#71717A]" />
+            <span>Export CSV</span>
+          </button>
+
+          <button
+            onClick={handleExportJSON}
+            className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
+          >
+            <FileCode className="w-3.5 h-3.5 text-[#71717A]" />
+            <span>JSON</span>
           </button>
 
           <button
             onClick={() => setIsCreateModalOpen(true)}
-            className="px-4 py-1.5 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-xs hover:bg-black/85 transition-all shadow-md whitespace-nowrap flex items-center gap-1.5"
+            className="px-5 py-2 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5 shadow-sm"
           >
-            <UserPlus className="w-3.5 h-3.5" />
-            <span>Crear Usuario</span>
+            <Plus className="w-3.5 h-3.5" />
+            <span>+ New Customer</span>
           </button>
         </div>
       </div>
 
-      {/* Users Directory Table */}
-      <div className="glass-card rounded-sm overflow-hidden border border-black/10 shadow-xs">
+      {/* ============================================================ */}
+      {/* 3. CUSTOMERS & USERS TABLE                                    */}
+      {/* ============================================================ */}
+      <div className="bg-white border border-[#EAE7E1] rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-sans">
-            <thead className="bg-[#F8F8F7] text-[10px] font-mono uppercase text-obsidian/60 border-b border-black/10">
-              <tr>
-                <th className="p-3">Usuario & Estudio</th>
-                <th className="p-3">Rol</th>
-                <th className="p-3">Contacto</th>
-                <th className="p-3">Ciudad</th>
-                <th className="p-3 text-right">Pedidos</th>
-                <th className="p-3 text-right">Compras Acumuladas</th>
-                <th className="p-3 text-center">Estado</th>
-                <th className="p-3 text-center">Acciones</th>
+          <table className="w-full text-left border-collapse text-xs font-sans">
+            <thead>
+              <tr className="bg-[#FAF9F7] border-b border-[#F0EFEA] text-[11px] font-semibold text-[#71717A]">
+                <th className="py-3.5 px-4">Customer / Company</th>
+                <th className="py-3.5 px-4">Role</th>
+                <th className="py-3.5 px-4">Contact</th>
+                <th className="py-3.5 px-4">City</th>
+                <th className="py-3.5 px-4 text-right">Orders</th>
+                <th className="py-3.5 px-4 text-right">Total Spent</th>
+                <th className="py-3.5 px-4 text-center">Status</th>
+                <th className="py-3.5 px-4 text-center">Quick Contact</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-black/5 bg-white">
+            <tbody className="divide-y divide-[#F4F4F5]">
               {filteredUsers.map(user => {
-                const waLink = generateWhatsAppLink(user);
+                const cleanPhone = user.phone ? user.phone.replace(/[^0-9]/g, '') : '';
+                const waLink = cleanPhone
+                  ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
+                      `Hola ${user.full_name}, te escribimos desde el Showroom de Montezzi...`
+                    )}`
+                  : null;
+
+                const initials = user.full_name
+                  .split(' ')
+                  .filter(Boolean)
+                  .slice(0, 2)
+                  .map(part => part[0]?.toUpperCase())
+                  .join('');
 
                 return (
-                  <tr key={user.id} className="hover:bg-black/[0.015] transition-colors">
-                    <td className="p-3">
-                      <div>
-                        <span className="font-bold text-obsidian text-xs block">{user.full_name}</span>
-                        {user.company && (
-                          <span className="text-[11px] text-obsidian/60 flex items-center gap-1 mt-0.5">
-                            <Building className="w-3 h-3 text-obsidian/40" />
-                            {user.company}
+                  <tr key={user.id} className="hover:bg-[#FAF9F7]/90 transition-colors">
+                    <td className="py-3.5 px-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] flex items-center justify-center font-sans font-bold text-xs text-[#18181B] shrink-0">
+                          {initials || 'MZ'}
+                        </div>
+                        <div>
+                          <span className="font-semibold text-[#18181B] text-[13px] block">
+                            {user.full_name}
                           </span>
-                        )}
+                          {user.company && (
+                            <span className="text-[11px] text-[#71717A] flex items-center gap-1 mt-0.5">
+                              <Building className="w-3 h-3 text-[#A1A1AA]" />
+                              {user.company}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </td>
 
-                    <td className="p-3">
+                    <td className="py-3.5 px-4 whitespace-nowrap">
                       <span
-                        className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-xs font-semibold ${
+                        className={`text-[11px] font-semibold capitalize px-2.5 py-1 rounded-full ${
                           user.role === 'admin'
-                            ? 'bg-black text-white'
+                            ? 'bg-[#18181B] text-white'
                             : user.role === 'colaborador'
-                            ? 'bg-black/10 text-black border border-black/20'
-                            : 'bg-[#F2ECE4] text-[#5A3927] border border-[#DDD6C8]'
+                            ? 'bg-[#EAF4FF] text-[#0284C7]'
+                            : 'bg-[#F4F4F5] text-[#52525B]'
                         }`}
                       >
                         {user.role}
                       </span>
                     </td>
 
-                    <td className="p-3">
+                    <td className="py-3.5 px-4">
                       <div className="space-y-0.5 text-[11px]">
-                        <div className="text-obsidian/80 flex items-center gap-1">
-                          <Mail className="w-3 h-3 text-obsidian/40" />
+                        <div className="text-[#18181B] font-medium flex items-center gap-1.5">
+                          <Mail className="w-3 h-3 text-[#A1A1AA]" />
                           <span>{user.email}</span>
                         </div>
                         {user.phone && (
-                          <div className="text-obsidian/60 font-mono flex items-center gap-1">
-                            <Phone className="w-3 h-3 text-obsidian/40" />
+                          <div className="text-[#71717A] font-mono flex items-center gap-1.5">
+                            <Phone className="w-3 h-3 text-[#A1A1AA]" />
                             <span>{user.phone}</span>
                           </div>
                         )}
                       </div>
                     </td>
 
-                    <td className="p-3 text-obsidian/70 text-[11px]">
-                      {user.city || 'Bogotá D.C.'}
+                    <td className="py-3.5 px-4 text-[#52525B] text-xs font-medium whitespace-nowrap">
+                      {user.city || 'Medellín'}
                     </td>
 
-                    <td className="p-3 text-right font-mono text-obsidian font-medium">
+                    <td className="py-3.5 px-4 text-right font-sans font-semibold text-[#18181B]">
                       {user.total_orders || 0}
                     </td>
 
-                    <td className="p-3 text-right font-mono font-bold text-obsidian">
-                      ${(user.total_spent || 0).toLocaleString('es-CO')} <span className="text-[10px] font-normal text-obsidian/50">COP</span>
+                    <td className="py-3.5 px-4 text-right font-sans font-bold text-[#18181B] whitespace-nowrap">
+                      ${(user.total_spent || 0).toLocaleString('es-CO')}{' '}
+                      <span className="text-[10px] font-normal text-[#71717A]">COP</span>
                     </td>
 
-                    <td className="p-3 text-center">
+                    <td className="py-3.5 px-4 text-center whitespace-nowrap">
                       <button
-                        onClick={() => updateSystemUserStatus(user.id, user.status === 'activo' ? 'inactivo' : 'activo')}
-                        className={`px-2 py-0.5 rounded-xs text-[10px] font-mono uppercase tracking-wider transition-colors ${
+                        onClick={() =>
+                          updateSystemUserStatus(
+                            user.id,
+                            user.status === 'activo' ? 'inactivo' : 'activo'
+                          )
+                        }
+                        className={`px-3 py-1 rounded-full text-[11px] font-semibold capitalize transition-colors ${
                           user.status === 'activo'
-                            ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200'
-                            : 'bg-black/5 text-obsidian/50 border border-black/10 hover:bg-black/10'
+                            ? 'bg-[#ECFDF5] text-[#10B981] hover:bg-[#D1FAE5]'
+                            : 'bg-[#F4F4F5] text-[#71717A] hover:bg-[#E4E4E7]'
                         }`}
                         title="Click para alternar estado"
                       >
@@ -317,14 +344,14 @@ export const UserManagementTab: React.FC = () => {
                       </button>
                     </td>
 
-                    <td className="p-3 text-center">
+                    <td className="py-3.5 px-4 text-center whitespace-nowrap">
                       <div className="flex items-center justify-center gap-1.5">
                         {waLink && (
                           <a
                             href={waLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 rounded-xs bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors"
+                            className="p-2 rounded-xl bg-[#ECFDF5] text-[#10B981] hover:bg-[#10B981] hover:text-white transition-colors"
                             title="Chat de WhatsApp"
                           >
                             <MessageSquare className="w-3.5 h-3.5" />
@@ -332,7 +359,7 @@ export const UserManagementTab: React.FC = () => {
                         )}
                         <a
                           href={`mailto:${user.email}`}
-                          className="p-1.5 rounded-xs bg-black/5 text-obsidian/70 hover:bg-black hover:text-white transition-colors"
+                          className="p-2 rounded-xl bg-[#F4F4F5] text-[#52525B] hover:bg-[#18181B] hover:text-white transition-colors"
                           title="Enviar correo"
                         >
                           <Mail className="w-3.5 h-3.5" />

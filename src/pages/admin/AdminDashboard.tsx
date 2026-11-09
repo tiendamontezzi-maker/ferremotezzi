@@ -260,7 +260,7 @@ export const AdminDashboard: React.FC = () => {
           {/* Top Bar matching reference: H1 + Subtitle on Left | Search, Bell, Profile, + New Order on Right */}
           <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pb-2">
             <div>
-              <h1 className="font-sans text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight">
+              <h1 className="font-sans text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight normal-case">
                 {currentTabLabel}
               </h1>
               <p className="text-xs text-[#71717A] font-sans mt-0.5">

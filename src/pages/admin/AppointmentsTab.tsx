@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useProducts } from '../../context/ProductContext';
-import { exportToCSV, exportToJSON } from '../../utils/csvExportImport';
+import { exportToCSV } from '../../utils/csvExportImport';
 import {
   Calendar, Clock, User, Phone, Mail, MapPin, CheckCircle2,
-  AlertCircle, Download, Plus, MessageSquare, Check, X
+  Download, Search
 } from 'lucide-react';
 
 export const AppointmentsTab: React.FC = () => {
@@ -41,66 +41,89 @@ export const AppointmentsTab: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'confirmed':
-        return <span className="px-2.5 py-0.5 rounded-xs bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold uppercase">Confirmada</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#ECFDF5] text-[#10B981] text-[11px] font-semibold">Confirmada</span>;
       case 'pending':
-        return <span className="px-2.5 py-0.5 rounded-xs bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-mono font-bold uppercase">Por Confirmar</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#FFFBEB] text-[#D97706] text-[11px] font-semibold">Por Confirmar</span>;
       case 'completed':
-        return <span className="px-2.5 py-0.5 rounded-xs bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-mono font-bold uppercase">Atendida</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#F0F9FF] text-[#0284C7] text-[11px] font-semibold">Atendida</span>;
       case 'cancelled':
-        return <span className="px-2.5 py-0.5 rounded-xs bg-red-50 text-red-800 border border-red-200 text-[10px] font-mono font-bold uppercase">Cancelada</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#FEF2F2] text-[#EF4444] text-[11px] font-semibold">Cancelada</span>;
       default:
-        return <span className="px-2.5 py-0.5 rounded-xs bg-black/5 text-obsidian text-[10px] font-mono font-bold uppercase">{status}</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#F4F4F5] text-[#52525B] text-[11px] font-semibold capitalize">{status}</span>;
     }
   };
 
+  const confirmedCount = appointments.filter(a => a.status === 'confirmed').length;
+  const pendingCount = appointments.filter(a => a.status === 'pending').length;
+
   return (
-    <div className="space-y-6">
-      {/* Top Banner */}
-      <div className="glass-card p-6 rounded-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-l-4 border-l-[#5A3927]">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono tracking-widest text-[#5A3927] uppercase bg-[#F2ECE4] border border-[#DDD6C8] px-2 py-0.5 rounded-xs font-semibold">
-              Gestión de Agenda · Showroom Medellín
-            </span>
-            <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-xs font-bold">
-              {appointments.filter(a => a.status === 'confirmed').length} Citas Confirmadas
-            </span>
+    <div className="space-y-6 font-sans">
+      {/* Top KPI Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Total Showroom Appointments</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
+              <Calendar className="w-4 h-4" />
+            </div>
           </div>
-          <h2 className="font-sans text-xl font-bold text-obsidian uppercase tracking-wider">
-            Citas de Asesoría & Visitas de Medición
-          </h2>
-          <p className="text-xs text-obsidian/60 font-sans">
-            Agendamiento presencial en Showroom de El Poblado o sesiones virtuales de especificación técnica para arquitectos
-          </p>
+          <div className="text-3xl font-bold text-[#18181B] tracking-tight my-1">
+            {appointments.length}
+          </div>
+          <div className="text-[11px] font-medium text-[#71717A]">
+            El Poblado Showroom & Virtual Advisory
+          </div>
         </div>
 
-        <button
-          onClick={handleExportCSV}
-          className="px-3 py-2 bg-black text-white hover:bg-black/85 text-xs font-bold uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-md"
-        >
-          <Download className="w-3.5 h-3.5" />
-          <span>Exportar Agenda (CSV)</span>
-        </button>
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Confirmed Sessions</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="text-3xl font-bold text-[#10B981] tracking-tight my-1">
+            {confirmedCount}
+          </div>
+          <div className="text-[11px] font-medium text-[#71717A]">
+            Assigned to senior hardware specialists
+          </div>
+        </div>
+
+        <div className="bg-white border border-[#EAE7E1] rounded-2xl p-5 flex flex-col justify-between min-h-[120px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-[#18181B]">Pending Confirmation</span>
+            <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
+              <Clock className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="text-3xl font-bold text-[#D97706] tracking-tight my-1">
+            {pendingCount}
+          </div>
+          <div className="text-[11px] font-medium text-[#71717A]">
+            Awaiting WhatsApp schedule confirmation
+          </div>
+        </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 border border-[#E2DDD4] rounded-sm shadow-xs">
-        <div className="flex flex-1 items-center gap-3">
-          <div className="relative flex-1 max-w-xs">
-            <User className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-obsidian/40" />
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 border border-[#EAE7E1] rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+        <div className="flex flex-wrap flex-1 items-center gap-2.5">
+          <div className="relative flex-1 min-w-[220px] max-w-xs">
+            <Search className="w-3.5 h-3.5 absolute left-3.5 top-3 text-[#A1A1AA]" />
             <input
               type="text"
               placeholder="Buscar por cliente o servicio..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs pl-8 pr-3 py-2 rounded-xs focus:outline-none focus:border-black"
+              className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white text-[#18181B] text-xs pl-9 pr-4 py-2 rounded-full focus:outline-none transition-all"
             />
           </div>
 
           <select
             value={filterStatus}
             onChange={e => setFilterStatus(e.target.value)}
-            className="bg-[#FAF8F5] border border-[#DDD6C8] text-obsidian text-xs px-3 py-2 rounded-xs focus:outline-none focus:border-black"
+            className="bg-[#F4F4F5] hover:bg-[#EAEAEA] border border-transparent focus:border-black/20 focus:bg-white text-[#18181B] text-xs font-medium px-4 py-2 rounded-full focus:outline-none cursor-pointer transition-all"
           >
             <option value="all">Todos los Estados</option>
             <option value="confirmed">Confirmadas</option>
@@ -110,51 +133,63 @@ export const AppointmentsTab: React.FC = () => {
           </select>
         </div>
 
-        <span className="text-xs font-mono text-obsidian/60 self-center">
-          {filteredAppointments.length} citas listadas
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-medium text-[#71717A]">
+            {filteredAppointments.length} citas listadas
+          </span>
+          <button
+            onClick={handleExportCSV}
+            className="px-4 py-2 bg-[#18181B] hover:bg-black text-white text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5 shadow-xs"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Export CSV</span>
+          </button>
+        </div>
       </div>
 
       {/* Appointments Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredAppointments.map(apt => (
-          <div key={apt.id} className="glass-card p-5 rounded-xl border border-white/80 shadow-xs space-y-3">
+          <div
+            key={apt.id}
+            className="bg-white border border-[#EAE7E1] rounded-2xl p-5 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-3.5"
+          >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs text-black font-bold flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-black" />
+              <span className="font-mono text-xs text-[#18181B] font-semibold bg-[#F4F4F5] px-3 py-1 rounded-full flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-[#18181B]" />
                 {apt.appointment_date} · {apt.appointment_time}
               </span>
               {getStatusBadge(apt.status)}
             </div>
 
             <div>
-              <h4 className="font-sans text-sm font-bold text-obsidian uppercase tracking-wide">
+              <h4 className="font-sans text-sm font-bold text-[#18181B] normal-case">
                 {apt.customer_name}
               </h4>
-              <p className="text-xs text-obsidian/60 font-sans mt-0.5">
+              <p className="text-xs text-[#71717A] font-sans mt-0.5 capitalize">
                 {apt.service_type}
               </p>
             </div>
 
-            <div className="text-xs text-obsidian/70 space-y-1 pt-1 border-t border-black/[0.06]">
+            <div className="text-xs text-[#52525B] space-y-1.5 pt-3 border-t border-[#F4F4F5]">
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-obsidian/40" />
+                <Phone className="w-3.5 h-3.5 text-[#A1A1AA]" />
                 <span className="font-mono">{apt.customer_phone}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-obsidian/40" />
+                <Mail className="w-3.5 h-3.5 text-[#A1A1AA]" />
                 <span>{apt.customer_email}</span>
               </div>
-              {apt.address && (
+              {(apt.address || apt.location) && (
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-obsidian/40" />
-                  <span className="truncate">{apt.address}</span>
+                  <MapPin className="w-3.5 h-3.5 text-[#A1A1AA]" />
+                  <span className="truncate">{apt.address || apt.location}</span>
                 </div>
               )}
             </div>
 
             {apt.notes && (
-              <div className="p-2.5 bg-black/[0.03] rounded-xs text-[11px] text-obsidian/75 font-sans italic">
+              <div className="p-3 bg-[#FAF9F7] border border-[#EAE7E1] rounded-xl text-xs text-[#52525B] font-sans">
                 "{apt.notes}"
               </div>
             )}

@@ -331,22 +331,22 @@ export const ElectronicBillingTab: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       {/* Top Banner */}
-      <div className="glass-card p-6 rounded-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-l-4 border-l-[#5A3927]">
+      <div className="bg-white border border-[#EAE7E1] p-6 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono tracking-widest text-[#5A3927] uppercase bg-[#F2ECE4] border border-[#DDD6C8] px-2 py-0.5 rounded-xs font-semibold">
+            <span className="text-[11px] font-semibold text-[#18181B] bg-[#F4F4F5] px-3 py-0.5 rounded-full">
               Módulo DIAN Colombia · UBL 2.1
             </span>
-            <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-xs font-bold ${environment === 'sandbox' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}`}>
+            <span className={`text-[11px] font-semibold capitalize px-3 py-0.5 rounded-full ${environment === 'sandbox' ? 'bg-[#FFFBEB] text-[#D97706]' : 'bg-[#ECFDF5] text-[#10B981]'}`}>
               Ambiente: {environment}
             </span>
           </div>
-          <h2 className="font-sans text-xl font-bold text-obsidian uppercase tracking-wider">
+          <h2 className="font-sans text-xl font-bold text-[#18181B] normal-case pt-1">
             Facturación Electrónica DIAN & Conexión API
           </h2>
-          <p className="text-xs text-obsidian/60 font-sans">
+          <p className="text-xs text-[#71717A] font-sans">
             Preparado para emisión en tiempo real, validación de CUFE y sincronización REST con Siigo, Factus o Alegra
           </p>
         </div>
@@ -354,149 +354,157 @@ export const ElectronicBillingTab: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setViewMode('config')}
-            className="px-3 py-2 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
+            className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
           >
-            <Settings className="w-3.5 h-3.5" />
+            <Settings className="w-3.5 h-3.5 text-[#71717A]" />
             <span>Configurar API</span>
           </button>
           <button
             onClick={handleExportCSV}
-            className="px-3 py-2 bg-white border border-black/20 text-obsidian hover:border-black text-xs font-medium uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-xs"
+            className="px-4 py-2 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>Exportar CSV</span>
+            <Download className="w-3.5 h-3.5 text-[#71717A]" />
+            <span>Export CSV</span>
           </button>
           <button
             onClick={() => setViewMode('new_invoice')}
-            className="px-4 py-2 bg-black text-white hover:bg-black/85 text-xs font-bold uppercase tracking-wider rounded-xs transition-colors flex items-center gap-1.5 shadow-md"
+            className="px-5 py-2 bg-[#18181B] text-white hover:bg-black text-xs font-semibold rounded-full transition-colors flex items-center gap-1.5 shadow-sm"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>Emitir Factura Electrónica</span>
+            <span>+ Emitir Factura</span>
           </button>
         </div>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">Total Facturado</span>
-            <FileText className="w-4 h-4 text-black" />
+        <div className="bg-white border border-[#EAE7E1] p-5 rounded-2xl flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between text-[#18181B] text-xs">
+            <span className="font-sans font-semibold">Total Facturado</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF4FF] text-[#0284C7] flex items-center justify-center">
+              <FileText className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-mono font-bold text-obsidian">
-            ${(totalInvoiced / 1000000).toFixed(2)}M <span className="text-xs font-sans font-normal text-obsidian/50">COP</span>
+          <div className="text-3xl font-sans font-bold text-[#18181B] my-1">
+            ${(totalInvoiced / 1000000).toFixed(2)}M <span className="text-xs font-sans font-normal text-[#71717A]">COP</span>
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans">
+          <span className="text-[11px] text-[#71717A] block font-sans">
             Facturas electrónicas emitidas en 2026
           </span>
         </div>
 
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">IVA 19% Generado</span>
-            <Building2 className="w-4 h-4 text-black" />
+        <div className="bg-white border border-[#EAE7E1] p-5 rounded-2xl flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between text-[#18181B] text-xs">
+            <span className="font-sans font-semibold">IVA 19% Generado</span>
+            <div className="w-8 h-8 rounded-full bg-[#FFF6E9] text-[#B45309] flex items-center justify-center">
+              <Building2 className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-mono font-bold text-black">
-            ${(totalIva / 1000000).toFixed(2)}M <span className="text-xs font-sans font-normal text-obsidian/50">COP</span>
+          <div className="text-3xl font-sans font-bold text-[#18181B] my-1">
+            ${(totalIva / 1000000).toFixed(2)}M <span className="text-xs font-sans font-normal text-[#71717A]">COP</span>
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans">
+          <span className="text-[11px] text-[#71717A] block font-sans">
             Base Gravable: ${(totalSubtotal / 1000000).toFixed(2)}M COP
           </span>
         </div>
 
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">Aceptadas DIAN</span>
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+        <div className="bg-white border border-[#EAE7E1] p-5 rounded-2xl flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between text-[#18181B] text-xs">
+            <span className="font-sans font-semibold">Aceptadas DIAN</span>
+            <div className="w-8 h-8 rounded-full bg-[#EAF8F0] text-[#059669] flex items-center justify-center">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-2xl font-mono font-bold text-emerald-700">
-            {acceptedCount} <span className="text-xs font-sans font-normal text-obsidian/50">de {invoices.length}</span>
+          <div className="text-3xl font-sans font-bold text-[#10B981] my-1">
+            {acceptedCount} <span className="text-xs font-sans font-normal text-[#71717A]">de {invoices.length}</span>
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans">
+          <span className="text-[11px] text-[#71717A] block font-sans">
             Validación de firma y CUFE 100% exitosa
           </span>
         </div>
 
-        <div className="glass-card p-5 rounded-sm space-y-1">
-          <div className="flex items-center justify-between text-obsidian/60 text-xs">
-            <span className="font-sans tracking-wider uppercase font-semibold">Resolución DIAN</span>
-            <Hash className="w-4 h-4 text-black" />
+        <div className="bg-white border border-[#EAE7E1] p-5 rounded-2xl flex flex-col justify-between min-h-[125px] shadow-[0_2px_10px_rgba(0,0,0,0.015)]">
+          <div className="flex items-center justify-between text-[#18181B] text-xs">
+            <span className="font-sans font-semibold">Resolución DIAN</span>
+            <div className="w-8 h-8 rounded-full bg-[#F3EFFE] text-[#6D28D9] flex items-center justify-center">
+              <Hash className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-base font-mono font-bold text-obsidian truncate">
+          <div className="text-lg font-mono font-bold text-[#18181B] truncate my-1">
             {dianPrefix}-1 a 10.000
           </div>
-          <span className="text-[10px] text-obsidian/40 block font-sans truncate">
+          <span className="text-[11px] text-[#71717A] block font-sans truncate">
             {dianResolution}
           </span>
         </div>
       </div>
 
       {/* Invoices Table */}
-      <div className="glass-card rounded-sm overflow-hidden border border-black/10 shadow-xs">
-        <div className="p-4 bg-[#F8F8F7] border-b border-black/10 flex items-center justify-between">
-          <h3 className="font-sans text-xs font-bold text-obsidian uppercase tracking-wider">
+      <div className="bg-white border border-[#EAE7E1] rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+        <div className="p-4 bg-[#FAF9F7] border-b border-[#F0EFEA] flex items-center justify-between">
+          <h3 className="font-sans text-sm font-bold text-[#18181B] normal-case">
             Histórico de Facturación Electrónica de Venta
           </h3>
-          <span className="text-[11px] font-mono text-obsidian/50">
+          <span className="text-xs font-medium text-[#71717A]">
             Resolución Vigente Habilitada
           </span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-sans">
-            <thead className="bg-[#FAF9F7] text-[10px] font-mono uppercase text-obsidian/60 border-b border-black/10">
+            <thead className="bg-[#FAF9F7] text-[11px] font-semibold text-[#71717A] border-b border-[#F0EFEA]">
               <tr>
-                <th className="p-3">Consecutivo</th>
-                <th className="p-3">Fecha</th>
-                <th className="p-3">Cliente / Adquirente</th>
-                <th className="p-3">NIT / Cédula</th>
-                <th className="p-3 text-right">Subtotal</th>
-                <th className="p-3 text-right">IVA (19%)</th>
-                <th className="p-3 text-right">Total Factura</th>
-                <th className="p-3 text-center">Estado DIAN</th>
-                <th className="p-3 text-center">Inspección API</th>
+                <th className="py-3.5 px-4">Consecutivo</th>
+                <th className="py-3.5 px-4">Fecha</th>
+                <th className="py-3.5 px-4">Cliente / Adquirente</th>
+                <th className="py-3.5 px-4">NIT / Cédula</th>
+                <th className="py-3.5 px-4 text-right">Subtotal</th>
+                <th className="py-3.5 px-4 text-right">IVA (19%)</th>
+                <th className="py-3.5 px-4 text-right">Total Factura</th>
+                <th className="py-3.5 px-4 text-center">Estado DIAN</th>
+                <th className="py-3.5 px-4 text-center">Inspección API</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-black/5 bg-white">
+            <tbody className="divide-y divide-[#F4F4F5] bg-white">
               {invoices.map(inv => (
-                <tr key={inv.id} className="hover:bg-black/[0.015] transition-colors">
-                  <td className="p-3">
-                    <span className="font-mono font-bold text-black">{inv.consecutive}</span>
-                    <span className="text-[10px] text-obsidian/40 font-mono block">Ref: {inv.order_id}</span>
+                <tr key={inv.id} className="hover:bg-[#FAF9F7]/90 transition-colors">
+                  <td className="py-3.5 px-4">
+                    <span className="font-mono font-bold text-[#18181B] bg-[#F4F4F5] px-2.5 py-0.5 rounded-lg">{inv.consecutive}</span>
+                    <span className="text-[10px] text-[#71717A] font-mono block mt-0.5">Ref: {inv.order_id}</span>
                   </td>
-                  <td className="p-3 text-obsidian/70 text-[11px] font-mono">
+                  <td className="py-3.5 px-4 text-[#52525B] text-xs">
                     {new Date(inv.issue_date).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </td>
-                  <td className="p-3">
-                    <span className="font-bold text-obsidian block">{inv.customer_name}</span>
-                    <span className="text-[10px] text-obsidian/50 block truncate max-w-xs">{inv.customer_email}</span>
+                  <td className="py-3.5 px-4">
+                    <span className="font-semibold text-[#18181B] text-[13px] block">{inv.customer_name}</span>
+                    <span className="text-[11px] text-[#71717A] block truncate max-w-xs">{inv.customer_email}</span>
                   </td>
-                  <td className="p-3 font-mono text-obsidian/80">
+                  <td className="py-3.5 px-4 font-mono text-[#52525B]">
                     {inv.customer_nit}
                   </td>
-                  <td className="p-3 text-right font-mono text-obsidian/70">
+                  <td className="py-3.5 px-4 text-right font-sans text-[#52525B]">
                     ${inv.subtotal.toLocaleString('es-CO')}
                   </td>
-                  <td className="p-3 text-right font-mono text-obsidian/70">
+                  <td className="py-3.5 px-4 text-right font-sans text-[#52525B]">
                     ${inv.iva_amount.toLocaleString('es-CO')}
                   </td>
-                  <td className="p-3 text-right font-mono font-bold text-black">
-                    ${inv.total.toLocaleString('es-CO')} <span className="text-[10px] font-normal text-obsidian/50">COP</span>
+                  <td className="py-3.5 px-4 text-right font-sans font-bold text-[#18181B]">
+                    ${inv.total.toLocaleString('es-CO')} <span className="text-[10px] font-normal text-[#71717A]">COP</span>
                   </td>
-                  <td className="p-3 text-center">
-                    <span className={`px-2 py-0.5 rounded-xs text-[10px] font-mono uppercase tracking-wider font-semibold ${
+                  <td className="py-3.5 px-4 text-center">
+                    <span className={`px-3 py-1 rounded-full text-[11px] font-semibold capitalize ${
                       inv.dian_status === 'aceptada'
-                        ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                        : 'bg-amber-100 text-amber-800 border border-amber-300'
+                        ? 'bg-[#ECFDF5] text-[#10B981]'
+                        : 'bg-[#FFFBEB] text-[#D97706]'
                     }`}>
                       {inv.dian_status}
                     </span>
                   </td>
-                  <td className="p-3 text-center">
+                  <td className="py-3.5 px-4 text-center">
                     <div className="flex items-center justify-center gap-1.5">
                       <button
                         onClick={() => { setSelectedInvoice(inv); setViewMode('json'); }}
-                        className="px-2 py-1 bg-black text-white hover:bg-black/80 rounded-xs text-[10px] font-mono uppercase tracking-wider flex items-center gap-1 transition-colors"
+                        className="px-3 py-1.5 bg-[#18181B] text-white hover:bg-black rounded-full text-[11px] font-semibold flex items-center gap-1 transition-colors"
                         title="Ver payload JSON que se enviará a la API"
                       >
                         <Code className="w-3 h-3" />
@@ -504,7 +512,7 @@ export const ElectronicBillingTab: React.FC = () => {
                       </button>
                       <button
                         onClick={() => { setSelectedInvoice(inv); setViewMode('xml'); }}
-                        className="px-2 py-1 bg-black/5 hover:bg-black/10 text-obsidian rounded-xs text-[10px] font-mono uppercase tracking-wider flex items-center gap-1 transition-colors"
+                        className="px-3 py-1.5 bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] rounded-full text-[11px] font-semibold flex items-center gap-1 transition-colors"
                         title="Ver XML estándar UBL 2.1"
                       >
                         <FileText className="w-3 h-3" />
