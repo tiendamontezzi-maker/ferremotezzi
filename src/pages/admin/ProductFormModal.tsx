@@ -109,10 +109,13 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       ? `${shortDescription.trim()} Nota: ${notaTecnica.trim()}`
       : shortDescription.trim();
 
-    const finalImageUrl = imageUrl.trim() || galleryUrls[0] || '/images/products/kdj-60.jpg';
+    const cleanGallery = galleryUrls.map((u) => u.trim()).filter(Boolean);
+    const finalImageUrl = imageUrl.trim() || cleanGallery[0] || '/images/products/kdj-60.jpg';
     const finalGalleryUrls =
-      galleryUrls.length > 0
-        ? [finalImageUrl, ...galleryUrls.filter((u) => u && u !== finalImageUrl)]
+      cleanGallery.length > 0
+        ? cleanGallery.includes(finalImageUrl)
+          ? cleanGallery
+          : [finalImageUrl, ...cleanGallery]
         : [finalImageUrl];
 
     const generatedSlug = `${code.toLowerCase()}-${name

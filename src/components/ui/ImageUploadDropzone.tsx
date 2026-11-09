@@ -9,7 +9,10 @@ import {
   RefreshCw,
   Star,
   Plus,
-  Sparkles
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  GripVertical
 } from 'lucide-react';
 import {
   uploadProductImage,
@@ -34,7 +37,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
   productCode,
   label = 'Fotografías Oficiales del Producto (Subida Ilimitada · Supabase Storage)'
 }) => {
-  const [isDragging, setIsDragging] = useState(false);
+  const [isDraggingFile, setIsDraggingFile] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<{ done: number; total: number } | null>(null);
   const [lastUploads, setLastUploads] = useState<UploadResult[]>([]);
@@ -43,35 +46,38 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
   const [showUrlInput, setShowUrlInput] = useState(false);
   const [replaceIndex, setReplaceIndex] = useState<number | null>(null);
 
+  // Drag & Drop state for reordering gallery cards
+  const [draggedCardIdx, setDraggedCardIdx] = useState<number | null>(null);
+  const [dragOverCardIdx, setDragOverCardIdx] = useState<number | null>(null);
+
   const multiFileInputRef = useRef<HTMLInputElement>(null);
   const replaceFileInputRef = useRef<HTMLInputElement>(null);
 
-  // Build normalized gallery list that always includes `value` if present
+  // Preserve exact galleryUrls order while ensuring `value` is included if not already present
   const normalizedGallery = React.useMemo(() => {
     const list: string[] = [];
-    if (value && value.trim()) {
-      list.push(value.trim());
-    }
     for (const u of galleryUrls) {
       if (u && u.trim() && !list.includes(u.trim())) {
         list.push(u.trim());
       }
     }
+    if (value && value.trim() && !list.includes(value.trim())) {
+      list.unshift(value.trim());
+    }
     return list;
   }, [value, galleryUrls]);
 
-  const updateGalleryAndPrimary = (newList: string[], preferredPrimary?: string) => {
-    const clean = newList.filter(Boolean);
+  // Apply exact gallery order AND chosen primary cover independently
+  const applyGalleryState = (orderedList: string[], chosenPrimary?: string) => {
+    const clean = orderedList.filter(Boolean);
     const primary =
-      preferredPrimary && clean.includes(preferredPrimary)
-        ? preferredPrimary
+      chosenPrimary && clean.includes(chosenPrimary)
+        ? chosenPrimary
+        : value && clean.includes(value)
+        ? value
         : clean[0] || '';
-    // Put primary first in gallery_urls for consistency
-    const ordered = primary
-      ? [primary, ...clean.filter((u) => u !== primary)]
-      : clean;
     onChange(primary);
-    onGalleryChange?.(ordered);
+    onGalleryChange?.(clean);
   };
 
   const handleProcessMultipleFiles = async (files: FileList | File[]) => {
@@ -90,17 +96,18 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
       setLastUploads(results);
       const uploadedUrls = results.map((r) => r.url);
 
-      // If current image is a generic local fallback placeholder when uploading the first real Supabase photo,
-      // make the newly uploaded photo the primary cover automatically!
       const isCurrentPlaceholder =
         !value || value === '/images/products/kdj-60.jpg';
 
-      const combined = isCurrentPlaceholder
-        ? [...uploadedUrls, ...normalizedGallery.filter((u) => u !== '/images/products/kdj-60.jpg')]
-        : [...normalizedGallery, ...uploadedUrls];
+      const baseGallery = isCurrentPlaceholder
+        ? normalizedGallery.filter((u) => u !== '/images/products/kdj-60.jpg')
+        : normalizedGallery;
 
-      const newPrimary = isCurrentPlaceholder ? uploadedUrls[0] : uploadedUrls[0] || value;
-      updateGalleryAndPrimary(combined, newPrimary);
+      const combined = [...baseGallery, ...uploadedUrls];
+      const newPrimary =
+        isCurrentPlaceholder || !value ? uploadedUrls[0] : value;
+
+      applyGalleryState(combined, newPrimary);
     } catch (err: any) {
       console.error(err);
       setErrorMsg(err.message || 'Error al subir las fotografías.');
@@ -123,8 +130,8 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
       const oldUrl = next[targetIdx];
       next[targetIdx] = res.url;
 
-      const newPrimary = oldUrl === value || targetIdx === 0 ? res.url : value;
-      updateGalleryAndPrimary(next, newPrimary);
+      const newPrimary = oldUrl === value ? res.url : value;
+      applyGalleryState(next, newPrimary);
     } catch (err: any) {
       console.error(err);
       setErrorMsg(err.message || 'Error al reemplazar la fotografía.');
@@ -135,23 +142,27 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
     }
   };
 
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
+  // File Dropzone handlers
+  const handleFileDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(true);
+    if (draggedCardIdx === null) {
+      setIsDraggingFile(true);
+    }
   };
 
-  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
+  const handleFileDragLeave = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(false);
+    setIsDraggingFile(false);
   };
 
-  const handleDrop = async (e: DragEvent<HTMLDivElement>) => {
+  const handleFileDrop = async (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(false);
+    setIsDraggingFile(false);
 
+    if (draggedCardIdx !== null) return;
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       await handleProcessMultipleFiles(e.dataTransfer.files);
     }
@@ -175,18 +186,73 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
     const trimmed = externalUrlInput.trim();
     if (!trimmed) return;
     const next = [...normalizedGallery, trimmed];
-    updateGalleryAndPrimary(next, !value ? trimmed : value);
+    applyGalleryState(next, !value ? trimmed : value);
     setExternalUrlInput('');
   };
 
   const handleRemoveImage = (urlToRemove: string) => {
     const remaining = normalizedGallery.filter((u) => u !== urlToRemove);
     const nextPrimary = urlToRemove === value ? remaining[0] || '' : value;
-    updateGalleryAndPrimary(remaining, nextPrimary);
+    applyGalleryState(remaining, nextPrimary);
   };
 
-  const handleSetPrimary = (urlToPromote: string) => {
-    updateGalleryAndPrimary(normalizedGallery, urlToPromote);
+  // Set any photo as the Cover Photo (Portada)
+  const handleSetPrimary = (urlToPromote: string, moveFirst = false) => {
+    if (moveFirst) {
+      const reordered = [
+        urlToPromote,
+        ...normalizedGallery.filter((u) => u !== urlToPromote)
+      ];
+      applyGalleryState(reordered, urlToPromote);
+    } else {
+      applyGalleryState(normalizedGallery, urlToPromote);
+    }
+  };
+
+  // Move photo from `fromIndex` to `toIndex`
+  const handleMovePhoto = (fromIndex: number, toIndex: number) => {
+    if (
+      fromIndex < 0 ||
+      toIndex < 0 ||
+      fromIndex >= normalizedGallery.length ||
+      toIndex >= normalizedGallery.length ||
+      fromIndex === toIndex
+    ) {
+      return;
+    }
+    const next = [...normalizedGallery];
+    const [moved] = next.splice(fromIndex, 1);
+    next.splice(toIndex, 0, moved);
+    applyGalleryState(next, value);
+  };
+
+  // Card Drag & Drop Reorder handlers
+  const handleCardDragStart = (e: DragEvent<HTMLDivElement>, idx: number) => {
+    setDraggedCardIdx(idx);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', String(idx));
+  };
+
+  const handleCardDragOver = (e: DragEvent<HTMLDivElement>, idx: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (draggedCardIdx === null || draggedCardIdx === idx) return;
+    setDragOverCardIdx(idx);
+  };
+
+  const handleCardDrop = (e: DragEvent<HTMLDivElement>, targetIdx: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (draggedCardIdx !== null && draggedCardIdx !== targetIdx) {
+      handleMovePhoto(draggedCardIdx, targetIdx);
+    }
+    setDraggedCardIdx(null);
+    setDragOverCardIdx(null);
+  };
+
+  const handleCardDragEnd = () => {
+    setDraggedCardIdx(null);
+    setDragOverCardIdx(null);
   };
 
   const totalCompressedKB = lastUploads.reduce((acc, u) => acc + u.fileSize, 0) / 1024;
@@ -226,14 +292,14 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
 
       {/* ALWAYS VISIBLE Drag & Drop Multi-Upload Zone */}
       <div
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
+        onDragOver={handleFileDragOver}
+        onDragLeave={handleFileDragLeave}
+        onDrop={handleFileDrop}
         onClick={() => multiFileInputRef.current?.click()}
         className={`p-5 border-2 border-dashed rounded-2xl text-center cursor-pointer transition-all ${
-          isDragging
+          isDraggingFile
             ? 'border-[#18181B] bg-[#18181B]/[0.04] scale-[0.99]'
-            : 'border-[#D4D4D8] hover:border-[#18181B] bg-[#FAF9F7] hover:bg-[#F4F4F5]/70'
+            : 'border-[#D4D4D8] hover:border-[#18181B] bg-white hover:bg-[#F4F4F5]/60'
         }`}
       >
         {isUploading ? (
@@ -257,7 +323,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
                 Haz clic aquí o arrastra todas las fotografías que quieras (Sin límite de cantidad)
               </span>
               <span className="text-[11px] text-[#71717A] block mt-0.5">
-                Selecciona 1 o múltiples fotos a la vez (JPG, PNG, WEBP, AVIF). Se comprimen automáticamente a WebP (~45 KB) en Supabase Storage.
+                Súbelas en cualquier orden: abajo puedes arrastrarlas, usar las flechas (◀ ▶) o elegir el número de posición y cuál será la Portada.
               </span>
             </div>
           </div>
@@ -283,7 +349,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
 
       {/* Optional External URL Adder */}
       {showUrlInput && (
-        <div className="p-3 bg-[#FAF9F7] border border-[#EAE7E1] rounded-xl space-y-2">
+        <div className="p-3 bg-white border border-[#EAE7E1] rounded-xl space-y-2">
           <div className="flex gap-2">
             <div className="relative flex-1">
               <LinkIcon className="w-3.5 h-3.5 absolute left-3 top-2.5 text-[#71717A]" />
@@ -298,7 +364,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
                   }
                 }}
                 placeholder="Pega una URL de imagen (https://... o /images/products/kdj-60.jpg)"
-                className="w-full pl-8 pr-3 py-2 bg-white border border-[#E4E4E7] text-xs text-[#18181B] rounded-xl focus:border-black focus:outline-none font-mono"
+                className="w-full pl-8 pr-3 py-2 bg-[#FAF9F7] border border-[#E4E4E7] text-xs text-[#18181B] rounded-xl focus:border-black focus:outline-none font-mono"
               />
             </div>
             <button
@@ -342,12 +408,15 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
         </div>
       )}
 
-      {/* Gallery Grid of All Product Photos */}
+      {/* Reorderable Gallery Grid */}
       {normalizedGallery.length > 0 && (
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-[11px] text-[#71717A]">
-            <span>
-              Galería activa de la referencia (haz clic en <strong>Portada</strong> para elegir la foto principal o en el ícono de cámara para reemplazar):
+        <div className="space-y-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#52525B] bg-white px-3.5 py-2 rounded-xl border border-[#EAE7E1]">
+            <span className="flex items-center gap-1.5">
+              <GripVertical className="w-3.5 h-3.5 text-[#18181B]" />
+              <span>
+                <strong>Ordenar y elegir Portada:</strong> Arrastra las tarjetas, usa las flechas <strong>◀ ▶</strong> o cambia el número de orden. Elige cualquier foto como <strong>★ Portada</strong>.
+              </span>
             </span>
           </div>
 
@@ -355,36 +424,47 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
             {normalizedGallery.map((imgUrl, idx) => {
               const isPrimary = imgUrl === value || (idx === 0 && !value);
               const isSupabaseUrl = imgUrl.includes('supabase.co/storage');
+              const isBeingDragged = draggedCardIdx === idx;
+              const isDropTarget = dragOverCardIdx === idx && draggedCardIdx !== idx;
 
               return (
                 <div
                   key={`${imgUrl}-${idx}`}
-                  className={`relative group rounded-2xl border p-2 bg-white transition-all flex flex-col justify-between ${
-                    isPrimary
-                      ? 'border-[#18181B] ring-2 ring-[#18181B]/10 shadow-sm'
-                      : 'border-[#EAE7E1] hover:border-[#18181B]/40'
+                  draggable
+                  onDragStart={(e) => handleCardDragStart(e, idx)}
+                  onDragOver={(e) => handleCardDragOver(e, idx)}
+                  onDrop={(e) => handleCardDrop(e, idx)}
+                  onDragEnd={handleCardDragEnd}
+                  className={`relative group rounded-2xl border p-2.5 bg-white transition-all flex flex-col justify-between select-none ${
+                    isBeingDragged
+                      ? 'opacity-40 scale-95 border-dashed border-[#18181B]'
+                      : isDropTarget
+                      ? 'border-[#059669] ring-2 ring-[#059669]/30 bg-[#ECFDF5]/30 scale-[1.02]'
+                      : isPrimary
+                      ? 'border-[#18181B] ring-2 ring-[#18181B]/15 shadow-md'
+                      : 'border-[#EAE7E1] hover:border-[#18181B]/40 shadow-2xs'
                   }`}
                 >
-                  {/* Top Badges */}
+                  {/* Top Bar: Cover Badge + Replace / Delete */}
                   <div className="flex items-center justify-between gap-1 mb-1.5 z-10">
                     {isPrimary ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#18181B] text-white text-[10px] font-bold">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#18181B] text-white text-[10px] font-bold shadow-2xs">
                         <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
-                        Portada
+                        Portada Principal
                       </span>
                     ) : (
                       <button
                         type="button"
                         onClick={() => handleSetPrimary(imgUrl)}
-                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#F4F4F5] hover:bg-[#18181B] text-[#52525B] hover:text-white text-[10px] font-semibold transition-colors"
-                        title="Usar esta fotografía como foto principal del producto"
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#F4F4F5] hover:bg-[#18181B] text-[#52525B] hover:text-white text-[10px] font-semibold transition-colors cursor-pointer"
+                        title="Marcar esta fotografía como la Portada principal del producto"
                       >
                         <Star className="w-2.5 h-2.5" />
-                        Hacer Portada
+                        Elegir Portada
                       </button>
                     )}
 
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-0.5">
                       <button
                         type="button"
                         onClick={() => {
@@ -392,7 +472,7 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
                           replaceFileInputRef.current?.click();
                         }}
                         title="Reemplazar esta fotografía"
-                        className="p-1 text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] rounded-lg transition-colors"
+                        className="p-1 text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] rounded-lg transition-colors cursor-pointer"
                       >
                         <RefreshCw className="w-3.5 h-3.5" />
                       </button>
@@ -400,34 +480,89 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
                         type="button"
                         onClick={() => handleRemoveImage(imgUrl)}
                         title="Eliminar fotografía"
-                        className="p-1 text-[#EF4444] hover:bg-[#FEF2F2] rounded-lg transition-colors"
+                        className="p-1 text-[#EF4444] hover:bg-[#FEF2F2] rounded-lg transition-colors cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
 
-                  {/* Image Thumbnail */}
+                  {/* Image Preview (Draggable + Click to set cover) */}
                   <div
                     onClick={() => handleSetPrimary(imgUrl)}
-                    className="aspect-square w-full bg-[#FAF9F7] rounded-xl overflow-hidden flex items-center justify-center p-2 cursor-pointer"
+                    title="Haz clic para elegir como Portada o arrastra para cambiar el orden"
+                    className="relative aspect-square w-full bg-[#FAF9F7] rounded-xl overflow-hidden flex items-center justify-center p-2 cursor-grab active:cursor-grabbing border border-[#F0EFEA]"
                   >
                     <img
                       src={imgUrl}
                       alt={`Foto ${idx + 1}`}
-                      className="w-full h-full object-contain"
+                      draggable={false}
+                      className="w-full h-full object-contain pointer-events-none"
                       onError={(e) => {
                         (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
                       }}
                     />
+                    <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-md bg-black/75 text-white font-mono text-[9px] font-bold">
+                      #{idx + 1}
+                    </span>
+                  </div>
+
+                  {/* Bottom Reorder Controls: Prev (◀) | Position Selector | Next (▶) */}
+                  <div className="mt-2 pt-1.5 border-t border-[#F4F4F5] flex items-center justify-between gap-1">
+                    <button
+                      type="button"
+                      disabled={idx === 0}
+                      onClick={() => handleMovePhoto(idx, idx - 1)}
+                      title="Mover una posición antes"
+                      className={`p-1 rounded-lg border transition-colors ${
+                        idx === 0
+                          ? 'border-transparent text-[#D4D4D8] cursor-not-allowed'
+                          : 'border-[#E4E4E7] bg-[#FAF9F7] hover:bg-[#18181B] text-[#18181B] hover:text-white cursor-pointer'
+                      }`}
+                    >
+                      <ChevronLeft className="w-3.5 h-3.5" />
+                    </button>
+
+                    {/* Direct Order Selector */}
+                    <div className="flex items-center gap-1 text-[10px] text-[#52525B]">
+                      <span className="text-[9px] text-[#71717A]">Orden:</span>
+                      <select
+                        value={idx}
+                        onChange={(e) => handleMovePhoto(idx, Number(e.target.value))}
+                        title="Cambiar posición directamente"
+                        className="bg-[#F4F4F5] hover:bg-[#EAEAEA] text-[#18181B] font-mono font-bold text-[10px] px-1.5 py-0.5 rounded-md focus:outline-none cursor-pointer"
+                      >
+                        {normalizedGallery.map((_, posIdx) => (
+                          <option key={posIdx} value={posIdx}>
+                            #{posIdx + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <button
+                      type="button"
+                      disabled={idx === normalizedGallery.length - 1}
+                      onClick={() => handleMovePhoto(idx, idx + 1)}
+                      title="Mover una posición después"
+                      className={`p-1 rounded-lg border transition-colors ${
+                        idx === normalizedGallery.length - 1
+                          ? 'border-transparent text-[#D4D4D8] cursor-not-allowed'
+                          : 'border-[#E4E4E7] bg-[#FAF9F7] hover:bg-[#18181B] text-[#18181B] hover:text-white cursor-pointer'
+                      }`}
+                    >
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
 
                   {/* Storage Source Footer */}
-                  <div className="mt-1.5 flex items-center justify-between text-[9px] text-[#71717A] font-mono px-0.5">
+                  <div className="mt-1 flex items-center justify-between text-[9px] text-[#A1A1AA] font-mono px-0.5">
                     <span className="truncate">
                       {isSupabaseUrl ? '☁️ Supabase CDN' : 'Catálogo Local'}
                     </span>
-                    <span>#{idx + 1}</span>
+                    {isPrimary && (
+                      <span className="text-[#059669] font-sans font-semibold">★ Portada</span>
+                    )}
                   </div>
                 </div>
               );
@@ -437,9 +572,9 @@ export const ImageUploadDropzone: React.FC<ImageUploadDropzoneProps> = ({
             <button
               type="button"
               onClick={() => multiFileInputRef.current?.click()}
-              className="aspect-square rounded-2xl border-2 border-dashed border-[#D4D4D8] hover:border-[#18181B] bg-[#FAF9F7] hover:bg-[#F4F4F5] flex flex-col items-center justify-center gap-1.5 p-3 text-[#71717A] hover:text-[#18181B] transition-all cursor-pointer"
+              className="aspect-square rounded-2xl border-2 border-dashed border-[#D4D4D8] hover:border-[#18181B] bg-white hover:bg-[#F4F4F5] flex flex-col items-center justify-center gap-1.5 p-3 text-[#71717A] hover:text-[#18181B] transition-all cursor-pointer min-h-[180px]"
             >
-              <div className="w-8 h-8 rounded-full bg-white border border-[#E4E4E7] flex items-center justify-center shadow-2xs">
+              <div className="w-9 h-9 rounded-full bg-[#FAF9F7] border border-[#E4E4E7] flex items-center justify-center shadow-2xs">
                 <Plus className="w-4 h-4" />
               </div>
               <span className="text-[11px] font-bold">Añadir más fotos</span>

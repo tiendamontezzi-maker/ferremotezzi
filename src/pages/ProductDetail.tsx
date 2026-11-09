@@ -7,7 +7,7 @@ import { BenefitIcons } from '../components/ui/BenefitIcons';
 import { PreInstallationNotice } from '../components/ui/PreInstallationNotice';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { GoldenDivider } from '../components/ui/GoldenDivider';
-import { ShoppingBag, Plus, Minus, Check, ArrowLeft, Truck, ShieldCheck, Compass, Star, MessageSquare, Send } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Check, ArrowLeft, Truck, ShieldCheck, Compass, Star, MessageSquare, Send, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const ProductDetail: React.FC = () => {
   const { code } = useParams<{ code: string }>();
@@ -122,61 +122,103 @@ export const ProductDetail: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         {/* Left Column: Image Gallery & Previews */}
         <div className="space-y-4">
-          <div className="relative aspect-square w-full rounded-xl overflow-hidden glass-surface border border-white/80 shadow-lg flex items-center justify-center p-8">
-            <img
-              src={selectedImage || product.image_url || '/images/products/kdj-60.jpg'}
-              alt={product.name}
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
-              }}
-              className="w-full h-full object-contain object-center transition-all duration-500 hover:scale-105"
-            />
-            <span className="absolute top-4 left-4 px-3 py-1 glass-pill text-xs font-mono font-bold tracking-widest text-black uppercase shadow-xs rounded-full">
-              {product.code}
-            </span>
-
-            {product.is_featured && (
-              <span className="absolute top-4 right-4 px-3 py-1 bg-black/90 backdrop-blur-md text-white text-[10px] font-sans font-bold uppercase tracking-widest shadow-xs rounded-full border border-white/20">
-                Destacado Oficial
-              </span>
-            )}
-            {product.technical_specs?.nota_imagen && (
-              <span className="absolute bottom-3 left-4 right-4 text-[10px] text-[#71717A] font-sans text-center">
-                {product.technical_specs.nota_imagen}
-              </span>
-            )}
-          </div>
-
-          {/* Thumbnails */}
           {(() => {
-            const allPhotos = Array.from(
-              new Set([product.image_url, ...(product.gallery_urls || [])].filter(Boolean))
+            const rawGallery = Array.isArray(product.gallery_urls) ? product.gallery_urls.filter(Boolean) : [];
+            const allPhotos =
+              rawGallery.length > 0
+                ? rawGallery.includes(product.image_url)
+                  ? rawGallery
+                  : [product.image_url, ...rawGallery].filter(Boolean)
+                : [product.image_url].filter(Boolean);
+            const activePhoto = selectedImage || product.image_url || allPhotos[0] || '/images/products/kdj-60.jpg';
+            const currentIdx = Math.max(0, allPhotos.indexOf(activePhoto));
+
+            return (
+              <>
+                <div className="relative aspect-square w-full rounded-xl overflow-hidden glass-surface border border-white/80 shadow-lg flex items-center justify-center p-8 group">
+                  <img
+                    src={activePhoto}
+                    alt={product.name}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
+                    }}
+                    className="w-full h-full object-contain object-center transition-all duration-500 hover:scale-105"
+                  />
+                  <span className="absolute top-4 left-4 px-3 py-1 glass-pill text-xs font-mono font-bold tracking-widest text-black uppercase shadow-xs rounded-full">
+                    {product.code}
+                  </span>
+
+                  {product.is_featured && (
+                    <span className="absolute top-4 right-4 px-3 py-1 bg-black/90 backdrop-blur-md text-white text-[10px] font-sans font-bold uppercase tracking-widest shadow-xs rounded-full border border-white/20">
+                      Destacado Oficial
+                    </span>
+                  )}
+
+                  {allPhotos.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedImage(
+                            allPhotos[(currentIdx - 1 + allPhotos.length) % allPhotos.length]
+                          )
+                        }
+                        aria-label="Fotografía anterior"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-black text-black hover:text-white border border-black/10 shadow-md flex items-center justify-center transition-all cursor-pointer"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedImage(allPhotos[(currentIdx + 1) % allPhotos.length])
+                        }
+                        aria-label="Fotografía siguiente"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-black text-black hover:text-white border border-black/10 shadow-md flex items-center justify-center transition-all cursor-pointer"
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+
+                  {product.technical_specs?.nota_imagen && (
+                    <span className="absolute bottom-3 left-4 right-4 text-[10px] text-[#71717A] font-sans text-center">
+                      {product.technical_specs.nota_imagen}
+                    </span>
+                  )}
+                </div>
+
+                {/* Thumbnails in Exact Chosen Order */}
+                {allPhotos.length > 1 && (
+                  <div className="flex flex-wrap gap-3">
+                    {allPhotos.map((imgUrl, idx) => (
+                      <button
+                        key={`${imgUrl}-${idx}`}
+                        type="button"
+                        onClick={() => setSelectedImage(imgUrl)}
+                        className={`relative w-20 h-20 rounded-xl overflow-hidden border glass-surface p-2 transition-all cursor-pointer ${
+                          activePhoto === imgUrl
+                            ? 'border-black ring-2 ring-black/20 shadow-md opacity-100'
+                            : 'border-black/10 opacity-70 hover:opacity-100'
+                        }`}
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`Vista ${idx + 1}`}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
+                          }}
+                        />
+                        <span className="absolute top-1 left-1 px-1 py-0.2 rounded bg-black/65 text-white font-mono text-[8px] font-bold">
+                          {idx + 1}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
             );
-            return allPhotos.length > 1 ? (
-              <div className="flex flex-wrap gap-3">
-                {allPhotos.map((imgUrl, idx) => (
-                  <button
-                    key={`${imgUrl}-${idx}`}
-                    type="button"
-                    onClick={() => setSelectedImage(imgUrl)}
-                    className={`w-20 h-20 rounded-xl overflow-hidden border glass-surface p-2 transition-all cursor-pointer ${
-                      (selectedImage || product.image_url) === imgUrl
-                        ? 'border-black ring-2 ring-black/20 shadow-md opacity-100'
-                        : 'border-black/10 opacity-70 hover:opacity-100'
-                    }`}
-                  >
-                    <img
-                      src={imgUrl}
-                      alt={`Vista ${idx + 1}`}
-                      className="w-full h-full object-contain"
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
-                      }}
-                    />
-                  </button>
-                ))}
-              </div>
-            ) : null;
           })()}
 
           {/* Architecture & Woodcraft Visual Note */}
