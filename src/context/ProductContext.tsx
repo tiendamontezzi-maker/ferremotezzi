@@ -222,6 +222,43 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         if (dbOrders && !ordErr) {
           setOrders(dbOrders as Order[]);
         }
+
+        const { data: dbCoupons, error: coupErr } = await client
+          .from('coupons')
+          .select('*')
+          .eq('is_active', true);
+
+        if (dbCoupons && dbCoupons.length > 0 && !coupErr) {
+          setCoupons(dbCoupons as Coupon[]);
+        }
+
+        const { data: dbAppointments, error: aptErr } = await client
+          .from('appointments')
+          .select('*')
+          .order('appointment_date', { ascending: false });
+
+        if (dbAppointments && dbAppointments.length > 0 && !aptErr) {
+          setAppointments(dbAppointments as Appointment[]);
+        }
+
+        const { data: dbReviews, error: revErr } = await client
+          .from('product_reviews')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (dbReviews && dbReviews.length > 0 && !revErr) {
+          setReviews(dbReviews as ProductReview[]);
+        }
+
+        const { data: dbLogs, error: logErr } = await client
+          .from('activity_logs')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(100);
+
+        if (dbLogs && dbLogs.length > 0 && !logErr) {
+          setActivityLogs(dbLogs as ActivityLog[]);
+        }
       } catch (e) {
         console.warn('Using local catalog cache due to Supabase fetch error:', e);
       } finally {
@@ -623,6 +660,15 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       created_at: new Date().toISOString()
     };
     setReviews(prev => [newReview, ...prev]);
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('product_reviews').insert([newReview]);
+      } catch (err) {
+        console.error('Error inserting review in Supabase:', err);
+      }
+    }
+
     return newReview;
   };
 
@@ -637,6 +683,15 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       created_at: new Date().toISOString()
     };
     setAppointments(prev => [newApt, ...prev]);
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('appointments').insert([newApt]);
+      } catch (err) {
+        console.error('Error inserting appointment in Supabase:', err);
+      }
+    }
+
     return newApt;
   };
 
@@ -647,6 +702,12 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       created_at: new Date().toISOString()
     };
     setActivityLogs(prev => [newLog, ...prev.slice(0, 99)]);
+
+    if (isSupabaseConfigured && supabase) {
+      supabase.from('activity_logs').insert([newLog]).then(({ error }) => {
+        if (error) console.warn('Supabase log activity error:', error.message);
+      });
+    }
   };
 
   return (
