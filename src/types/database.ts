@@ -26,12 +26,17 @@ export interface Category {
 }
 
 export interface TechnicalSpecs {
+  ref_fabricante?: string; // e.g. 04SW-01-200
+  aplicacion?: string; // Cocina | Clóset
+  modulo?: string; // e.g. 200mm, 300mm, 600mm, 800-900mm
+  dimensiones: string; // W x D x H (mm)
   material: string;
   acabado: string;
-  dimensiones: string; // W x D x H (mm)
+  configuracion?: string; // e.g. 2 niveles, Esquinero universal
   mecanismo: string;
-  modulo?: string; // e.g. 200mm, 300mm, 600mm
-  capacidad_carga?: string; // kg
+  nota_tecnica?: string;
+  nota_imagen?: string;
+  capacidad_carga?: string;
   tolerancia?: string;
   compatibilidad?: string;
   origen_norma?: string;

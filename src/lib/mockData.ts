@@ -91,38 +91,39 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-60",
     "code": "KDJ-60",
-    "name": "Condimentero lateral de 2 niveles con base de madera",
+    "name": "Canasta lateral de 2 niveles con base de madera",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Condimentero lateral extraíble de dos niveles con elegante base de madera cálida y guías telescópicas con amortiguación.",
-    "full_description": "Condimentero lateral de 2 niveles con base de madera perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 200mm, dimensiones de 145 × 480 × 590 mm y capacidad de 20 kg.",
+    "short_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado.",
+    "full_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado.",
     "technical_specs": {
-      "material": "Acero al carbono y madera noble tratada",
-      "acabado": "Pintura electrostática gris grafito y madera natural",
-      "dimensiones": "145 × 480 × 590 mm",
-      "mecanismo": "Extracción lateral sincronizada con cierre suave",
+      "ref_fabricante": "04SW-01-200",
+      "aplicacion": "Cocina",
       "modulo": "200mm",
-      "capacidad_carga": "20 kg",
-      "compatibilidad": "Diseñado para módulo de 200mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "145 × 480 × 590 mm",
+      "material": "Acero plano + base antideslizante + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "2 niveles",
+      "mecanismo": "Correderas ocultas con amortiguación",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono y madera noble tratada"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 200mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 20 kg"
+        "label": "MATERIAL",
+        "value": "Acero plano + base antideslizante + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Correderas ocultas con amortiguación"
       }
     ],
     "price": 210928,
@@ -138,55 +139,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-60",
-    "slug": "kdj-60-condimentero-lateral-de-2-niveles-con-base-de-madera",
+    "sku": "04SW-01-200",
+    "slug": "kdj-60-canasta-lateral-de-2-niveles-con-base-de-madera",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Acero al carbono y madera noble tratada"
+      "Acero plano + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 185616,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado."
   },
   {
     "id": "prod-kdj-61",
     "code": "KDJ-61",
-    "name": "Condimentero lateral de 2 niveles en acero al carbono",
+    "name": "Canasta lateral de 2 niveles en acero al carbono",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Condimentero de arquitectura minimalista en acero al carbono reforzado, máxima durabilidad y extracción total silenciosa.",
-    "full_description": "Condimentero lateral de 2 niveles en acero al carbono perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 300mm, dimensiones de 249 × 480 × 592 mm y capacidad de 25 kg.",
+    "short_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina.",
+    "full_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina.",
     "technical_specs": {
-      "material": "Acero al carbono de alto calibre",
-      "acabado": "Antracita mate microtexturado",
-      "dimensiones": "249 × 480 × 592 mm",
-      "mecanismo": "Correderas ocultas de extracción total con freno hidráulico",
+      "ref_fabricante": "04SB-01-300",
+      "aplicacion": "Cocina",
       "modulo": "300mm",
-      "capacidad_carga": "25 kg",
-      "compatibilidad": "Diseñado para módulo de 300mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "249 × 480 × 592 mm",
+      "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "2 niveles",
+      "mecanismo": "Correderas ocultas con amortiguación",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono de alto calibre"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 300mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 25 kg"
+        "label": "MATERIAL",
+        "value": "Acero al carbono + base antideslizante + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Correderas ocultas con amortiguación"
       }
     ],
     "price": 260650,
@@ -202,55 +205,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 4,
     "web_stock": 6,
     "inventory_status": "in_stock",
-    "sku": "KDJ-61",
-    "slug": "kdj-61-condimentero-lateral-de-2-niveles-en-acero-al-carbono",
+    "sku": "04SB-01-300",
+    "slug": "kdj-61-canasta-lateral-de-2-niveles-en-acero-al-carbono",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Acero al carbono de alto calibre"
+      "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 229372,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina."
   },
   {
     "id": "prod-kdj-62",
     "code": "KDJ-62",
-    "name": "Condimentero lateral de vidrio de 3 niveles",
+    "name": "Canasta lateral de vidrio de 3 niveles",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Organizador vertical de 3 niveles con laterales en vidrio templado traslúcido y estructura metálica ultra delgada.",
-    "full_description": "Condimentero lateral de vidrio de 3 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 200mm, dimensiones de 149 × 480 × 672 mm y capacidad de 20 kg.",
+    "short_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
+    "full_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
     "technical_specs": {
-      "material": "Vidrio templado de seguridad y aluminio arquitectónico",
-      "acabado": "Vidrio ahumado y perfilería grafito",
-      "dimensiones": "149 × 480 × 672 mm",
-      "mecanismo": "Guías de amortiguación inferior cierre suave",
+      "ref_fabricante": "04SG-02-200",
+      "aplicacion": "Cocina",
       "modulo": "200mm",
-      "capacidad_carga": "20 kg",
-      "compatibilidad": "Diseñado para módulo de 200mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "149 × 480 × 672 mm",
+      "material": "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "3 niveles",
+      "mecanismo": "Correderas ocultas con amortiguación",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado de seguridad y aluminio arquitectónico"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 200mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "3 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 20 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Correderas ocultas con amortiguación"
       }
     ],
     "price": 273504,
@@ -266,55 +271,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-62",
-    "slug": "kdj-62-condimentero-lateral-de-vidrio-de-3-niveles",
+    "sku": "04SG-02-200",
+    "slug": "kdj-62-canasta-lateral-de-vidrio-de-3-niveles",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Vidrio templado de seguridad y aluminio arquitectónico"
+      "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 240683,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina."
   },
   {
     "id": "prod-kdj-63",
     "code": "KDJ-63",
-    "name": "Condimentero multifunción de vidrio de 3 niveles",
+    "name": "Especiero multifunción de vidrio de 3 niveles",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Sistema multifunción de tres niveles con divisiones técnicas para frascos, especias y utensilios culinarios.",
-    "full_description": "Condimentero multifunción de vidrio de 3 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 350mm, dimensiones de 300 × 435 × 495 mm y capacidad de 30 kg.",
+    "short_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
+    "full_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
     "technical_specs": {
-      "material": "Vidrio templado y acero inoxidable",
-      "acabado": "Cristal templado y marco titanio oscuro",
-      "dimensiones": "300 × 435 × 495 mm",
-      "mecanismo": "Sistema de extracción frontal con frenado de aire",
+      "ref_fabricante": "03DG-350",
+      "aplicacion": "Cocina",
       "modulo": "350mm",
-      "capacidad_carga": "30 kg",
-      "compatibilidad": "Diseñado para módulo de 350mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "300 × 435 × 495 mm",
+      "material": "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "3 niveles",
+      "mecanismo": "Correderas ocultas con amortiguación",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado y acero inoxidable"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 350mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "3 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 30 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Correderas ocultas con amortiguación"
       }
     ],
     "price": 372676,
@@ -330,55 +337,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-63",
-    "slug": "kdj-63-condimentero-multifuncion-de-vidrio-de-3-niveles",
+    "sku": "03DG-350",
+    "slug": "kdj-63-especiero-multifuncion-de-vidrio-de-3-niveles",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Vidrio templado y acero inoxidable"
+      "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 327954,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina."
   },
   {
     "id": "prod-kdj-64",
     "code": "KDJ-64",
-    "name": "Condimentero estrecho tipo A de 2 niveles",
+    "name": "Canasta estrecha tipo A de 2 niveles",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Solución compacta de 2 niveles diseñada para optimizar módulos ultra estrechos de cocina con aprovechamiento total.",
-    "full_description": "Condimentero estrecho tipo A de 2 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 150mm, dimensiones de 95 × 450 × 500 mm y capacidad de 15 kg.",
+    "short_description": "Canasta estrecha extraíble tipo A para módulos de 150 mm.",
+    "full_description": "Canasta estrecha extraíble tipo A para módulos de 150 mm.",
     "technical_specs": {
-      "material": "Acero cromado anticorrosivo",
-      "acabado": "Cromo brillante multicapa",
-      "dimensiones": "95 × 450 × 500 mm",
-      "mecanismo": "Correderas de montaje lateral con cierre suave",
+      "ref_fabricante": "08NA-150",
+      "aplicacion": "Cocina",
       "modulo": "150mm",
-      "capacidad_carga": "15 kg",
-      "compatibilidad": "Diseñado para módulo de 150mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "95 × 450 × 500 mm",
+      "material": "Canasta en hierro",
+      "acabado": "Cromado",
+      "configuracion": "2 niveles",
+      "mecanismo": "Correderas ocultas con amortiguación",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero cromado anticorrosivo"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 150mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 15 kg"
+        "label": "MATERIAL",
+        "value": "Canasta en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Correderas ocultas con amortiguación"
       }
     ],
     "price": 160006,
@@ -394,55 +403,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 6,
     "web_stock": 6,
     "inventory_status": "in_stock",
-    "sku": "KDJ-64",
-    "slug": "kdj-64-condimentero-estrecho-tipo-a-de-2-niveles",
+    "sku": "08NA-150",
+    "slug": "kdj-64-canasta-estrecha-tipo-a-de-2-niveles",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Acero cromado anticorrosivo"
+      "Canasta en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 140805,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta estrecha extraíble tipo A para módulos de 150 mm."
   },
   {
     "id": "prod-kdj-65",
     "code": "KDJ-65",
-    "name": "Condimentero estrecho tipo B de 2 niveles",
+    "name": "Canasta estrecha tipo B de 2 niveles",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Diseño ergonómico tipo B con bandejas profundas para envases de aceite y vinagre en módulos compactos.",
-    "full_description": "Condimentero estrecho tipo B de 2 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 150mm, dimensiones de 108 × 460 × 480 mm y capacidad de 15 kg.",
+    "short_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
+    "full_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
     "technical_specs": {
-      "material": "Acero al carbono termolacado",
-      "acabado": "Gris titanio",
-      "dimensiones": "108 × 460 × 480 mm",
-      "mecanismo": "Rieles laterales sincronizados",
+      "ref_fabricante": "08NB-150",
+      "aplicacion": "Cocina",
       "modulo": "150mm",
-      "capacidad_carga": "15 kg",
-      "compatibilidad": "Diseñado para módulo de 150mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "108 × 460 × 480 mm",
+      "material": "Canasta en hierro",
+      "acabado": "Cromado",
+      "configuracion": "2 niveles",
+      "mecanismo": "Corredera de balineras con cierre suave",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono termolacado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 150mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 15 kg"
+        "label": "MATERIAL",
+        "value": "Canasta en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Corredera de balineras con cierre suave"
       }
     ],
     "price": 141526,
@@ -458,55 +469,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 4,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-65",
-    "slug": "kdj-65-condimentero-estrecho-tipo-b-de-2-niveles",
+    "sku": "08NB-150",
+    "slug": "kdj-65-canasta-estrecha-tipo-b-de-2-niveles",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Acero al carbono termolacado"
+      "Canasta en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 124542,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave."
   },
   {
     "id": "prod-kdj-66",
     "code": "KDJ-66",
-    "name": "Condimentero estrecho tipo C de 3 niveles",
+    "name": "Canasta estrecha tipo C de 3 niveles",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Tres alturas de almacenamiento optimizadas para botellas, salsas y frascos de especias en un ancho de solo 150mm.",
-    "full_description": "Condimentero estrecho tipo C de 3 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 150mm, dimensiones de 110 × 460 × 475 mm y capacidad de 18 kg.",
+    "short_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
+    "full_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
     "technical_specs": {
-      "material": "Alambre de acero estructural",
-      "acabado": "Gris electrostático premium",
-      "dimensiones": "110 × 460 × 475 mm",
-      "mecanismo": "Guías con absorción de impacto",
+      "ref_fabricante": "08NC-150",
+      "aplicacion": "Cocina",
       "modulo": "150mm",
-      "capacidad_carga": "18 kg",
-      "compatibilidad": "Diseñado para módulo de 150mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "110 × 460 × 475 mm",
+      "material": "Canasta en hierro",
+      "acabado": "Cromado",
+      "configuracion": "3 niveles",
+      "mecanismo": "Corredera de balineras con cierre suave",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Alambre de acero estructural"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 150mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "3 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 18 kg"
+        "label": "MATERIAL",
+        "value": "Canasta en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Corredera de balineras con cierre suave"
       }
     ],
     "price": 138446,
@@ -522,55 +535,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 5,
     "web_stock": 6,
     "inventory_status": "in_stock",
-    "sku": "KDJ-66",
-    "slug": "kdj-66-condimentero-estrecho-tipo-c-de-3-niveles",
+    "sku": "08NC-150",
+    "slug": "kdj-66-canasta-estrecha-tipo-c-de-3-niveles",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Alambre de acero estructural"
+      "Canasta en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 121832,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave."
   },
   {
     "id": "prod-kdj-67",
     "code": "KDJ-67",
-    "name": "Condimentero de alambre de 3 niveles",
+    "name": "Especiero de alambre de 3 niveles",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Condimentero robusto de alambre estructurado en 3 niveles para módulo de 300mm con bandejas de alambre calibrado.",
-    "full_description": "Condimentero de alambre de 3 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 300mm, dimensiones de 245 × 460 × 515 mm y capacidad de 25 kg.",
+    "short_description": "Especiero extraíble de alambre para módulo de 300 mm.",
+    "full_description": "Especiero extraíble de alambre para módulo de 300 mm.",
     "technical_specs": {
-      "material": "Alambre de acero tratado",
-      "acabado": "Pintura epoxi antracita",
-      "dimensiones": "245 × 460 × 515 mm",
-      "mecanismo": "Extracción total con cierre silencioso",
+      "ref_fabricante": "08ND-300",
+      "aplicacion": "Cocina",
       "modulo": "300mm",
-      "capacidad_carga": "25 kg",
-      "compatibilidad": "Diseñado para módulo de 300mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "245 × 460 × 515 mm",
+      "material": "Canasta de alambre redondo en hierro",
+      "acabado": "Cromado",
+      "configuracion": "3 niveles",
+      "mecanismo": "Correderas ocultas con amortiguación",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Alambre de acero tratado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 300mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "3 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 25 kg"
+        "label": "MATERIAL",
+        "value": "Canasta de alambre redondo en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Correderas ocultas con amortiguación"
       }
     ],
     "price": 324422,
@@ -586,55 +601,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-67",
-    "slug": "kdj-67-condimentero-de-alambre-de-3-niveles",
+    "sku": "08ND-300",
+    "slug": "kdj-67-especiero-de-alambre-de-3-niveles",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Alambre de acero tratado"
+      "Canasta de alambre redondo en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 285491,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Especiero extraíble de alambre para módulo de 300 mm."
   },
   {
     "id": "prod-kdj-68",
     "code": "KDJ-68",
-    "name": "Alacena de alambre de 6 niveles",
+    "name": "Despensa de alambre de 6 niveles",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Columna de despensa de piso a techo con 6 canastas de alambre regulables en altura y apertura frontal integrada.",
-    "full_description": "Alacena de alambre de 6 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 450mm, dimensiones de 391 × 512 × (1920-2220) mm y capacidad de 70 kg.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
     "technical_specs": {
-      "material": "Marco de acero estructural y canastas de alambre reforzado",
-      "acabado": "Gris grafito texturado",
-      "dimensiones": "391 × 512 × (1920-2220) mm",
-      "mecanismo": "Sistema tandem de apertura telescópica con amortiguador de alta carga",
+      "ref_fabricante": "04PR-456",
+      "aplicacion": "Cocina",
       "modulo": "450mm",
-      "capacidad_carga": "70 kg",
-      "compatibilidad": "Diseñado para módulo de 450mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "391 × 512 × (1920-2220) mm",
+      "material": "Canastas de alambre redondo en hierro; estructura en hierro",
+      "acabado": "Canastas cromadas; estructura con pintura electrostática",
+      "configuracion": "6 niveles",
+      "mecanismo": "Sistema extraíble vertical",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Marco de acero estructural y canastas de alambre reforzado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 450mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "6 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 70 kg"
+        "label": "MATERIAL",
+        "value": "Canastas de alambre redondo en hierro; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble vertical"
       }
     ],
     "price": 628320,
@@ -650,55 +667,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 2,
     "inventory_status": "in_stock",
-    "sku": "KDJ-68",
-    "slug": "kdj-68-alacena-de-alambre-de-6-niveles",
+    "sku": "04PR-456",
+    "slug": "kdj-68-despensa-de-alambre-de-6-niveles",
     "brand_collection": "Colección 2026",
     "category": "Alacenas & Columnas",
     "materials": [
-      "Marco de acero estructural y canastas de alambre reforzado"
+      "Canastas de alambre redondo en hierro; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 552921,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema tipo despensa/torre con seis niveles de almacenamiento."
   },
   {
     "id": "prod-kdj-69",
     "code": "KDJ-69",
-    "name": "Alacena en acero al carbono y madera de 6 niveles",
+    "name": "Despensa en acero al carbono y madera de 6 niveles",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Columna alacena arquitectónica de lujo con 6 bandejas en chapa de madera cálida sobre estructura de acero al carbono.",
-    "full_description": "Alacena en acero al carbono y madera de 6 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 450mm, dimensiones de 391 × 512 × (1920-2220) mm y capacidad de 80 kg.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
     "technical_specs": {
-      "material": "Acero al carbono y madera natural sellada",
-      "acabado": "Negro mate y roble natural",
-      "dimensiones": "391 × 512 × (1920-2220) mm",
-      "mecanismo": "Telescópico de alta capacidad con soft close progresivo",
+      "ref_fabricante": "04PB-456",
+      "aplicacion": "Cocina",
       "modulo": "450mm",
-      "capacidad_carga": "80 kg",
-      "compatibilidad": "Diseñado para módulo de 450mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "391 × 512 × (1920-2220) mm",
+      "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "6 niveles",
+      "mecanismo": "Sistema extraíble vertical",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono y madera natural sellada"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 450mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "6 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 80 kg"
+        "label": "MATERIAL",
+        "value": "Acero al carbono + base antideslizante + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble vertical"
       }
     ],
     "price": 854700,
@@ -714,55 +733,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-69",
-    "slug": "kdj-69-alacena-en-acero-al-carbono-y-madera-de-6-niveles",
+    "sku": "04PB-456",
+    "slug": "kdj-69-despensa-en-acero-al-carbono-y-madera-de-6-niveles",
     "brand_collection": "Colección 2026",
     "category": "Alacenas & Columnas",
     "materials": [
-      "Acero al carbono y madera natural sellada"
+      "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 752136,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF."
   },
   {
     "id": "prod-kdj-70",
     "code": "KDJ-70",
-    "name": "Alacena de vidrio de 6 niveles",
+    "name": "Despensa de vidrio de 6 niveles",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "La cúspide de la despensa moderna: 6 bandejas en vidrio templado de seguridad con perfiles perimetrales en aluminio anodizado.",
-    "full_description": "Alacena de vidrio de 6 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 450mm, dimensiones de 391 × 512 × (1920-2220) mm y capacidad de 80 kg.",
+    "short_description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado.",
+    "full_description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado.",
     "technical_specs": {
-      "material": "Vidrio templado ahumado y perfil de aluminio anodizado",
-      "acabado": "Cristal ahumado y marco antracita",
-      "dimensiones": "391 × 512 × (1920-2220) mm",
-      "mecanismo": "Eje deslizante sincronizado para servicio pesado",
+      "ref_fabricante": "04PG-456",
+      "aplicacion": "Cocina",
       "modulo": "450mm",
-      "capacidad_carga": "80 kg",
-      "compatibilidad": "Diseñado para módulo de 450mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "391 × 512 × (1920-2220) mm",
+      "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "6 niveles",
+      "mecanismo": "Sistema extraíble vertical",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado ahumado y perfil de aluminio anodizado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 450mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "6 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 80 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble vertical"
       }
     ],
     "price": 1034880,
@@ -778,55 +799,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 2,
     "inventory_status": "in_stock",
-    "sku": "KDJ-70",
-    "slug": "kdj-70-alacena-de-vidrio-de-6-niveles",
+    "sku": "04PG-456",
+    "slug": "kdj-70-despensa-de-vidrio-de-6-niveles",
     "brand_collection": "Colección 2026",
     "category": "Alacenas & Columnas",
     "materials": [
-      "Vidrio templado ahumado y perfil de aluminio anodizado"
+      "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 910694,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado."
   },
   {
     "id": "prod-kdj-71",
     "code": "KDJ-71",
-    "name": "Alacena extraíble de vidrio de 6 niveles",
+    "name": "Torre extraíble de vidrio de 6 niveles",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Columna extraíble esbelta de 6 niveles con laterales de cristal para módulo de 200mm, máxima visibilidad y distinción.",
-    "full_description": "Alacena extraíble de vidrio de 6 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 200mm, dimensiones de 140 × 485 × (1800-2100) mm y capacidad de 50 kg.",
+    "short_description": "Torre extraíble de seis niveles para módulo angosto.",
+    "full_description": "Torre extraíble de seis niveles para módulo angosto.",
     "technical_specs": {
-      "material": "Vidrio de seguridad y guías metálicas de precisión",
-      "acabado": "Vidrio satinado y metal titanio",
-      "dimensiones": "140 × 485 × (1800-2100) mm",
-      "mecanismo": "Rieles superior e inferior con sincronización",
+      "ref_fabricante": "04TG-206",
+      "aplicacion": "Cocina",
       "modulo": "200mm",
-      "capacidad_carga": "50 kg",
-      "compatibilidad": "Diseñado para módulo de 200mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "140 × 485 × (1800-2100) mm",
+      "material": "Vidrio templado + aluminio + base antideslizante + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "6 niveles",
+      "mecanismo": "Sistema extraíble vertical",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio de seguridad y guías metálicas de precisión"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 200mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "6 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 50 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio + base antideslizante + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble vertical"
       }
     ],
     "price": 862400,
@@ -842,55 +865,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-71",
-    "slug": "kdj-71-alacena-extraible-de-vidrio-de-6-niveles",
+    "sku": "04TG-206",
+    "slug": "kdj-71-torre-extraible-de-vidrio-de-6-niveles",
     "brand_collection": "Colección 2026",
     "category": "Alacenas & Columnas",
     "materials": [
-      "Vidrio de seguridad y guías metálicas de precisión"
+      "Vidrio templado + aluminio + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 758912,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Torre extraíble de seis niveles para módulo angosto."
   },
   {
     "id": "prod-kdj-72",
     "code": "KDJ-72",
-    "name": "Alacena extraíble de alambre de 6 niveles",
+    "name": "Torre extraíble de alambre de 6 niveles",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Sistema despensero vertical para espacios reducidos con 6 niveles de alambre y extracción frontal lineal suave.",
-    "full_description": "Alacena extraíble de alambre de 6 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 200mm, dimensiones de 140 × 485 × (1800-2100) mm y capacidad de 45 kg.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
     "technical_specs": {
-      "material": "Acero al carbono cromado",
-      "acabado": "Cromo de alto brillo",
-      "dimensiones": "140 × 485 × (1800-2100) mm",
-      "mecanismo": "Doble riel de rodamientos de bolas con amortiguación",
+      "ref_fabricante": "04PR-206",
+      "aplicacion": "Cocina",
       "modulo": "200mm",
-      "capacidad_carga": "45 kg",
-      "compatibilidad": "Diseñado para módulo de 200mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "140 × 485 × (1800-2100) mm",
+      "material": "Canastas de alambre redondo en hierro; estructura en hierro",
+      "acabado": "Canastas cromadas; estructura con pintura electrostática",
+      "configuracion": "6 niveles",
+      "mecanismo": "Sistema extraíble vertical",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono cromado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 200mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "6 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 45 kg"
+        "label": "MATERIAL",
+        "value": "Canastas de alambre redondo en hierro; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble vertical"
       }
     ],
     "price": 754600,
@@ -906,55 +931,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-72",
-    "slug": "kdj-72-alacena-extraible-de-alambre-de-6-niveles",
+    "sku": "04PR-206",
+    "slug": "kdj-72-torre-extraible-de-alambre-de-6-niveles",
     "brand_collection": "Colección 2026",
     "category": "Alacenas & Columnas",
     "materials": [
-      "Acero al carbono cromado"
+      "Canastas de alambre redondo en hierro; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 664048,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema tipo despensa/torre con seis niveles de almacenamiento."
   },
   {
     "id": "prod-kdj-73",
     "code": "KDJ-73",
-    "name": "Alacena extraíble en acero al carbono y madera de 6 niveles",
+    "name": "Torre extraíble en acero al carbono y madera de 6 niveles",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Armonía de calidez de madera y solidez estructural en acero con 6 repisas extraíbles para módulo de 300mm.",
-    "full_description": "Alacena extraíble en acero al carbono y madera de 6 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 300mm, dimensiones de 240 × 485 × (1800-2100) mm y capacidad de 60 kg.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
     "technical_specs": {
-      "material": "Acero al carbono electrostático y madera natural",
-      "acabado": "Grafito mate y base en madera noble",
-      "dimensiones": "240 × 485 × (1800-2100) mm",
-      "mecanismo": "Extracción total silenciosa de alta resistencia",
+      "ref_fabricante": "04TB-306",
+      "aplicacion": "Cocina",
       "modulo": "300mm",
-      "capacidad_carga": "60 kg",
-      "compatibilidad": "Diseñado para módulo de 300mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "240 × 485 × (1800-2100) mm",
+      "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "6 niveles",
+      "mecanismo": "Sistema extraíble vertical",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono electrostático y madera natural"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 300mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "6 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 60 kg"
+        "label": "MATERIAL",
+        "value": "Acero al carbono + base antideslizante + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble vertical"
       }
     ],
     "price": 907060,
@@ -970,55 +997,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-73",
-    "slug": "kdj-73-alacena-extraible-en-acero-al-carbono-y-madera-de-6-niveles",
+    "sku": "04TB-306",
+    "slug": "kdj-73-torre-extraible-en-acero-al-carbono-y-madera-de-6-niveles",
     "brand_collection": "Colección 2026",
     "category": "Alacenas & Columnas",
     "materials": [
-      "Acero al carbono electrostático y madera natural"
+      "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 798212,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF."
   },
   {
     "id": "prod-kdj-74",
     "code": "KDJ-74",
-    "name": "Esquina mágica universal de vidrio",
+    "name": "Esquinero universal de vidrio",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Mecanismo angular inteligente que extrae el 100% del contenido de rincones ciegos, con bandejas en elegante vidrio.",
-    "full_description": "Esquina mágica universal de vidrio perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800-900mm, dimensiones de 648 × 462 × 585 mm y capacidad de 35 kg total (8-10 kg por canasta).",
+    "short_description": "Esquinero universal de vidrio para aprovechar módulos de esquina.",
+    "full_description": "Esquinero universal de vidrio para aprovechar módulos de esquina.",
     "technical_specs": {
-      "material": "Vidrio templado y articulaciones en fundición de acero",
-      "acabado": "Vidrio ahumado y perfilería grafito mate",
-      "dimensiones": "648 × 462 × 585 mm",
-      "mecanismo": "Brazo cinemático articulado universal (izquierda o derecha) con freno suave",
+      "ref_fabricante": "04UG",
+      "aplicacion": "Cocina",
       "modulo": "800-900mm",
-      "capacidad_carga": "35 kg total (8-10 kg por canasta)",
-      "compatibilidad": "Diseñado para módulo de 800-900mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "648 × 462 × 585 mm",
+      "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "Esquinero universal",
+      "mecanismo": "Sistema extraíble para esquina",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado y articulaciones en fundición de acero"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800-900mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Esquinero universal"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 35 kg total (8-10 kg por canasta)"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble para esquina"
       }
     ],
     "price": 759220,
@@ -1034,55 +1063,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 4,
     "inventory_status": "in_stock",
-    "sku": "KDJ-74",
-    "slug": "kdj-74-esquina-magica-universal-de-vidrio",
+    "sku": "04UG",
+    "slug": "kdj-74-esquinero-universal-de-vidrio",
     "brand_collection": "Colección 2026",
     "category": "Esquinas Mágicas",
     "materials": [
-      "Vidrio templado y articulaciones en fundición de acero"
+      "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 668113,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Esquinero universal de vidrio para aprovechar módulos de esquina."
   },
   {
     "id": "prod-kdj-75",
     "code": "KDJ-75",
-    "name": "Esquina mágica universal de alambre",
+    "name": "Esquinero universal de alambre",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Aprovechamiento integral para esquineros ciegos con 4 canastas de alambre perimetral y apertura articulada sincronizada.",
-    "full_description": "Esquina mágica universal de alambre perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800-900mm, dimensiones de 648 × 462 × 585 mm y capacidad de 35 kg total.",
+    "short_description": "Esquinero universal de alambre para módulos de esquina.",
+    "full_description": "Esquinero universal de alambre para módulos de esquina.",
     "technical_specs": {
-      "material": "Alambre de acero electropulido",
-      "acabado": "Cromo brillante anticorrosión",
-      "dimensiones": "648 × 462 × 585 mm",
-      "mecanismo": "Articulación telescópica universal ambidiestra",
+      "ref_fabricante": "04UR",
+      "aplicacion": "Cocina",
       "modulo": "800-900mm",
-      "capacidad_carga": "35 kg total",
-      "compatibilidad": "Diseñado para módulo de 800-900mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "648 × 462 × 585 mm",
+      "material": "Canasta en hierro; estructura en hierro",
+      "acabado": "Canasta cromada; estructura con pintura electrostática",
+      "configuracion": "Esquinero universal",
+      "mecanismo": "Sistema extraíble para esquina",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Alambre de acero electropulido"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800-900mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Esquinero universal"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 35 kg total"
+        "label": "MATERIAL",
+        "value": "Canasta en hierro; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble para esquina"
       }
     ],
     "price": 634942,
@@ -1098,55 +1129,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 4,
     "inventory_status": "in_stock",
-    "sku": "KDJ-75",
-    "slug": "kdj-75-esquina-magica-universal-de-alambre",
+    "sku": "04UR",
+    "slug": "kdj-75-esquinero-universal-de-alambre",
     "brand_collection": "Colección 2026",
     "category": "Esquinas Mágicas",
     "materials": [
-      "Alambre de acero electropulido"
+      "Canasta en hierro; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 558748,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Esquinero universal de alambre para módulos de esquina."
   },
   {
     "id": "prod-kdj-76",
     "code": "KDJ-76",
-    "name": "Esquina mágica universal en acero al carbono y madera",
+    "name": "Esquinero universal en acero al carbono y madera",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Mecanismo esquinero de alta gama con bandejas de base en madera sellada y barandas en chapa de acero al carbono.",
-    "full_description": "Esquina mágica universal en acero al carbono y madera perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800-900mm, dimensiones de 648 × 462 × 585 mm y capacidad de 40 kg total.",
+    "short_description": "Esquinero universal con base de madera/MDF y estructura metálica.",
+    "full_description": "Esquinero universal con base de madera/MDF y estructura metálica.",
     "technical_specs": {
-      "material": "Acero al carbono y madera contrachapada tratada",
-      "acabado": "Negro mate arquitectónico y fondo madera",
-      "dimensiones": "648 × 462 × 585 mm",
-      "mecanismo": "Cinemática sincronizada de salida frontal completa con amortiguador",
+      "ref_fabricante": "04UB",
+      "aplicacion": "Cocina",
       "modulo": "800-900mm",
-      "capacidad_carga": "40 kg total",
-      "compatibilidad": "Diseñado para módulo de 800-900mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "648 × 462 × 585 mm",
+      "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "Esquinero universal",
+      "mecanismo": "Sistema extraíble para esquina",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono y madera contrachapada tratada"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800-900mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Esquinero universal"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 40 kg total"
+        "label": "MATERIAL",
+        "value": "Acero al carbono + base antideslizante + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble para esquina"
       }
     ],
     "price": 760541,
@@ -1162,55 +1195,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 2,
     "inventory_status": "in_stock",
-    "sku": "KDJ-76",
-    "slug": "kdj-76-esquina-magica-universal-en-acero-al-carbono-y-madera",
+    "sku": "04UB",
+    "slug": "kdj-76-esquinero-universal-en-acero-al-carbono-y-madera",
     "brand_collection": "Colección 2026",
     "category": "Esquinas Mágicas",
     "materials": [
-      "Acero al carbono y madera contrachapada tratada"
+      "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 669276,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Esquinero universal con base de madera/MDF y estructura metálica."
   },
   {
     "id": "prod-kdj-77",
     "code": "KDJ-77",
-    "name": "Esquina mágica giratoria derecha o izquierda",
+    "name": "Esquinero giratorio derecho o izquierdo",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Bandejas giratorias independientes tipo riñón que se deslizan suavemente fuera del mueble con movimiento curvo ergonómico.",
-    "full_description": "Esquina mágica giratoria derecha o izquierda perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 900-1000mm, dimensiones de 760 × 500 × 530 mm y capacidad de 20 kg por bandeja.",
+    "short_description": "Magic corner reversible para apertura hacia derecha o izquierda.",
+    "full_description": "Magic corner reversible para apertura hacia derecha o izquierda.",
     "technical_specs": {
-      "material": "Bandejas con base de textura antideslizante y borde de acero",
-      "acabado": "Antracita mate y cromo satinado",
-      "dimensiones": "760 × 500 × 530 mm",
-      "mecanismo": "Giro axial independiente de 180° con auto-freno de posicionamiento",
+      "ref_fabricante": "04MB",
+      "aplicacion": "Cocina",
       "modulo": "900-1000mm",
-      "capacidad_carga": "20 kg por bandeja",
-      "compatibilidad": "Diseñado para módulo de 900-1000mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "760 × 500 × 530 mm",
+      "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "Giro a derecha o izquierda",
+      "mecanismo": "Sistema extraíble/giratorio para esquina",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Bandejas con base de textura antideslizante y borde de acero"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 900-1000mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Giro a derecha o izquierda"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 20 kg por bandeja"
+        "label": "MATERIAL",
+        "value": "Acero al carbono + base antideslizante + MDF; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble/giratorio para esquina"
       }
     ],
     "price": 877678,
@@ -1226,55 +1261,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-77",
-    "slug": "kdj-77-esquina-magica-giratoria-derecha-o-izquierda",
+    "sku": "04MB",
+    "slug": "kdj-77-esquinero-giratorio-derecho-o-izquierdo",
     "brand_collection": "Colección 2026",
     "category": "Esquinas Mágicas",
     "materials": [
-      "Bandejas con base de textura antideslizante y borde de acero"
+      "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 772356,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Magic corner reversible para apertura hacia derecha o izquierda."
   },
   {
     "id": "prod-kdj-198",
     "code": "KDJ-198",
-    "name": "Juego de condimenteros extraíbles SS201: plano y portaplatos",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Set dual de gavetas extraíbles en acero inoxidable SS201: bandeja inferior plana y nivel superior con soporte portaplatos.",
-    "full_description": "Juego de condimenteros extraíbles SS201: plano y portaplatos perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 564 × 425 × 165 mm y capacidad de 30 kg.",
+    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
+    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
     "technical_specs": {
-      "material": "Acero Inoxidable SS201 de grado sanitario",
-      "acabado": "Acero pulido satinado",
-      "dimensiones": "564 × 425 × 165 mm",
-      "mecanismo": "Rieles de montaje inferior con cierre amortiguado",
+      "ref_fabricante": "FS502601/FS502602",
+      "aplicacion": "Cocina",
       "modulo": "600mm",
-      "capacidad_carga": "30 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "564 × 425 × 165 mm",
+      "material": "Acero inoxidable 201",
+      "acabado": "Pulido",
+      "configuracion": "Juego de 2 canastas: plana + portaplatos",
+      "mecanismo": "Canastas extraíbles",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero Inoxidable SS201 de grado sanitario"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Juego de 2 canastas: plana + portaplatos"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 30 kg"
+        "label": "MATERIAL",
+        "value": "Acero inoxidable 201"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Canastas extraíbles"
       }
     ],
     "price": 393932,
@@ -1290,55 +1327,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 4,
     "web_stock": 4,
     "inventory_status": "in_stock",
-    "sku": "KDJ-198",
-    "slug": "kdj-198-juego-de-condimenteros-extraibles-ss201-plano-y-portaplatos",
+    "sku": "FS502601/FS502602",
+    "slug": "kdj-198-juego-de-canastas-extraibles-ss201-plana-y-portaplatos",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Acero Inoxidable SS201 de grado sanitario"
+      "Acero inoxidable 201"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 346660,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla."
   },
   {
     "id": "prod-kdj-199",
     "code": "KDJ-199",
-    "name": "Juego de condimenteros extraíbles SS201: plano y portaplatos",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Juego de gavetas organizadoras en inoxidable para módulo de 700mm, con distribución técnica para vajilla y ollas.",
-    "full_description": "Juego de condimenteros extraíbles SS201: plano y portaplatos perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 700mm, dimensiones de 664 × 425 × 165 mm y capacidad de 35 kg.",
+    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
+    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
     "technical_specs": {
-      "material": "Acero Inoxidable SS201",
-      "acabado": "Acero pulido satinado",
-      "dimensiones": "664 × 425 × 165 mm",
-      "mecanismo": "Correderas ocultas de extracción total",
+      "ref_fabricante": "FS502701/FS502702",
+      "aplicacion": "Cocina",
       "modulo": "700mm",
-      "capacidad_carga": "35 kg",
-      "compatibilidad": "Diseñado para módulo de 700mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "664 × 425 × 165 mm",
+      "material": "Acero inoxidable 201",
+      "acabado": "Pulido",
+      "configuracion": "Juego de 2 canastas: plana + portaplatos",
+      "mecanismo": "Canastas extraíbles",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero Inoxidable SS201"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 700mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Juego de 2 canastas: plana + portaplatos"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 35 kg"
+        "label": "MATERIAL",
+        "value": "Acero inoxidable 201"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Canastas extraíbles"
       }
     ],
     "price": 428890,
@@ -1354,55 +1393,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-199",
-    "slug": "kdj-199-juego-de-condimenteros-extraibles-ss201-plano-y-portaplatos",
+    "sku": "FS502701/FS502702",
+    "slug": "kdj-199-juego-de-canastas-extraibles-ss201-plana-y-portaplatos",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Acero Inoxidable SS201"
+      "Acero inoxidable 201"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 377423,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla."
   },
   {
     "id": "prod-kdj-200",
     "code": "KDJ-200",
-    "name": "Juego de condimenteros extraíbles SS201: plano y portaplatos",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Set de gran formato para módulo de 800mm en inoxidable SS201, capacidad para servicio completo de banquetería.",
-    "full_description": "Juego de condimenteros extraíbles SS201: plano y portaplatos perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800mm, dimensiones de 764 × 425 × 165 mm y capacidad de 45 kg.",
+    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
+    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
     "technical_specs": {
-      "material": "Acero Inoxidable SS201 reforzado",
-      "acabado": "Satinado premium anti-huellas",
-      "dimensiones": "764 × 425 × 165 mm",
-      "mecanismo": "Rieles para alta carga con amortiguación hidráulica",
+      "ref_fabricante": "FS502801/FS502802",
+      "aplicacion": "Cocina",
       "modulo": "800mm",
-      "capacidad_carga": "45 kg",
-      "compatibilidad": "Diseñado para módulo de 800mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "764 × 425 × 165 mm",
+      "material": "Acero inoxidable 201",
+      "acabado": "Pulido",
+      "configuracion": "Juego de 2 canastas: plana + portaplatos",
+      "mecanismo": "Canastas extraíbles",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero Inoxidable SS201 reforzado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Juego de 2 canastas: plana + portaplatos"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 45 kg"
+        "label": "MATERIAL",
+        "value": "Acero inoxidable 201"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Canastas extraíbles"
       }
     ],
     "price": 4664660,
@@ -1418,19 +1459,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 2,
     "inventory_status": "in_stock",
-    "sku": "KDJ-200",
-    "slug": "kdj-200-juego-de-condimenteros-extraibles-ss201-plano-y-portaplatos",
+    "sku": "FS502801/FS502802",
+    "slug": "kdj-200-juego-de-canastas-extraibles-ss201-plana-y-portaplatos",
     "brand_collection": "Colección 2026",
     "category": "Condimenteros & Portaplatos",
     "materials": [
-      "Acero Inoxidable SS201 reforzado"
+      "Acero inoxidable 201"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 4104900,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla."
   },
   {
     "id": "prod-kdj-78",
@@ -1439,34 +1481,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Estación de reciclaje bajo mesón con dos baldes de 20L cada uno, tapa hermética fija que sella olores al cerrar la puerta.",
-    "full_description": "Basurero doble con tapa de 20 + 20 litros perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 400mm, dimensiones de 335 × 500 × 470 mm y capacidad de 40 L capacidad / 25 kg carga.",
+    "short_description": "Basurero doble extraíble con tapa para módulo de cocina.",
+    "full_description": "Basurero doble extraíble con tapa para módulo de cocina.",
     "technical_specs": {
-      "material": "Polímero técnico lavable y chasis de acero",
-      "acabado": "Gris neutro y tapa grafito",
-      "dimensiones": "335 × 500 × 470 mm",
-      "mecanismo": "Extracción frontal automática con cierre suave",
+      "ref_fabricante": "06DD-220W",
+      "aplicacion": "Cocina",
       "modulo": "400mm",
-      "capacidad_carga": "40 L capacidad / 25 kg carga",
-      "compatibilidad": "Diseñado para módulo de 400mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "335 × 500 × 470mm",
+      "material": "ABS",
+      "acabado": "No especificado",
+      "configuracion": "2 recipientes: 20 L + 20 L, con tapa",
+      "mecanismo": "Corredera de balineras con cierre suave",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Polímero técnico lavable y chasis de acero"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 400mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 recipientes: 20 L + 20 L, con tapa"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 40 L capacidad / 25 kg carga"
+        "label": "MATERIAL",
+        "value": "ABS"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Corredera de balineras con cierre suave"
       }
     ],
     "price": 264880,
@@ -1482,19 +1525,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 5,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-78",
+    "sku": "06DD-220W",
     "slug": "kdj-78-basurero-doble-con-tapa-de-20-20-litros",
     "brand_collection": "Colección 2026",
     "category": "Basureros Ecológicos",
     "materials": [
-      "Polímero técnico lavable y chasis de acero"
+      "ABS"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 233094,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Basurero doble extraíble con tapa para módulo de cocina."
   },
   {
     "id": "prod-kdj-79",
@@ -1503,34 +1547,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Basurero ecológico asimétrico (10L + 20L) diseñado para separación selectiva en gabinetes estándar de 300mm.",
-    "full_description": "Basurero doble gris de 10 + 20 litros perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 300mm, dimensiones de 263 × 490 × 424 mm y capacidad de 30 L capacidad.",
+    "short_description": "Basurero doble extraíble para clasificación de residuos.",
+    "full_description": "Basurero doble extraíble para clasificación de residuos.",
     "technical_specs": {
-      "material": "Polímeros reciclables de alta densidad",
-      "acabado": "Gris antracita mate",
-      "dimensiones": "263 × 490 × 424 mm",
-      "mecanismo": "Correderas de balineras de acero con freno suave",
+      "ref_fabricante": "06DD-1020",
+      "aplicacion": "Cocina",
       "modulo": "300mm",
-      "capacidad_carga": "30 L capacidad",
-      "compatibilidad": "Diseñado para módulo de 300mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "263 × 490 × 424 mm",
+      "material": "ABS + hierro",
+      "acabado": "Gris",
+      "configuracion": "2 recipientes: 10 L + 20 L",
+      "mecanismo": "Sistema extraíble; tipo de corredera no especificado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Polímeros reciclables de alta densidad"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 300mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 recipientes: 10 L + 20 L"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 30 L capacidad"
+        "label": "MATERIAL",
+        "value": "ABS + hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble; tipo de corredera no especificado"
       }
     ],
     "price": 329560,
@@ -1546,19 +1591,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-79",
+    "sku": "06DD-1020",
     "slug": "kdj-79-basurero-doble-gris-de-10-20-litros",
     "brand_collection": "Colección 2026",
     "category": "Basureros Ecológicos",
     "materials": [
-      "Polímeros reciclables de alta densidad"
+      "ABS + hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 290012,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Basurero doble extraíble para clasificación de residuos."
   },
   {
     "id": "prod-kdj-80",
@@ -1567,34 +1613,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Sistema de gestión de residuos de gran volumen para cocina gourmet: 2 contenedores de 20 litros con manijas ergonómicas.",
-    "full_description": "Basurero doble gris de 20 + 20 litros perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 400mm, dimensiones de 342 × 490 × 424 mm y capacidad de 40 L capacidad.",
+    "short_description": "Basurero doble extraíble para módulo de 400 mm.",
+    "full_description": "Basurero doble extraíble para módulo de 400 mm.",
     "technical_specs": {
-      "material": "Polipropileno técnico y guías de acero zincado",
-      "acabado": "Gris perla y grafito",
-      "dimensiones": "342 × 490 × 424 mm",
-      "mecanismo": "Extracción total sincronizada con soft close",
+      "ref_fabricante": "06DD-220",
+      "aplicacion": "Cocina",
       "modulo": "400mm",
-      "capacidad_carga": "40 L capacidad",
-      "compatibilidad": "Diseñado para módulo de 400mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "342 × 490 × 424 mm",
+      "material": "ABS + hierro",
+      "acabado": "Gris",
+      "configuracion": "2 recipientes: 20 L + 20 L",
+      "mecanismo": "Sistema extraíble; tipo de corredera no especificado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Polipropileno técnico y guías de acero zincado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 400mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 recipientes: 20 L + 20 L"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 40 L capacidad"
+        "label": "MATERIAL",
+        "value": "ABS + hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble; tipo de corredera no especificado"
       }
     ],
     "price": 407728,
@@ -1610,19 +1657,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 4,
     "inventory_status": "in_stock",
-    "sku": "KDJ-80",
+    "sku": "06DD-220",
     "slug": "kdj-80-basurero-doble-gris-de-20-20-litros",
     "brand_collection": "Colección 2026",
     "category": "Basureros Ecológicos",
     "materials": [
-      "Polipropileno técnico y guías de acero zincado"
+      "ABS + hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 358800,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Basurero doble extraíble para módulo de 400 mm."
   },
   {
     "id": "prod-kdj-81",
@@ -1631,34 +1679,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Contenedor cilíndrico en auténtico acero inoxidable AISI 304 con mecanismo de apertura automática sincronizada con la puerta.",
-    "full_description": "Basurero de 14 litros en inoxidable 304 perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 400mm, dimensiones de 365 × 289 × 370 mm y capacidad de 14 L capacidad.",
+    "short_description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304.",
+    "full_description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304.",
     "technical_specs": {
-      "material": "Acero Inoxidable AISI 304 y balde interior removible",
-      "acabado": "Inox cepillado brillante",
-      "dimensiones": "365 × 289 × 370 mm",
-      "mecanismo": "Apertura mecánica pivotante con tapa elevable automática",
+      "ref_fabricante": "SWG1-430",
+      "aplicacion": "Cocina",
       "modulo": "400mm",
-      "capacidad_carga": "14 L capacidad",
-      "compatibilidad": "Diseñado para módulo de 400mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "365 × 289 × 370 mm",
+      "material": "Plástico + acero inoxidable SUS304",
+      "acabado": "Acero inoxidable pulido",
+      "configuracion": "Capacidad 14 L",
+      "mecanismo": "Sistema extraíble",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero Inoxidable AISI 304 y balde interior removible"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 400mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Capacidad 14 L"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 14 L capacidad"
+        "label": "MATERIAL",
+        "value": "Plástico + acero inoxidable SUS304"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble"
       }
     ],
     "price": 150920,
@@ -1674,19 +1723,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 5,
     "web_stock": 7,
     "inventory_status": "in_stock",
-    "sku": "KDJ-81",
+    "sku": "SWG1-430",
     "slug": "kdj-81-basurero-de-14-litros-en-inoxidable-304",
     "brand_collection": "Colección 2026",
     "category": "Basureros Ecológicos",
     "materials": [
-      "Acero Inoxidable AISI 304 y balde interior removible"
+      "Plástico + acero inoxidable SUS304"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 132809,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304."
   },
   {
     "id": "prod-kdj-83",
@@ -1695,34 +1745,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Mecanismo descensor neumático de dos niveles con fondos de cristal para acceder sin esfuerzo a la parte superior de muebles altos.",
-    "full_description": "Canasta elevable de vidrio perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 564 × 260 × 542 mm y capacidad de 15 kg.",
+    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
+    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
     "technical_specs": {
-      "material": "Vidrio templado, aluminio y amortiguadores de gas",
-      "acabado": "Cristal templado y marco grafito",
-      "dimensiones": "564 × 260 × 542 mm",
-      "mecanismo": "Brazos mecánicos con selector de fuerza y amortiguación hidráulica bidireccional",
+      "ref_fabricante": "04LG-600",
+      "aplicacion": "Cocina",
       "modulo": "600mm",
-      "capacidad_carga": "15 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "564 × 260 × 542 mm",
+      "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "Canasta elevable",
+      "mecanismo": "Sistema mecánico elevable",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado, aluminio y amortiguadores de gas"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta elevable"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 15 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema mecánico elevable"
       }
     ],
     "price": 662732,
@@ -1738,19 +1789,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-83",
+    "sku": "04LG-600",
     "slug": "kdj-83-canasta-elevable-de-vidrio",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Vidrio templado, aluminio y amortiguadores de gas"
+      "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 583204,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta elevable de vidrio para módulos superiores de cocina."
   },
   {
     "id": "prod-kdj-84",
@@ -1759,34 +1811,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Módulo elevable descensor para mueble alto de 700mm en vidrio templado y aluminio de grado espacial.",
-    "full_description": "Canasta elevable de vidrio perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 700mm, dimensiones de 664 × 260 × 542 mm y capacidad de 18 kg.",
+    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
+    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
     "technical_specs": {
-      "material": "Vidrio templado y aluminio extruido",
-      "acabado": "Cristal templado y perfil grafito",
-      "dimensiones": "664 × 260 × 542 mm",
-      "mecanismo": "Equilibrador asistido por resorte de tensión regulable",
+      "ref_fabricante": "04LG-700",
+      "aplicacion": "Cocina",
       "modulo": "700mm",
-      "capacidad_carga": "18 kg",
-      "compatibilidad": "Diseñado para módulo de 700mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "664 × 260 × 542 mm",
+      "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "Canasta elevable",
+      "mecanismo": "Sistema mecánico elevable",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado y aluminio extruido"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 700mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta elevable"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 18 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema mecánico elevable"
       }
     ],
     "price": 724560,
@@ -1802,19 +1855,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 2,
     "inventory_status": "in_stock",
-    "sku": "KDJ-84",
+    "sku": "04LG-700",
     "slug": "kdj-84-canasta-elevable-de-vidrio",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Vidrio templado y aluminio extruido"
+      "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 637612,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta elevable de vidrio para módulos superiores de cocina."
   },
   {
     "id": "prod-kdj-85",
@@ -1823,34 +1877,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Canasta elevable de 800mm con dos repisas completas de cristal, optimiza la accesibilidad y ergonomía de alacenas superiores.",
-    "full_description": "Canasta elevable de vidrio perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800mm, dimensiones de 764 × 260 × 542 mm y capacidad de 20 kg.",
+    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
+    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
     "technical_specs": {
-      "material": "Vidrio templado laminado y marco metálico",
-      "acabado": "Vidrio translúcido y marco antracita",
-      "dimensiones": "764 × 260 × 542 mm",
-      "mecanismo": "Descensor suave de dos posiciones con cierre amortiguado",
+      "ref_fabricante": "04LG-800",
+      "aplicacion": "Cocina",
       "modulo": "800mm",
-      "capacidad_carga": "20 kg",
-      "compatibilidad": "Diseñado para módulo de 800mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "764 × 260 × 542 mm",
+      "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
+      "acabado": "Estructura con pintura electrostática",
+      "configuracion": "Canasta elevable",
+      "mecanismo": "Sistema mecánico elevable",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado laminado y marco metálico"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta elevable"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 20 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema mecánico elevable"
       }
     ],
     "price": 786464,
@@ -1866,19 +1921,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-85",
+    "sku": "04LG-800",
     "slug": "kdj-85-canasta-elevable-de-vidrio",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Vidrio templado laminado y marco metálico"
+      "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 692088,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta elevable de vidrio para módulos superiores de cocina."
   },
   {
     "id": "prod-kdj-86",
@@ -1887,34 +1943,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Estación escurridora descendente en acero 304 quirúrgico con rejilla para platos, vasos y canastilla para cubiertos.",
-    "full_description": "Locero elevable SS304 con portacubiertos perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 564 × 260 × 542 mm y capacidad de 16 kg.",
+    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
+    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
     "technical_specs": {
-      "material": "Acero Inoxidable AISI 304 inoxidable de por vida",
-      "acabado": "Acero inoxidable electropulido",
-      "dimensiones": "564 × 260 × 542 mm",
-      "mecanismo": "Elevador neumático con bandeja inferior recolectora de agua",
+      "ref_fabricante": "04L3-600",
+      "aplicacion": "Cocina",
       "modulo": "600mm",
-      "capacidad_carga": "16 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "564 × 260 × 542 mm",
+      "material": "Canasta en acero inoxidable 304; estructura en hierro",
+      "acabado": "Estructura gris con pintura electrostática",
+      "configuracion": "Canasta plana + portaplatos + caja para cubiertos/palillos",
+      "mecanismo": "Sistema mecánico elevable",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero Inoxidable AISI 304 inoxidable de por vida"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta plana + portaplatos + caja para cubiertos/palillos"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 16 kg"
+        "label": "MATERIAL",
+        "value": "Canasta en acero inoxidable 304; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema mecánico elevable"
       }
     ],
     "price": 738075,
@@ -1930,19 +1987,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-86",
+    "sku": "04L3-600",
     "slug": "kdj-86-locero-elevable-ss304-con-portacubiertos",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Acero Inoxidable AISI 304 inoxidable de por vida"
+      "Canasta en acero inoxidable 304; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 649506,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos."
   },
   {
     "id": "prod-kdj-87",
@@ -1951,34 +2009,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Sistema escurridor descensor para gabinete aéreo de 700mm en inoxidable 304, drenaje perfecto sin humedad en la carpintería.",
-    "full_description": "Locero elevable SS304 con portacubiertos perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 700mm, dimensiones de 664 × 260 × 542 mm y capacidad de 18 kg.",
+    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
+    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
     "technical_specs": {
-      "material": "Acero Inoxidable AISI 304",
-      "acabado": "Acero satinado",
-      "dimensiones": "664 × 260 × 542 mm",
-      "mecanismo": "Brazos de descenso ergonómicos con retención y subida suave",
+      "ref_fabricante": "04L3-700",
+      "aplicacion": "Cocina",
       "modulo": "700mm",
-      "capacidad_carga": "18 kg",
-      "compatibilidad": "Diseñado para módulo de 700mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "664 × 260 × 542 mm",
+      "material": "Canasta en acero inoxidable 304; estructura en hierro",
+      "acabado": "Estructura gris con pintura electrostática",
+      "configuracion": "Canasta plana + portaplatos + caja para cubiertos/palillos",
+      "mecanismo": "Sistema mecánico elevable",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero Inoxidable AISI 304"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 700mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta plana + portaplatos + caja para cubiertos/palillos"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 18 kg"
+        "label": "MATERIAL",
+        "value": "Canasta en acero inoxidable 304; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema mecánico elevable"
       }
     ],
     "price": 796087,
@@ -1994,19 +2053,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-87",
+    "sku": "04L3-700",
     "slug": "kdj-87-locero-elevable-ss304-con-portacubiertos",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Acero Inoxidable AISI 304"
+      "Canasta en acero inoxidable 304; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 700556,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos."
   },
   {
     "id": "prod-kdj-88",
@@ -2015,34 +2075,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Locero elevable de máxima dimensión (800mm) para alacenas de gran formato, construcción íntegra en inoxidable sanitario 304.",
-    "full_description": "Locero elevable SS304 con portacubiertos perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800mm, dimensiones de 764 × 260 × 542 mm y capacidad de 22 kg.",
+    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
+    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
     "technical_specs": {
-      "material": "Acero Inoxidable AISI 304",
-      "acabado": "Acero cepillado de grado culinario",
-      "dimensiones": "764 × 260 × 542 mm",
-      "mecanismo": "Compensador de peso mecánico con pistones reforzados",
+      "ref_fabricante": "04L3-800",
+      "aplicacion": "Cocina",
       "modulo": "800mm",
-      "capacidad_carga": "22 kg",
-      "compatibilidad": "Diseñado para módulo de 800mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "764 × 260 × 542 mm",
+      "material": "Canasta en acero inoxidable 304; estructura en hierro",
+      "acabado": "Estructura gris con pintura electrostática",
+      "configuracion": "Canasta plana + portaplatos + caja para cubiertos/palillos",
+      "mecanismo": "Sistema mecánico elevable",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero Inoxidable AISI 304"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta plana + portaplatos + caja para cubiertos/palillos"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 22 kg"
+        "label": "MATERIAL",
+        "value": "Canasta en acero inoxidable 304; estructura en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema mecánico elevable"
       }
     ],
     "price": 856301,
@@ -2058,19 +2119,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-88",
+    "sku": "04L3-800",
     "slug": "kdj-88-locero-elevable-ss304-con-portacubiertos",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Acero Inoxidable AISI 304"
+      "Canasta en acero inoxidable 304; estructura en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 753544,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos."
   },
   {
     "id": "prod-kdj-89",
@@ -2079,34 +2141,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Motorización inteligente para cocina de vanguardia: desciende y asciende con solo tocar un botón touch o sensor de proximidad.",
-    "full_description": "Canasta elevable eléctrica de alambre perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 700mm, dimensiones de 700 × 256 × 700 mm y capacidad de 25 kg.",
+    "short_description": "Sistema eléctrico elevable para módulo superior de cocina.",
+    "full_description": "Sistema eléctrico elevable para módulo superior de cocina.",
     "technical_specs": {
-      "material": "Alambre de acero estructural y actuador lineal motorizado",
-      "acabado": "Antracita mate y componentes cromados",
-      "dimensiones": "700 × 256 × 700 mm",
-      "mecanismo": "Motor eléctrico silencioso < 45dB, sensor anti-atrapamiento y control touch",
+      "ref_fabricante": "04EF-700",
+      "aplicacion": "Cocina",
       "modulo": "700mm",
-      "capacidad_carga": "25 kg",
-      "compatibilidad": "Diseñado para módulo de 700mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "700 × 256 × 700 mm",
+      "material": "Acero plano 304 con tratamiento por electrólisis; laterales en hierro",
+      "acabado": "Laterales con pintura electrostática",
+      "configuracion": "Canasta elevable eléctrica",
+      "mecanismo": "Control táctil; elevación y descenso motorizados; sin control por voz",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Alambre de acero estructural y actuador lineal motorizado"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 700mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta elevable eléctrica"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 25 kg"
+        "label": "MATERIAL",
+        "value": "Acero plano 304 con tratamiento por electrólisis; laterales en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Control táctil; elevación y descenso motorizados; sin control por voz"
       }
     ],
     "price": 2005803,
@@ -2122,19 +2185,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 2,
     "inventory_status": "in_stock",
-    "sku": "KDJ-89",
+    "sku": "04EF-700",
     "slug": "kdj-89-canasta-elevable-electrica-de-alambre",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Alambre de acero estructural y actuador lineal motorizado"
+      "Acero plano 304 con tratamiento por electrólisis; laterales en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1765106,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema eléctrico elevable para módulo superior de cocina."
   },
   {
     "id": "prod-kdj-90",
@@ -2143,34 +2207,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "La máxima expresión del lujo funcional: canasta motorizada con paneles en vidrio templado y movimiento eléctrico ultra suave.",
-    "full_description": "Canasta elevable eléctrica de vidrio perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 600 × 256 × 700 mm y capacidad de 25 kg.",
+    "short_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina.",
+    "full_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina.",
     "technical_specs": {
-      "material": "Vidrio templado templado y actuador electromecánico",
-      "acabado": "Cristal templado y marco negro anodizado",
-      "dimensiones": "600 × 256 × 700 mm",
-      "mecanismo": "Accionamiento eléctrico continuo con parada de seguridad y memoria de altura",
+      "ref_fabricante": "04EG-600",
+      "aplicacion": "Cocina",
       "modulo": "600mm",
-      "capacidad_carga": "25 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "600 × 256 × 700 mm",
+      "material": "Vidrio templado + aluminio; laterales en hierro",
+      "acabado": "Laterales con pintura electrostática",
+      "configuracion": "Canasta elevable eléctrica",
+      "mecanismo": "Control táctil; elevación y descenso motorizados; sin control por voz",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Vidrio templado templado y actuador electromecánico"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta elevable eléctrica"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 25 kg"
+        "label": "MATERIAL",
+        "value": "Vidrio templado + aluminio; laterales en hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Control táctil; elevación y descenso motorizados; sin control por voz"
       }
     ],
     "price": 2076254,
@@ -2186,19 +2251,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 1,
     "inventory_status": "in_stock",
-    "sku": "KDJ-90",
+    "sku": "04EG-600",
     "slug": "kdj-90-canasta-elevable-electrica-de-vidrio",
     "brand_collection": "Colección 2026",
     "category": "Sistemas Elevables & Loceros",
     "materials": [
-      "Vidrio templado templado y actuador electromecánico"
+      "Vidrio templado + aluminio; laterales en hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1827103,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina."
   },
   {
     "id": "prod-kdj-201",
@@ -2207,34 +2273,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-cuberteros",
     "category_name": "Cuberteros & Accesorios",
     "main_collection": "cocina",
-    "short_description": "Organizador modular de cubiertos en polímero técnico ABS termoformado con elegante acabado plateado mate antibacteriano.",
-    "full_description": "Cubertero ABS plateado perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 535 × 485 × 60 mm y capacidad de Bandeja divisoria.",
+    "short_description": "Organizador de cubiertos en ABS para cajones de cocina.",
+    "full_description": "Organizador de cubiertos en ABS para cajones de cocina.",
     "technical_specs": {
-      "material": "Polímero ABS de alto impacto",
-      "acabado": "Plateado mate satinado",
-      "dimensiones": "535 × 485 × 60 mm",
-      "mecanismo": "Ajuste milimétrico para gavetas y pestañas recortables",
+      "ref_fabricante": "K-600",
+      "aplicacion": "Cocina",
       "modulo": "600mm",
-      "capacidad_carga": "Bandeja divisoria",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "535 × 485 × 60 mm",
+      "material": "ABS",
+      "acabado": "Plateado; superficie con liner",
+      "configuracion": "Cubertero",
+      "mecanismo": "Instalación interior de cajón",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Polímero ABS de alto impacto"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Cubertero"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica Bandeja divisoria"
+        "label": "MATERIAL",
+        "value": "ABS"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Instalación interior de cajón"
       }
     ],
     "price": 33110,
@@ -2250,19 +2317,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 8,
     "web_stock": 8,
     "inventory_status": "in_stock",
-    "sku": "KDJ-201",
+    "sku": "K-600",
     "slug": "kdj-201-cubertero-abs-plateado",
     "brand_collection": "Colección 2026",
     "category": "Cuberteros & Accesorios",
     "materials": [
-      "Polímero ABS de alto impacto"
+      "ABS"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 29136,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Organizador de cubiertos en ABS para cajones de cocina."
   },
   {
     "id": "prod-kdj-202",
@@ -2271,34 +2339,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-cocina-cuberteros",
     "category_name": "Cuberteros & Accesorios",
     "main_collection": "cocina",
-    "short_description": "Bandeja cubertera expandida para cajón de 700mm con compartimentos ergonómicos para cuchillería, espátulas y cubiertos de servicio.",
-    "full_description": "Cubertero ABS plateado perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 700mm, dimensiones de 635 × 485 × 60 mm y capacidad de Bandeja divisoria.",
+    "short_description": "Organizador de cubiertos en ABS para cajones de cocina.",
+    "full_description": "Organizador de cubiertos en ABS para cajones de cocina.",
     "technical_specs": {
-      "material": "Polímero ABS de grado alimentario",
-      "acabado": "Plateado mate satinado",
-      "dimensiones": "635 × 485 × 60 mm",
-      "mecanismo": "Pestañas de acople adaptable para encaje perfecto",
+      "ref_fabricante": "K-700",
+      "aplicacion": "Cocina",
       "modulo": "700mm",
-      "capacidad_carga": "Bandeja divisoria",
-      "compatibilidad": "Diseñado para módulo de 700mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "635 × 485 × 60 mm",
+      "material": "ABS",
+      "acabado": "Plateado; superficie con liner",
+      "configuracion": "Cubertero",
+      "mecanismo": "Instalación interior de cajón",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Polímero ABS de grado alimentario"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 700mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Cubertero"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica Bandeja divisoria"
+        "label": "MATERIAL",
+        "value": "ABS"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Instalación interior de cajón"
       }
     ],
     "price": 38962,
@@ -2314,19 +2383,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 7,
     "web_stock": 7,
     "inventory_status": "in_stock",
-    "sku": "KDJ-202",
+    "sku": "K-700",
     "slug": "kdj-202-cubertero-abs-plateado",
     "brand_collection": "Colección 2026",
     "category": "Cuberteros & Accesorios",
     "materials": [
-      "Polímero ABS de grado alimentario"
+      "ABS"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 34286,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Organizador de cubiertos en ABS para cajones de cocina."
   },
   {
     "id": "prod-kdj-91",
@@ -2335,34 +2405,36 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-joyeros",
     "category_name": "Joyeros & Bandejas",
     "main_collection": "closet",
-    "short_description": "Bandeja organizadora de lujo con compartimentos individuales para anillos, cadenas, gemelos y accesorios en cuero fino y terciopelo.",
-    "full_description": "Joyero extraíble con cierre suave · variante 1 perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de (510-614) × 450 × 80 mm y capacidad de 20 kg.",
+    "short_description": "Joyero extraíble revestido en cuero para organización de accesorios.",
+    "full_description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
     "technical_specs": {
-      "material": "Marco perimetral de aluminio y tapizado en terciopelo italiano",
-      "acabado": "Aluminio moka y terciopelo beige arena",
-      "dimensiones": "(510-614) × 450 × 80 mm",
-      "mecanismo": "Correderas telescópicas ocultas sincronizadas con cierre amortiguado",
+      "ref_fabricante": "YD-04D-JB600",
+      "aplicacion": "Clóset",
       "modulo": "600mm",
-      "capacidad_carga": "20 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "(510-614) × 450 × 80 mm",
+      "material": "Aluminio + cuero",
+      "acabado": "Acabados de familia informados: Serenity Blue / Mocha",
+      "configuracion": "Joyero extraíble",
+      "mecanismo": "Sistema amortiguado / cierre suave",
+      "nota_tecnica": "La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Marco perimetral de aluminio y tapizado en terciopelo italiano"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Joyero extraíble"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 20 kg"
+        "label": "MATERIAL",
+        "value": "Aluminio + cuero"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema amortiguado / cierre suave"
       }
     ],
     "price": 340171,
@@ -2378,19 +2450,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 4,
     "inventory_status": "in_stock",
-    "sku": "KDJ-91",
+    "sku": "YD-04D-JB600",
     "slug": "kdj-91-joyero-extraible-con-cierre-suave-variante-1",
     "brand_collection": "Colección 2026",
     "category": "Joyeros & Bandejas",
     "materials": [
-      "Marco perimetral de aluminio y tapizado en terciopelo italiano"
+      "Aluminio + cuero"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 299350,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación."
   },
   {
     "id": "prod-kdj-92",
@@ -2399,34 +2472,36 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-joyeros",
     "category_name": "Joyeros & Bandejas",
     "main_collection": "closet",
-    "short_description": "Diseño exclusivo con ranuras termo-curvadas y almohadillas desmontables para relojes y pulseras en piel sintética texturada.",
-    "full_description": "Joyero extraíble con cierre suave · variante 2 perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de (510-614) × 450 × 80 mm y capacidad de 20 kg.",
+    "short_description": "Joyero extraíble revestido en cuero para organización de accesorios.",
+    "full_description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
     "technical_specs": {
-      "material": "Aluminio extruido, cuero sintético de alta costura y gamuza",
-      "acabado": "Gris antracita y gamuza grafito",
-      "dimensiones": "(510-614) × 450 × 80 mm",
-      "mecanismo": "Extracción total de deslizamiento ultra sedoso",
+      "ref_fabricante": "YD-04D-JB600",
+      "aplicacion": "Clóset",
       "modulo": "600mm",
-      "capacidad_carga": "20 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "(510-614) × 450 × 80 mm",
+      "material": "Aluminio + cuero",
+      "acabado": "Acabados de familia informados: Serenity Blue / Mocha",
+      "configuracion": "Joyero extraíble",
+      "mecanismo": "Sistema amortiguado / cierre suave",
+      "nota_tecnica": "La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Aluminio extruido, cuero sintético de alta costura y gamuza"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Joyero extraíble"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 20 kg"
+        "label": "MATERIAL",
+        "value": "Aluminio + cuero"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema amortiguado / cierre suave"
       }
     ],
     "price": 349438,
@@ -2442,19 +2517,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 4,
     "inventory_status": "in_stock",
-    "sku": "KDJ-92",
+    "sku": "YD-04D-JB600",
     "slug": "kdj-92-joyero-extraible-con-cierre-suave-variante-2",
     "brand_collection": "Colección 2026",
     "category": "Joyeros & Bandejas",
     "materials": [
-      "Aluminio extruido, cuero sintético de alta costura y gamuza"
+      "Aluminio + cuero"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 307505,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación."
   },
   {
     "id": "prod-kdj-93",
@@ -2463,34 +2539,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Marco de aluminio estructural con varillas antideslizantes para colgar hasta 10 pantalones sin pliegues ni arrugas indeseadas.",
-    "full_description": "Pantalonero extraíble con marco de aluminio perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de (510-614) × 450 × 60 mm y capacidad de 25 kg.",
+    "short_description": "Pantalonero de marco de aluminio para módulo de clóset.",
+    "full_description": "Pantalonero de marco de aluminio para módulo de clóset.",
     "technical_specs": {
-      "material": "Aluminio extruido y tubos con recubrimiento de silicona antideslizante",
-      "acabado": "Moka anodizado satinado",
-      "dimensiones": "(510-614) × 450 × 60 mm",
-      "mecanismo": "Rieles sincronizados de extracción total con freno de impacto",
+      "ref_fabricante": "YD-01-TR600",
+      "aplicacion": "Clóset",
       "modulo": "600mm",
-      "capacidad_carga": "25 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "(510-614) × 450 × 60 mm",
+      "material": "Marco de aluminio",
+      "acabado": "Gris oscuro / Mocha",
+      "configuracion": "Pantalonero extraíble",
+      "mecanismo": "Sistema extraíble",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Aluminio extruido y tubos con recubrimiento de silicona antideslizante"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Pantalonero extraíble"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 25 kg"
+        "label": "MATERIAL",
+        "value": "Marco de aluminio"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble"
       }
     ],
     "price": 211950,
@@ -2506,19 +2583,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 4,
     "web_stock": 4,
     "inventory_status": "in_stock",
-    "sku": "KDJ-93",
+    "sku": "YD-01-TR600",
     "slug": "kdj-93-pantalonero-extraible-con-marco-de-aluminio",
     "brand_collection": "Colección 2026",
     "category": "Pantaloneros & Percheros",
     "materials": [
-      "Aluminio extruido y tubos con recubrimiento de silicona antideslizante"
+      "Marco de aluminio"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 186516,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Pantalonero de marco de aluminio para módulo de clóset."
   },
   {
     "id": "prod-kdj-94",
@@ -2527,34 +2605,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Pantalonero voladizo de fijación lateral derecha con 9 varillas independientes para clósets y vestidores esquineros.",
-    "full_description": "Pantalonero lateral derecho con cierre suave perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 400mm, dimensiones de 360 × 450 × 120 mm y capacidad de 15 kg.",
+    "short_description": "Pantalonero lateral extraíble con amortiguación.",
+    "full_description": "Pantalonero lateral extraíble con amortiguación.",
     "technical_specs": {
-      "material": "Acero al carbono y aluminio",
-      "acabado": "Gris grafito mate",
-      "dimensiones": "360 × 450 × 120 mm",
-      "mecanismo": "Corredera lateral telescópica de extensión total con amortiguador",
+      "ref_fabricante": "YL-12B-R",
+      "aplicacion": "Clóset",
       "modulo": "400mm",
-      "capacidad_carga": "15 kg",
-      "compatibilidad": "Diseñado para módulo de 400mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "360 × 450 × 120 mm",
+      "material": "Aluminio + hierro",
+      "acabado": "Gris oscuro",
+      "configuracion": "Lateral derecho",
+      "mecanismo": "Sistema extraíble amortiguado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono y aluminio"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 400mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Lateral derecho"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 15 kg"
+        "label": "MATERIAL",
+        "value": "Aluminio + hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble amortiguado"
       }
     ],
     "price": 175770,
@@ -2570,19 +2649,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-94",
+    "sku": "YL-12B-R",
     "slug": "kdj-94-pantalonero-lateral-derecho-con-cierre-suave",
     "brand_collection": "Colección 2026",
     "category": "Pantaloneros & Percheros",
     "materials": [
-      "Acero al carbono y aluminio"
+      "Aluminio + hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 154677,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Pantalonero lateral extraíble con amortiguación."
   },
   {
     "id": "prod-kdj-95",
@@ -2591,34 +2671,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Versión lateral izquierda con varillas engomadas para una simetría perfecta en proyectos de clóset para parejas.",
-    "full_description": "Pantalonero lateral izquierdo con cierre suave perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 400mm, dimensiones de 360 × 450 × 120 mm y capacidad de 15 kg.",
+    "short_description": "Pantalonero lateral extraíble con amortiguación.",
+    "full_description": "Pantalonero lateral extraíble con amortiguación.",
     "technical_specs": {
-      "material": "Acero al carbono y aluminio",
-      "acabado": "Gris grafito mate",
-      "dimensiones": "360 × 450 × 120 mm",
-      "mecanismo": "Corredera lateral telescópica de extensión total con amortiguador",
+      "ref_fabricante": "YL-12B-L",
+      "aplicacion": "Clóset",
       "modulo": "400mm",
-      "capacidad_carga": "15 kg",
-      "compatibilidad": "Diseñado para módulo de 400mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "360 × 450 × 120 mm",
+      "material": "Aluminio + hierro",
+      "acabado": "Gris oscuro",
+      "configuracion": "Lateral izquierdo",
+      "mecanismo": "Sistema extraíble amortiguado",
+      "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Acero al carbono y aluminio"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 400mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Lateral izquierdo"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 15 kg"
+        "label": "MATERIAL",
+        "value": "Aluminio + hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble amortiguado"
       }
     ],
     "price": 175770,
@@ -2634,19 +2715,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-95",
+    "sku": "YL-12B-L",
     "slug": "kdj-95-pantalonero-lateral-izquierdo-con-cierre-suave",
     "brand_collection": "Colección 2026",
     "category": "Pantaloneros & Percheros",
     "materials": [
-      "Acero al carbono y aluminio"
+      "Aluminio + hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 154677,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Pantalonero lateral extraíble con amortiguación."
   },
   {
     "id": "prod-kdj-96",
@@ -2655,34 +2737,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Pantalonero de anclaje bajo repisa o cielo de mueble con doble hilera de varillas y extracción frontal centrada.",
-    "full_description": "Pantalonero superior con cierre suave perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800mm, dimensiones de 660 × 450 × 120 mm y capacidad de 30 kg.",
+    "short_description": "Pantalonero superior con sistema amortiguado.",
+    "full_description": "Pantalonero superior con sistema amortiguado.",
     "technical_specs": {
-      "material": "Aluminio y varillas de acero amortiguadas",
-      "acabado": "Moka oscuro",
-      "dimensiones": "660 × 450 × 120 mm",
-      "mecanismo": "Fijación superior bajo entrepaño con guías amortiguadas de deslizamiento suave",
+      "ref_fabricante": "YL-10",
+      "aplicacion": "Clóset",
       "modulo": "800mm",
-      "capacidad_carga": "30 kg",
-      "compatibilidad": "Diseñado para módulo de 800mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "660 × 450 × 120 mm",
+      "material": "Aluminio + hierro",
+      "acabado": "Gris oscuro",
+      "configuracion": "Montaje superior",
+      "mecanismo": "Sistema extraíble amortiguado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Aluminio y varillas de acero amortiguadas"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Montaje superior"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 30 kg"
+        "label": "MATERIAL",
+        "value": "Aluminio + hierro"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema extraíble amortiguado"
       }
     ],
     "price": 225112,
@@ -2698,19 +2781,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 2,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-96",
+    "sku": "YL-10",
     "slug": "kdj-96-pantalonero-superior-con-cierre-suave",
     "brand_collection": "Colección 2026",
     "category": "Pantaloneros & Percheros",
     "materials": [
-      "Aluminio y varillas de acero amortiguadas"
+      "Aluminio + hierro"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 198098,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Pantalonero superior con sistema amortiguado."
   },
   {
     "id": "prod-kdj-97",
@@ -2719,34 +2803,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-elevadores",
     "category_name": "Elevadores de Ropa",
     "main_collection": "closet",
-    "short_description": "Perchero abatible hidráulico que desciende trajes y camisas desde la zona más alta del vestidor con esfuerzo cero.",
-    "full_description": "Elevador de ropa con doble cierre suave · mocha perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 510-660mm, dimensiones de 450-600 mm (Ancho telescópico adaptable) y capacidad de 15 kg de prendas colgadas.",
+    "short_description": "Elevador de ropa para aprovechar zonas altas del clóset.",
+    "full_description": "Elevador de ropa para aprovechar zonas altas del clóset.",
     "technical_specs": {
-      "material": "Brazo en aluminio forjado y cárter con fluido hidráulico de alta densidad",
-      "acabado": "Moka arquitectónico satinado",
-      "dimensiones": "450-600 mm (Ancho telescópico adaptable)",
-      "mecanismo": "Doble pistón amortiguador tanto en subida como en bajada",
+      "ref_fabricante": "YG-05-LCH550",
+      "aplicacion": "Clóset",
       "modulo": "510-660mm",
-      "capacidad_carga": "15 kg de prendas colgadas",
-      "compatibilidad": "Diseñado para módulo de 510-660mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "450-600 mm",
+      "material": "Aluminio + plástico",
+      "acabado": "Mocha",
+      "configuracion": "Elevador de ropa",
+      "mecanismo": "Doble cierre suave",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Brazo en aluminio forjado y cárter con fluido hidráulico de alta densidad"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 510-660mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Elevador de ropa"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 15 kg de prendas colgadas"
+        "label": "MATERIAL",
+        "value": "Aluminio + plástico"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Doble cierre suave"
       }
     ],
     "price": 181960,
@@ -2762,55 +2847,57 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 4,
     "web_stock": 5,
     "inventory_status": "in_stock",
-    "sku": "KDJ-97",
+    "sku": "YG-05-LCH550",
     "slug": "kdj-97-elevador-de-ropa-con-doble-cierre-suave-mocha",
     "brand_collection": "Colección 2026",
     "category": "Elevadores de Ropa",
     "materials": [
-      "Brazo en aluminio forjado y cárter con fluido hidráulico de alta densidad"
+      "Aluminio + plástico"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 160124,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Elevador de ropa para aprovechar zonas altas del clóset."
   },
   {
     "id": "prod-kdj-98",
     "code": "KDJ-98",
-    "name": "Condimentero extraíble de ratán · gris oscuro",
+    "name": "Canasta extraíble de ratán · gris oscuro",
     "category_id": "cat-closet-organizadores",
     "category_name": "Organizadores & Canastas Clóset",
     "main_collection": "closet",
-    "short_description": "Cesta canasta para clóset con fino tejido estilo ratán transpirable, ideal para toallas, lencería, suéteres y accesorios.",
-    "full_description": "Condimentero extraíble de ratán · gris oscuro perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 564 × 450 × 200 mm y capacidad de 25 kg.",
+    "short_description": "Canasta extraíble de ratán para almacenamiento en clóset.",
+    "full_description": "Canasta extraíble de ratán para almacenamiento en clóset.",
     "technical_specs": {
-      "material": "Fibra técnica tejida transpirable y marco de aluminio",
-      "acabado": "Ratán sintético gris oscuro y marco titanio",
-      "dimensiones": "564 × 450 × 200 mm",
-      "mecanismo": "Correderas de extracción completa con cierre suave",
+      "ref_fabricante": "XYH-06-RB600",
+      "aplicacion": "Clóset",
       "modulo": "600mm",
-      "capacidad_carga": "25 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "564 × 450 × 200 mm",
+      "material": "Aluminio + ratán",
+      "acabado": "Gris oscuro",
+      "configuracion": "Canasta de almacenamiento extraíble",
+      "mecanismo": "Sistema amortiguado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Fibra técnica tejida transpirable y marco de aluminio"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Canasta de almacenamiento extraíble"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 25 kg"
+        "label": "MATERIAL",
+        "value": "Aluminio + ratán"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema amortiguado"
       }
     ],
     "price": 346574,
@@ -2826,19 +2913,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 3,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-98",
-    "slug": "kdj-98-condimentero-extraible-de-ratan-gris-oscuro",
+    "sku": "XYH-06-RB600",
+    "slug": "kdj-98-canasta-extraible-de-ratan-gris-oscuro",
     "brand_collection": "Colección 2026",
     "category": "Organizadores & Canastas Clóset",
     "materials": [
-      "Fibra técnica tejida transpirable y marco de aluminio"
+      "Aluminio + ratán"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 304985,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Canasta extraíble de ratán para almacenamiento en clóset."
   },
   {
     "id": "prod-kdj-99",
@@ -2847,34 +2935,36 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-zapateros",
     "category_name": "Zapateros Giratorios",
     "main_collection": "closet",
-    "short_description": "Columna giratoria 360° para calzado con 12 niveles de bandejas bilaterales, almacena más de 36 pares en un solo módulo.",
-    "full_description": "Zapatero giratorio de 12 niveles perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 760mm, dimensiones de 680 × 340 × (1850-1945) mm (12 tier) y capacidad de 50 kg total (36+ pares de calzado).",
+    "short_description": "Zapatero giratorio de doce niveles para organización vertical.",
+    "full_description": "Zapatero giratorio de doce niveles para organización vertical. Nota: El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación.",
     "technical_specs": {
-      "material": "Eje de acero cromado y bandejas de polímero texturado con reborde de retención",
-      "acabado": "Moka cálido y gris antracita",
-      "dimensiones": "680 × 340 × (1850-1945) mm (12 tier)",
-      "mecanismo": "Rodamiento central axial giratorio 360° de rotación fluida y silenciosa",
+      "ref_fabricante": "YK-02-RSR12",
+      "aplicacion": "Clóset",
       "modulo": "760mm",
-      "capacidad_carga": "50 kg total (36+ pares de calzado)",
-      "compatibilidad": "Diseñado para módulo de 760mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "680 × 340 × H18575-1945 mm (dato de origen; altura por confirmar)",
+      "material": "Hierro + MDF",
+      "acabado": "Gris hierro",
+      "configuracion": "12 niveles",
+      "mecanismo": "Sistema giratorio",
+      "nota_tecnica": "El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación.",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Eje de acero cromado y bandejas de polímero texturado con reborde de retención"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 760mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "12 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 50 kg total (36+ pares de calzado)"
+        "label": "MATERIAL",
+        "value": "Hierro + MDF"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema giratorio"
       }
     ],
     "price": 1185800,
@@ -2890,19 +2980,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 3,
     "inventory_status": "in_stock",
-    "sku": "KDJ-99",
+    "sku": "YK-02-RSR12",
     "slug": "kdj-99-zapatero-giratorio-de-12-niveles",
     "brand_collection": "Colección 2026",
     "category": "Zapateros Giratorios",
     "materials": [
-      "Eje de acero cromado y bandejas de polímero texturado con reborde de retención"
+      "Hierro + MDF"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1043504,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Zapatero giratorio de doce niveles para organización vertical. Nota: El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación."
   },
   {
     "id": "prod-kdj-100",
@@ -2911,34 +3002,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "Cajón de seguridad biométrico y teclado digital para vestidor, tapizado a mano en cuero automotriz gris con costura artesanal.",
-    "full_description": "Cajón con clave revestido en cuero · gris perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 564 × 402 × 152 mm y capacidad de 35 kg.",
+    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
+    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
     "technical_specs": {
-      "material": "Caja de seguridad en acero reforzado forrada en cuero legítimo cosido",
-      "acabado": "Cuero gris grafito y herrajes metálicos pavonados",
-      "dimensiones": "564 × 402 × 152 mm",
-      "mecanismo": "Cerradura motorizada con teclado numérico touch y lector de huella dactilar",
+      "ref_fabricante": "07DL-600",
+      "aplicacion": "Clóset",
       "modulo": "600mm",
-      "capacidad_carga": "35 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "564 × 402 × 152 mm",
+      "material": "Cuero",
+      "acabado": "Gris",
+      "configuracion": "Cajón con clave",
+      "mecanismo": "Sistema de bloqueo por clave; mecanismo de corredera no especificado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Caja de seguridad en acero reforzado forrada en cuero legítimo cosido"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Cajón con clave"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 35 kg"
+        "label": "MATERIAL",
+        "value": "Cuero"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema de bloqueo por clave; mecanismo de corredera no especificado"
       }
     ],
     "price": 1216600,
@@ -2954,19 +3046,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 2,
     "inventory_status": "in_stock",
-    "sku": "KDJ-100",
+    "sku": "07DL-600",
     "slug": "kdj-100-cajon-con-clave-revestido-en-cuero-gris",
     "brand_collection": "Colección 2026",
     "category": "Cajones con Clave & Relojes",
     "materials": [
-      "Caja de seguridad en acero reforzado forrada en cuero legítimo cosido"
+      "Cuero"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1070608,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales."
   },
   {
     "id": "prod-kdj-101",
@@ -2975,34 +3068,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "Edición clóset luminoso en cuero marfil cosido con cerrojo digital invisible, compartimentos interiores acolchados para valores.",
-    "full_description": "Cajón con clave revestido en cuero · blanco perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 564 × 402 × 152 mm y capacidad de 35 kg.",
+    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
+    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
     "technical_specs": {
-      "material": "Estructura en chapa blindada y revestimiento de piel sintética premium",
-      "acabado": "Cuero blanco marfil con pespunte perla",
-      "dimensiones": "564 × 402 × 152 mm",
-      "mecanismo": "Cierre electrónico inteligente con batería recargable USB de larga duración",
+      "ref_fabricante": "07DL-600",
+      "aplicacion": "Clóset",
       "modulo": "600mm",
-      "capacidad_carga": "35 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "564 × 402 × 152 mm",
+      "material": "Cuero",
+      "acabado": "Blanco",
+      "configuracion": "Cajón con clave",
+      "mecanismo": "Sistema de bloqueo por clave; mecanismo de corredera no especificado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Estructura en chapa blindada y revestimiento de piel sintética premium"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Cajón con clave"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 35 kg"
+        "label": "MATERIAL",
+        "value": "Cuero"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema de bloqueo por clave; mecanismo de corredera no especificado"
       }
     ],
     "price": 1216600,
@@ -3018,19 +3112,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 1,
     "web_stock": 1,
     "inventory_status": "in_stock",
-    "sku": "KDJ-101",
+    "sku": "07DL-600",
     "slug": "kdj-101-cajon-con-clave-revestido-en-cuero-blanco",
     "brand_collection": "Colección 2026",
     "category": "Cajones con Clave & Relojes",
     "materials": [
-      "Estructura en chapa blindada y revestimiento de piel sintética premium"
+      "Cuero"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1070608,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales."
   },
   {
     "id": "prod-kdj-102",
@@ -3039,34 +3134,35 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "Estilo Hermès contemporáneo: cuero naranja mandarina vibrante con costuras de alta talabartería y acceso seguro codificado.",
-    "full_description": "Cajón con clave revestido en cuero · naranja perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 600mm, dimensiones de 564 × 402 × 152 mm y capacidad de 35 kg.",
+    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
+    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
     "technical_specs": {
-      "material": "Blindaje interno en acero y revestimiento exterior en cuero naranja de talabartería",
-      "acabado": "Cuero naranja de lujo y herrajes moka",
-      "dimensiones": "564 × 402 × 152 mm",
-      "mecanismo": "Bloqueo biométrico digital con clave y corredera oculta de extracción total",
+      "ref_fabricante": "07DL-600",
+      "aplicacion": "Clóset",
       "modulo": "600mm",
-      "capacidad_carga": "35 kg",
-      "compatibilidad": "Diseñado para módulo de 600mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "564 × 402 × 152 mm",
+      "material": "Cuero",
+      "acabado": "Naranja",
+      "configuracion": "Cajón con clave",
+      "mecanismo": "Sistema de bloqueo por clave; mecanismo de corredera no especificado",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Blindaje interno en acero y revestimiento exterior en cuero naranja de talabartería"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 600mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "Cajón con clave"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 35 kg"
+        "label": "MATERIAL",
+        "value": "Cuero"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Sistema de bloqueo por clave; mecanismo de corredera no especificado"
       }
     ],
     "price": 1216600,
@@ -3082,19 +3178,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 0,
     "web_stock": 2,
     "inventory_status": "low_stock",
-    "sku": "KDJ-102",
+    "sku": "07DL-600",
     "slug": "kdj-102-cajon-con-clave-revestido-en-cuero-naranja",
     "brand_collection": "Colección 2026",
     "category": "Cajones con Clave & Relojes",
     "materials": [
-      "Blindaje interno en acero y revestimiento exterior en cuero naranja de talabartería"
+      "Cuero"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1070608,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales."
   },
   {
     "id": "prod-kdj-103",
@@ -3103,34 +3200,36 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "El emblema definitivo de alta relojería: cajón blindado con cerradura digital, dos niveles y rotores Watch Winder programables.",
-    "full_description": "Cajón con clave y mecanismo para relojes · 2 niveles, gris perteneciente a la Colección Oficial Montezzi 2026. Diseñado con tolerancias milimétricas para módulos de carpintería arquitectónica contemporánea. Incluye especificaciones técnicas para módulo 800mm, dimensiones de 760 × 438 × 401 mm y capacidad de 45 kg.",
+    "short_description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles.",
+    "full_description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles. Nota: KDJ-103 confirmado por Daniel. Altura del conjunto: 401 mm según la importación.",
     "technical_specs": {
-      "material": "Chasis de seguridad en acero, interior en terciopelo negro y rotores antimagnéticos",
-      "acabado": "Cuero gris antracita cosido y apliques en aluminio torneado",
-      "dimensiones": "760 × 438 × 401 mm",
-      "mecanismo": "Cerradura digital biométrica + rotores japoneses ultra silenciosos con ciclos de rotación TPD",
+      "ref_fabricante": "07WW-803",
+      "aplicacion": "Clóset",
       "modulo": "800mm",
-      "capacidad_carga": "45 kg",
-      "compatibilidad": "Diseñado para módulo de 800mm en tableros de 15mm, 18mm y 22mm.",
-      "unidades_empaque": "1 Set completo con herrajes, fijaciones y plantilla de montaje técnico."
+      "dimensiones": "760 × 438 × 401 mm",
+      "material": "No especificado en el documento de origen",
+      "acabado": "Gris",
+      "configuracion": "2 niveles",
+      "mecanismo": "Cajón con clave y mecanismo para relojes",
+      "nota_tecnica": "KDJ-103 confirmado por Daniel. Altura del conjunto: 401 mm según la importación.",
+      "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
-      {
-        "label": "MATERIAL",
-        "value": "Chasis de seguridad en acero, interior en terciopelo negro y rotores antimagnéticos"
-      },
       {
         "label": "MÓDULO",
         "value": "Módulo 800mm"
       },
       {
-        "label": "CIERRE",
-        "value": "Amortiguación suave y silenciosa"
+        "label": "CONFIGURACIÓN",
+        "value": "2 niveles"
       },
       {
-        "label": "CARGA",
-        "value": "Capacidad técnica 45 kg"
+        "label": "MATERIAL",
+        "value": "No especificado en el documento de origen"
+      },
+      {
+        "label": "SISTEMA",
+        "value": "Cajón con clave y mecanismo para relojes"
       }
     ],
     "price": 4737040,
@@ -3146,19 +3245,20 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "store_stock": 0,
     "web_stock": 2,
     "inventory_status": "low_stock",
-    "sku": "KDJ-103",
+    "sku": "07WW-803",
     "slug": "kdj-103-cajon-con-clave-y-mecanismo-para-relojes-2-niveles-gris",
     "brand_collection": "Colección 2026",
     "category": "Cajones con Clave & Relojes",
     "materials": [
-      "Chasis de seguridad en acero, interior en terciopelo negro y rotores antimagnéticos"
+      "No especificado en el documento de origen"
     ],
     "boxes_count": 1,
     "warranty": "1 año por defectos de fabricación oficial Montezzi",
     "wholesale_price": 4168595,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
-    "returns_policy_badge": true
+    "returns_policy_badge": true,
+    "description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles. Nota: KDJ-103 confirmado por Daniel. Altura del conjunto: 401 mm según la importación."
   }
 ];
 

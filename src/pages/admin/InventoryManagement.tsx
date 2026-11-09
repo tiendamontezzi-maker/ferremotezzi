@@ -94,8 +94,9 @@ export const InventoryManagement: React.FC = () => {
     exportToCSV('montezzi_inventario_productos', filtered, [
       { header: 'ID', key: 'id' },
       { header: 'Código Referencia', key: 'code' },
+      { header: 'Ref. Fabricante', key: (p) => p.technical_specs?.ref_fabricante || p.sku || '' },
       { header: 'Nombre del Producto', key: 'name' },
-      { header: 'Colección Principal', key: 'main_collection' },
+      { header: 'Aplicación', key: (p) => p.technical_specs?.aplicacion || p.main_collection },
       { header: 'Categoría', key: 'category' },
       { header: 'Precio Unitario (COP)', key: 'price' },
       { header: 'Stock Bodega', key: (p) => p.warehouse_stock ?? 0 },
@@ -106,7 +107,10 @@ export const InventoryManagement: React.FC = () => {
       { header: 'Destacado', key: (p) => (p.is_featured ? 'SÍ' : 'NO') },
       { header: 'Módulo Compatible', key: (p) => p.technical_specs?.modulo || '' },
       { header: 'Dimensiones', key: (p) => p.technical_specs?.dimensiones || '' },
-      { header: 'Acabado', key: (p) => p.technical_specs?.acabado || '' }
+      { header: 'Materiales', key: (p) => p.technical_specs?.material || '' },
+      { header: 'Acabado / Color', key: (p) => p.technical_specs?.acabado || '' },
+      { header: 'Configuración', key: (p) => p.technical_specs?.configuracion || '' },
+      { header: 'Sistema / Mecanismo', key: (p) => p.technical_specs?.mecanismo || '' }
     ]);
   };
 
@@ -352,11 +356,16 @@ export const InventoryManagement: React.FC = () => {
                     key={product.id}
                     className="hover:bg-[#FAF9F7]/90 transition-colors group"
                   >
-                    {/* Reference Code Pill */}
+                    {/* Reference Code Pill + Manufacturer Ref */}
                     <td className="py-3.5 px-4 whitespace-nowrap">
                       <span className="inline-flex items-center px-2.5 py-1 rounded-lg bg-[#F4F4F5] text-[#18181B] font-mono text-[11px] font-semibold border border-black/[0.04]">
                         {product.code}
                       </span>
+                      {(product.technical_specs?.ref_fabricante || product.sku) && (
+                        <span className="block text-[10px] font-mono text-[#B45309] mt-1 pl-0.5 font-medium">
+                          Ref: {product.technical_specs?.ref_fabricante || product.sku}
+                        </span>
+                      )}
                     </td>
 
                     {/* Product Thumbnail Image + Title + Category */}
@@ -381,19 +390,24 @@ export const InventoryManagement: React.FC = () => {
                           <div className="font-sans font-semibold text-[13px] text-[#18181B] leading-snug line-clamp-1">
                             {product.name}
                           </div>
-                          <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-[#71717A]">
+                          <div className="flex flex-wrap items-center gap-1.5 mt-0.5 text-[11px] text-[#71717A]">
                             <span className="truncate">{product.category}</span>
                             <span className="text-[#D4D4D8]">•</span>
                             <span className="capitalize font-medium text-[#52525B]">
-                              {product.main_collection}
+                              {product.technical_specs?.aplicacion || product.main_collection}
                             </span>
                             {product.technical_specs?.modulo && (
                               <>
                                 <span className="text-[#D4D4D8]">•</span>
-                                <span className="text-[10px] bg-[#F4F4F5] px-1.5 py-0.2 rounded text-[#71717A] font-mono">
+                                <span className="text-[10px] bg-[#F4F4F5] px-1.5 py-0.2 rounded text-[#18181B] font-mono font-semibold">
                                   Mód. {product.technical_specs.modulo}
                                 </span>
                               </>
+                            )}
+                            {product.technical_specs?.dimensiones && (
+                              <span className="text-[10px] text-[#71717A] font-mono hidden 2xl:inline">
+                                ({product.technical_specs.dimensiones})
+                              </span>
                             )}
                           </div>
                         </div>
@@ -523,9 +537,9 @@ export const InventoryManagement: React.FC = () => {
                           <Edit3 className="w-4 h-4" />
                         </button>
                         <Link
-                          to={`/producto/${product.id}`}
+                          to={`/producto/${product.code}`}
                           className="p-2 rounded-xl text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors"
-                          title="Ver en tienda pública"
+                          title="Ver ficha técnica en tienda pública"
                         >
                           <ExternalLink className="w-4 h-4" />
                         </Link>

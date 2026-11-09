@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Plus, Save, AlertCircle } from 'lucide-react';
+import { X, Save } from 'lucide-react';
 import { Product, MainCollection } from '../../types/database';
 import { useProducts } from '../../context/ProductContext';
 import { ImageUploadDropzone } from '../../components/ui/ImageUploadDropzone';
@@ -18,62 +18,70 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   const { categories, addProduct, updateProduct } = useProducts();
 
   const [code, setCode] = useState('');
+  const [refFabricante, setRefFabricante] = useState('');
   const [name, setName] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [mainCollection, setMainCollection] = useState<MainCollection>('cocina');
   const [shortDescription, setShortDescription] = useState('');
-  const [price, setPrice] = useState<number>(150000);
-  const [warehouseStock, setWarehouseStock] = useState<number>(15);
-  const [storeStock, setStoreStock] = useState<number>(5);
+  const [notaTecnica, setNotaTecnica] = useState('');
+  const [price, setPrice] = useState<number>(250000);
+  const [warehouseStock, setWarehouseStock] = useState<number>(10);
+  const [storeStock, setStoreStock] = useState<number>(3);
   const [webStock, setWebStock] = useState<number>(5);
   const totalCalculatedStock = Math.max(0, warehouseStock) + Math.max(0, storeStock) + Math.max(0, webStock);
-  const [minStockAlert, setMinStockAlert] = useState<number>(8);
+  const [minStockAlert, setMinStockAlert] = useState<number>(3);
   const [imageUrl, setImageUrl] = useState('');
-  const [material, setMaterial] = useState('Acero Inoxidable Quirúrgico AISI 304');
-  const [acabado, setAcabado] = useState('Negro Mate Texturizado Soft-Touch');
-  const [dimensiones, setDimensiones] = useState('564 x 480 x 550 mm');
-  const [mecanismo, setMecanismo] = useState('Pistón hidráulico de cierre suave amortiguado (Soft-Close Silence Pro)');
-  const [capacidadCarga, setCapacidadCarga] = useState('35 kg');
+  const [modulo, setModulo] = useState('600mm');
+  const [dimensiones, setDimensiones] = useState('564 × 450 × 200 mm');
+  const [material, setMaterial] = useState('Acero al carbono + base antideslizante + MDF; estructura en hierro');
+  const [acabado, setAcabado] = useState('Estructura con pintura electrostática');
+  const [configuracion, setConfiguracion] = useState('2 niveles');
+  const [mecanismo, setMecanismo] = useState('Correderas ocultas con amortiguación');
   const [isFeatured, setIsFeatured] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     if (productToEdit) {
       setCode(productToEdit.code);
+      setRefFabricante(productToEdit.technical_specs?.ref_fabricante || productToEdit.sku || '');
       setName(productToEdit.name);
       setCategoryId(productToEdit.category_id);
       setMainCollection(productToEdit.main_collection);
       setShortDescription(productToEdit.short_description);
+      setNotaTecnica(productToEdit.technical_specs?.nota_tecnica || '');
       setPrice(productToEdit.price);
       setWarehouseStock(productToEdit.warehouse_stock ?? Math.floor(productToEdit.stock * 0.6));
       setStoreStock(productToEdit.store_stock ?? Math.floor(productToEdit.stock * 0.2));
       setWebStock(productToEdit.web_stock ?? (productToEdit.stock - Math.floor(productToEdit.stock * 0.6) - Math.floor(productToEdit.stock * 0.2)));
-      setMinStockAlert(productToEdit.min_stock_alert ?? 8);
+      setMinStockAlert(productToEdit.min_stock_alert ?? 3);
       setImageUrl(productToEdit.image_url);
-      setMaterial(productToEdit.technical_specs.material || '');
-      setAcabado(productToEdit.technical_specs.acabado || '');
-      setDimensiones(productToEdit.technical_specs.dimensiones || '');
-      setMecanismo(productToEdit.technical_specs.mecanismo || '');
-      setCapacidadCarga(productToEdit.technical_specs.capacidad_carga || '');
+      setModulo(productToEdit.technical_specs?.modulo || '');
+      setDimensiones(productToEdit.technical_specs?.dimensiones || '');
+      setMaterial(productToEdit.technical_specs?.material || '');
+      setAcabado(productToEdit.technical_specs?.acabado || '');
+      setConfiguracion(productToEdit.technical_specs?.configuracion || '');
+      setMecanismo(productToEdit.technical_specs?.mecanismo || '');
       setIsFeatured(productToEdit.is_featured);
     } else {
-      // Default new product values
-      setCode('KDJ-113');
+      setCode('KDJ-104');
+      setRefFabricante('');
       setName('');
-      setCategoryId(categories[0]?.id || 'cat-1');
+      setCategoryId(categories[0]?.id || 'cat-cocina-condimenteros');
       setMainCollection('cocina');
       setShortDescription('');
-      setPrice(180000);
-      setWarehouseStock(15);
-      setStoreStock(5);
+      setNotaTecnica('');
+      setPrice(250000);
+      setWarehouseStock(10);
+      setStoreStock(3);
       setWebStock(5);
-      setMinStockAlert(8);
+      setMinStockAlert(3);
       setImageUrl('/images/products/kdj-60.jpg');
-      setMaterial('Acero Inoxidable Quirúrgico AISI 304');
-      setAcabado('Negro Mate Texturizado Soft-Touch');
-      setDimensiones('564 x 480 x 550 mm');
-      setMecanismo('Pistón hidráulico de cierre suave');
-      setCapacidadCarga('30 kg');
+      setModulo('600mm');
+      setDimensiones('564 × 450 × 200 mm');
+      setMaterial('Acero al carbono + base antideslizante + MDF; estructura en hierro');
+      setAcabado('Estructura con pintura electrostática');
+      setConfiguracion('2 niveles');
+      setMecanismo('Correderas ocultas con amortiguación');
       setIsFeatured(false);
     }
   }, [productToEdit, categories]);
@@ -86,30 +94,40 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
 
     const selectedCategory = categories.find(c => c.id === categoryId);
     const finalStock = Number(totalCalculatedStock);
-    const status: 'in_stock' | 'low_stock' | 'out_of_stock' = 
-      finalStock <= 0 ? 'out_of_stock' : finalStock < (minStockAlert || 5) ? 'low_stock' : 'in_stock';
+    const status: 'in_stock' | 'low_stock' | 'out_of_stock' =
+      finalStock <= 0 ? 'out_of_stock' : finalStock < (minStockAlert || 3) ? 'low_stock' : 'in_stock';
+    const aplicacionLabel = mainCollection === 'closet' ? 'Clóset' : 'Cocina';
+    const fullDesc = notaTecnica.trim()
+      ? `${shortDescription.trim()} Nota: ${notaTecnica.trim()}`
+      : shortDescription.trim();
 
     const productPayload = {
       code,
+      sku: refFabricante || code,
       name,
       category_id: categoryId,
       category_name: selectedCategory ? selectedCategory.name : 'General',
+      category: selectedCategory ? selectedCategory.name : 'General',
       main_collection: mainCollection,
-      short_description: shortDescription,
+      short_description: shortDescription.trim(),
+      full_description: fullDesc,
+      description: fullDesc,
       technical_specs: {
+        ref_fabricante: refFabricante || code,
+        aplicacion: aplicacionLabel,
+        modulo,
+        dimensiones,
         material,
         acabado,
-        dimensiones,
+        configuracion,
         mecanismo,
-        capacidad_carga: capacidadCarga,
-        compatibilidad: 'Apta para tableros y gabinetes estándar del mercado.'
+        ...(notaTecnica.trim() ? { nota_tecnica: notaTecnica.trim() } : {})
       },
       benefits: [
-        { label: 'MATERIAL', value: material.split(' ')[0] },
-        { label: 'CIERRE', value: 'Soft-Close Pro' },
-        { label: 'CARGA', value: capacidadCarga },
-        { label: 'DURABILIDAD', value: '50.000 Ciclos' },
-        { label: 'ACCESO', value: 'Extracción Total' }
+        { label: 'MÓDULO', value: `Módulo ${modulo}` },
+        { label: 'CONFIGURACIÓN', value: configuracion },
+        { label: 'MATERIAL', value: material },
+        { label: 'SISTEMA', value: mecanismo }
       ],
       price: Number(price),
       stock: finalStock,
@@ -145,7 +163,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
         <div className="px-6 py-4 bg-[#FAF9F7] border-b border-[#F0EFEA] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-sm font-sans font-bold text-[#18181B]">
-              {productToEdit ? `Editar ${productToEdit.code} · ${productToEdit.name}` : 'Nueva Referencia Oficial Montezzi'}
+              {productToEdit ? `Ficha Técnica ${productToEdit.code} · ${productToEdit.name}` : 'Nueva Ficha Técnica Oficial Montezzi 2026'}
             </span>
           </div>
           <button onClick={onClose} className="p-1.5 rounded-full hover:bg-[#EAEAEA] text-[#71717A] hover:text-black transition-colors">
@@ -155,34 +173,33 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6 text-xs font-sans">
-          {/* Main Info */}
+          {/* Main Identification */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[#52525B] font-semibold">Código KDJ *</label>
+              <label className="text-[#52525B] font-semibold">Código Montezzi *</label>
               <input
                 type="text"
                 required
                 value={code}
                 onChange={e => setCode(e.target.value.toUpperCase())}
-                placeholder="KDJ-113"
+                placeholder="KDJ-60"
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] font-mono font-bold focus:outline-none rounded-xl transition-all"
               />
             </div>
 
-            <div className="sm:col-span-2 space-y-1.5">
-              <label className="text-[#52525B] font-semibold">Nombre Comercial *</label>
+            <div className="space-y-1.5">
+              <label className="text-[#52525B] font-semibold">Ref. Fabricante (Importación)</label>
               <input
                 type="text"
-                required
-                value={name}
-                onChange={e => setName(e.target.value)}
-                placeholder="Ej: Despensa extraíble de 6 niveles en vidrio ahumado"
-                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
+                value={refFabricante}
+                onChange={e => setRefFabricante(e.target.value)}
+                placeholder="04SW-01-200"
+                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] font-mono focus:outline-none rounded-xl transition-all"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[#52525B] font-semibold">Colección Principal *</label>
+              <label className="text-[#52525B] font-semibold">Aplicación *</label>
               <select
                 value={mainCollection}
                 onChange={e => setMainCollection(e.target.value as MainCollection)}
@@ -195,6 +212,18 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
             </div>
 
             <div className="sm:col-span-2 space-y-1.5">
+              <label className="text-[#52525B] font-semibold">Nombre del Producto (Dossier 2026) *</label>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={e => setName(e.target.value)}
+                placeholder="Ej: Canasta lateral de 2 niveles con base de madera"
+                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
+              />
+            </div>
+
+            <div className="space-y-1.5">
               <label className="text-[#52525B] font-semibold">Categoría *</label>
               <select
                 value={categoryId}
@@ -206,18 +235,6 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 ))}
               </select>
             </div>
-
-            <div className="sm:col-span-3 space-y-1.5">
-              <label className="text-[#52525B] font-semibold">Descripción Corta *</label>
-              <textarea
-                required
-                rows={2}
-                value={shortDescription}
-                onChange={e => setShortDescription(e.target.value)}
-                placeholder="Descripción concisa y técnica conforme al manual de redacción Montezzi..."
-                className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white p-3.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
-              />
-            </div>
           </div>
 
           {/* Price & Multichannel Reactive Inventory */}
@@ -225,10 +242,10 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-[#18181B] flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
-                Inventario Multicanal Reactivo (Supabase / Postgres Trigger)
+                Inventario Multicanal Reactivo & Precio en COP
               </span>
               <span className="text-[11px] text-[#71717A] font-mono">
-                Regla: stock = Bodega + Showroom + Web
+                Stock Total = Bodega + Showroom + Web
               </span>
             </div>
 
@@ -247,7 +264,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="text-[11px] text-[#71717A] font-semibold">Bodega Principal *</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Bodega *</label>
                 <input
                   type="number"
                   required
@@ -259,7 +276,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="text-[11px] text-[#71717A] font-semibold">Tienda Showroom *</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Showroom *</label>
                 <input
                   type="number"
                   required
@@ -297,7 +314,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
               <div className="space-y-1">
-                <label className="text-[11px] text-[#71717A] font-semibold">Umbral Alerta Stock Crítico (&lt; unids)</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Umbral Alerta Stock Crítico (&le; unids)</label>
                 <input
                   type="number"
                   min={1}
@@ -316,20 +333,53 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   className="accent-black w-4 h-4 rounded"
                 />
                 <label htmlFor="isFeatured" className="text-[#18181B] font-semibold cursor-pointer text-xs">
-                  Destacado en Home Slider & Vitrina Oficial
+                  Destacado en Vitrina Oficial
                 </label>
               </div>
             </div>
           </div>
 
-          {/* Technical Specs (Official Montezzi Standard) */}
+          {/* Especificaciones Confirmadas (Dossier Técnico 2026) */}
           <div className="space-y-3">
             <h4 className="font-sans text-sm text-[#18181B] font-bold normal-case">
-              Especificaciones Técnicas Oficiales
+              Especificaciones Confirmadas (Dossier Técnico 2026)
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="space-y-1.5">
-                <label className="text-[#52525B] font-semibold">Material</label>
+                <label className="text-[#52525B] font-semibold">Módulo Compatible</label>
+                <input
+                  type="text"
+                  value={modulo}
+                  onChange={e => setModulo(e.target.value)}
+                  placeholder="Ej: 200mm, 600mm, 800-900mm"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Dimensiones</label>
+                <input
+                  type="text"
+                  value={dimensiones}
+                  onChange={e => setDimensiones(e.target.value)}
+                  placeholder="Ej: 145 × 480 × 590 mm"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Configuración</label>
+                <input
+                  type="text"
+                  value={configuracion}
+                  onChange={e => setConfiguracion(e.target.value)}
+                  placeholder="Ej: 2 niveles, Esquinero universal"
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
+                />
+              </div>
+
+              <div className="sm:col-span-2 space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Materiales</label>
                 <input
                   type="text"
                   value={material}
@@ -339,7 +389,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[#52525B] font-semibold">Acabado</label>
+                <label className="text-[#52525B] font-semibold">Acabado / Color</label>
                 <input
                   type="text"
                   value={acabado}
@@ -348,28 +398,8 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-[#52525B] font-semibold">Dimensiones (W*D*H mm)</label>
-                <input
-                  type="text"
-                  value={dimensiones}
-                  onChange={e => setDimensiones(e.target.value)}
-                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[#52525B] font-semibold">Capacidad de Carga</label>
-                <input
-                  type="text"
-                  value={capacidadCarga}
-                  onChange={e => setCapacidadCarga(e.target.value)}
-                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
-                />
-              </div>
-
-              <div className="sm:col-span-2 space-y-1.5">
-                <label className="text-[#52525B] font-semibold">Mecanismo / Articulación</label>
+              <div className="sm:col-span-3 space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Sistema / Mecanismo</label>
                 <input
                   type="text"
                   value={mecanismo}
@@ -378,7 +408,30 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 />
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-3 space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Descripción Técnica *</label>
+                <textarea
+                  required
+                  rows={2}
+                  value={shortDescription}
+                  onChange={e => setShortDescription(e.target.value)}
+                  placeholder="Descripción técnica oficial basada en documentación comercial de importación..."
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white p-3.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
+                />
+              </div>
+
+              <div className="sm:col-span-3 space-y-1.5">
+                <label className="text-[#52525B] font-semibold">Nota de Importación / Verificación (Opcional)</label>
+                <input
+                  type="text"
+                  value={notaTecnica}
+                  onChange={e => setNotaTecnica(e.target.value)}
+                  placeholder="Ej: Confirmar acabado exacto por variante antes de especificar instalación."
+                  className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
+                />
+              </div>
+
+              <div className="sm:col-span-3">
                 <ImageUploadDropzone
                   value={imageUrl}
                   onChange={setImageUrl}
@@ -403,7 +456,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
               className="px-6 py-2.5 bg-[#18181B] text-white font-semibold text-xs hover:bg-black flex items-center gap-2 rounded-full shadow-md transition-all"
             >
               <Save className="w-4 h-4" />
-              <span>{isSaving ? 'Guardando...' : 'Guardar Referencia'}</span>
+              <span>{isSaving ? 'Guardando...' : 'Guardar Ficha Técnica'}</span>
             </button>
           </div>
         </form>

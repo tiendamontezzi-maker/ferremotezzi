@@ -134,6 +134,11 @@ export const ProductDetail: React.FC = () => {
                 Destacado Oficial
               </span>
             )}
+            {product.technical_specs?.nota_imagen && (
+              <span className="absolute bottom-3 left-4 right-4 text-[10px] text-[#71717A] font-sans text-center">
+                {product.technical_specs.nota_imagen}
+              </span>
+            )}
           </div>
 
           {/* Thumbnails */}
@@ -174,10 +179,17 @@ export const ProductDetail: React.FC = () => {
         {/* Right Column: Information, Specs, Price, CTA */}
         <div className="space-y-6">
           <div>
-            <span className="text-xs font-sans tracking-[0.25em] text-black/60 uppercase font-bold">
-              {product.category_name}
-            </span>
-            <h1 className="font-sans text-2xl sm:text-3xl lg:text-4xl text-obsidian mt-1 leading-snug font-bold uppercase tracking-wider">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-sans tracking-[0.25em] text-black/60 uppercase font-bold">
+                {product.category_name}
+              </span>
+              {(product.sku || product.technical_specs?.ref_fabricante) && (
+                <span className="text-[11px] font-mono font-bold tracking-wider text-[#B68A48] bg-[#FAF6F0] border border-[#E5D8C8] px-2.5 py-0.5 rounded-full">
+                  REF. FABRICANTE {product.technical_specs?.ref_fabricante || product.sku}
+                </span>
+              )}
+            </div>
+            <h1 className="font-sans text-2xl sm:text-3xl lg:text-4xl text-obsidian mt-1.5 leading-snug font-bold uppercase tracking-wider">
               {product.name}
             </h1>
             <p className="text-sm text-obsidian/75 font-sans mt-3 leading-relaxed">
@@ -285,7 +297,11 @@ export const ProductDetail: React.FC = () => {
 
           {/* Official Technical Table */}
           <div className="pt-4">
-            <TechnicalTable specs={product.technical_specs} />
+            <TechnicalTable
+              specs={product.technical_specs}
+              description={product.short_description}
+              sku={product.sku}
+            />
           </div>
 
           {/* Mandatory Pre-Installation Module */}

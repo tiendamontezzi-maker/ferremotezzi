@@ -71,11 +71,13 @@ const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('montezzi_products_cache_v2026');
+    const saved = localStorage.getItem('montezzi_products_dossier_2026');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length >= 45) return parsed;
+        if (Array.isArray(parsed) && parsed.length >= 45 && parsed[0]?.technical_specs?.ref_fabricante) {
+          return parsed;
+        }
       } catch (e) {
         console.error('Error loading products cache:', e);
       }
@@ -164,7 +166,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   useEffect(() => {
     const timer = setTimeout(() => {
       try {
-        localStorage.setItem('montezzi_products_cache_v2026', JSON.stringify(products));
+        localStorage.setItem('montezzi_products_dossier_2026', JSON.stringify(products));
       } catch (e) {
         // Ignore quota errors
       }
