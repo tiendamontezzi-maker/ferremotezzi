@@ -31,6 +31,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   const totalCalculatedStock = Math.max(0, warehouseStock) + Math.max(0, storeStock) + Math.max(0, webStock);
   const [minStockAlert, setMinStockAlert] = useState<number>(3);
   const [imageUrl, setImageUrl] = useState('');
+  const [galleryUrls, setGalleryUrls] = useState<string[]>([]);
   const [modulo, setModulo] = useState('600mm');
   const [dimensiones, setDimensiones] = useState('564 × 450 × 200 mm');
   const [material, setMaterial] = useState('Acero al carbono + base antideslizante + MDF; estructura en hierro');
@@ -55,6 +56,12 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setWebStock(productToEdit.web_stock ?? (productToEdit.stock - Math.floor(productToEdit.stock * 0.6) - Math.floor(productToEdit.stock * 0.2)));
       setMinStockAlert(productToEdit.min_stock_alert ?? 3);
       setImageUrl(productToEdit.image_url);
+      const initialGallery = Array.isArray(productToEdit.gallery_urls) && productToEdit.gallery_urls.length > 0
+        ? productToEdit.gallery_urls
+        : productToEdit.image_url
+        ? [productToEdit.image_url]
+        : [];
+      setGalleryUrls(initialGallery);
       setModulo(productToEdit.technical_specs?.modulo || '');
       setDimensiones(productToEdit.technical_specs?.dimensiones || '');
       setMaterial(productToEdit.technical_specs?.material || '');
@@ -75,7 +82,8 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setStoreStock(3);
       setWebStock(5);
       setMinStockAlert(3);
-      setImageUrl('/images/products/kdj-60.jpg');
+      setImageUrl('');
+      setGalleryUrls([]);
       setModulo('600mm');
       setDimensiones('564 × 450 × 200 mm');
       setMaterial('Acero al carbono + base antideslizante + MDF; estructura en hierro');
@@ -101,9 +109,23 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       ? `${shortDescription.trim()} Nota: ${notaTecnica.trim()}`
       : shortDescription.trim();
 
+    const finalImageUrl = imageUrl.trim() || galleryUrls[0] || '/images/products/kdj-60.jpg';
+    const finalGalleryUrls =
+      galleryUrls.length > 0
+        ? [finalImageUrl, ...galleryUrls.filter((u) => u && u !== finalImageUrl)]
+        : [finalImageUrl];
+
+    const generatedSlug = `${code.toLowerCase()}-${name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')}`;
+
     const productPayload = {
       code,
       sku: refFabricante || code,
+      slug: productToEdit?.slug || generatedSlug,
       name,
       category_id: categoryId,
       category_name: selectedCategory ? selectedCategory.name : 'General',
@@ -136,8 +158,8 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       web_stock: Number(webStock),
       inventory_status: status,
       min_stock_alert: Number(minStockAlert),
-      image_url: imageUrl,
-      gallery_urls: [imageUrl],
+      image_url: finalImageUrl,
+      gallery_urls: finalGalleryUrls,
       is_featured: isFeatured
     };
 
@@ -235,6 +257,17 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 ))}
               </select>
             </div>
+          </div>
+
+          {/* Unlimited Product Photography Upload & Gallery (Top Priority) */}
+          <div className="p-4 bg-[#FAF9F7] border border-[#EAE7E1] rounded-2xl">
+            <ImageUploadDropzone
+              value={imageUrl}
+              onChange={setImageUrl}
+              galleryUrls={galleryUrls}
+              onGalleryChange={setGalleryUrls}
+              productCode={code}
+            />
           </div>
 
           {/* Price & Multichannel Reactive Inventory */}
@@ -428,14 +461,6 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   onChange={e => setNotaTecnica(e.target.value)}
                   placeholder="Ej: Confirmar acabado exacto por variante antes de especificar instalación."
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
-                />
-              </div>
-
-              <div className="sm:col-span-3">
-                <ImageUploadDropzone
-                  value={imageUrl}
-                  onChange={setImageUrl}
-                  productCode={code}
                 />
               </div>
             </div>

@@ -7,7 +7,7 @@ import { ImportModal } from './ImportModal';
 import { exportToCSV } from '../../utils/csvExportImport';
 import {
   Search, Plus, Edit3, Trash2, AlertTriangle, ExternalLink, Download,
-  Upload, Package, Layers, DollarSign, TrendingUp, CheckCircle2
+  Upload, Package, Layers, DollarSign, TrendingUp, CheckCircle2, Camera
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -371,7 +371,12 @@ export const InventoryManagement: React.FC = () => {
                     {/* Product Thumbnail Image + Title + Category */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3.5 min-w-[260px]">
-                        <div className="w-12 h-12 rounded-xl bg-[#FAF9F7] border border-[#EAE7E1] p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-2xs group-hover:border-black/20 transition-colors">
+                        <button
+                          type="button"
+                          onClick={() => handleOpenEdit(product)}
+                          title="Haz clic para subir o administrar fotografías de este producto"
+                          className="relative w-12 h-12 rounded-xl bg-[#FAF9F7] border border-[#EAE7E1] p-1 shrink-0 flex items-center justify-center overflow-hidden shadow-2xs hover:border-black transition-all group/thumb cursor-pointer"
+                        >
                           <img
                             src={product.image_url || '/images/products/kdj-60.jpg'}
                             alt={product.name}
@@ -385,7 +390,15 @@ export const InventoryManagement: React.FC = () => {
                                 '/images/products/kdj-60.jpg';
                             }}
                           />
-                        </div>
+                          <div className="absolute inset-0 bg-black/55 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center rounded-xl">
+                            <Camera className="w-4 h-4 text-white" />
+                          </div>
+                          {product.gallery_urls && product.gallery_urls.length > 1 && (
+                            <span className="absolute bottom-0.5 right-0.5 px-1 py-0.2 rounded bg-black/80 text-white font-mono text-[8px] font-bold leading-none">
+                              {product.gallery_urls.length}
+                            </span>
+                          )}
+                        </button>
                         <div className="min-w-0 flex-1">
                           <div className="font-sans font-semibold text-[13px] text-[#18181B] leading-snug line-clamp-1">
                             {product.name}
@@ -529,6 +542,14 @@ export const InventoryManagement: React.FC = () => {
                     {/* Actions */}
                     <td className="py-3.5 px-4 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          onClick={() => handleOpenEdit(product)}
+                          className="px-2.5 py-1.5 rounded-xl bg-[#F4F4F5] hover:bg-[#18181B] text-[#18181B] hover:text-white text-[11px] font-semibold transition-colors flex items-center gap-1"
+                          title="Subir fotografías ilimitadas y editar ficha técnica"
+                        >
+                          <Camera className="w-3.5 h-3.5" />
+                          <span className="hidden xl:inline">Fotos</span>
+                        </button>
                         <button
                           onClick={() => handleOpenEdit(product)}
                           className="p-2 rounded-xl text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors"

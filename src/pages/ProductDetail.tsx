@@ -148,23 +148,36 @@ export const ProductDetail: React.FC = () => {
           </div>
 
           {/* Thumbnails */}
-          {product.gallery_urls && product.gallery_urls.length > 1 && (
-            <div className="flex gap-3">
-              {product.gallery_urls.map((imgUrl, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(imgUrl)}
-                  className={`w-20 h-20 rounded-lg overflow-hidden border glass-surface p-2 transition-all ${
-                    selectedImage === imgUrl
-                      ? 'border-black ring-2 ring-black/20 shadow-md'
-                      : 'border-black/10 opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <img src={imgUrl} alt={`Vista ${idx + 1}`} className="w-full h-full object-contain" />
-                </button>
-              ))}
-            </div>
-          )}
+          {(() => {
+            const allPhotos = Array.from(
+              new Set([product.image_url, ...(product.gallery_urls || [])].filter(Boolean))
+            );
+            return allPhotos.length > 1 ? (
+              <div className="flex flex-wrap gap-3">
+                {allPhotos.map((imgUrl, idx) => (
+                  <button
+                    key={`${imgUrl}-${idx}`}
+                    type="button"
+                    onClick={() => setSelectedImage(imgUrl)}
+                    className={`w-20 h-20 rounded-xl overflow-hidden border glass-surface p-2 transition-all cursor-pointer ${
+                      (selectedImage || product.image_url) === imgUrl
+                        ? 'border-black ring-2 ring-black/20 shadow-md opacity-100'
+                        : 'border-black/10 opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`Vista ${idx + 1}`}
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
+                      }}
+                    />
+                  </button>
+                ))}
+              </div>
+            ) : null;
+          })()}
 
           {/* Architecture & Woodcraft Visual Note */}
           <div className="p-4 wood-card rounded-xl border border-[#5A3927]/18 text-xs text-obsidian/80 flex items-center gap-3.5 shadow-2xs">

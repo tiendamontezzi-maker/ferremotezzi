@@ -486,6 +486,46 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return { updatedCount: count };
   };
 
+  const toSupabaseProductRow = (p: Product) => ({
+    id: p.id,
+    code: p.code,
+    sku: p.sku || p.technical_specs?.ref_fabricante || p.code,
+    name: p.name,
+    slug:
+      p.slug ||
+      `${p.code.toLowerCase()}-${p.name
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '')}`,
+    short_description: p.short_description,
+    full_description: p.full_description || p.description || p.short_description,
+    description: p.description || p.full_description || p.short_description,
+    price: p.price,
+    category_id: p.category_id,
+    category_name: p.category_name || p.category || 'General',
+    category: p.category || p.category_name || 'General',
+    main_collection: p.main_collection,
+    warehouse_stock: p.warehouse_stock ?? 0,
+    store_stock: p.store_stock ?? 0,
+    web_stock: p.web_stock ?? 0,
+    stock: p.stock,
+    min_stock_alert: p.min_stock_alert ?? 3,
+    image_url: p.image_url,
+    gallery_urls:
+      Array.isArray(p.gallery_urls) && p.gallery_urls.length > 0
+        ? p.gallery_urls
+        : p.image_url
+        ? [p.image_url]
+        : [],
+    is_featured: Boolean(p.is_featured),
+    technical_specs: p.technical_specs,
+    benefits: p.benefits || [],
+    inventory_status: p.inventory_status || 'in_stock',
+    updated_at: new Date().toISOString()
+  });
+
   const addProduct = async (productData: Omit<Product, 'id' | 'created_at'>): Promise<Product> => {
     const newProduct: Product = {
       ...productData,
@@ -506,7 +546,10 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase.from('products').insert([newProduct]);
+        const { error } = await supabase
+          .from('products')
+          .upsert([toSupabaseProductRow(newProduct)], { onConflict: 'id' });
+        if (error) console.error('Supabase upsert error on addProduct:', error.message);
       } catch (err) {
         console.error('Error inserting product in Supabase:', err);
       }
@@ -520,10 +563,10 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured && supabase) {
       try {
-        await supabase
+        const { error } = await supabase
           .from('products')
-          .update({ ...updatedProduct, updated_at: new Date().toISOString() })
-          .eq('id', updatedProduct.id);
+          .upsert([toSupabaseProductRow(updatedProduct)], { onConflict: 'id' });
+        if (error) console.error('Supabase upsert error on updateProduct:', error.message);
       } catch (err) {
         console.error('Error updating product in Supabase:', err);
       }
