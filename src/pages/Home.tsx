@@ -139,7 +139,11 @@ export const Home: React.FC = () => {
               <img
                 src={currentSlide.image}
                 alt={currentSlide.titleLine1}
-                className="w-full h-full object-contain filter drop-shadow-2xl transition-all duration-700 hover:scale-105"
+                width={480}
+                height={480}
+                fetchPriority="high"
+                decoding="sync"
+                className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
               />
             </div>
 
@@ -182,8 +186,8 @@ export const Home: React.FC = () => {
 
         {/* 4-Column Product Grid (Exact 3 rows x 4 cols = 12 products like in screenshot) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
-          {recentProducts.map(product => (
-            <ProductCard key={product.id} product={product} showStars={true} />
+          {recentProducts.map((product, idx) => (
+            <ProductCard key={product.id} product={product} showStars={true} priority={idx < 4} />
           ))}
         </div>
 
@@ -305,7 +309,9 @@ export const Home: React.FC = () => {
             <img
               src="/images/showcase/showcase_credenza.jpg"
               alt="Mobiliario Arquitectónico en Nogal con Herrajes Montezzi"
-              className="w-full h-full object-contain filter drop-shadow-lg mix-blend-multiply"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-contain"
             />
           </div>
 

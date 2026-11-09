@@ -366,10 +366,14 @@ export const InventoryManagement: React.FC = () => {
                           <img
                             src={product.image_url || '/images/products/kdj-60.jpg'}
                             alt={product.name}
+                            width={48}
+                            height={48}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-contain rounded-lg"
                             onError={(e) => {
                               (e.target as HTMLImageElement).src =
-                                'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=200&q=80';
+                                '/images/products/kdj-60.jpg';
                             }}
                           />
                         </div>

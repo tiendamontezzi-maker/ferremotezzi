@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { 
   Product, Category, Order, OrderStatus, MainCollection, WholesaleLead,
   AbandonedCart, ProductClickAnalytics, Coupon, ProductReview, Appointment, ActivityLog 
@@ -160,186 +160,193 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     onlyLowStock: false
   });
 
-  // Sync products and orders to localStorage
+  // Deferred sync to localStorage so JSON.stringify never blocks main thread rendering
   useEffect(() => {
-    localStorage.setItem('montezzi_products_cache_v2026', JSON.stringify(products));
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem('montezzi_products_cache_v2026', JSON.stringify(products));
+      } catch (e) {
+        // Ignore quota errors
+      }
+    }, 250);
+    return () => clearTimeout(timer);
   }, [products]);
 
   useEffect(() => {
-    localStorage.setItem('montezzi_orders_cache', JSON.stringify(orders));
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem('montezzi_orders_cache', JSON.stringify(orders));
+      } catch (e) {}
+    }, 300);
+    return () => clearTimeout(timer);
   }, [orders]);
 
   useEffect(() => {
-    localStorage.setItem('montezzi_wholesale_leads', JSON.stringify(wholesaleLeads));
-  }, [wholesaleLeads]);
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem('montezzi_wholesale_leads', JSON.stringify(wholesaleLeads));
+        localStorage.setItem('montezzi_abandoned_carts', JSON.stringify(abandonedCarts));
+        localStorage.setItem('montezzi_product_clicks', JSON.stringify(productClickAnalytics));
+        localStorage.setItem('montezzi_coupons', JSON.stringify(coupons));
+        localStorage.setItem('montezzi_reviews', JSON.stringify(reviews));
+        localStorage.setItem('montezzi_appointments', JSON.stringify(appointments));
+        localStorage.setItem('montezzi_activity_logs', JSON.stringify(activityLogs));
+      } catch (e) {}
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [wholesaleLeads, abandonedCarts, productClickAnalytics, coupons, reviews, appointments, activityLogs]);
 
-  useEffect(() => {
-    localStorage.setItem('montezzi_abandoned_carts', JSON.stringify(abandonedCarts));
-  }, [abandonedCarts]);
-
-  useEffect(() => {
-    localStorage.setItem('montezzi_product_clicks', JSON.stringify(productClickAnalytics));
-  }, [productClickAnalytics]);
-
-  useEffect(() => {
-    localStorage.setItem('montezzi_coupons', JSON.stringify(coupons));
-  }, [coupons]);
-
-  useEffect(() => {
-    localStorage.setItem('montezzi_reviews', JSON.stringify(reviews));
-  }, [reviews]);
-
-  useEffect(() => {
-    localStorage.setItem('montezzi_appointments', JSON.stringify(appointments));
-  }, [appointments]);
-
-  useEffect(() => {
-    localStorage.setItem('montezzi_activity_logs', JSON.stringify(activityLogs));
-  }, [activityLogs]);
-
-  // Load from Supabase if configured
+  // Load from Supabase in parallel (no sequential waterfall)
   useEffect(() => {
     const client = supabase;
     if (!isSupabaseConfigured || !client) return;
 
+    let isMounted = true;
+
     const fetchSupabaseData = async () => {
       setIsLoading(true);
       try {
-        const { data: dbProducts, error: prodErr } = await client
-          .from('products')
-          .select('*')
-          .order('code', { ascending: true });
+        // 1. Fetch storefront-critical data & admin data in parallel with Promise.all
+        const [
+          prodRes,
+          ordRes,
+          coupRes,
+          aptRes,
+          revRes,
+          logRes
+        ] = await Promise.all([
+          client.from('products').select('*').order('code', { ascending: true }),
+          client.from('orders').select('*').order('created_at', { ascending: false }),
+          client.from('coupons').select('*').eq('is_active', true),
+          client.from('appointments').select('*').order('appointment_date', { ascending: false }),
+          client.from('product_reviews').select('*').order('created_at', { ascending: false }),
+          client.from('activity_logs').select('*').order('created_at', { ascending: false }).limit(100)
+        ]);
 
-        if (dbProducts && dbProducts.length > 0 && !prodErr) {
-          setProducts(dbProducts as Product[]);
+        if (!isMounted) return;
+
+        // React 18 automatically batches all state updates in a single render pass
+        if (prodRes.data && prodRes.data.length > 0 && !prodRes.error) {
+          setProducts(prodRes.data as Product[]);
         }
-
-        const { data: dbOrders, error: ordErr } = await client
-          .from('orders')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (dbOrders && !ordErr) {
-          setOrders(dbOrders as Order[]);
+        if (ordRes.data && !ordRes.error) {
+          setOrders(ordRes.data as Order[]);
         }
-
-        const { data: dbCoupons, error: coupErr } = await client
-          .from('coupons')
-          .select('*')
-          .eq('is_active', true);
-
-        if (dbCoupons && dbCoupons.length > 0 && !coupErr) {
-          setCoupons(dbCoupons as Coupon[]);
+        if (coupRes.data && coupRes.data.length > 0 && !coupRes.error) {
+          setCoupons(coupRes.data as Coupon[]);
         }
-
-        const { data: dbAppointments, error: aptErr } = await client
-          .from('appointments')
-          .select('*')
-          .order('appointment_date', { ascending: false });
-
-        if (dbAppointments && dbAppointments.length > 0 && !aptErr) {
-          setAppointments(dbAppointments as Appointment[]);
+        if (aptRes.data && aptRes.data.length > 0 && !aptRes.error) {
+          setAppointments(aptRes.data as Appointment[]);
         }
-
-        const { data: dbReviews, error: revErr } = await client
-          .from('product_reviews')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (dbReviews && dbReviews.length > 0 && !revErr) {
-          setReviews(dbReviews as ProductReview[]);
+        if (revRes.data && revRes.data.length > 0 && !revRes.error) {
+          setReviews(revRes.data as ProductReview[]);
         }
-
-        const { data: dbLogs, error: logErr } = await client
-          .from('activity_logs')
-          .select('*')
-          .order('created_at', { ascending: false })
-          .limit(100);
-
-        if (dbLogs && dbLogs.length > 0 && !logErr) {
-          setActivityLogs(dbLogs as ActivityLog[]);
+        if (logRes.data && logRes.data.length > 0 && !logRes.error) {
+          setActivityLogs(logRes.data as ActivityLog[]);
         }
       } catch (e) {
         console.warn('Using local catalog cache due to Supabase fetch error:', e);
       } finally {
-        setIsLoading(false);
+        if (isMounted) setIsLoading(false);
       }
     };
 
     fetchSupabaseData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     setFilters({
       searchQuery: '',
       collection: 'all',
       categorySlug: 'all',
       finish: 'all',
-      priceRange: [0, 3000000],
+      priceRange: [0, 5000000],
       onlyLowStock: false
     });
-  };
+  }, []);
 
-  const filteredProducts = products.filter(p => {
-    // Search query: by code (KDJ-X), name, category, or short description
-    if (filters.searchQuery.trim()) {
-      const q = filters.searchQuery.toLowerCase().trim();
-      const matchCode = p.code.toLowerCase().includes(q);
-      const matchName = p.name.toLowerCase().includes(q);
-      const matchCat = p.category_name.toLowerCase().includes(q);
-      const matchDesc = p.short_description.toLowerCase().includes(q);
-      const matchMaterial = p.technical_specs.material?.toLowerCase().includes(q);
-      if (!matchCode && !matchName && !matchCat && !matchDesc && !matchMaterial) {
+  const filteredProducts = useMemo(() => {
+    const q = filters.searchQuery.trim().toLowerCase();
+    const f = filters.finish !== 'all' ? filters.finish.toLowerCase() : '';
+    const selectedCategory =
+      filters.categorySlug !== 'all'
+        ? categories.find(c => c.slug === filters.categorySlug)
+        : undefined;
+
+    return products.filter(p => {
+      // Search query: by code (KDJ-X), name, category, or short description
+      if (q) {
+        const matchCode = p.code.toLowerCase().includes(q);
+        const matchName = p.name.toLowerCase().includes(q);
+        const matchCat = (p.category_name || '').toLowerCase().includes(q);
+        const matchDesc = (p.short_description || '').toLowerCase().includes(q);
+        const matchMaterial = p.technical_specs?.material?.toLowerCase().includes(q);
+        if (!matchCode && !matchName && !matchCat && !matchDesc && !matchMaterial) {
+          return false;
+        }
+      }
+
+      // Collection filter
+      if (filters.collection !== 'all' && p.main_collection !== filters.collection) {
         return false;
       }
-    }
 
-    // Collection filter
-    if (filters.collection !== 'all' && p.main_collection !== filters.collection) {
-      return false;
-    }
-
-    // Category filter
-    if (filters.categorySlug !== 'all') {
-      const cat = categories.find(c => c.slug === filters.categorySlug);
-      if (cat && p.category_id !== cat.id) {
+      // Category filter
+      if (selectedCategory && p.category_id !== selectedCategory.id) {
         return false;
       }
-    }
 
-    // Finish filter
-    if (filters.finish !== 'all') {
-      const f = filters.finish.toLowerCase();
-      const specFinish = (p.technical_specs.acabado || '').toLowerCase();
-      const name = p.name.toLowerCase();
-      if (!specFinish.includes(f) && !name.includes(f)) {
+      // Finish filter
+      if (f) {
+        const specFinish = (p.technical_specs?.acabado || '').toLowerCase();
+        const name = p.name.toLowerCase();
+        if (!specFinish.includes(f) && !name.includes(f)) {
+          return false;
+        }
+      }
+
+      // Price range
+      if (p.price < filters.priceRange[0] || p.price > filters.priceRange[1]) {
         return false;
       }
-    }
 
-    // Price range
-    if (p.price < filters.priceRange[0] || p.price > filters.priceRange[1]) {
-      return false;
-    }
+      // Low stock filter for inventory
+      if (filters.onlyLowStock) {
+        const minAlert = p.min_stock_alert ?? 8;
+        if (p.stock > minAlert) return false;
+      }
 
-    // Low stock filter for inventory
-    if (filters.onlyLowStock) {
-      const minAlert = p.min_stock_alert ?? 8;
-      if (p.stock > minAlert) return false;
-    }
+      return true;
+    });
+  }, [products, filters, categories]);
 
-    return true;
-  });
+  const featuredProducts = useMemo(
+    () => products.filter(p => p.is_featured),
+    [products]
+  );
 
-  const featuredProducts = products.filter(p => p.is_featured);
+  const getProductByCode = useCallback(
+    (code: string) => {
+      const target = code.toLowerCase();
+      return products.find(
+        p =>
+          p.code.toLowerCase() === target ||
+          p.id.toLowerCase() === target ||
+          p.slug?.toLowerCase() === target
+      );
+    },
+    [products]
+  );
 
-  const getProductByCode = (code: string) => {
-    return products.find(p => p.code.toLowerCase() === code.toLowerCase());
-  };
-
-  const getProductById = (id: string) => {
-    return products.find(p => p.id === id);
-  };
+  const getProductById = useCallback(
+    (id: string) => {
+      return products.find(p => p.id === id);
+    },
+    [products]
+  );
 
   const updateProductStock = async (productId: string, newStock: number) => {
     const safeStock = Math.max(0, newStock);

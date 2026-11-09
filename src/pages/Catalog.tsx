@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { FilterSidebar } from '../components/catalog/FilterSidebar';
 import { ProductCard } from '../components/catalog/ProductCard';
@@ -29,19 +29,21 @@ export const Catalog: React.FC = () => {
     }
   }, [searchParams, setFilters]);
 
-  // Sort products
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === 'price_asc') return a.price - b.price;
-    if (sortBy === 'price_desc') return b.price - a.price;
-    if (sortBy === 'featured') {
-      if (a.is_featured && !b.is_featured) return -1;
-      if (!a.is_featured && b.is_featured) return 1;
-    }
-    // Default: code_asc (numerical extraction)
-    const numA = parseInt(a.code.replace('KDJ-', ''), 10) || 0;
-    const numB = parseInt(b.code.replace('KDJ-', ''), 10) || 0;
-    return numA - numB;
-  });
+  // Sort products (memoized to prevent re-sorting on every render)
+  const sortedProducts = useMemo(() => {
+    return [...filteredProducts].sort((a, b) => {
+      if (sortBy === 'price_asc') return a.price - b.price;
+      if (sortBy === 'price_desc') return b.price - a.price;
+      if (sortBy === 'featured') {
+        if (a.is_featured && !b.is_featured) return -1;
+        if (!a.is_featured && b.is_featured) return 1;
+      }
+      // Default: code_asc (numerical extraction)
+      const numA = parseInt(a.code.replace('KDJ-', ''), 10) || 0;
+      const numB = parseInt(b.code.replace('KDJ-', ''), 10) || 0;
+      return numA - numB;
+    });
+  }, [filteredProducts, sortBy]);
 
   return (
     <div className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 bg-white">
@@ -147,8 +149,8 @@ export const Catalog: React.FC = () => {
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {sortedProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
+                {sortedProducts.map((product, idx) => (
+                  <ProductCard key={product.id} product={product} priority={idx < 6} />
                 ))}
               </div>
 

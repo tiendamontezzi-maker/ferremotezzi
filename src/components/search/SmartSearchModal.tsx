@@ -56,8 +56,9 @@ export const SmartSearchModal: React.FC = () => {
     { label: 'Módulo 600mm', query: '600mm', collection: 'all' as const },
   ];
 
-  // Lógica de filtrado inteligente
+  // Lógica de filtrado inteligente (solo se ejecuta cuando el buscador está abierto)
   const filteredResults = useMemo(() => {
+    if (!isSearchOpen) return [];
     const q = searchQuery.trim().toLowerCase();
 
     return products.filter(product => {
@@ -110,7 +111,7 @@ export const SmartSearchModal: React.FC = () => {
 
       return true;
     });
-  }, [products, searchQuery, selectedCollection, selectedPricePreset, selectedFinish, selectedMechanism]);
+  }, [isSearchOpen, products, searchQuery, selectedCollection, selectedPricePreset, selectedFinish, selectedMechanism]);
 
   const handleQuickAdd = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
@@ -122,7 +123,7 @@ export const SmartSearchModal: React.FC = () => {
 
   const handleSelectProduct = (product: Product) => {
     handleClose();
-    navigate(`/producto/${product.id}`);
+    navigate(`/producto/${product.code}`);
   };
 
   const handleViewAllInCatalog = () => {
