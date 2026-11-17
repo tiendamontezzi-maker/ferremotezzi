@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BrandLogo } from '../ui/BrandLogo';
+import { OfficialWhatsAppIcon, buildWhatsAppUrl, WHATSAPP_NUMBER_DISPLAY } from '../ui/WhatsAppButton';
 import { ShieldCheck, Truck, Clock, Sparkles, ArrowRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -140,13 +141,29 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
             </ul>
-            <div className="mt-4 pt-4 border-t border-black/[0.08]">
-              <span className="text-[10px] uppercase font-sans tracking-widest text-black font-bold block mb-1">
-                Showroom Físico
-              </span>
-              <p className="text-[11px] text-obsidian/70">
-                Medellín, Colombia (Próxima apertura oficial).
-              </p>
+            <div className="mt-4 pt-4 border-t border-black/[0.08] space-y-2.5">
+              <div>
+                <span className="text-[10px] uppercase font-sans tracking-widest text-black font-bold block mb-1">
+                  Línea Directa WhatsApp
+                </span>
+                <a
+                  href={buildWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white text-xs font-mono font-bold shadow-xs transition-all"
+                >
+                  <OfficialWhatsAppIcon className="w-4 h-4 text-white" />
+                  <span>{WHATSAPP_NUMBER_DISPLAY}</span>
+                </a>
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-sans tracking-widest text-black font-bold block mb-0.5">
+                  Showroom Físico
+                </span>
+                <p className="text-[11px] text-obsidian/70">
+                  Medellín, Colombia (Próxima apertura oficial).
+                </p>
+              </div>
             </div>
           </div>
         </div>

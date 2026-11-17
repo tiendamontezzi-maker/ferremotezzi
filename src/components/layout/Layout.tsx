@@ -4,6 +4,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { CartDrawer } from '../ui/CartDrawer';
 import { SmartSearchModal } from '../search/SmartSearchModal';
+import { WhatsAppFloatingButton } from '../ui/WhatsAppButton';
 
 export const Layout: React.FC = () => {
   const { pathname, search } = useLocation();
@@ -24,6 +25,7 @@ export const Layout: React.FC = () => {
       <Footer />
       <CartDrawer />
       <SmartSearchModal />
+      <WhatsAppFloatingButton />
     </div>
   );
 };

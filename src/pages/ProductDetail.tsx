@@ -7,6 +7,7 @@ import { BenefitIcons } from '../components/ui/BenefitIcons';
 import { PreInstallationNotice } from '../components/ui/PreInstallationNotice';
 import { ProductCard } from '../components/catalog/ProductCard';
 import { GoldenDivider } from '../components/ui/GoldenDivider';
+import { OfficialWhatsAppIcon, buildWhatsAppUrl, WHATSAPP_NUMBER_DISPLAY } from '../components/ui/WhatsAppButton';
 import { ShoppingBag, Plus, Minus, Check, ArrowLeft, Truck, ShieldCheck, Compass, Star, MessageSquare, Send, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const ProductDetail: React.FC = () => {
@@ -336,6 +337,19 @@ export const ProductDetail: React.FC = () => {
                 )}
               </button>
             </div>
+
+            {/* Official WhatsApp Direct Product Inquiry Button */}
+            <a
+              href={buildWhatsAppUrl(
+                `Hola Montezzi, estoy interesado en la referencia ${product.code} (${product.name}) por valor de $${product.price.toLocaleString('es-CO')} COP y me gustaría recibir atención personalizada.`
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-6 bg-[#25D366] hover:bg-[#20BD5A] text-white font-sans font-bold text-xs uppercase tracking-[0.14em] rounded-xs transition-all flex items-center justify-center gap-2.5 shadow-[0_6px_20px_rgba(37,211,102,0.35)]"
+            >
+              <OfficialWhatsAppIcon className="w-5 h-5 text-white shrink-0" />
+              <span>Asesoría por WhatsApp · {WHATSAPP_NUMBER_DISPLAY}</span>
+            </a>
 
             {/* B2B / Wholesale Quick link button in Clean Black Outline */}
             <Link
