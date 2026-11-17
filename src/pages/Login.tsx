@@ -2,28 +2,29 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { BrandLogo } from '../components/ui/BrandLogo';
-import { Shield, UserCheck, ArrowRight, Lock, Mail } from 'lucide-react';
-import { UserRole } from '../types/database';
+import { ArrowRight, Lock, Mail } from 'lucide-react';
 
 export const Login: React.FC = () => {
-  const { login, role, user, isAuthenticated, switchRole, logout } = useAuth();
+  const { login, role, user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
-  const [selectedRole, setSelectedRole] = useState<UserRole>('admin');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
     setLoading(true);
-    await login(email, selectedRole);
+    const res = await login(email, password);
     setLoading(false);
-    navigate('/admin');
-  };
-
-  const handleQuickDemoLogin = (r: UserRole) => {
-    switchRole(r);
-    navigate('/admin');
+    if (!res.ok) {
+      setError(res.error || 'No se pudo iniciar sesión.');
+      return;
+    }
+    // Recarga completa para traer pedidos, citas y registros con la sesión del administrador
+    window.location.assign('/admin');
   };
 
   return (
@@ -66,40 +67,6 @@ export const Login: React.FC = () => {
         </div>
       )}
 
-      {/* Quick Demo Access Bar with Reinforced Glassmorphism */}
-      <div className="p-5 glass-card rounded-xl space-y-3 border border-white/80 shadow-lg">
-        <div className="flex items-center gap-2 text-black text-xs font-mono uppercase tracking-widest font-bold">
-          <Shield className="w-3.5 h-3.5" />
-          <span>Acceso Rápido de Prueba (Demo 2026)</span>
-        </div>
-        <p className="text-[11px] text-obsidian/60 font-sans leading-relaxed">
-          Selecciona un perfil con rol preconfigurado para explorar el panel de control de inmediato:
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <button
-            onClick={() => handleQuickDemoLogin('admin')}
-            className="p-3 bg-white/90 backdrop-blur-sm border border-black/15 hover:border-black text-left text-xs transition-all rounded-lg shadow-2xs hover:shadow-xs"
-          >
-            <strong className="text-black block font-sans font-bold">Admin</strong>
-            <span className="text-[10px] text-obsidian/60">Control total</span>
-          </button>
-          <button
-            onClick={() => handleQuickDemoLogin('colaborador')}
-            className="p-3 bg-white/90 backdrop-blur-sm border border-black/15 hover:border-black text-left text-xs transition-all rounded-lg shadow-2xs hover:shadow-xs"
-          >
-            <strong className="text-obsidian block font-sans font-semibold">Colaborador</strong>
-            <span className="text-[10px] text-obsidian/60">Stock & Pedidos</span>
-          </button>
-          <button
-            onClick={() => handleQuickDemoLogin('cliente')}
-            className="p-3 bg-white/90 backdrop-blur-sm border border-black/15 hover:border-black text-left text-xs transition-all rounded-lg shadow-2xs hover:shadow-xs"
-          >
-            <strong className="text-obsidian block font-sans font-semibold">Cliente Arq.</strong>
-            <span className="text-[10px] text-obsidian/60">Compras</span>
-          </button>
-        </div>
-      </div>
-
       {/* Standard Form with Reinforced Glassmorphism */}
       <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-8 rounded-xl space-y-4 border border-white/80 shadow-lg">
         <div className="space-y-1 text-xs">
@@ -108,26 +75,32 @@ export const Login: React.FC = () => {
             <Mail className="w-4 h-4 text-black absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="email"
+              required
+              autoComplete="username"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              placeholder="admin@montezzi.com"
+              placeholder="tu correo"
               className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian pl-10 pr-3 py-2.5 text-xs focus:border-black focus:outline-none rounded-lg shadow-inner"
             />
           </div>
         </div>
 
         <div className="space-y-1 text-xs">
-          <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Rol de Acceso Solicitado</label>
-          <select
-            value={selectedRole}
-            onChange={e => setSelectedRole(e.target.value as UserRole)}
-            className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian px-3.5 py-2.5 text-xs focus:border-black focus:outline-none uppercase font-mono rounded-lg shadow-xs"
-          >
-            <option value="admin">Administrador (Control Total)</option>
-            <option value="colaborador">Colaborador (Inventario y Pedidos)</option>
-            <option value="cliente">Cliente / Profesional</option>
-          </select>
+          <label className="text-obsidian/70 uppercase tracking-wider font-semibold">Contraseña</label>
+          <div className="relative">
+            <Lock className="w-4 h-4 text-black absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="password"
+              required
+              autoComplete="current-password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              className="w-full bg-white/90 backdrop-blur-sm border border-black/15 text-obsidian pl-10 pr-3 py-2.5 text-xs focus:border-black focus:outline-none rounded-lg shadow-inner"
+            />
+          </div>
         </div>
+
+        {error && <p className="text-xs text-red-700 font-sans">{error}</p>}
 
         <button
           type="submit"

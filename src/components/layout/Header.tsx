@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingBag, Search, User, Menu, X, Shield, ChevronDown, Check, Calendar } from 'lucide-react';
+import { ShoppingBag, Search, User, Menu, X, Shield, Calendar } from 'lucide-react';
 import { BrandLogo } from '../ui/BrandLogo';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
@@ -11,14 +11,13 @@ import { ShowroomAppointmentModal } from '../appointments/ShowroomAppointmentMod
 
 export const Header: React.FC = () => {
   const { itemCount, openDrawer } = useCart();
-  const { user, role, switchRole, isAuthenticated } = useAuth();
+  const { user, role, isAuthenticated } = useAuth();
   const { setFilters } = useProducts();
   const { openSearch } = useSearch();
   const location = useLocation();
   const navigate = useNavigate();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
   const navLinks = [
@@ -54,35 +53,6 @@ export const Header: React.FC = () => {
             <span className="hidden xs:inline">Cita Showroom</span>
           </button>
 
-          <button
-            onClick={() => setRoleDropdownOpen(prev => !prev)}
-            className="flex items-center gap-1.5 text-obsidian hover:text-white hover:bg-black transition-all text-[10px] uppercase font-mono glass-pill px-3 py-1 rounded-full shadow-2xs"
-          >
-            <Shield className="w-3 h-3 text-current" />
-            <span>Rol: {role}</span>
-            <ChevronDown className="w-2.5 h-2.5" />
-          </button>
-
-          {roleDropdownOpen && (
-            <div className="absolute right-0 mt-8 w-48 glass-panel rounded-lg shadow-2xl py-1.5 z-50 text-left border border-white/80">
-              <div className="px-3.5 py-1.5 text-[10px] text-obsidian/50 uppercase tracking-wider border-b border-black/5 font-semibold">
-                Simular Rol
-              </div>
-              {(['admin', 'colaborador', 'cliente'] as UserRole[]).map(r => (
-                <button
-                  key={r}
-                  onClick={() => {
-                    switchRole(r);
-                    setRoleDropdownOpen(false);
-                  }}
-                  className="w-full px-3.5 py-2 text-xs text-obsidian hover:bg-black hover:text-white flex items-center justify-between font-sans transition-colors"
-                >
-                  <span className="capitalize font-medium">{r}</span>
-                  {role === r && <Check className="w-3.5 h-3.5" />}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </div>
 

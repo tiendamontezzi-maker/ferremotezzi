@@ -8,7 +8,7 @@ interface AuthContextType {
   role: UserRole;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, role?: UserRole) => Promise<boolean>;
+  login: (email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
   logout: () => Promise<void>;
   switchRole: (role: UserRole) => void;
   systemUsers: SystemUser[];
@@ -60,7 +60,8 @@ const clientProfile: Profile = {
   created_at: '2026-03-10T00:00:00.000Z'
 };
 
-const DEFAULT_DEMO_USERS: Record<UserRole, Profile> = {
+// Perfiles de ejemplo (ya no se usan para iniciar sesión)
+export const DEFAULT_DEMO_USERS: Record<UserRole, Profile> = {
   admin: adminProfile,
   colaborador: colabProfile,
   cliente: clientProfile,
@@ -71,15 +72,11 @@ const DEFAULT_DEMO_USERS: Record<UserRole, Profile> = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<Profile | null>(() => {
-    const saved = localStorage.getItem('montezzi_auth_user');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { return DEFAULT_DEMO_USERS.admin; }
-    }
-    return DEFAULT_DEMO_USERS.admin; // Start as admin by default for smooth exploration of the full app & dashboard
-  });
+  // La sesión sale SOLO de Supabase Auth + la tabla profiles (rol). Nunca de localStorage ni de usuarios demo:
+  // el panel /admin y las escrituras dependen de ese rol, y la base de datos lo vuelve a validar con RLS.
+  const [user, setUser] = useState<Profile | null>(null);
   
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(Boolean(isSupabaseConfigured && supabase));
 
   const [systemUsers, setSystemUsers] = useState<SystemUser[]>(() => {
     const saved = localStorage.getItem('montezzi_system_users');
@@ -94,78 +91,58 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [systemUsers]);
 
   useEffect(() => {
-    if (user) {
-      localStorage.setItem('montezzi_auth_user', JSON.stringify(user));
-    } else {
-      localStorage.removeItem('montezzi_auth_user');
-    }
-  }, [user]);
+    // Limpia la sesión demo que versiones anteriores dejaban guardada en el navegador
+    localStorage.removeItem('montezzi_auth_user');
+  }, []);
 
-  // Handle Supabase Auth if configured
+  const loadProfile = async (authUserId: string): Promise<Profile | null> => {
+    if (!supabase) return null;
+    const { data: profile } = await supabase.from('profiles').select('*').eq('id', authUserId).maybeSingle();
+    if (!profile || profile.status !== 'active') return null;
+    return { ...profile, user_id: profile.id } as Profile;
+  };
+
   useEffect(() => {
     const client = supabase;
     if (!isSupabaseConfigured || !client) return;
 
-    const checkSession = async () => {
-      try {
-        const { data: { session } } = await client.auth.getSession();
-        if (session?.user) {
-          const { data: profile } = await client
-            .from('profiles')
-            .select('*')
-            .eq('user_id', session.user.id)
-            .single();
-
-          if (profile) {
-            setUser(profile as Profile);
-          }
-        }
-      } catch (err) {
-        console.warn('Error fetching Supabase session, continuing with local session:', err);
+    let active = true;
+    const applySession = async (authUserId: string | undefined) => {
+      const profile = authUserId ? await loadProfile(authUserId) : null;
+      if (active) {
+        setUser(profile);
+        setIsLoading(false);
       }
     };
 
-    checkSession();
+    client.auth.getSession()
+      .then(({ data: { session } }) => applySession(session?.user?.id))
+      .catch(() => applySession(undefined));
 
-    const { data: { subscription } } = client.auth.onAuthStateChange(async (_event, session) => {
-      if (session?.user) {
-        const { data: profile } = await client
-          .from('profiles')
-          .select('*')
-          .eq('user_id', session.user.id)
-          .single();
-        if (profile) setUser(profile as Profile);
-      } else {
-        // Only clear if we were using real supabase
-        if (isSupabaseConfigured) {
-          setUser(null);
-        }
-      }
+    const { data: { subscription } } = client.auth.onAuthStateChange((_event, session) => {
+      // Sin await dentro del callback (recomendación de supabase-js para evitar bloqueos)
+      setTimeout(() => applySession(session?.user?.id), 0);
     });
 
     return () => {
+      active = false;
       subscription.unsubscribe();
     };
   }, []);
 
-  const login = async (email: string, requestedRole: UserRole = 'admin'): Promise<boolean> => {
+  const login = async (email: string, password: string): Promise<{ ok: boolean; error?: string }> => {
+    if (!isSupabaseConfigured || !supabase) return { ok: false, error: 'El acceso no está disponible en este momento.' };
     setIsLoading(true);
     try {
-      if (isSupabaseConfigured && supabase) {
-        // Real Supabase login attempt
-        const { error } = await supabase.auth.signInWithOtp({ email });
-        if (error) throw error;
+      const { data, error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+      if (error || !data.user) return { ok: false, error: 'Correo o contraseña incorrectos.' };
+      const profile = await loadProfile(data.user.id);
+      if (!profile) {
+        await supabase.auth.signOut();
+        return { ok: false, error: 'Tu usuario no tiene acceso al panel.' };
       }
-      
-      // Select mock user matching the requested role
-      const matched = DEFAULT_DEMO_USERS[requestedRole];
-      setUser({ ...matched, email: email || matched.email });
-      return true;
-    } catch (err) {
-      console.error('Login error:', err);
-      // Fallback to local profile
-      setUser(DEFAULT_DEMO_USERS[requestedRole]);
-      return true;
+      setUser(profile);
+      return { ok: true };
     } finally {
       setIsLoading(false);
     }
@@ -176,12 +153,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       await supabase.auth.signOut();
     }
     setUser(null);
-    localStorage.removeItem('montezzi_auth_user');
   };
 
-  const switchRole = (newRole: UserRole) => {
-    setUser(DEFAULT_DEMO_USERS[newRole]);
-  };
+  // Ya no existe "simular rol": el rol viene del perfil en Supabase. Se deja la función para no romper imports.
+  const switchRole = (_newRole: UserRole) => {};
 
   const createSystemUser = (userData: {
     full_name: string;

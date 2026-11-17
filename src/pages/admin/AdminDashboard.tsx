@@ -39,7 +39,7 @@ export type AdminTab =
   | 'logs';
 
 export const AdminDashboard: React.FC = () => {
-  const { user, role, switchRole, logout, systemUsers } = useAuth();
+  const { user, role, logout, systemUsers, isLoading: authLoading } = useAuth();
   const { products, orders, coupons, reviews, appointments, activityLogs } = useProducts();
 
   const [activeTab, setActiveTab] = useState<AdminTab>('overview');
@@ -86,8 +86,11 @@ export const AdminDashboard: React.FC = () => {
         .slice(0, 3)
     : [];
 
-  // Access Control: Client role check
-  if (role === 'cliente') {
+  // Control de acceso: solo administradores y colaboradores con sesión real (el rol viene de Supabase)
+  if (authLoading) {
+    return <div className="py-24 text-center text-xs text-obsidian/60 font-sans">Verificando acceso…</div>;
+  }
+  if (!user || (role !== 'admin' && role !== 'colaborador')) {
     return (
       <div className="py-20 max-w-xl mx-auto px-4 text-center space-y-6 bg-white">
         <div className="w-16 h-16 rounded-full bg-white border border-black/20 flex items-center justify-center mx-auto text-black shadow-xs">
@@ -97,21 +100,15 @@ export const AdminDashboard: React.FC = () => {
           Acceso Restringido
         </h1>
         <p className="text-xs text-obsidian/70 font-sans leading-relaxed">
-          Tu usuario actual tiene rol de <strong>Cliente / Profesional</strong>. Las funciones administrativas requieren permisos de <strong>Administrador</strong> o <strong>Colaborador</strong>.
+          El panel administrativo es solo para el equipo de Montezzi. Inicia sesión con tu correo y contraseña.
         </p>
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <button
-            onClick={() => switchRole('admin')}
+          <a
+            href="/login"
             className="w-full sm:w-auto px-6 py-2.5 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-black/85 transition-all shadow-md"
           >
-            Cambiar a Rol Administrador
-          </button>
-          <button
-            onClick={() => switchRole('colaborador')}
-            className="w-full sm:w-auto px-6 py-2.5 bg-white border border-black/20 text-obsidian text-xs uppercase tracking-widest hover:border-black transition-all shadow-xs"
-          >
-            Cambiar a Colaborador
-          </button>
+            Iniciar sesión
+          </a>
         </div>
       </div>
     );
@@ -477,22 +474,17 @@ export const AdminDashboard: React.FC = () => {
 
                 {isProfileDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white border border-black/10 rounded-2xl shadow-xl p-2 z-50 text-xs">
-                    <div className="px-3 py-1.5 text-[10px] text-[#A1A1AA] font-mono uppercase tracking-wider">
-                      Simular Rol
-                    </div>
-                    {(['admin', 'colaborador'] as const).map(r => (
-                      <button
-                        key={r}
-                        onClick={() => {
-                          switchRole(r);
-                          setIsProfileDropdownOpen(false);
-                        }}
-                        className="w-full text-left px-3 py-2 rounded-xl hover:bg-[#F4F4F5] flex items-center justify-between font-medium capitalize"
-                      >
-                        <span>{r}</span>
-                        {role === r && <Check className="w-3.5 h-3.5 text-black" />}
-                      </button>
-                    ))}
+                    <div className="px-3 py-1.5 text-[10px] text-[#A1A1AA] truncate">{user?.email}</div>
+                    <button
+                      onClick={async () => {
+                        setIsProfileDropdownOpen(false);
+                        await logout();
+                        window.location.assign('/login');
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-[#F4F4F5] font-medium"
+                    >
+                      Cerrar sesión
+                    </button>
                   </div>
                 )}
               </div>

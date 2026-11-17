@@ -255,7 +255,8 @@ INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_typ
 VALUES ('product-images', 'product-images', TRUE, 10485760, ARRAY['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/svg+xml', 'image/gif', 'image/avif'])
 ON CONFLICT (id) DO UPDATE SET public = TRUE;
 
--- 12. RLS PERMISIVO PARA USO FLUIDO DE E-COMMERCE
+-- 12. RLS PERMISIVO (OBSOLETO E INSEGURO: NO VOLVER A CORRER ESTA SECCIÓN).
+--     Los permisos vigentes están en supabase/seguridad_rls_2026-11-17.sql
 ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
