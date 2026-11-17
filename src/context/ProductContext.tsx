@@ -178,7 +178,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     collection: 'all',
     categorySlug: 'all',
     finish: 'all',
-    priceRange: [0, 5000000],
+    priceRange: [0, Number.MAX_SAFE_INTEGER],
     onlyLowStock: false
   });
 
@@ -285,7 +285,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       collection: 'all',
       categorySlug: 'all',
       finish: 'all',
-      priceRange: [0, 5000000],
+      priceRange: [0, Number.MAX_SAFE_INTEGER],
       onlyLowStock: false
     });
   }, []);

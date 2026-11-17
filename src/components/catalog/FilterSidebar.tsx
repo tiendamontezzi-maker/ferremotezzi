@@ -24,14 +24,6 @@ export const FilterSidebar: React.FC<{ className?: string }> = ({ className = ''
     { label: 'Cuero / Ratán', value: 'cuero' },
   ];
 
-  const pricePresets = [
-    { label: 'Todos los precios', range: [0, 3000000] as [number, number] },
-    { label: 'Hasta $100.000 COP', range: [0, 100000] as [number, number] },
-    { label: '$100.000 - $500.000 COP', range: [100000, 500000] as [number, number] },
-    { label: '$500.000 - $1.500.000 COP', range: [500000, 1500000] as [number, number] },
-    { label: 'Más de $1.500.000 COP (Alta Gama)', range: [1500000, 3000000] as [number, number] },
-  ];
-
   const relevantCategories = filters.collection === 'all'
     ? categories
     : categories.filter(c => c.main_collection === filters.collection);
@@ -58,7 +50,7 @@ export const FilterSidebar: React.FC<{ className?: string }> = ({ className = ''
 
       {/* Results summary */}
       <div className="text-xs text-obsidian/70 font-sans">
-        Mostrando <strong className="text-obsidian font-mono font-bold">{filteredProducts.length}</strong> de 112 referencias oficiales
+        Mostrando <strong className="text-obsidian font-mono font-bold">{filteredProducts.length}</strong> referencias oficiales
       </div>
 
       {/* 1. Colecciones Principales */}
@@ -143,34 +135,6 @@ export const FilterSidebar: React.FC<{ className?: string }> = ({ className = ''
               {filters.finish === f.value && <Check className="w-3.5 h-3.5 text-white" />}
             </button>
           ))}
-        </div>
-      </div>
-
-      {/* 4. Rango de Precios */}
-      <div className="space-y-3">
-        <h4 className="text-[11px] font-sans font-bold tracking-[0.2em] text-obsidian uppercase">
-          Rango de Precio
-        </h4>
-        <div className="space-y-1.5">
-          {pricePresets.map((preset, idx) => {
-            const isSelected =
-              filters.priceRange[0] === preset.range[0] &&
-              filters.priceRange[1] === preset.range[1];
-            return (
-              <button
-                key={idx}
-                onClick={() => setFilters(prev => ({ ...prev, priceRange: preset.range }))}
-                className={`w-full text-left px-3 py-1.5 text-xs rounded-xs transition-colors flex items-center justify-between ${
-                  isSelected
-                    ? 'bg-black text-white font-semibold'
-                    : 'text-obsidian/70 hover:text-obsidian hover:bg-black/5'
-                }`}
-              >
-                <span>{preset.label}</span>
-                {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
-              </button>
-            );
-          })}
         </div>
       </div>
     </aside>

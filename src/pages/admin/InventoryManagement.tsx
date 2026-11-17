@@ -433,12 +433,12 @@ export const InventoryManagement: React.FC = () => {
                         <span className="text-[#A1A1AA] text-xs font-medium">$</span>
                         <input
                           type="number"
-                          step="1000"
+                          step="any"
                           value={product.price}
                           onChange={(e) =>
                             updateProduct({
                               ...product,
-                              price: Math.max(0, parseInt(e.target.value) || 0)
+                              price: Math.max(0, Number(e.target.value) || 0)
                             })
                           }
                           className="w-full bg-transparent text-xs font-sans font-semibold text-[#18181B] focus:outline-none"

@@ -355,12 +355,11 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
               <div className="space-y-1">
-                <label className="text-[11px] text-[#71717A] font-semibold">Precio COP *</label>
+                <label className="text-[11px] text-[#71717A] font-semibold">Precio COP (Libre) *</label>
                 <input
                   type="number"
                   required
-                  min={0}
-                  step={1000}
+                  step="any"
                   value={price}
                   onChange={(e) => setPrice(Number(e.target.value))}
                   className="w-full bg-white border border-[#E4E4E7] px-3 py-2 font-sans text-[#18181B] font-bold focus:border-black focus:outline-none rounded-xl text-xs"

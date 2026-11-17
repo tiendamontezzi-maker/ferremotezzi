@@ -495,10 +495,9 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 <label className="text-obsidian/70 font-medium">Costo de Envío ($ COP)</label>
                 <input
                   type="number"
-                  min="0"
-                  step="5000"
+                  step="any"
                   value={shippingCost}
-                  onChange={e => setShippingCost(Math.max(0, parseInt(e.target.value) || 0))}
+                  onChange={e => setShippingCost(Math.max(0, Number(e.target.value) || 0))}
                   placeholder="0 si es gratis o retiro"
                   className="w-full px-3 py-2 border border-black/15 rounded-xs bg-white focus:outline-hidden focus:border-black font-mono text-obsidian"
                 />
@@ -520,10 +519,9 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
                 <label className="text-obsidian/70 font-medium">Abono Inicial / Anticipo ($ COP)</label>
                 <input
                   type="number"
-                  min="0"
-                  step="50000"
+                  step="any"
                   value={depositAmount}
-                  onChange={e => setDepositAmount(Math.max(0, parseInt(e.target.value) || 0))}
+                  onChange={e => setDepositAmount(Math.max(0, Number(e.target.value) || 0))}
                   placeholder="0 si paga 100% contra entrega"
                   className="w-full px-3 py-2 border border-black/15 rounded-xs bg-white focus:outline-hidden focus:border-black font-mono text-obsidian"
                 />

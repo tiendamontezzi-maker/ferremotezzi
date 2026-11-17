@@ -236,46 +236,28 @@ export const SmartSearchModal: React.FC = () => {
             ))}
           </div>
 
-          {/* Fila 2: Rango de Precios COP & Acabados */}
+          {/* Fila 2: Acabados & Materiales */}
           <div className="flex flex-wrap items-center gap-1.5 text-xs">
             <span className="text-[11px] text-[#71717A] font-semibold mr-1 flex items-center gap-1.5">
               <Tag className="w-3.5 h-3.5 text-[#18181B]" />
-              <span>Filtro COP:</span>
+              <span>Acabado:</span>
             </span>
-
-            {/* Presupuesto en Pesos Colombianos */}
-            {[
-              { id: 'all', label: 'Todos los precios' },
-              { id: 'under100', label: 'Menos de $100.000' },
-              { id: '100to500', label: '$100.000 – $500.000' },
-              { id: 'above500', label: 'Más de $500.000 (Envío Gratis)' }
-            ].map(p => (
-              <button
-                key={p.id}
-                onClick={() => setSelectedPricePreset(p.id as any)}
-                className={`px-3 py-1 rounded-full text-[11px] font-sans transition-all ${
-                  selectedPricePreset === p.id
-                    ? 'bg-[#18181B] text-white font-semibold shadow-2xs'
-                    : 'bg-white border border-[#EAE7E1] text-[#52525B] hover:text-[#18181B] hover:border-black/20 font-medium'
-                }`}
-              >
-                {p.label}
-              </button>
-            ))}
 
             {/* Acabados Chips */}
             {[
+              { id: 'all', label: 'Todos los acabados' },
               { id: 'grafito', label: 'Gris Grafito' },
               { id: 'cuero', label: 'Cuero' },
               { id: 'madera', label: 'Madera' },
               { id: 'acero', label: 'Acero Inox' },
+              { id: 'vidrio', label: 'Vidrio Templado' },
             ].map(fin => (
               <button
                 key={fin.id}
-                onClick={() => setSelectedFinish(prev => prev === fin.id ? 'all' : fin.id)}
+                onClick={() => setSelectedFinish(prev => prev === fin.id && fin.id !== 'all' ? 'all' : fin.id)}
                 className={`px-3 py-1 rounded-full text-[11px] font-sans transition-all ${
                   selectedFinish === fin.id
-                    ? 'bg-[#FFF6E9] text-[#B45309] border border-[#FDE6C8] font-semibold'
+                    ? 'bg-[#18181B] text-white font-semibold shadow-2xs'
                     : 'bg-white border border-[#EAE7E1] text-[#52525B] hover:text-[#18181B] hover:border-black/20 font-medium'
                 }`}
               >
