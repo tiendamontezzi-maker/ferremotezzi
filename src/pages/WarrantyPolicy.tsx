@@ -51,7 +51,7 @@ export const WarrantyPolicy: React.FC = () => {
             <h2 className="text-obsidian">2. Término de la garantía</h2>
           </div>
           <p>
-            Los productos comercializados por Montezzi cuentan con una garantía de <strong>treinta (30) días calendario</strong>, contados desde la fecha de entrega. La garantía cubre exclusivamente defectos de fabricación o fallas de funcionamiento atribuibles al producto, siempre que este haya sido instalado, utilizado y conservado correctamente. Esta garantía se aplicará sin perjuicio de los derechos que correspondan al consumidor conforme a la legislación colombiana vigente.
+            Los productos comercializados por Montezzi cuentan con una garantía oficial de <strong>dos (2) meses (60 días calendario)</strong>, contados desde la fecha de entrega. La garantía cubre exclusivamente defectos de fabricación o fallas de funcionamiento atribuibles al producto, siempre que este haya sido instalado, utilizado y conservado correctamente. Esta garantía se aplicará sin perjuicio de los derechos que correspondan al consumidor conforme a la legislación colombiana vigente.
           </p>
         </section>
 

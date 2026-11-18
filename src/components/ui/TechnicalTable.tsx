@@ -5,6 +5,7 @@ interface TechnicalTableProps {
   specs: TechnicalSpecs;
   description?: string;
   sku?: string;
+  warranty?: string;
   className?: string;
 }
 
@@ -12,6 +13,7 @@ export const TechnicalTable: React.FC<TechnicalTableProps> = ({
   specs,
   description,
   sku,
+  warranty,
   className = ''
 }) => {
   const rows = [
@@ -24,7 +26,8 @@ export const TechnicalTable: React.FC<TechnicalTableProps> = ({
     { label: 'MATERIALES', value: specs.material },
     { label: 'ACABADO / COLOR', value: specs.acabado },
     specs.configuracion ? { label: 'CONFIGURACIÓN', value: specs.configuracion } : null,
-    { label: 'SISTEMA / MECANISMO', value: specs.mecanismo }
+    { label: 'SISTEMA / MECANISMO', value: specs.mecanismo },
+    { label: 'GARANTÍA OFICIAL', value: warranty || specs.garantia || '2 meses por defectos de fabricación' }
   ].filter(Boolean) as { label: string; value: string }[];
 
   return (
@@ -46,7 +49,7 @@ export const TechnicalTable: React.FC<TechnicalTableProps> = ({
             <div
               key={idx}
               className={`space-y-0.5 ${
-                row.label === 'MATERIALES' || row.label === 'SISTEMA / MECANISMO'
+                row.label === 'MATERIALES' || row.label === 'SISTEMA / MECANISMO' || row.label === 'GARANTÍA OFICIAL'
                   ? 'sm:col-span-2'
                   : ''
               }`}

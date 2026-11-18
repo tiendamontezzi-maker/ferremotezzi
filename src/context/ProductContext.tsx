@@ -76,7 +76,14 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length >= 45 && parsed[0]?.technical_specs?.ref_fabricante) {
-          return parsed;
+          return parsed.map((p: Product) => ({
+            ...p,
+            warranty: '2 meses por defectos de fabricación',
+            technical_specs: {
+              ...p.technical_specs,
+              garantia: '2 meses por defectos de fabricación'
+            }
+          }));
         }
       } catch (e) {
         console.error('Error loading products cache:', e);
@@ -561,7 +568,11 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
         ? [p.image_url]
         : [],
     is_featured: Boolean(p.is_featured),
-    technical_specs: p.technical_specs,
+    technical_specs: {
+      ...p.technical_specs,
+      garantia: p.technical_specs?.garantia || p.warranty || '2 meses por defectos de fabricación'
+    },
+    warranty: p.warranty || '2 meses por defectos de fabricación',
     benefits: p.benefits || [],
     inventory_status: p.inventory_status || 'in_stock',
     updated_at: new Date().toISOString()

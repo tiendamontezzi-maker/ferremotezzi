@@ -34,6 +34,7 @@ export interface TechnicalSpecs {
   acabado: string;
   configuracion?: string; // e.g. 2 niveles, Esquinero universal
   mecanismo: string;
+  garantia?: string; // e.g. 2 meses por defectos de fabricación
   nota_tecnica?: string;
   nota_imagen?: string;
   capacidad_carga?: string;

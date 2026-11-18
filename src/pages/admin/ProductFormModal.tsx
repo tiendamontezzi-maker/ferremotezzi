@@ -151,6 +151,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
         acabado,
         configuracion,
         mecanismo,
+        garantia: '2 meses por defectos de fabricación',
         ...(notaTecnica.trim() ? { nota_tecnica: notaTecnica.trim() } : {})
       },
       benefits: [
@@ -168,6 +169,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       min_stock_alert: Number(minStockAlert),
       image_url: finalImageUrl,
       gallery_urls: finalGalleryUrls,
+      warranty: '2 meses por defectos de fabricación',
       is_featured: isFeatured
     };
   };

@@ -361,8 +361,8 @@ export const ProductDetail: React.FC = () => {
 
             {/* Quick Consultation for Architects */}
             <div className="flex items-center justify-between text-xs text-obsidian/70 pt-2 font-sans border-t border-black/[0.08]">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-black" /> Garantía de fábrica de 30 días
+              <span className="flex items-center gap-1.5 font-medium">
+                <ShieldCheck className="w-3.5 h-3.5 text-black" /> Garantía de fábrica de 2 meses
               </span>
               <Link to="/distribucion" className="text-black hover:underline font-semibold">
                 ¿Cotizar volumen para proyectos?
@@ -376,6 +376,7 @@ export const ProductDetail: React.FC = () => {
               specs={product.technical_specs}
               description={product.short_description}
               sku={product.sku}
+              warranty={product.warranty || '2 meses por defectos de fabricación'}
             />
           </div>
 

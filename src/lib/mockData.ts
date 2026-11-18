@@ -147,7 +147,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero plano + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 185616,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -213,7 +213,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 229372,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -279,7 +279,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 240683,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -345,7 +345,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 327954,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -411,7 +411,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 140805,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -477,7 +477,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 124542,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -543,7 +543,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 121832,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -609,7 +609,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta de alambre redondo en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 285491,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -675,7 +675,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canastas de alambre redondo en hierro; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 552921,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -741,7 +741,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 752136,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -807,7 +807,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 910694,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -873,7 +873,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 758912,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -939,7 +939,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canastas de alambre redondo en hierro; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 664048,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1005,7 +1005,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 798212,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -1071,7 +1071,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 668113,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -1137,7 +1137,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta en hierro; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 558748,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1203,7 +1203,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 669276,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -1269,7 +1269,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero al carbono + base antideslizante + MDF; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 772356,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1335,7 +1335,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero inoxidable 201"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 346660,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1401,7 +1401,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero inoxidable 201"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 377423,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1467,7 +1467,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero inoxidable 201"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 4104900,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -1533,7 +1533,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "ABS"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 233094,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1599,7 +1599,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "ABS + hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 290012,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1665,7 +1665,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "ABS + hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 358800,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1731,7 +1731,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Plástico + acero inoxidable SUS304"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 132809,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1797,7 +1797,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 583204,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -1863,7 +1863,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 637612,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1929,7 +1929,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 692088,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -1995,7 +1995,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta en acero inoxidable 304; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 649506,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -2061,7 +2061,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta en acero inoxidable 304; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 700556,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2127,7 +2127,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Canasta en acero inoxidable 304; estructura en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 753544,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2193,7 +2193,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Acero plano 304 con tratamiento por electrólisis; laterales en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1765106,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -2259,7 +2259,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Vidrio templado + aluminio; laterales en hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1827103,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -2325,7 +2325,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "ABS"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 29136,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2391,7 +2391,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "ABS"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 34286,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2458,7 +2458,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Aluminio + cuero"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 299350,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2525,7 +2525,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Aluminio + cuero"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 307505,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -2591,7 +2591,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Marco de aluminio"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 186516,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2657,7 +2657,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Aluminio + hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 154677,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2723,7 +2723,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Aluminio + hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 154677,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2789,7 +2789,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Aluminio + hierro"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 198098,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2855,7 +2855,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Aluminio + plástico"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 160124,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -2921,7 +2921,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Aluminio + ratán"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 304985,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -2988,7 +2988,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Hierro + MDF"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1043504,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -3054,7 +3054,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Cuero"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1070608,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -3120,7 +3120,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Cuero"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1070608,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
@@ -3186,7 +3186,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "Cuero"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 1070608,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
@@ -3253,7 +3253,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "No especificado en el documento de origen"
     ],
     "boxes_count": 1,
-    "warranty": "1 año por defectos de fabricación oficial Montezzi",
+    "warranty": "2 meses por defectos de fabricación oficial Montezzi",
     "wholesale_price": 4168595,
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,

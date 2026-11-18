@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
             <ShieldCheck className="w-6 h-6 text-black shrink-0 stroke-[1.5]" />
             <div>
               <h4 className="font-sans text-xs uppercase tracking-wider font-bold text-obsidian">Garantía Montezzi</h4>
-              <p className="text-[11px] text-obsidian/60 font-sans mt-0.5">30 días de respaldo por defectos de fábrica.</p>
+              <p className="text-[11px] text-obsidian/60 font-sans mt-0.5">2 meses de respaldo por defectos de fábrica.</p>
             </div>
           </div>
           <div className="flex items-center gap-3">

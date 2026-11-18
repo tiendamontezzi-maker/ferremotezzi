@@ -162,7 +162,7 @@ export const Header: React.FC = () => {
               <h4 className="text-[11px] font-mono tracking-widest text-obsidian uppercase font-bold mb-2">Institucional</h4>
               <div className="flex flex-col space-y-2">
                 <Link to="/nosotros" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Nosotros & Manifiesto</Link>
-                <Link to="/garantias" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Garantías & Cambios (30 días)</Link>
+                <Link to="/garantias" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Garantías & Cambios (2 meses)</Link>
                 <Link to="/envios" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Envíos Nacionales</Link>
                 <Link to="/faq" onClick={() => setMobileMenuOpen(false)} className="text-xs text-obsidian hover:text-montezzigold transition-colors">Preguntas Frecuentes</Link>
               </div>
