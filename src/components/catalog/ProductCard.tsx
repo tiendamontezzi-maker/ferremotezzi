@@ -29,6 +29,18 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({
   const isLowStock = product.stock <= (product.min_stock_alert ?? 8) && product.stock > 0;
   const isOutOfStock = product.stock === 0;
 
+  const primaryImage = product.image_url || product.gallery_urls?.[0] || '/images/products/kdj-60.jpg';
+
+  // Second uploaded image for hover crossfade effect
+  const secondaryImage = useMemo(() => {
+    const gallery = Array.isArray(product.gallery_urls)
+      ? product.gallery_urls.filter(Boolean)
+      : [];
+    if (gallery.length < 2) return null;
+    if (gallery[1] && gallery[1] !== primaryImage) return gallery[1];
+    return gallery.find((url) => url !== primaryImage) || null;
+  }, [product.gallery_urls, primaryImage]);
+
   // Derive subtle color dots from product specs (memoized per product finish)
   const finishDots = useMemo(() => {
     const finish = (product.technical_specs?.acabado || '').toLowerCase();
@@ -51,13 +63,14 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({
 
   return (
     <div className={`group relative flex flex-col space-y-3 ${priority ? '' : 'product-card-contain'}`}>
-      {/* Product Image Square Container */}
+      {/* Product Image Square Container with 2nd Image Hover Effect */}
       <Link
         to={`/producto/${product.code}`}
         className="relative aspect-square w-full rounded-xl overflow-hidden bg-white border border-[#EAE7E1] flex items-center justify-center p-5 transition-transform duration-200 group-hover:shadow-md group-hover:-translate-y-0.5"
       >
+        {/* Primary Cover Image */}
         <img
-          src={product.image_url || '/images/products/kdj-60.jpg'}
+          src={primaryImage}
           alt={product.name}
           width={360}
           height={360}
@@ -67,16 +80,34 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).src = '/images/products/kdj-60.jpg';
           }}
-          className="w-full h-full object-contain object-center transition-transform duration-300 ease-out group-hover:scale-105"
+          className={`w-full h-full object-contain object-center transition-all duration-300 ease-out ${
+            secondaryImage ? 'group-hover:opacity-0 group-hover:scale-95' : 'group-hover:scale-105'
+          }`}
         />
+
+        {/* Secondary Image on Hover (when product has >= 2 images) */}
+        {secondaryImage && (
+          <img
+            src={secondaryImage}
+            alt={`${product.name} - Vista 2`}
+            width={360}
+            height={360}
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = 'none';
+            }}
+            className="absolute inset-0 w-full h-full p-5 object-contain object-center opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 ease-out pointer-events-none"
+          />
+        )}
 
         {/* Small subtle badge on top left */}
         {product.is_featured ? (
-          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-[#18181B] text-white text-[9px] font-sans font-bold uppercase tracking-wider rounded-full shadow-2xs">
+          <span className="absolute top-3 left-3 z-10 px-2.5 py-0.5 bg-[#18181B] text-white text-[9px] font-sans font-bold uppercase tracking-wider rounded-full shadow-2xs">
             Destacado
           </span>
         ) : isLowStock ? (
-          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A] text-[9px] font-sans font-semibold uppercase tracking-wider rounded-full shadow-2xs">
+          <span className="absolute top-3 left-3 z-10 px-2.5 py-0.5 bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A] text-[9px] font-sans font-semibold uppercase tracking-wider rounded-full shadow-2xs">
             Stock Bajo
           </span>
         ) : null}
@@ -85,7 +116,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({
         <button
           onClick={handleQuickAdd}
           disabled={isOutOfStock}
-          className="absolute bottom-3 right-3 p-2.5 glass-button text-obsidian rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-md cursor-pointer"
+          className="absolute bottom-3 right-3 z-10 p-2.5 glass-button text-obsidian rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-md cursor-pointer"
           title="Añadir a la bolsa"
           aria-label="Añadir a la bolsa"
         >

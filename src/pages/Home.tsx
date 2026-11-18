@@ -134,17 +134,48 @@ export const Home: React.FC = () => {
             {/* Ambient Refraction Glow behind Product */}
             <div className="absolute w-80 h-80 rounded-full bg-gradient-to-tr from-black/[0.03] to-montezzigold/[0.06] blur-3xl pointer-events-none" />
 
-            {/* Hero Isolated Product Photo */}
-            <div className="relative z-10 w-full max-w-md sm:max-w-lg aspect-square flex items-center justify-center p-6">
-              <img
-                src={currentSlide.image}
-                alt={currentSlide.titleLine1}
-                width={480}
-                height={480}
-                fetchPriority="high"
-                decoding="sync"
-                className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
-              />
+            {/* Hero Isolated Product Photo with 2nd Image Hover Effect */}
+            <div className="group/hero relative z-10 w-full max-w-md sm:max-w-lg aspect-square flex items-center justify-center p-6">
+              {(() => {
+                const heroProduct = products.find((p) => p.code === currentSlide.code);
+                const primary = heroProduct?.image_url || currentSlide.image;
+                const gallery = Array.isArray(heroProduct?.gallery_urls)
+                  ? heroProduct!.gallery_urls.filter(Boolean)
+                  : [];
+                const secondary =
+                  gallery.length >= 2
+                    ? gallery[1] && gallery[1] !== primary
+                      ? gallery[1]
+                      : gallery.find((u) => u !== primary) || null
+                    : null;
+
+                return (
+                  <>
+                    <img
+                      src={primary}
+                      alt={currentSlide.titleLine1}
+                      width={480}
+                      height={480}
+                      fetchPriority="high"
+                      decoding="sync"
+                      className={`w-full h-full object-contain transition-all duration-500 ${
+                        secondary ? 'group-hover/hero:opacity-0 group-hover/hero:scale-95' : 'hover:scale-105'
+                      }`}
+                    />
+                    {secondary && (
+                      <img
+                        src={secondary}
+                        alt={`${currentSlide.titleLine1} - Vista 2`}
+                        width={480}
+                        height={480}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 w-full h-full p-6 object-contain opacity-0 scale-95 group-hover/hero:opacity-100 group-hover/hero:scale-105 transition-all duration-500 pointer-events-none"
+                      />
+                    )}
+                  </>
+                );
+              })()}
             </div>
 
             {/* Slider Controls with Reinforced Glassmorphism Pill */}

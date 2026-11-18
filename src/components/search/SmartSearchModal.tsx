@@ -364,16 +364,41 @@ export const SmartSearchModal: React.FC = () => {
                   >
                     {/* Izquierda: Foto del Producto + Información */}
                     <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                      <div className="w-14 h-14 rounded-xl bg-[#FAF9F7] p-1.5 border border-[#EAE7E1] flex items-center justify-center shrink-0 overflow-hidden group-hover:border-black/20 transition-colors">
-                        <img
-                          src={product.image_url || '/images/products/kdj-60.jpg'}
-                          alt={product.name}
-                          className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-105"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=200&q=80';
-                          }}
-                        />
+                      <div className="relative w-14 h-14 rounded-xl bg-[#FAF9F7] p-1.5 border border-[#EAE7E1] flex items-center justify-center shrink-0 overflow-hidden group-hover:border-black/20 transition-colors">
+                        {(() => {
+                          const primary = product.image_url || product.gallery_urls?.[0] || '/images/products/kdj-60.jpg';
+                          const gallery = Array.isArray(product.gallery_urls) ? product.gallery_urls.filter(Boolean) : [];
+                          const secondary =
+                            gallery.length >= 2
+                              ? gallery[1] && gallery[1] !== primary
+                                ? gallery[1]
+                                : gallery.find((u) => u !== primary) || null
+                              : null;
+
+                          return (
+                            <>
+                              <img
+                                src={primary}
+                                alt={product.name}
+                                className={`w-full h-full object-contain rounded-lg transition-all duration-300 ${
+                                  secondary ? 'group-hover:opacity-0' : 'group-hover:scale-105'
+                                }`}
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = '/images/products/kdj-60.jpg';
+                                }}
+                              />
+                              {secondary && (
+                                <img
+                                  src={secondary}
+                                  alt={`${product.name} - Vista 2`}
+                                  loading="lazy"
+                                  decoding="async"
+                                  className="absolute inset-0 w-full h-full p-1.5 object-contain rounded-lg opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none"
+                                />
+                              )}
+                            </>
+                          );
+                        })()}
                       </div>
 
                       <div className="min-w-0 flex-1 space-y-1">
