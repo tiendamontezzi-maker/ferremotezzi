@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-export const WHATSAPP_NUMBER_CLEAN = '573104024708';
-export const WHATSAPP_NUMBER_DISPLAY = '(310) 402-4708';
+export const WHATSAPP_NUMBER_CLEAN = '573126653556';
+export const WHATSAPP_NUMBER_DISPLAY = '(312) 665-3556';
 
 export const OfficialWhatsAppIcon: React.FC<{ className?: string }> = ({ className = 'w-6 h-6' }) => (
   <svg
