@@ -91,7 +91,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-60",
     "code": "KDJ-60",
-    "name": "Canasta lateral de 2 niveles con base de madera",
+    "name": "Canasta lateral de 2 niveles con base de madera · Módulo 200mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -157,7 +157,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-61",
     "code": "KDJ-61",
-    "name": "Canasta lateral de 2 niveles en acero al carbono",
+    "name": "Canasta lateral de 2 niveles en acero al carbono · Módulo 300mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -223,7 +223,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-62",
     "code": "KDJ-62",
-    "name": "Canasta lateral de vidrio de 3 niveles",
+    "name": "Canasta lateral de vidrio de 3 niveles · Módulo 200mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -289,7 +289,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-63",
     "code": "KDJ-63",
-    "name": "Especiero multifunción de vidrio de 3 niveles",
+    "name": "Especiero multifunción de vidrio de 3 niveles · Módulo 350mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -355,7 +355,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-64",
     "code": "KDJ-64",
-    "name": "Canasta estrecha tipo A de 2 niveles",
+    "name": "Canasta estrecha tipo A de 2 niveles · Módulo 150mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -421,7 +421,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-65",
     "code": "KDJ-65",
-    "name": "Canasta estrecha tipo B de 2 niveles",
+    "name": "Canasta estrecha tipo B de 2 niveles · Módulo 150mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -487,7 +487,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-66",
     "code": "KDJ-66",
-    "name": "Canasta estrecha tipo C de 3 niveles",
+    "name": "Canasta estrecha tipo C de 3 niveles · Módulo 150mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -553,7 +553,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-67",
     "code": "KDJ-67",
-    "name": "Especiero de alambre de 3 niveles",
+    "name": "Especiero de alambre de 3 niveles · Módulo 300mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -619,7 +619,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-68",
     "code": "KDJ-68",
-    "name": "Despensa de alambre de 6 niveles",
+    "name": "Despensa de alambre de 6 niveles · Módulo 450mm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
@@ -685,7 +685,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-69",
     "code": "KDJ-69",
-    "name": "Despensa en acero al carbono y madera de 6 niveles",
+    "name": "Despensa en acero al carbono y madera de 6 niveles · Módulo 450mm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
@@ -751,7 +751,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-70",
     "code": "KDJ-70",
-    "name": "Despensa de vidrio de 6 niveles",
+    "name": "Despensa de vidrio de 6 niveles · Módulo 450mm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
@@ -817,7 +817,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-71",
     "code": "KDJ-71",
-    "name": "Torre extraíble de vidrio de 6 niveles",
+    "name": "Torre extraíble de vidrio de 6 niveles · Módulo 200mm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
@@ -883,7 +883,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-72",
     "code": "KDJ-72",
-    "name": "Torre extraíble de alambre de 6 niveles",
+    "name": "Torre extraíble de alambre de 6 niveles · Módulo 200mm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
@@ -949,7 +949,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-73",
     "code": "KDJ-73",
-    "name": "Torre extraíble en acero al carbono y madera de 6 niveles",
+    "name": "Torre extraíble en acero al carbono y madera de 6 niveles · Módulo 300mm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
@@ -1015,7 +1015,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-74",
     "code": "KDJ-74",
-    "name": "Esquinero universal de vidrio",
+    "name": "Esquinero universal de vidrio · Módulo 800-900mm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
@@ -1081,7 +1081,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-75",
     "code": "KDJ-75",
-    "name": "Esquinero universal de alambre",
+    "name": "Esquinero universal de alambre · Módulo 800-900mm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
@@ -1147,7 +1147,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-76",
     "code": "KDJ-76",
-    "name": "Esquinero universal en acero al carbono y madera",
+    "name": "Esquinero universal en acero al carbono y madera · Módulo 800-900mm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
@@ -1213,7 +1213,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-77",
     "code": "KDJ-77",
-    "name": "Esquinero giratorio derecho o izquierdo",
+    "name": "Esquinero giratorio derecho o izquierdo · Módulo 900-1000mm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
@@ -1279,7 +1279,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-198",
     "code": "KDJ-198",
-    "name": "Juego de canastas extraíbles SS201: plana y portaplatos",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 600mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -1345,7 +1345,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-199",
     "code": "KDJ-199",
-    "name": "Juego de canastas extraíbles SS201: plana y portaplatos",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 700mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -1411,7 +1411,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-200",
     "code": "KDJ-200",
-    "name": "Juego de canastas extraíbles SS201: plana y portaplatos",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 800mm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
@@ -1477,7 +1477,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-78",
     "code": "KDJ-78",
-    "name": "Basurero doble con tapa de 20 + 20 litros",
+    "name": "Basurero doble con tapa de 20 + 20 litros · Módulo 400mm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
@@ -1543,7 +1543,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-79",
     "code": "KDJ-79",
-    "name": "Basurero doble gris de 10 + 20 litros",
+    "name": "Basurero doble gris de 10 + 20 litros · Módulo 300mm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
@@ -1609,7 +1609,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-80",
     "code": "KDJ-80",
-    "name": "Basurero doble gris de 20 + 20 litros",
+    "name": "Basurero doble gris de 20 + 20 litros · Módulo 400mm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
@@ -1675,7 +1675,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-81",
     "code": "KDJ-81",
-    "name": "Basurero de 14 litros en inoxidable 304",
+    "name": "Basurero de 14 litros en inoxidable 304 · Módulo 400mm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
@@ -1741,7 +1741,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-83",
     "code": "KDJ-83",
-    "name": "Canasta elevable de vidrio",
+    "name": "Canasta elevable de vidrio · Módulo 600mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -1807,7 +1807,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-84",
     "code": "KDJ-84",
-    "name": "Canasta elevable de vidrio",
+    "name": "Canasta elevable de vidrio · Módulo 700mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -1873,7 +1873,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-85",
     "code": "KDJ-85",
-    "name": "Canasta elevable de vidrio",
+    "name": "Canasta elevable de vidrio · Módulo 800mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -1939,7 +1939,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-86",
     "code": "KDJ-86",
-    "name": "Locero elevable SS304 con portacubiertos",
+    "name": "Locero elevable SS304 con portacubiertos · Módulo 600mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -2005,7 +2005,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-87",
     "code": "KDJ-87",
-    "name": "Locero elevable SS304 con portacubiertos",
+    "name": "Locero elevable SS304 con portacubiertos · Módulo 700mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -2071,7 +2071,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-88",
     "code": "KDJ-88",
-    "name": "Locero elevable SS304 con portacubiertos",
+    "name": "Locero elevable SS304 con portacubiertos · Módulo 800mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -2137,7 +2137,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-89",
     "code": "KDJ-89",
-    "name": "Canasta elevable eléctrica de alambre",
+    "name": "Canasta elevable eléctrica de alambre · Módulo 700mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -2203,7 +2203,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-90",
     "code": "KDJ-90",
-    "name": "Canasta elevable eléctrica de vidrio",
+    "name": "Canasta elevable eléctrica de vidrio · Módulo 600mm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
@@ -2269,7 +2269,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-201",
     "code": "KDJ-201",
-    "name": "Cubertero ABS plateado",
+    "name": "Cubertero ABS plateado · Módulo 600mm",
     "category_id": "cat-cocina-cuberteros",
     "category_name": "Cuberteros & Accesorios",
     "main_collection": "cocina",
@@ -2335,7 +2335,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-202",
     "code": "KDJ-202",
-    "name": "Cubertero ABS plateado",
+    "name": "Cubertero ABS plateado · Módulo 700mm",
     "category_id": "cat-cocina-cuberteros",
     "category_name": "Cuberteros & Accesorios",
     "main_collection": "cocina",
@@ -2401,7 +2401,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-91",
     "code": "KDJ-91",
-    "name": "Joyero extraíble con cierre suave · variante 1",
+    "name": "Joyero extraíble con cierre suave · Módulo 600mm · Variante 1",
     "category_id": "cat-closet-joyeros",
     "category_name": "Joyeros & Bandejas",
     "main_collection": "closet",
@@ -2468,7 +2468,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-92",
     "code": "KDJ-92",
-    "name": "Joyero extraíble con cierre suave · variante 2",
+    "name": "Joyero extraíble con cierre suave · Módulo 600mm · Variante 2",
     "category_id": "cat-closet-joyeros",
     "category_name": "Joyeros & Bandejas",
     "main_collection": "closet",
@@ -2535,7 +2535,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-93",
     "code": "KDJ-93",
-    "name": "Pantalonero extraíble con marco de aluminio",
+    "name": "Pantalonero extraíble con marco de aluminio · Módulo 600mm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
@@ -2601,7 +2601,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-94",
     "code": "KDJ-94",
-    "name": "Pantalonero lateral derecho con cierre suave",
+    "name": "Pantalonero lateral derecho con cierre suave · Módulo 400mm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
@@ -2667,7 +2667,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-95",
     "code": "KDJ-95",
-    "name": "Pantalonero lateral izquierdo con cierre suave",
+    "name": "Pantalonero lateral izquierdo con cierre suave · Módulo 400mm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
@@ -2733,7 +2733,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-96",
     "code": "KDJ-96",
-    "name": "Pantalonero superior con cierre suave",
+    "name": "Pantalonero superior con cierre suave · Módulo 800mm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
@@ -2799,7 +2799,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-97",
     "code": "KDJ-97",
-    "name": "Elevador de ropa con doble cierre suave · mocha",
+    "name": "Elevador de ropa con doble cierre suave · Módulo 510-660mm · Mocha",
     "category_id": "cat-closet-elevadores",
     "category_name": "Elevadores de Ropa",
     "main_collection": "closet",
@@ -2865,7 +2865,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-98",
     "code": "KDJ-98",
-    "name": "Canasta extraíble de ratán · gris oscuro",
+    "name": "Canasta extraíble de ratán · Módulo 600mm · Gris oscuro",
     "category_id": "cat-closet-organizadores",
     "category_name": "Organizadores & Canastas Clóset",
     "main_collection": "closet",
@@ -2931,7 +2931,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-99",
     "code": "KDJ-99",
-    "name": "Zapatero giratorio de 12 niveles",
+    "name": "Zapatero giratorio de 12 niveles · Módulo 760mm",
     "category_id": "cat-closet-zapateros",
     "category_name": "Zapateros Giratorios",
     "main_collection": "closet",
@@ -2998,7 +2998,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-100",
     "code": "KDJ-100",
-    "name": "Cajón con clave revestido en cuero · gris",
+    "name": "Cajón con clave revestido en cuero · Módulo 600mm · Gris",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
@@ -3064,7 +3064,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-101",
     "code": "KDJ-101",
-    "name": "Cajón con clave revestido en cuero · blanco",
+    "name": "Cajón con clave revestido en cuero · Módulo 600mm · Blanco",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
@@ -3130,7 +3130,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-102",
     "code": "KDJ-102",
-    "name": "Cajón con clave revestido en cuero · naranja",
+    "name": "Cajón con clave revestido en cuero · Módulo 600mm · Naranja",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
@@ -3196,7 +3196,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-103",
     "code": "KDJ-103",
-    "name": "Cajón con clave y mecanismo para relojes · 2 niveles, gris",
+    "name": "Cajón con clave y mecanismo para relojes · Módulo 800mm · 2 niveles, gris",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",

@@ -127,7 +127,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({
       {/* Product Metadata beneath the card */}
       <div className="space-y-1">
         <Link to={`/producto/${product.code}`} className="block">
-          <h3 className="text-xs font-sans text-[#18181B] group-hover:text-black transition-colors truncate font-semibold">
+          <h3 className="text-xs font-sans text-[#18181B] group-hover:text-black transition-colors line-clamp-2 min-h-[2rem] leading-snug font-semibold" title={product.name}>
             {product.name}
           </h3>
         </Link>

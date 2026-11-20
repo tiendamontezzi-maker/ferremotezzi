@@ -310,7 +310,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Ej: Canasta lateral de 2 niveles con base de madera"
+                placeholder="Ej: Canasta lateral de 2 niveles con base de madera · Módulo 200mm"
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               />
             </div>

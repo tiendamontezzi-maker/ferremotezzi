@@ -76,14 +76,18 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length >= 45 && parsed[0]?.technical_specs?.ref_fabricante) {
-          return parsed.map((p: Product) => ({
-            ...p,
-            warranty: '2 meses por defectos de fabricación',
-            technical_specs: {
-              ...p.technical_specs,
-              garantia: '2 meses por defectos de fabricación'
-            }
-          }));
+          return parsed.map((p: Product) => {
+            const official = OFFICIAL_PRODUCTS.find(op => op.code === p.code || op.id === p.id);
+            return {
+              ...p,
+              name: official?.name || p.name,
+              warranty: '2 meses por defectos de fabricación',
+              technical_specs: {
+                ...p.technical_specs,
+                garantia: '2 meses por defectos de fabricación'
+              }
+            };
+          });
         }
       } catch (e) {
         console.error('Error loading products cache:', e);
@@ -256,7 +260,19 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
         // React 18 automatically batches all state updates in a single render pass
         if (prodRes.data && prodRes.data.length > 0 && !prodRes.error) {
-          setProducts(prodRes.data as Product[]);
+          const normalized = (prodRes.data as Product[]).map(p => {
+            const official = OFFICIAL_PRODUCTS.find(op => op.code === p.code || op.id === p.id);
+            return {
+              ...p,
+              name: official?.name || p.name,
+              warranty: p.warranty || '2 meses por defectos de fabricación',
+              technical_specs: {
+                ...p.technical_specs,
+                garantia: p.technical_specs?.garantia || '2 meses por defectos de fabricación'
+              }
+            };
+          });
+          setProducts(normalized);
         }
         if (ordRes.data && !ordRes.error) {
           setOrders(ordRes.data as Order[]);
