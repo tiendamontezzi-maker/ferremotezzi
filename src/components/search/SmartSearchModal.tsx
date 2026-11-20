@@ -348,7 +348,6 @@ export const SmartSearchModal: React.FC = () => {
             <div className="space-y-2.5">
               {filteredResults.slice(0, 20).map(product => {
                 const isAdded = addedProductId === product.id;
-                const isOver500k = product.price >= 500000;
                 const totalStock =
                   (product.warehouse_stock ?? 0) +
                   (product.store_stock ?? 0) +
@@ -412,11 +411,6 @@ export const SmartSearchModal: React.FC = () => {
                           {product.technical_specs?.modulo && (
                             <span className="text-[10px] font-mono text-[#52525B] bg-[#F4F4F5] px-2 py-0.5 rounded-md">
                               Mód. {product.technical_specs.modulo}
-                            </span>
-                          )}
-                          {isOver500k && (
-                            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-sans font-semibold bg-[#ECFDF5] text-[#10B981] px-2.5 py-0.5 rounded-full">
-                              <Truck className="w-3 h-3" /> Envío Gratis
                             </span>
                           )}
                         </div>

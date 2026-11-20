@@ -273,11 +273,10 @@ export const ProductDetail: React.FC = () => {
               </span>
             </div>
 
-            {product.price >= 500000 && (
-              <p className="text-xs text-obsidian font-medium flex items-center gap-1.5 pt-1">
-                <Truck className="w-3.5 h-3.5" /> Este producto califica automáticamente para <strong>Envío Gratuito Nacional</strong>.
-              </p>
-            )}
+            <p className="text-xs text-obsidian font-medium flex items-center gap-1.5 pt-1 border-t border-black/[0.06]">
+              <Truck className="w-3.5 h-3.5 text-black shrink-0" />
+              <span>Envío a nivel nacional: <strong className="font-mono text-black font-bold">$25.000 COP</strong></span>
+            </p>
           </div>
 
           {/* Benefit Icons */}
