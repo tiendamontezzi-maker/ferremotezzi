@@ -91,12 +91,12 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-60",
     "code": "KDJ-60",
-    "name": "Canasta lateral de 2 niveles con base de madera · Módulo 20 cm",
+    "name": "Condimentero lateral de 2 niveles con base de madera · Módulo 20 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04SW-01-200",
       "aplicacion": "Cocina",
@@ -152,17 +152,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-61",
     "code": "KDJ-61",
-    "name": "Canasta lateral de 2 niveles en acero al carbono · Módulo 30 cm",
+    "name": "Condimentero lateral de 2 niveles en acero al carbono · Módulo 30 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04SB-01-300",
       "aplicacion": "Cocina",
@@ -218,17 +218,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-62",
     "code": "KDJ-62",
-    "name": "Canasta lateral de vidrio de 3 niveles · Módulo 20 cm",
+    "name": "Condimentero lateral de vidrio de 3 niveles · Módulo 20 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero lateral de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero lateral de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04SG-02-200",
       "aplicacion": "Cocina",
@@ -284,7 +284,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero lateral de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-63",
@@ -355,12 +355,12 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-64",
     "code": "KDJ-64",
-    "name": "Canasta estrecha tipo A de 2 niveles · Módulo 15 cm",
+    "name": "Condimentero estrecho tipo A de 2 niveles · Módulo 15 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta estrecha extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta estrecha extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero estrecho extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero estrecho extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "08NA-150",
       "aplicacion": "Cocina",
@@ -416,17 +416,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta estrecha extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero estrecho extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-65",
     "code": "KDJ-65",
-    "name": "Canasta estrecha tipo B de 2 niveles · Módulo 15 cm",
+    "name": "Condimentero estrecho tipo B de 2 niveles · Módulo 15 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero estrecho extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero estrecho extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "08NB-150",
       "aplicacion": "Cocina",
@@ -482,17 +482,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero estrecho extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-66",
     "code": "KDJ-66",
-    "name": "Canasta estrecha tipo C de 3 niveles · Módulo 15 cm",
+    "name": "Condimentero estrecho tipo C de 3 niveles · Módulo 15 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero estrecho extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero estrecho extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "08NC-150",
       "aplicacion": "Cocina",
@@ -548,7 +548,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero estrecho extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-67",
@@ -1741,12 +1741,12 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-83",
     "code": "KDJ-83",
-    "name": "Canasta elevable de vidrio · Módulo 60 cm",
+    "name": "Condimentero elevable de vidrio · Módulo 60 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04LG-600",
       "aplicacion": "Cocina",
@@ -1754,7 +1754,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "dimensiones": "56.4 × 26 × 54.2 cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
-      "configuracion": "Canasta elevable",
+      "configuracion": "Condimentero elevable",
       "mecanismo": "Sistema mecánico elevable",
       "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
@@ -1802,17 +1802,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-84",
     "code": "KDJ-84",
-    "name": "Canasta elevable de vidrio · Módulo 70 cm",
+    "name": "Condimentero elevable de vidrio · Módulo 70 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04LG-700",
       "aplicacion": "Cocina",
@@ -1820,7 +1820,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "dimensiones": "66.4 × 26 × 54.2 cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
-      "configuracion": "Canasta elevable",
+      "configuracion": "Condimentero elevable",
       "mecanismo": "Sistema mecánico elevable",
       "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
@@ -1868,17 +1868,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-85",
     "code": "KDJ-85",
-    "name": "Canasta elevable de vidrio · Módulo 80 cm",
+    "name": "Condimentero elevable de vidrio · Módulo 80 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04LG-800",
       "aplicacion": "Cocina",
@@ -1886,7 +1886,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "dimensiones": "76.4 × 26 × 54.2 cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
-      "configuracion": "Canasta elevable",
+      "configuracion": "Condimentero elevable",
       "mecanismo": "Sistema mecánico elevable",
       "nota_imagen": "Imagen de referencia de la familia. Verificar variante/medida indicada en ficha."
     },
@@ -1934,7 +1934,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-86",
@@ -2137,12 +2137,12 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-89",
     "code": "KDJ-89",
-    "name": "Canasta elevable eléctrica de alambre · Módulo 70 cm",
+    "name": "Condimentero elevable eléctrico de alambre · Módulo 70 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Sistema eléctrico elevable para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Sistema eléctrico elevable para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero elevable eléctrico de alambre para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero elevable eléctrico de alambre para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04EF-700",
       "aplicacion": "Cocina",
@@ -2150,7 +2150,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "dimensiones": "70 × 25.6 × 70 cm",
       "material": "Acero plano 304 con tratamiento por electrólisis; laterales en hierro",
       "acabado": "Laterales con pintura electrostática",
-      "configuracion": "Canasta elevable eléctrica",
+      "configuracion": "Condimentero elevable",
       "mecanismo": "Control táctil; elevación y descenso motorizados; sin control por voz",
       "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
@@ -2198,17 +2198,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Sistema eléctrico elevable para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero elevable eléctrico de alambre para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-90",
     "code": "KDJ-90",
-    "name": "Canasta elevable eléctrica de vidrio · Módulo 60 cm",
+    "name": "Condimentero elevable eléctrico de vidrio · Módulo 60 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
-    "full_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "short_description": "Condimentero elevable eléctrico de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Condimentero elevable eléctrico de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04EG-600",
       "aplicacion": "Cocina",
@@ -2216,7 +2216,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
       "dimensiones": "60 × 25.6 × 70 cm",
       "material": "Vidrio templado + aluminio; laterales en hierro",
       "acabado": "Laterales con pintura electrostática",
-      "configuracion": "Canasta elevable eléctrica",
+      "configuracion": "Condimentero elevable",
       "mecanismo": "Control táctil; elevación y descenso motorizados; sin control por voz",
       "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
@@ -2264,7 +2264,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
+    "description": "Condimentero elevable eléctrico de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-201",

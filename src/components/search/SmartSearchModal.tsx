@@ -48,7 +48,7 @@ export const SmartSearchModal: React.FC = () => {
   // Sugerencias rápidas curadas en Español
   const quickSuggestions = [
     { label: 'KDJ-103 · Caja Fuerte & Relojes', query: 'KDJ-103', collection: 'closet' as MainCollection },
-    { label: 'KDJ-90 · Canasta Eléctrica', query: 'KDJ-90', collection: 'cocina' as MainCollection },
+    { label: 'KDJ-90 · Condimentero Eléctrico', query: 'KDJ-90', collection: 'cocina' as MainCollection },
     { label: 'KDJ-92 · Bandeja Joyero', query: 'KDJ-92', collection: 'closet' as MainCollection },
     { label: 'KDJ-69 · Alacena Madera & Acero', query: 'KDJ-69', collection: 'cocina' as MainCollection },
     { label: 'KDJ-74 · Esquina Mágica Vidrio', query: 'KDJ-74', collection: 'cocina' as MainCollection },
