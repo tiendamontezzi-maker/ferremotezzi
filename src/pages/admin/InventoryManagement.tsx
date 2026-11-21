@@ -164,11 +164,11 @@ export const InventoryManagement: React.FC = () => {
           technical_specs: {
             material: String(row['Material'] || 'Aluminio anodizado y acero'),
             acabado: String(row['Acabado'] || 'Gris Grafito Anodizado'),
-            dimensiones: String(row['Dimensiones'] || '564 × 475 × 200 mm'),
+            dimensiones: String(row['Dimensiones'] || '56.4 × 47.5 × 20 cm'),
             mecanismo: 'Guías ocultas de extracción total con cierre suave',
             capacidad_carga: '30 kg',
-            compatibilidad: String(row['Módulo Compatible'] || '600mm'),
-            modulo: String(row['Módulo Compatible'] || '600mm')
+            compatibilidad: String(row['Módulo Compatible'] || '60 cm'),
+            modulo: String(row['Módulo Compatible'] || '60 cm')
           },
           benefits: []
         });

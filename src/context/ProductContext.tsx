@@ -81,9 +81,16 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
             return {
               ...p,
               name: official?.name || p.name,
+              short_description: official?.short_description || p.short_description,
+              full_description: official?.full_description || p.full_description,
+              description: official?.description || p.description,
+              benefits: official?.benefits || p.benefits,
               warranty: '2 meses por defectos de fabricación',
               technical_specs: {
                 ...p.technical_specs,
+                modulo: official?.technical_specs?.modulo || p.technical_specs?.modulo,
+                ancho_modulo: official?.technical_specs?.ancho_modulo || p.technical_specs?.ancho_modulo,
+                dimensiones: official?.technical_specs?.dimensiones || p.technical_specs?.dimensiones,
                 garantia: '2 meses por defectos de fabricación'
               }
             };
@@ -265,9 +272,16 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
             return {
               ...p,
               name: official?.name || p.name,
+              short_description: official?.short_description || p.short_description,
+              full_description: official?.full_description || p.full_description,
+              description: official?.description || p.description,
+              benefits: official?.benefits || p.benefits,
               warranty: p.warranty || '2 meses por defectos de fabricación',
               technical_specs: {
                 ...p.technical_specs,
+                modulo: official?.technical_specs?.modulo || p.technical_specs?.modulo,
+                ancho_modulo: official?.technical_specs?.ancho_modulo || p.technical_specs?.ancho_modulo,
+                dimensiones: official?.technical_specs?.dimensiones || p.technical_specs?.dimensiones,
                 garantia: p.technical_specs?.garantia || '2 meses por defectos de fabricación'
               }
             };

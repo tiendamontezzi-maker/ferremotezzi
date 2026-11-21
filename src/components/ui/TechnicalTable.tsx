@@ -21,7 +21,14 @@ export const TechnicalTable: React.FC<TechnicalTableProps> = ({
       ? { label: 'REF. FABRICANTE', value: specs.ref_fabricante || sku || '' }
       : null,
     { label: 'APLICACIÓN', value: specs.aplicacion || 'Cocina / Clóset' },
-    specs.modulo ? { label: 'MÓDULO COMPATIBLE', value: specs.modulo } : null,
+    specs.modulo
+      ? {
+          label: 'MÓDULO COMPATIBLE',
+          value: specs.modulo.includes('Aglomerado')
+            ? specs.modulo
+            : `${specs.modulo} (Medida externa · Aglomerado 1.5 cm)`
+        }
+      : null,
     { label: 'DIMENSIONES', value: specs.dimensiones },
     { label: 'MATERIALES', value: specs.material },
     { label: 'ACABADO / COLOR', value: specs.acabado },

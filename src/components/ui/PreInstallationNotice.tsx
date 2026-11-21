@@ -34,6 +34,14 @@ export const PreInstallationNotice: React.FC<PreInstallationNoticeProps> = ({
 
       {isOpen && (
         <div className="p-5 text-sm text-obsidian/85 space-y-3 font-sans border-t border-black/[0.06] leading-relaxed bg-black/[0.01]">
+          {/* Important Module Notice: Medida externa con aglomerado de 1.5 cm */}
+          <div className="flex items-start gap-3 bg-[#FAF6F0] p-3.5 rounded-xl border border-[#E5D8C8]">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#B68A48] shrink-0 mt-2" />
+            <p className="text-xs sm:text-sm text-[#18181B] leading-relaxed">
+              <strong className="text-black">Módulo de Medida Externa (Aglomerado 1.5 cm):</strong> Todos los productos Montezzi vienen diseñados con módulo de <strong>medida externa</strong> calculada para muebles fabricados en <strong>lámina / aglomerado de 1.5 cm (15 mm) de espesor</strong>. Verifique siempre el vano interno libre de su gabinete antes de realizar cortes o ensambles.
+            </p>
+          </div>
+
           <div className="flex items-start gap-3">
             <div className="w-1.5 h-1.5 rounded-full bg-black shrink-0 mt-2" />
             <p>

@@ -32,8 +32,8 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
   const [minStockAlert, setMinStockAlert] = useState<number>(3);
   const [imageUrl, setImageUrl] = useState('');
   const [galleryUrls, setGalleryUrls] = useState<string[]>([]);
-  const [modulo, setModulo] = useState('600mm');
-  const [dimensiones, setDimensiones] = useState('564 × 450 × 200 mm');
+  const [modulo, setModulo] = useState('60 cm');
+  const [dimensiones, setDimensiones] = useState('56.4 × 45 × 20 cm');
   const [material, setMaterial] = useState('Acero al carbono + base antideslizante + MDF; estructura en hierro');
   const [acabado, setAcabado] = useState('Estructura con pintura electrostática');
   const [configuracion, setConfiguracion] = useState('2 niveles');
@@ -89,8 +89,8 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
       setMinStockAlert(3);
       setImageUrl('');
       setGalleryUrls([]);
-      setModulo('600mm');
-      setDimensiones('564 × 450 × 200 mm');
+      setModulo('60 cm');
+      setDimensiones('56.4 × 45 × 20 cm');
       setMaterial('Acero al carbono + base antideslizante + MDF; estructura en hierro');
       setAcabado('Estructura con pintura electrostática');
       setConfiguracion('2 niveles');
@@ -310,7 +310,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Ej: Canasta lateral de 2 niveles con base de madera · Módulo 200mm"
+                placeholder="Ej: Canasta lateral de 2 niveles con base de madera · Módulo 20 cm"
                 className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
               />
             </div>
@@ -468,7 +468,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   type="text"
                   value={modulo}
                   onChange={(e) => setModulo(e.target.value)}
-                  placeholder="Ej: 200mm, 600mm, 800-900mm"
+                  placeholder="Ej: 20 cm, 60 cm, 80-90 cm"
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>
@@ -479,7 +479,7 @@ export const ProductFormModal: React.FC<ProductFormModalProps> = ({
                   type="text"
                   value={dimensiones}
                   onChange={(e) => setDimensiones(e.target.value)}
-                  placeholder="Ej: 145 × 480 × 590 mm"
+                  placeholder="Ej: 14.5 × 48 × 59 cm"
                   className="w-full bg-[#F4F4F5] border border-transparent focus:border-black/20 focus:bg-white px-3.5 py-2.5 text-[#18181B] focus:outline-none rounded-xl transition-all"
                 />
               </div>

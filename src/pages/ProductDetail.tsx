@@ -250,6 +250,9 @@ export const ProductDetail: React.FC = () => {
                   REF. FABRICANTE {product.technical_specs?.ref_fabricante || product.sku}
                 </span>
               )}
+              <span className="text-[11px] font-sans font-semibold tracking-wider text-[#18181B] bg-black/[0.04] border border-black/10 px-2.5 py-0.5 rounded-full">
+                Módulo externo · Aglomerado 1.5 cm
+              </span>
             </div>
             <h1 className="font-sans text-2xl sm:text-3xl lg:text-4xl text-obsidian mt-1.5 leading-snug font-bold uppercase tracking-wider">
               {product.name}

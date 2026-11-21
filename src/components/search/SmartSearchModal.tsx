@@ -53,7 +53,7 @@ export const SmartSearchModal: React.FC = () => {
     { label: 'KDJ-69 · Alacena Madera & Acero', query: 'KDJ-69', collection: 'cocina' as MainCollection },
     { label: 'KDJ-74 · Esquina Mágica Vidrio', query: 'KDJ-74', collection: 'cocina' as MainCollection },
     { label: 'Cierre Suave', query: 'cierre suave', collection: 'all' as const },
-    { label: 'Módulo 600mm', query: '600mm', collection: 'all' as const },
+    { label: 'Módulo 60 cm', query: '60 cm', collection: 'all' as const },
   ];
 
   // Lógica de filtrado inteligente (solo se ejecuta cuando el buscador está abierto)

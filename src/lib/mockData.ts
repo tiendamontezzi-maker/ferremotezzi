@@ -41,7 +41,7 @@ export const OFFICIAL_CATEGORIES: Category[] = [
     "name": "Cuberteros & Accesorios",
     "slug": "cuberteros",
     "main_collection": "cocina",
-    "description": "Bandejas cuberteras termoformadas en ABS técnico plateado mate para gavetas de 600mm y 700mm."
+    "description": "Bandejas cuberteras termoformadas en ABS técnico plateado mate para gavetas de 60 cm y 70 cm."
   },
   {
     "id": "cat-closet-joyeros",
@@ -91,17 +91,17 @@ export const OFFICIAL_PRODUCTS: Product[] = [
   {
     "id": "prod-kdj-60",
     "code": "KDJ-60",
-    "name": "Canasta lateral de 2 niveles con base de madera · Módulo 200mm",
+    "name": "Canasta lateral de 2 niveles con base de madera · Módulo 20 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado.",
-    "full_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado.",
+    "short_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04SW-01-200",
       "aplicacion": "Cocina",
-      "modulo": "200mm",
-      "dimensiones": "145 × 480 × 590 mm",
+      "modulo": "20 cm",
+      "dimensiones": "14.5 × 48 × 59 cm",
       "material": "Acero plano + base antideslizante + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "2 niveles",
@@ -111,7 +111,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 200mm"
+        "value": "Módulo 20 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -152,22 +152,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado."
+    "description": "Canasta lateral extraíble para módulo angosto, con base de madera/MDF y sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-61",
     "code": "KDJ-61",
-    "name": "Canasta lateral de 2 niveles en acero al carbono · Módulo 300mm",
+    "name": "Canasta lateral de 2 niveles en acero al carbono · Módulo 30 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina.",
-    "full_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina.",
+    "short_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04SB-01-300",
       "aplicacion": "Cocina",
-      "modulo": "300mm",
-      "dimensiones": "249 × 480 × 592 mm",
+      "modulo": "30 cm",
+      "dimensiones": "24.9 × 48 × 59.2 cm",
       "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "2 niveles",
@@ -177,7 +177,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 300mm"
+        "value": "Módulo 30 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -218,22 +218,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina."
+    "description": "Canasta lateral extraíble en acero al carbono para organización vertical de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-62",
     "code": "KDJ-62",
-    "name": "Canasta lateral de vidrio de 3 niveles · Módulo 200mm",
+    "name": "Canasta lateral de vidrio de 3 niveles · Módulo 20 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
-    "full_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
+    "short_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04SG-02-200",
       "aplicacion": "Cocina",
-      "modulo": "200mm",
-      "dimensiones": "149 × 480 × 672 mm",
+      "modulo": "20 cm",
+      "dimensiones": "14.9 × 48 × 67.2 cm",
       "material": "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "3 niveles",
@@ -243,7 +243,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 200mm"
+        "value": "Módulo 20 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -284,22 +284,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina."
+    "description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-63",
     "code": "KDJ-63",
-    "name": "Especiero multifunción de vidrio de 3 niveles · Módulo 350mm",
+    "name": "Especiero multifunción de vidrio de 3 niveles · Módulo 35 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
-    "full_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina.",
+    "short_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "03DG-350",
       "aplicacion": "Cocina",
-      "modulo": "350mm",
-      "dimensiones": "300 × 435 × 495 mm",
+      "modulo": "35 cm",
+      "dimensiones": "30 × 43.5 × 49.5 cm",
       "material": "Vidrio templado + aluminio con borde oxidado + acero inoxidable 201 + base de madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "3 niveles",
@@ -309,7 +309,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 350mm"
+        "value": "Módulo 35 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -350,22 +350,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina."
+    "description": "Sistema extraíble de vidrio para organización de botellas, especias y accesorios de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-64",
     "code": "KDJ-64",
-    "name": "Canasta estrecha tipo A de 2 niveles · Módulo 150mm",
+    "name": "Canasta estrecha tipo A de 2 niveles · Módulo 15 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta estrecha extraíble tipo A para módulos de 150 mm.",
-    "full_description": "Canasta estrecha extraíble tipo A para módulos de 150 mm.",
+    "short_description": "Canasta estrecha extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta estrecha extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "08NA-150",
       "aplicacion": "Cocina",
-      "modulo": "150mm",
-      "dimensiones": "95 × 450 × 500 mm",
+      "modulo": "15 cm",
+      "dimensiones": "9.5 × 45 × 50 cm",
       "material": "Canasta en hierro",
       "acabado": "Cromado",
       "configuracion": "2 niveles",
@@ -375,7 +375,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 150mm"
+        "value": "Módulo 15 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -416,22 +416,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta estrecha extraíble tipo A para módulos de 150 mm."
+    "description": "Canasta estrecha extraíble tipo A para módulos de 15 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-65",
     "code": "KDJ-65",
-    "name": "Canasta estrecha tipo B de 2 niveles · Módulo 150mm",
+    "name": "Canasta estrecha tipo B de 2 niveles · Módulo 15 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
-    "full_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
+    "short_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "08NB-150",
       "aplicacion": "Cocina",
-      "modulo": "150mm",
-      "dimensiones": "108 × 460 × 480 mm",
+      "modulo": "15 cm",
+      "dimensiones": "10.8 × 46 × 48 cm",
       "material": "Canasta en hierro",
       "acabado": "Cromado",
       "configuracion": "2 niveles",
@@ -441,7 +441,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 150mm"
+        "value": "Módulo 15 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -482,22 +482,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave."
+    "description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-66",
     "code": "KDJ-66",
-    "name": "Canasta estrecha tipo C de 3 niveles · Módulo 150mm",
+    "name": "Canasta estrecha tipo C de 3 niveles · Módulo 15 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
-    "full_description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave.",
+    "short_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "08NC-150",
       "aplicacion": "Cocina",
-      "modulo": "150mm",
-      "dimensiones": "110 × 460 × 475 mm",
+      "modulo": "15 cm",
+      "dimensiones": "11 × 46 × 47.5 cm",
       "material": "Canasta en hierro",
       "acabado": "Cromado",
       "configuracion": "3 niveles",
@@ -507,7 +507,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 150mm"
+        "value": "Módulo 15 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -548,22 +548,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta estrecha extraíble para módulos de 150 mm con cierre suave."
+    "description": "Canasta estrecha extraíble para módulos de 15 cm con cierre suave. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-67",
     "code": "KDJ-67",
-    "name": "Especiero de alambre de 3 niveles · Módulo 300mm",
+    "name": "Especiero de alambre de 3 niveles · Módulo 30 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Especiero extraíble de alambre para módulo de 300 mm.",
-    "full_description": "Especiero extraíble de alambre para módulo de 300 mm.",
+    "short_description": "Especiero extraíble de alambre para módulo de 30 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Especiero extraíble de alambre para módulo de 30 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "08ND-300",
       "aplicacion": "Cocina",
-      "modulo": "300mm",
-      "dimensiones": "245 × 460 × 515 mm",
+      "modulo": "30 cm",
+      "dimensiones": "24.5 × 46 × 51.5 cm",
       "material": "Canasta de alambre redondo en hierro",
       "acabado": "Cromado",
       "configuracion": "3 niveles",
@@ -573,7 +573,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 300mm"
+        "value": "Módulo 30 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -614,22 +614,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Especiero extraíble de alambre para módulo de 300 mm."
+    "description": "Especiero extraíble de alambre para módulo de 30 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-68",
     "code": "KDJ-68",
-    "name": "Despensa de alambre de 6 niveles · Módulo 450mm",
+    "name": "Despensa de alambre de 6 niveles · Módulo 45 cm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
-    "full_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04PR-456",
       "aplicacion": "Cocina",
-      "modulo": "450mm",
-      "dimensiones": "391 × 512 × (1920-2220) mm",
+      "modulo": "45 cm",
+      "dimensiones": "39.1 × 51.2 × (192-222) cm",
       "material": "Canastas de alambre redondo en hierro; estructura en hierro",
       "acabado": "Canastas cromadas; estructura con pintura electrostática",
       "configuracion": "6 niveles",
@@ -639,7 +639,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 450mm"
+        "value": "Módulo 45 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -680,22 +680,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Sistema tipo despensa/torre con seis niveles de almacenamiento."
+    "description": "Sistema tipo despensa/torre con seis niveles de almacenamiento. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-69",
     "code": "KDJ-69",
-    "name": "Despensa en acero al carbono y madera de 6 niveles · Módulo 450mm",
+    "name": "Despensa en acero al carbono y madera de 6 niveles · Módulo 45 cm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
-    "full_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04PB-456",
       "aplicacion": "Cocina",
-      "modulo": "450mm",
-      "dimensiones": "391 × 512 × (1920-2220) mm",
+      "modulo": "45 cm",
+      "dimensiones": "39.1 × 51.2 × (192-222) cm",
       "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "6 niveles",
@@ -705,7 +705,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 450mm"
+        "value": "Módulo 45 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -746,22 +746,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF."
+    "description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-70",
     "code": "KDJ-70",
-    "name": "Despensa de vidrio de 6 niveles · Módulo 450mm",
+    "name": "Despensa de vidrio de 6 niveles · Módulo 45 cm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado.",
-    "full_description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado.",
+    "short_description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04PG-456",
       "aplicacion": "Cocina",
-      "modulo": "450mm",
-      "dimensiones": "391 × 512 × (1920-2220) mm",
+      "modulo": "45 cm",
+      "dimensiones": "39.1 × 51.2 × (192-222) cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "6 niveles",
@@ -771,7 +771,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 450mm"
+        "value": "Módulo 45 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -812,22 +812,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado."
+    "description": "Despensa extraíble premium de seis niveles con canastas en vidrio templado. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-71",
     "code": "KDJ-71",
-    "name": "Torre extraíble de vidrio de 6 niveles · Módulo 200mm",
+    "name": "Torre extraíble de vidrio de 6 niveles · Módulo 20 cm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Torre extraíble de seis niveles para módulo angosto.",
-    "full_description": "Torre extraíble de seis niveles para módulo angosto.",
+    "short_description": "Torre extraíble de seis niveles para módulo angosto. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Torre extraíble de seis niveles para módulo angosto. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04TG-206",
       "aplicacion": "Cocina",
-      "modulo": "200mm",
-      "dimensiones": "140 × 485 × (1800-2100) mm",
+      "modulo": "20 cm",
+      "dimensiones": "14 × 48.5 × (180-210) cm",
       "material": "Vidrio templado + aluminio + base antideslizante + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "6 niveles",
@@ -837,7 +837,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 200mm"
+        "value": "Módulo 20 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -878,22 +878,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Torre extraíble de seis niveles para módulo angosto."
+    "description": "Torre extraíble de seis niveles para módulo angosto. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-72",
     "code": "KDJ-72",
-    "name": "Torre extraíble de alambre de 6 niveles · Módulo 200mm",
+    "name": "Torre extraíble de alambre de 6 niveles · Módulo 20 cm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
-    "full_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles de almacenamiento. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04PR-206",
       "aplicacion": "Cocina",
-      "modulo": "200mm",
-      "dimensiones": "140 × 485 × (1800-2100) mm",
+      "modulo": "20 cm",
+      "dimensiones": "14 × 48.5 × (180-210) cm",
       "material": "Canastas de alambre redondo en hierro; estructura en hierro",
       "acabado": "Canastas cromadas; estructura con pintura electrostática",
       "configuracion": "6 niveles",
@@ -903,7 +903,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 200mm"
+        "value": "Módulo 20 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -944,22 +944,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Sistema tipo despensa/torre con seis niveles de almacenamiento."
+    "description": "Sistema tipo despensa/torre con seis niveles de almacenamiento. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-73",
     "code": "KDJ-73",
-    "name": "Torre extraíble en acero al carbono y madera de 6 niveles · Módulo 300mm",
+    "name": "Torre extraíble en acero al carbono y madera de 6 niveles · Módulo 30 cm",
     "category_id": "cat-cocina-alacenas",
     "category_name": "Alacenas & Columnas",
     "main_collection": "cocina",
-    "short_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
-    "full_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF.",
+    "short_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04TB-306",
       "aplicacion": "Cocina",
-      "modulo": "300mm",
-      "dimensiones": "240 × 485 × (1800-2100) mm",
+      "modulo": "30 cm",
+      "dimensiones": "24 × 48.5 × (180-210) cm",
       "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "6 niveles",
@@ -969,7 +969,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 300mm"
+        "value": "Módulo 30 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1010,22 +1010,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF."
+    "description": "Sistema tipo despensa/torre con seis niveles y bases de madera/MDF. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-74",
     "code": "KDJ-74",
-    "name": "Esquinero universal de vidrio · Módulo 800-900mm",
+    "name": "Esquinero universal de vidrio · Módulo 80-90 cm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Esquinero universal de vidrio para aprovechar módulos de esquina.",
-    "full_description": "Esquinero universal de vidrio para aprovechar módulos de esquina.",
+    "short_description": "Esquinero universal de vidrio para aprovechar módulos de esquina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Esquinero universal de vidrio para aprovechar módulos de esquina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04UG",
       "aplicacion": "Cocina",
-      "modulo": "800-900mm",
-      "dimensiones": "648 × 462 × 585 mm",
+      "modulo": "80-90 cm",
+      "dimensiones": "64.8 × 46.2 × 58.5 cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "Esquinero universal",
@@ -1035,7 +1035,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800-900mm"
+        "value": "Módulo 80-90 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1076,22 +1076,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Esquinero universal de vidrio para aprovechar módulos de esquina."
+    "description": "Esquinero universal de vidrio para aprovechar módulos de esquina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-75",
     "code": "KDJ-75",
-    "name": "Esquinero universal de alambre · Módulo 800-900mm",
+    "name": "Esquinero universal de alambre · Módulo 80-90 cm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Esquinero universal de alambre para módulos de esquina.",
-    "full_description": "Esquinero universal de alambre para módulos de esquina.",
+    "short_description": "Esquinero universal de alambre para módulos de esquina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Esquinero universal de alambre para módulos de esquina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04UR",
       "aplicacion": "Cocina",
-      "modulo": "800-900mm",
-      "dimensiones": "648 × 462 × 585 mm",
+      "modulo": "80-90 cm",
+      "dimensiones": "64.8 × 46.2 × 58.5 cm",
       "material": "Canasta en hierro; estructura en hierro",
       "acabado": "Canasta cromada; estructura con pintura electrostática",
       "configuracion": "Esquinero universal",
@@ -1101,7 +1101,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800-900mm"
+        "value": "Módulo 80-90 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1142,22 +1142,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Esquinero universal de alambre para módulos de esquina."
+    "description": "Esquinero universal de alambre para módulos de esquina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-76",
     "code": "KDJ-76",
-    "name": "Esquinero universal en acero al carbono y madera · Módulo 800-900mm",
+    "name": "Esquinero universal en acero al carbono y madera · Módulo 80-90 cm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Esquinero universal con base de madera/MDF y estructura metálica.",
-    "full_description": "Esquinero universal con base de madera/MDF y estructura metálica.",
+    "short_description": "Esquinero universal con base de madera/MDF y estructura metálica. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Esquinero universal con base de madera/MDF y estructura metálica. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04UB",
       "aplicacion": "Cocina",
-      "modulo": "800-900mm",
-      "dimensiones": "648 × 462 × 585 mm",
+      "modulo": "80-90 cm",
+      "dimensiones": "64.8 × 46.2 × 58.5 cm",
       "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "Esquinero universal",
@@ -1167,7 +1167,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800-900mm"
+        "value": "Módulo 80-90 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1208,22 +1208,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Esquinero universal con base de madera/MDF y estructura metálica."
+    "description": "Esquinero universal con base de madera/MDF y estructura metálica. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-77",
     "code": "KDJ-77",
-    "name": "Esquinero giratorio derecho o izquierdo · Módulo 900-1000mm",
+    "name": "Esquinero giratorio derecho o izquierdo · Módulo 90-100 cm",
     "category_id": "cat-cocina-esquinas",
     "category_name": "Esquinas Mágicas",
     "main_collection": "cocina",
-    "short_description": "Magic corner reversible para apertura hacia derecha o izquierda.",
-    "full_description": "Magic corner reversible para apertura hacia derecha o izquierda.",
+    "short_description": "Magic corner reversible para apertura hacia derecha o izquierda. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Magic corner reversible para apertura hacia derecha o izquierda. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04MB",
       "aplicacion": "Cocina",
-      "modulo": "900-1000mm",
-      "dimensiones": "760 × 500 × 530 mm",
+      "modulo": "90-100 cm",
+      "dimensiones": "76 × 50 × 53 cm",
       "material": "Acero al carbono + base antideslizante + MDF; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "Giro a derecha o izquierda",
@@ -1233,7 +1233,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 900-1000mm"
+        "value": "Módulo 90-100 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1274,22 +1274,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Magic corner reversible para apertura hacia derecha o izquierda."
+    "description": "Magic corner reversible para apertura hacia derecha o izquierda. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-198",
     "code": "KDJ-198",
-    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 600mm",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 60 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
-    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
+    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "FS502601/FS502602",
       "aplicacion": "Cocina",
-      "modulo": "600mm",
-      "dimensiones": "564 × 425 × 165 mm",
+      "modulo": "60 cm",
+      "dimensiones": "56.4 × 42.5 × 16.5 cm",
       "material": "Acero inoxidable 201",
       "acabado": "Pulido",
       "configuracion": "Juego de 2 canastas: plana + portaplatos",
@@ -1299,7 +1299,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1340,22 +1340,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla."
+    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-199",
     "code": "KDJ-199",
-    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 700mm",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 70 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
-    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
+    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "FS502701/FS502702",
       "aplicacion": "Cocina",
-      "modulo": "700mm",
-      "dimensiones": "664 × 425 × 165 mm",
+      "modulo": "70 cm",
+      "dimensiones": "66.4 × 42.5 × 16.5 cm",
       "material": "Acero inoxidable 201",
       "acabado": "Pulido",
       "configuracion": "Juego de 2 canastas: plana + portaplatos",
@@ -1365,7 +1365,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 700mm"
+        "value": "Módulo 70 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1406,22 +1406,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla."
+    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-200",
     "code": "KDJ-200",
-    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 800mm",
+    "name": "Juego de canastas extraíbles SS201: plana y portaplatos · Módulo 80 cm",
     "category_id": "cat-cocina-condimenteros",
     "category_name": "Condimenteros & Portaplatos",
     "main_collection": "cocina",
-    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
-    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla.",
+    "short_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "FS502801/FS502802",
       "aplicacion": "Cocina",
-      "modulo": "800mm",
-      "dimensiones": "764 × 425 × 165 mm",
+      "modulo": "80 cm",
+      "dimensiones": "76.4 × 42.5 × 16.5 cm",
       "material": "Acero inoxidable 201",
       "acabado": "Pulido",
       "configuracion": "Juego de 2 canastas: plana + portaplatos",
@@ -1431,7 +1431,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800mm"
+        "value": "Módulo 80 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1472,22 +1472,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla."
+    "description": "Juego de canastas de tres lados para almacenamiento y organización de vajilla. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-78",
     "code": "KDJ-78",
-    "name": "Basurero doble con tapa de 20 + 20 litros · Módulo 400mm",
+    "name": "Basurero doble con tapa de 20 + 20 litros · Módulo 40 cm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Basurero doble extraíble con tapa para módulo de cocina.",
-    "full_description": "Basurero doble extraíble con tapa para módulo de cocina.",
+    "short_description": "Basurero doble extraíble con tapa para módulo de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Basurero doble extraíble con tapa para módulo de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "06DD-220W",
       "aplicacion": "Cocina",
-      "modulo": "400mm",
-      "dimensiones": "335 × 500 × 470mm",
+      "modulo": "40 cm",
+      "dimensiones": "33.5 × 50 × 47 cm",
       "material": "ABS",
       "acabado": "No especificado",
       "configuracion": "2 recipientes: 20 L + 20 L, con tapa",
@@ -1497,7 +1497,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 400mm"
+        "value": "Módulo 40 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1538,22 +1538,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Basurero doble extraíble con tapa para módulo de cocina."
+    "description": "Basurero doble extraíble con tapa para módulo de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-79",
     "code": "KDJ-79",
-    "name": "Basurero doble gris de 10 + 20 litros · Módulo 300mm",
+    "name": "Basurero doble gris de 10 + 20 litros · Módulo 30 cm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Basurero doble extraíble para clasificación de residuos.",
-    "full_description": "Basurero doble extraíble para clasificación de residuos.",
+    "short_description": "Basurero doble extraíble para clasificación de residuos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Basurero doble extraíble para clasificación de residuos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "06DD-1020",
       "aplicacion": "Cocina",
-      "modulo": "300mm",
-      "dimensiones": "263 × 490 × 424 mm",
+      "modulo": "30 cm",
+      "dimensiones": "26.3 × 49 × 42.4 cm",
       "material": "ABS + hierro",
       "acabado": "Gris",
       "configuracion": "2 recipientes: 10 L + 20 L",
@@ -1563,7 +1563,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 300mm"
+        "value": "Módulo 30 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1604,22 +1604,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Basurero doble extraíble para clasificación de residuos."
+    "description": "Basurero doble extraíble para clasificación de residuos. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-80",
     "code": "KDJ-80",
-    "name": "Basurero doble gris de 20 + 20 litros · Módulo 400mm",
+    "name": "Basurero doble gris de 20 + 20 litros · Módulo 40 cm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Basurero doble extraíble para módulo de 400 mm.",
-    "full_description": "Basurero doble extraíble para módulo de 400 mm.",
+    "short_description": "Basurero doble extraíble para módulo de 40 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Basurero doble extraíble para módulo de 40 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "06DD-220",
       "aplicacion": "Cocina",
-      "modulo": "400mm",
-      "dimensiones": "342 × 490 × 424 mm",
+      "modulo": "40 cm",
+      "dimensiones": "34.2 × 49 × 42.4 cm",
       "material": "ABS + hierro",
       "acabado": "Gris",
       "configuracion": "2 recipientes: 20 L + 20 L",
@@ -1629,7 +1629,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 400mm"
+        "value": "Módulo 40 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1670,22 +1670,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Basurero doble extraíble para módulo de 400 mm."
+    "description": "Basurero doble extraíble para módulo de 40 cm. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-81",
     "code": "KDJ-81",
-    "name": "Basurero de 14 litros en inoxidable 304 · Módulo 400mm",
+    "name": "Basurero de 14 litros en inoxidable 304 · Módulo 40 cm",
     "category_id": "cat-cocina-basureros",
     "category_name": "Basureros Ecológicos",
     "main_collection": "cocina",
-    "short_description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304.",
-    "full_description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304.",
+    "short_description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "SWG1-430",
       "aplicacion": "Cocina",
-      "modulo": "400mm",
-      "dimensiones": "365 × 289 × 370 mm",
+      "modulo": "40 cm",
+      "dimensiones": "36.5 × 28.9 × 37 cm",
       "material": "Plástico + acero inoxidable SUS304",
       "acabado": "Acero inoxidable pulido",
       "configuracion": "Capacidad 14 L",
@@ -1695,7 +1695,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 400mm"
+        "value": "Módulo 40 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1736,22 +1736,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304."
+    "description": "Basurero compacto de 14 litros con componentes en acero inoxidable 304. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-83",
     "code": "KDJ-83",
-    "name": "Canasta elevable de vidrio · Módulo 600mm",
+    "name": "Canasta elevable de vidrio · Módulo 60 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
-    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
+    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04LG-600",
       "aplicacion": "Cocina",
-      "modulo": "600mm",
-      "dimensiones": "564 × 260 × 542 mm",
+      "modulo": "60 cm",
+      "dimensiones": "56.4 × 26 × 54.2 cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "Canasta elevable",
@@ -1761,7 +1761,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1802,22 +1802,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Canasta elevable de vidrio para módulos superiores de cocina."
+    "description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-84",
     "code": "KDJ-84",
-    "name": "Canasta elevable de vidrio · Módulo 700mm",
+    "name": "Canasta elevable de vidrio · Módulo 70 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
-    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
+    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04LG-700",
       "aplicacion": "Cocina",
-      "modulo": "700mm",
-      "dimensiones": "664 × 260 × 542 mm",
+      "modulo": "70 cm",
+      "dimensiones": "66.4 × 26 × 54.2 cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "Canasta elevable",
@@ -1827,7 +1827,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 700mm"
+        "value": "Módulo 70 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1868,22 +1868,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta elevable de vidrio para módulos superiores de cocina."
+    "description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-85",
     "code": "KDJ-85",
-    "name": "Canasta elevable de vidrio · Módulo 800mm",
+    "name": "Canasta elevable de vidrio · Módulo 80 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
-    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina.",
+    "short_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04LG-800",
       "aplicacion": "Cocina",
-      "modulo": "800mm",
-      "dimensiones": "764 × 260 × 542 mm",
+      "modulo": "80 cm",
+      "dimensiones": "76.4 × 26 × 54.2 cm",
       "material": "Vidrio templado + aluminio + base en acero inoxidable 201 + madera; estructura en hierro",
       "acabado": "Estructura con pintura electrostática",
       "configuracion": "Canasta elevable",
@@ -1893,7 +1893,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800mm"
+        "value": "Módulo 80 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -1934,22 +1934,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta elevable de vidrio para módulos superiores de cocina."
+    "description": "Canasta elevable de vidrio para módulos superiores de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-86",
     "code": "KDJ-86",
-    "name": "Locero elevable SS304 con portacubiertos · Módulo 600mm",
+    "name": "Locero elevable SS304 con portacubiertos · Módulo 60 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
-    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
+    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04L3-600",
       "aplicacion": "Cocina",
-      "modulo": "600mm",
-      "dimensiones": "564 × 260 × 542 mm",
+      "modulo": "60 cm",
+      "dimensiones": "56.4 × 26 × 54.2 cm",
       "material": "Canasta en acero inoxidable 304; estructura en hierro",
       "acabado": "Estructura gris con pintura electrostática",
       "configuracion": "Canasta plana + portaplatos + caja para cubiertos/palillos",
@@ -1959,7 +1959,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2000,22 +2000,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos."
+    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-87",
     "code": "KDJ-87",
-    "name": "Locero elevable SS304 con portacubiertos · Módulo 700mm",
+    "name": "Locero elevable SS304 con portacubiertos · Módulo 70 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
-    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
+    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04L3-700",
       "aplicacion": "Cocina",
-      "modulo": "700mm",
-      "dimensiones": "664 × 260 × 542 mm",
+      "modulo": "70 cm",
+      "dimensiones": "66.4 × 26 × 54.2 cm",
       "material": "Canasta en acero inoxidable 304; estructura en hierro",
       "acabado": "Estructura gris con pintura electrostática",
       "configuracion": "Canasta plana + portaplatos + caja para cubiertos/palillos",
@@ -2025,7 +2025,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 700mm"
+        "value": "Módulo 70 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2066,22 +2066,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos."
+    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-88",
     "code": "KDJ-88",
-    "name": "Locero elevable SS304 con portacubiertos · Módulo 800mm",
+    "name": "Locero elevable SS304 con portacubiertos · Módulo 80 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
-    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos.",
+    "short_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04L3-800",
       "aplicacion": "Cocina",
-      "modulo": "800mm",
-      "dimensiones": "764 × 260 × 542 mm",
+      "modulo": "80 cm",
+      "dimensiones": "76.4 × 26 × 54.2 cm",
       "material": "Canasta en acero inoxidable 304; estructura en hierro",
       "acabado": "Estructura gris con pintura electrostática",
       "configuracion": "Canasta plana + portaplatos + caja para cubiertos/palillos",
@@ -2091,7 +2091,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800mm"
+        "value": "Módulo 80 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2132,22 +2132,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos."
+    "description": "Locero elevable para módulo superior, diseñado para platos, bowls y cubiertos. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-89",
     "code": "KDJ-89",
-    "name": "Canasta elevable eléctrica de alambre · Módulo 700mm",
+    "name": "Canasta elevable eléctrica de alambre · Módulo 70 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Sistema eléctrico elevable para módulo superior de cocina.",
-    "full_description": "Sistema eléctrico elevable para módulo superior de cocina.",
+    "short_description": "Sistema eléctrico elevable para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema eléctrico elevable para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04EF-700",
       "aplicacion": "Cocina",
-      "modulo": "700mm",
-      "dimensiones": "700 × 256 × 700 mm",
+      "modulo": "70 cm",
+      "dimensiones": "70 × 25.6 × 70 cm",
       "material": "Acero plano 304 con tratamiento por electrólisis; laterales en hierro",
       "acabado": "Laterales con pintura electrostática",
       "configuracion": "Canasta elevable eléctrica",
@@ -2157,7 +2157,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 700mm"
+        "value": "Módulo 70 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2198,22 +2198,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Sistema eléctrico elevable para módulo superior de cocina."
+    "description": "Sistema eléctrico elevable para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-90",
     "code": "KDJ-90",
-    "name": "Canasta elevable eléctrica de vidrio · Módulo 600mm",
+    "name": "Canasta elevable eléctrica de vidrio · Módulo 60 cm",
     "category_id": "cat-cocina-elevables",
     "category_name": "Sistemas Elevables & Loceros",
     "main_collection": "cocina",
-    "short_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina.",
-    "full_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina.",
+    "short_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "04EG-600",
       "aplicacion": "Cocina",
-      "modulo": "600mm",
-      "dimensiones": "600 × 256 × 700 mm",
+      "modulo": "60 cm",
+      "dimensiones": "60 × 25.6 × 70 cm",
       "material": "Vidrio templado + aluminio; laterales en hierro",
       "acabado": "Laterales con pintura electrostática",
       "configuracion": "Canasta elevable eléctrica",
@@ -2223,7 +2223,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2264,22 +2264,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina."
+    "description": "Sistema eléctrico elevable de vidrio para módulo superior de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-201",
     "code": "KDJ-201",
-    "name": "Cubertero ABS plateado · Módulo 600mm",
+    "name": "Cubertero ABS plateado · Módulo 60 cm",
     "category_id": "cat-cocina-cuberteros",
     "category_name": "Cuberteros & Accesorios",
     "main_collection": "cocina",
-    "short_description": "Organizador de cubiertos en ABS para cajones de cocina.",
-    "full_description": "Organizador de cubiertos en ABS para cajones de cocina.",
+    "short_description": "Organizador de cubiertos en ABS para cajones de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Organizador de cubiertos en ABS para cajones de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "K-600",
       "aplicacion": "Cocina",
-      "modulo": "600mm",
-      "dimensiones": "535 × 485 × 60 mm",
+      "modulo": "60 cm",
+      "dimensiones": "53.5 × 48.5 × 6 cm",
       "material": "ABS",
       "acabado": "Plateado; superficie con liner",
       "configuracion": "Cubertero",
@@ -2289,7 +2289,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2330,22 +2330,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Organizador de cubiertos en ABS para cajones de cocina."
+    "description": "Organizador de cubiertos en ABS para cajones de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-202",
     "code": "KDJ-202",
-    "name": "Cubertero ABS plateado · Módulo 700mm",
+    "name": "Cubertero ABS plateado · Módulo 70 cm",
     "category_id": "cat-cocina-cuberteros",
     "category_name": "Cuberteros & Accesorios",
     "main_collection": "cocina",
-    "short_description": "Organizador de cubiertos en ABS para cajones de cocina.",
-    "full_description": "Organizador de cubiertos en ABS para cajones de cocina.",
+    "short_description": "Organizador de cubiertos en ABS para cajones de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Organizador de cubiertos en ABS para cajones de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "K-700",
       "aplicacion": "Cocina",
-      "modulo": "700mm",
-      "dimensiones": "635 × 485 × 60 mm",
+      "modulo": "70 cm",
+      "dimensiones": "63.5 × 48.5 × 6 cm",
       "material": "ABS",
       "acabado": "Plateado; superficie con liner",
       "configuracion": "Cubertero",
@@ -2355,7 +2355,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 700mm"
+        "value": "Módulo 70 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2396,33 +2396,33 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Organizador de cubiertos en ABS para cajones de cocina."
+    "description": "Organizador de cubiertos en ABS para cajones de cocina. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-91",
     "code": "KDJ-91",
-    "name": "Joyero extraíble con cierre suave · Módulo 600mm · Variante 1",
+    "name": "Joyero extraíble con cierre suave · Módulo 60 cm · Variante 1",
     "category_id": "cat-closet-joyeros",
     "category_name": "Joyeros & Bandejas",
     "main_collection": "closet",
-    "short_description": "Joyero extraíble revestido en cuero para organización de accesorios.",
-    "full_description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
+    "short_description": "Joyero extraíble revestido en cuero para organización de accesorios. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YD-04D-JB600",
       "aplicacion": "Clóset",
-      "modulo": "600mm",
-      "dimensiones": "(510-614) × 450 × 80 mm",
+      "modulo": "60 cm",
+      "dimensiones": "(51-61.4) × 45 × 8 cm",
       "material": "Aluminio + cuero",
       "acabado": "Acabados de familia informados: Serenity Blue / Mocha",
       "configuracion": "Joyero extraíble",
       "mecanismo": "Sistema amortiguado / cierre suave",
-      "nota_tecnica": "La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
+      "nota_tecnica": "La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
       "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2463,33 +2463,33 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación."
+    "description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-92",
     "code": "KDJ-92",
-    "name": "Joyero extraíble con cierre suave · Módulo 600mm · Variante 2",
+    "name": "Joyero extraíble con cierre suave · Módulo 60 cm · Variante 2",
     "category_id": "cat-closet-joyeros",
     "category_name": "Joyeros & Bandejas",
     "main_collection": "closet",
-    "short_description": "Joyero extraíble revestido en cuero para organización de accesorios.",
-    "full_description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
+    "short_description": "Joyero extraíble revestido en cuero para organización de accesorios. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YD-04D-JB600",
       "aplicacion": "Clóset",
-      "modulo": "600mm",
-      "dimensiones": "(510-614) × 450 × 80 mm",
+      "modulo": "60 cm",
+      "dimensiones": "(51-61.4) × 45 × 8 cm",
       "material": "Aluminio + cuero",
       "acabado": "Acabados de familia informados: Serenity Blue / Mocha",
       "configuracion": "Joyero extraíble",
       "mecanismo": "Sistema amortiguado / cierre suave",
-      "nota_tecnica": "La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación.",
+      "nota_tecnica": "La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
       "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2530,22 +2530,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación."
+    "description": "Joyero extraíble revestido en cuero para organización de accesorios. Nota: La documentación usa la misma referencia de proveedor para dos variantes; confirmar acabado exacto por variante antes de especificar instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-93",
     "code": "KDJ-93",
-    "name": "Pantalonero extraíble con marco de aluminio · Módulo 600mm",
+    "name": "Pantalonero extraíble con marco de aluminio · Módulo 60 cm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Pantalonero de marco de aluminio para módulo de clóset.",
-    "full_description": "Pantalonero de marco de aluminio para módulo de clóset.",
+    "short_description": "Pantalonero de marco de aluminio para módulo de clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Pantalonero de marco de aluminio para módulo de clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YD-01-TR600",
       "aplicacion": "Clóset",
-      "modulo": "600mm",
-      "dimensiones": "(510-614) × 450 × 60 mm",
+      "modulo": "60 cm",
+      "dimensiones": "(51-61.4) × 45 × 6 cm",
       "material": "Marco de aluminio",
       "acabado": "Gris oscuro / Mocha",
       "configuracion": "Pantalonero extraíble",
@@ -2555,7 +2555,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2596,22 +2596,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Pantalonero de marco de aluminio para módulo de clóset."
+    "description": "Pantalonero de marco de aluminio para módulo de clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-94",
     "code": "KDJ-94",
-    "name": "Pantalonero lateral derecho con cierre suave · Módulo 400mm",
+    "name": "Pantalonero lateral derecho con cierre suave · Módulo 40 cm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Pantalonero lateral extraíble con amortiguación.",
-    "full_description": "Pantalonero lateral extraíble con amortiguación.",
+    "short_description": "Pantalonero lateral extraíble con amortiguación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Pantalonero lateral extraíble con amortiguación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YL-12B-R",
       "aplicacion": "Clóset",
-      "modulo": "400mm",
-      "dimensiones": "360 × 450 × 120 mm",
+      "modulo": "40 cm",
+      "dimensiones": "36 × 45 × 12 cm",
       "material": "Aluminio + hierro",
       "acabado": "Gris oscuro",
       "configuracion": "Lateral derecho",
@@ -2621,7 +2621,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 400mm"
+        "value": "Módulo 40 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2662,22 +2662,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Pantalonero lateral extraíble con amortiguación."
+    "description": "Pantalonero lateral extraíble con amortiguación. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-95",
     "code": "KDJ-95",
-    "name": "Pantalonero lateral izquierdo con cierre suave · Módulo 400mm",
+    "name": "Pantalonero lateral izquierdo con cierre suave · Módulo 40 cm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Pantalonero lateral extraíble con amortiguación.",
-    "full_description": "Pantalonero lateral extraíble con amortiguación.",
+    "short_description": "Pantalonero lateral extraíble con amortiguación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Pantalonero lateral extraíble con amortiguación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YL-12B-L",
       "aplicacion": "Clóset",
-      "modulo": "400mm",
-      "dimensiones": "360 × 450 × 120 mm",
+      "modulo": "40 cm",
+      "dimensiones": "36 × 45 × 12 cm",
       "material": "Aluminio + hierro",
       "acabado": "Gris oscuro",
       "configuracion": "Lateral izquierdo",
@@ -2687,7 +2687,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 400mm"
+        "value": "Módulo 40 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2728,22 +2728,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Pantalonero lateral extraíble con amortiguación."
+    "description": "Pantalonero lateral extraíble con amortiguación. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-96",
     "code": "KDJ-96",
-    "name": "Pantalonero superior con cierre suave · Módulo 800mm",
+    "name": "Pantalonero superior con cierre suave · Módulo 80 cm",
     "category_id": "cat-closet-pantaloneros",
     "category_name": "Pantaloneros & Percheros",
     "main_collection": "closet",
-    "short_description": "Pantalonero superior con sistema amortiguado.",
-    "full_description": "Pantalonero superior con sistema amortiguado.",
+    "short_description": "Pantalonero superior con sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Pantalonero superior con sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YL-10",
       "aplicacion": "Clóset",
-      "modulo": "800mm",
-      "dimensiones": "660 × 450 × 120 mm",
+      "modulo": "80 cm",
+      "dimensiones": "66 × 45 × 12 cm",
       "material": "Aluminio + hierro",
       "acabado": "Gris oscuro",
       "configuracion": "Montaje superior",
@@ -2753,7 +2753,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800mm"
+        "value": "Módulo 80 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2794,22 +2794,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Pantalonero superior con sistema amortiguado."
+    "description": "Pantalonero superior con sistema amortiguado. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-97",
     "code": "KDJ-97",
-    "name": "Elevador de ropa con doble cierre suave · Módulo 510-660mm · Mocha",
+    "name": "Elevador de ropa con doble cierre suave · Módulo 51-66 cm · Mocha",
     "category_id": "cat-closet-elevadores",
     "category_name": "Elevadores de Ropa",
     "main_collection": "closet",
-    "short_description": "Elevador de ropa para aprovechar zonas altas del clóset.",
-    "full_description": "Elevador de ropa para aprovechar zonas altas del clóset.",
+    "short_description": "Elevador de ropa para aprovechar zonas altas del clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Elevador de ropa para aprovechar zonas altas del clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YG-05-LCH550",
       "aplicacion": "Clóset",
-      "modulo": "510-660mm",
-      "dimensiones": "450-600 mm",
+      "modulo": "51-66 cm",
+      "dimensiones": "45-60 cm",
       "material": "Aluminio + plástico",
       "acabado": "Mocha",
       "configuracion": "Elevador de ropa",
@@ -2819,7 +2819,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 510-660mm"
+        "value": "Módulo 51-66 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2860,22 +2860,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Elevador de ropa para aprovechar zonas altas del clóset."
+    "description": "Elevador de ropa para aprovechar zonas altas del clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-98",
     "code": "KDJ-98",
-    "name": "Canasta extraíble de ratán · Módulo 600mm · Gris oscuro",
+    "name": "Canasta extraíble de ratán · Módulo 60 cm · Gris oscuro",
     "category_id": "cat-closet-organizadores",
     "category_name": "Organizadores & Canastas Clóset",
     "main_collection": "closet",
-    "short_description": "Canasta extraíble de ratán para almacenamiento en clóset.",
-    "full_description": "Canasta extraíble de ratán para almacenamiento en clóset.",
+    "short_description": "Canasta extraíble de ratán para almacenamiento en clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Canasta extraíble de ratán para almacenamiento en clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "XYH-06-RB600",
       "aplicacion": "Clóset",
-      "modulo": "600mm",
-      "dimensiones": "564 × 450 × 200 mm",
+      "modulo": "60 cm",
+      "dimensiones": "56.4 × 45 × 20 cm",
       "material": "Aluminio + ratán",
       "acabado": "Gris oscuro",
       "configuracion": "Canasta de almacenamiento extraíble",
@@ -2885,7 +2885,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2926,33 +2926,33 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Canasta extraíble de ratán para almacenamiento en clóset."
+    "description": "Canasta extraíble de ratán para almacenamiento en clóset. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-99",
     "code": "KDJ-99",
-    "name": "Zapatero giratorio de 12 niveles · Módulo 760mm",
+    "name": "Zapatero giratorio de 12 niveles · Módulo 76 cm",
     "category_id": "cat-closet-zapateros",
     "category_name": "Zapateros Giratorios",
     "main_collection": "closet",
-    "short_description": "Zapatero giratorio de doce niveles para organización vertical.",
-    "full_description": "Zapatero giratorio de doce niveles para organización vertical. Nota: El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación.",
+    "short_description": "Zapatero giratorio de doce niveles para organización vertical. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Zapatero giratorio de doce niveles para organización vertical. Nota: El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "YK-02-RSR12",
       "aplicacion": "Clóset",
-      "modulo": "760mm",
-      "dimensiones": "680 × 340 × H18575-1945 mm (dato de origen; altura por confirmar)",
+      "modulo": "76 cm",
+      "dimensiones": "68 × 34 × H 185.7 - 194.5 cm (altura por confirmar)",
       "material": "Hierro + MDF",
       "acabado": "Gris hierro",
       "configuracion": "12 niveles",
       "mecanismo": "Sistema giratorio",
-      "nota_tecnica": "El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación.",
+      "nota_tecnica": "El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
       "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 760mm"
+        "value": "Módulo 76 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -2993,22 +2993,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Zapatero giratorio de doce niveles para organización vertical. Nota: El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación."
+    "description": "Zapatero giratorio de doce niveles para organización vertical. Nota: El documento de origen registra la altura como \"H18575-1945\"; el dato presenta una inconsistencia tipográfica y debe confirmarse antes de fabricación o instalación. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-100",
     "code": "KDJ-100",
-    "name": "Cajón con clave revestido en cuero · Módulo 600mm · Gris",
+    "name": "Cajón con clave revestido en cuero · Módulo 60 cm · Gris",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
-    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
+    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "07DL-600",
       "aplicacion": "Clóset",
-      "modulo": "600mm",
-      "dimensiones": "564 × 402 × 152 mm",
+      "modulo": "60 cm",
+      "dimensiones": "56.4 × 40.2 × 15.2 cm",
       "material": "Cuero",
       "acabado": "Gris",
       "configuracion": "Cajón con clave",
@@ -3018,7 +3018,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -3059,22 +3059,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales."
+    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-101",
     "code": "KDJ-101",
-    "name": "Cajón con clave revestido en cuero · Módulo 600mm · Blanco",
+    "name": "Cajón con clave revestido en cuero · Módulo 60 cm · Blanco",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
-    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
+    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "07DL-600",
       "aplicacion": "Clóset",
-      "modulo": "600mm",
-      "dimensiones": "564 × 402 × 152 mm",
+      "modulo": "60 cm",
+      "dimensiones": "56.4 × 40.2 × 15.2 cm",
       "material": "Cuero",
       "acabado": "Blanco",
       "configuracion": "Cajón con clave",
@@ -3084,7 +3084,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -3125,22 +3125,22 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": false,
     "returns_policy_badge": true,
-    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales."
+    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-102",
     "code": "KDJ-102",
-    "name": "Cajón con clave revestido en cuero · Módulo 600mm · Naranja",
+    "name": "Cajón con clave revestido en cuero · Módulo 60 cm · Naranja",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
-    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales.",
+    "short_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "07DL-600",
       "aplicacion": "Clóset",
-      "modulo": "600mm",
-      "dimensiones": "564 × 402 × 152 mm",
+      "modulo": "60 cm",
+      "dimensiones": "56.4 × 40.2 × 15.2 cm",
       "material": "Cuero",
       "acabado": "Naranja",
       "configuracion": "Cajón con clave",
@@ -3150,7 +3150,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 600mm"
+        "value": "Módulo 60 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -3191,33 +3191,33 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales."
+    "description": "Cajón revestido en cuero con sistema de clave para almacenamiento de objetos personales. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   },
   {
     "id": "prod-kdj-103",
     "code": "KDJ-103",
-    "name": "Cajón con clave y mecanismo para relojes · Módulo 800mm · 2 niveles, gris",
+    "name": "Cajón con clave y mecanismo para relojes · Módulo 80 cm · 2 niveles, gris",
     "category_id": "cat-closet-seguridad",
     "category_name": "Cajones con Clave & Relojes",
     "main_collection": "closet",
-    "short_description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles.",
-    "full_description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles. Nota: KDJ-103 confirmado por Daniel. Altura del conjunto: 401 mm según la importación.",
+    "short_description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
+    "full_description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles. Nota: KDJ-103 confirmado por Daniel. Altura del conjunto: 40.1 cm según la importación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
     "technical_specs": {
       "ref_fabricante": "07WW-803",
       "aplicacion": "Clóset",
-      "modulo": "800mm",
-      "dimensiones": "760 × 438 × 401 mm",
+      "modulo": "80 cm",
+      "dimensiones": "76 × 43.8 × 40.1 cm",
       "material": "No especificado en el documento de origen",
       "acabado": "Gris",
       "configuracion": "2 niveles",
       "mecanismo": "Cajón con clave y mecanismo para relojes",
-      "nota_tecnica": "KDJ-103 confirmado por Daniel. Altura del conjunto: 401 mm según la importación.",
+      "nota_tecnica": "KDJ-103 confirmado por Daniel. Altura del conjunto: 40.1 cm según la importación. Módulo de medida externa para muebles en aglomerado de 1.5 cm.",
       "nota_imagen": "Imagen del producto según archivo comercial de Montezzi."
     },
     "benefits": [
       {
         "label": "MÓDULO",
-        "value": "Módulo 800mm"
+        "value": "Módulo 80 cm (Externa · Aglomerado 1.5 cm)"
       },
       {
         "label": "CONFIGURACIÓN",
@@ -3258,7 +3258,7 @@ export const OFFICIAL_PRODUCTS: Product[] = [
     "wholesale_min_qty": 3,
     "fast_shipping_badge": true,
     "returns_policy_badge": true,
-    "description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles. Nota: KDJ-103 confirmado por Daniel. Altura del conjunto: 401 mm según la importación."
+    "description": "Cajón con clave y mecanismo para relojes, dispuesto en dos niveles. Nota: KDJ-103 confirmado por Daniel. Altura del conjunto: 40.1 cm según la importación. Módulo de medida externa para muebles en aglomerado de 1.5 cm."
   }
 ];
 
